@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SoftSin Studios — Art • Tools • Sensation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SoftSin Studios: stylized art, atmospheric design, and creator tools — including the in-browser OpenPose editor." />
+  <link rel="icon" href="favicon.ico" />
+  <meta name="theme-color" content="#1a1b1e" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SoftSin Studios" />
+  <meta property="og:description" content="Art. Tools. Sensation. Build poses, craft images, explore atmospheres." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/SoftSinStudios1024Logo.png" />
+  <meta property="og:url" content="https://softsinstudios.com/" />
+
+  <style>
+    :root{
+      --bg:#0e0f12; --bg-2:#131418; --ink:#e9e9ee; --mut:#a5a8b3;
+      --accent:#e04646; --border:#2a2d34;
+      --btn:#171a21; --btn-hov:#262a33; --ring:#e04646aa;
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Inter var, sans-serif;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:inherit; text-decoration:none}
+    a:focus-visible{outline:3px solid var(--ring); outline-offset:3px}
+    img{max-width:100%; height:auto; display:block}
+
+    /* HERO */
+    .hero{
+      position:relative; isolation:isolate;
+      display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+      padding:0 0 32px;
+      background: radial-gradient(1200px 600px at 50% -10%, #b33a3a18, transparent 60%), var(--bg);
+    }
+    .hero__banner{
+      width:100%;
+      min-height:600px;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+      border-bottom:1px solid var(--border);
+      background:#0e0f12;
+    }
+    .hero__banner img{
+      max-width:100%;
+      max-height:600px;
+      width:auto; height:auto; object-fit:contain;
+      filter:saturate(.95) contrast(1.05) brightness(.95);
+      opacity:0.25;
+    }
+    @media (max-width: 640px){
+      .hero__banner{ min-height: 480px; }
+      .hero__banner img{ max-height: 480px; }
+    }
+    .hero__inner{
+      width:100%; max-width:var(--maxw); text-align:center;
+      margin-top:-90px; padding: 0 20px;
+    }
+    .logo{
+      width:min(220px, 35vw); margin:0 auto 12px; border-radius:50%;
+      box-shadow: 0 6px 40px #000a;
+      backdrop-filter: blur(0.5px);
+    }
+    .title{
+      margin: 6px 0 6px; font-size: clamp(28px, 5.6vw, 54px);
+      font-weight:800; letter-spacing:.5px;
+    }
+    .tag{
+      color:var(--mut); margin:0 0 22px; font-size: clamp(14px, 1.9vw, 18px);
+    }
+    .cta{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn{
+      background:var(--btn); color:var(--ink);
+      padding:12px 18px; border-radius:12px; border:1px solid var(--border);
+      font-weight:600; letter-spacing:.2px; transition:transform .05s ease, border-color .2s ease, box-shadow .2s ease;
+      outline:none;
+    }
+    .btn:hover{ border-color:var(--btn-hov); transform:translateY(-1px) }
+    .btn--primary{ background: linear-gradient(180deg, var(--accent), #c33636); border-color:#ff6a6a33; }
+    .btn--primary:hover{ box-shadow:0 0 0 4px var(--ring) }
+    .btn--ghost{ background:transparent }
+
+    /* SECTIONS */
+    .section{
+      padding: clamp(28px, 5vw, 64px) 20px; border-top:1px solid var(--border);
+      background: var(--bg);
+    }
+    .wrap{ max-width: var(--maxw); margin:0 auto }
+    .section h2{ margin:0 0 10px; font-size: clamp(22px, 3.6vw, 32px) }
+    .section p{ color:var(--mut); margin: 6px 0 18px }
+
+    /* DEMO CARD */
+    .demo{
+      background: var(--bg-2);
+      border:1px solid var(--border); border-radius:14px; overflow:hidden;
+      box-shadow: 0 10px 40px #0008;
+    }
+    .demo__media{
+      aspect-ratio: 16/9; background:#111; display:grid; place-items:center;
+    }
+    .demo__caption{
+      padding:14px 16px; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      border-top:1px solid var(--border);
+    }
+
+    /* Triple media row */
+    .demo__media.triple{
+      display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:stretch;
+      background:#111; padding:16px; aspect-ratio:auto; place-items:unset;
+    }
+    .demo__media.triple figure{
+      flex:1 1 320px; max-width:360px; margin:0; display:flex; flex-direction:column; gap:6px; text-align:center;
+    }
+    .demo__media.triple img{
+      width:100%; height:auto; border-radius:8px; border:1px solid var(--border);
+      box-shadow:0 3px 12px #0006; object-fit:contain; background:#000;
+    }
+    .demo__media.triple figcaption{ color:var(--mut); font-size:14px; }
+    @media (max-width: 680px){
+      .demo__media.triple figure{ flex-basis:100%; max-width:none; }
+    }
+
+    /* PROJECT CARDS */
+    .cards{
+      display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card{
+      background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:18px;
+      display:flex; flex-direction:column; gap:10px; min-height: 220px;
+    }
+    .card h3{ margin:0 }
+    .card p{ color:var(--mut); margin:0 0 10px }
+    .card .grow{ flex:1 }
+    .card .btn{ width:max-content }
+
+    /* FOOTER */
+    footer{
+      border-top:1px solid var(--border);
+      background:linear-gradient(180deg, #0c0d10, #0a0b0e);
+      color:#c6c8d0; padding:24px; text-align:center; font-size:14px;
+    }
+    .links{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:8px }
+    .links a{ color:#c6c8d0bb }
+    .links a:hover{ color:#fff }
+
+    /* MOBILE TWEAKS */
+    @media (max-width: 680px){
+      .hero__inner{ margin-top:-60px }
+      .hero__banner img{ height: 300px }
+    }
+
+    /* motion-respect */
+    @media (prefers-reduced-motion: reduce){
+      .btn:hover{ transform:none; box-shadow:none }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__banner" role="img" aria-label="SoftSin Studios atmospheric banner">
+      <img src="images/SoftSinStudios1600Banner.png" alt="" />
+    </div>
+    <div class="hero__inner">
+      <img class="logo" src="images/SoftSinStudios1024Logo.png" alt="SoftSin Studios logo" loading="eager" />
+      <h1 class="title">SoftSin Studios</h1>
+      <p class="tag">Stylized art, atmospheric design, and the tools that make them real.</p>
+      <nav class="cta" aria-label="primary">
+        <a class="btn btn--primary" href="pose.html">Launch Pose Editor</a>
+        <a class="btn btn--ghost" href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Join the Patreon</a>
+        <a class="btn btn--ghost" href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">View on DeviantArt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- DEMO -->
+  <section class="section" aria-labelledby="see-it-work">
+    <div class="wrap">
+      <h2 id="see-it-work">See it work</h2>
+      <p>The SoftSin Pose Editor lets you design poses in-browser and export JSON/PNG directly into your ControlNet/ComfyUI workflow.</p>
+
+      <div class="demo" aria-label="Editor workflow demo">
+        <div class="demo__media triple">
+          <figure>
+            <img src="images/SoftSinEditorDemo2.gif" alt="Pose creation in SoftSin Pose Editor" loading="lazy" />
+            <figcaption>1. Build the pose</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/SoftSinEditorDemo2.gif" alt="Loading the pose into ComfyUI Portable" loading="lazy" />
+            <figcaption>2. Load into ComfyUI Portable</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/SoftSinEditorDemo2.gif" alt="Pose donor, OpenPose map, and final render" loading="lazy" />
+            <figcaption>3. Final render</figcaption>
+          </figure>
+        </div>
+
+        <div class="demo__caption">
+          <span>Design → Integrate → Render — the full SoftSin workflow.</span>
+          <a class="btn btn--primary" href="pose.html">Try It Live</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" style="background:linear-gradient(180deg, #121317, #101116)" aria-labelledby="projects">
+    <div class="wrap">
+      <h2 id="projects">Projects</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>SoftSin Pose Editor</h3>
+          <p>Create BODY_25 + hands keypoints with depth control. Export JSON/PNG for ControlNet/SDXL.</p>
+          <div class="grow"></div>
+          <a class="btn btn--primary" href="pose.html">Open Editor</a>
+        </article>
+        <article class="card">
+          <h3>Art Collections</h3>
+          <p>Stylized sets from elegant portraits to darker, atmospheric works.</p>
+          <div class="grow"></div>
+          <a class="btn" href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">DeviantArt</a>
+        </article>
+        <article class="card">
+          <h3>Support &amp; Behind-the-Scenes</h3>
+          <p>Back the tools, get pose packs, workflows, and early experiments.</p>
+          <div class="grow"></div>
+          <a class="btn" href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Join Patreon</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2025 SoftSin Studios — All Rights Reserved</div>
+    <div class="links" aria-label="Footer links">
+      <a href="pose.html">Pose Editor</a>
+      <a href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Patreon</a>
+      <a href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">DeviantArt</a>
+    </div>
+  </footer>
+</body>
+</html>
