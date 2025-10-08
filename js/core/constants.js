@@ -68,3 +68,38 @@ export const TEMPLATE_MAP = {
     { label: "1024×1024", path: "assets/blanks/square/1024x1024.png" }
   ]
 };
+
+// =========================
+// Editor Defaults / Config
+// =========================
+
+// ---- Depth & layering defaults ----
+export const DEFAULT_DEPTH_MAP = {
+  rarm:1, larm:1, rleg:1, lleg:1, torso:1, head:1, lhand:1, rhand:1
+};
+export const DIM_BACK_LAYERS_DEFAULT = true;
+export const DEPTH_ALPHA = { back:0.65, mid:0.9, front:1.0 };
+
+// ---- Zoom behavior ----
+export const ZOOM_MIN = 0.2;
+export const ZOOM_MAX = 6;
+export const ZOOM_STEP = 1.1;
+
+// ---- UI defaults ----
+export const UI_DEFAULTS = {
+  usePoseColors: true,
+  boneStrokeWidth: 6,
+  jointRadius: 3,
+  colorJointsByLimb: false,
+  showCursorLabel: true,
+  showSkeleton: true
+};
+
+// ---- Limbs used for depth controls ----
+export const LIMB_KEYS = ['rarm','larm','rleg','lleg','torso','head','lhand','rhand'];
+
+// ---- Status/help text ----
+export const HELP_STATUS_TEXT =
+  'Load an image or template → Select a joint → Click to place and drag to position. ' +
+  'MWheel: Zoom | Middle: Pan | Depth (z-order) sets depth position for bones | ' +
+  'Tip: Adjust Bone/Joint thickness for more accuracy';
