@@ -2,7 +2,7 @@
 import { 
   JOINTS, BODY25_PAIRS, HAND_NAMES, HAND_PAIRS, 
   OP_COLORS, N, TEMPLATE_MAP 
-} from '.js/core/constants.js';
+} from './core/constants.js';
 
 
 function limbForPair(a,b){
