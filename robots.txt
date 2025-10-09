@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: {{SITE_URL}}/sitemap.xml
+Sitemap: https://softsinstudios.com/sitemap.xml
+
