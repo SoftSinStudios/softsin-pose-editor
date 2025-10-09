@@ -2,11 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>OpenPose Editor — Joint Only (+Hands)</title>
+  <title>OpenPose Editor — SoftSin Studios</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="css/app.css" />
-  <script type="module" src="js/app.js" defer></script>
+  <meta name="description" content="An in-browser OpenPose editor by SoftSin Studios. Create, import, and refine poses fast for art workflows." />
+  <meta name="keywords" content="OpenPose editor, pose editor, browser pose tool, Stable Diffusion pose, AI art pipeline, SoftSin Studios" />
+  <meta name="author" content="SoftSin Studios" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="theme-color" content="#1a1b1e" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{SITE_URL}}/pose.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{SITE_URL}}/pose.html" />
+  <meta property="og:title" content="OpenPose Editor — SoftSin Studios" />
+  <meta property="og:description" content="In-browser OpenPose editing for fast, precise posing." />
+  <meta property="og:image" content="{{SITE_URL}}/images/pose-og.webp" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OpenPose Editor — SoftSin Studios" />
+  <meta name="twitter:description" content="In-browser OpenPose editing for fast, precise posing." />
+  <meta name="twitter:image" content="{{SITE_URL}}/images/pose-og.webp" />
+
+  <!-- Perf -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preload" as="image" href="/images/pose-og.webp" />
+  <link rel="stylesheet" href="css/pose.css" />
+
+  <!-- Warm the module graph -->
+  <link rel="modulepreload" href="/js/app.js" />
+  <link rel="modulepreload" href="/js/core/constants.js" />
+  <link rel="modulepreload" href="/js/core/utils.js" />
+  <link rel="modulepreload" href="/js/core/state.js" />
+  <link rel="modulepreload" href="/js/core/templates.js" />
+  <link rel="modulepreload" href="/js/core/draw.js" />
+  <link rel="modulepreload" href="/js/core/dom.js" />
+  <link rel="modulepreload" href="/js/core/exporters.js" />
+
+  <!-- Load the app (ESM). It will import everything from /js/core -->
+  <script type="module" src="/js/app.js"></script>
+
+  <!-- SoftwareApplication JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SoftSin OpenPose Editor",
+    "operatingSystem": "Web",
+    "applicationCategory": "GraphicsApplication",
+    "offers": { "@type": "Offer", "price": "0" },
+    "url": "{{SITE_URL}}/pose.html",
+    "image": "{{SITE_URL}}/images/pose-og.webp",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SoftSin Studios",
+      "url": "{{SITE_URL}}/"
+    }
+  }
+  </script>
+
+  <!-- Optional analytics (commented) -->
+  <!-- <script defer data-domain="YOUR_DOMAIN" src="https://plausible.io/js/script.js"></script> -->
+  <!-- <script defer src="https://cdn.usefathom.com/script.js" data-site="YOUR_ID"></script> -->
 </head>
+
 <body>
   <div id="layout">
     <!-- Top bar -->
