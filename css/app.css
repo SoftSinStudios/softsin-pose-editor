@@ -35,7 +35,7 @@
       max-height:600px;
       width:auto; height:auto; object-fit:contain;
       filter:saturate(.95) contrast(1.05) brightness(.95);
-      opacity:0.25;
+      opacity:0.40;
     }
     @media (max-width: 640px){
       .hero__banner{ min-height: 480px; }
