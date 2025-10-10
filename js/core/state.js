@@ -33,6 +33,9 @@ export function setSelected(kind, idx) {
   if (kind === 'body') selectedJointIdx = idx;
   else if (kind === 'lhand' || kind === 'rhand') selectedHandIdx = idx;
 }
+// alias for convenience (doesn't change the index)
+export function setSelectedKind(kind){ selectedKind = kind; }
+
 export function setDragging(val){ dragging = val; }
 export function setImgMetrics(scale, offset){ imgScale = scale; imgOffset = offset; }
 
@@ -58,7 +61,6 @@ export function resetPose() {
 }
 
 export function alphaForDepth(d) {
-  // same as original
   if (!dimBackLayers) return 1;
   return (d===0 ? 0.65 : (d===1 ? 0.9 : 1));
 }
@@ -67,3 +69,29 @@ export function depthForLimb(limb) {
   return depthMap[limb] ?? 1;
 }
 
+/* ---------- selection-aware utilities ---------- */
+// Returns { arr, idx } for the currently selected point, or null if none.
+export function getSelectedPointRef(){
+  if (selectedKind === 'body')   return { arr: kps,   idx: selectedJointIdx };
+  if (selectedKind === 'lhand')  return { arr: lhand, idx: selectedHandIdx };
+  if (selectedKind === 'rhand')  return { arr: rhand, idx: selectedHandIdx };
+  return null;
+}
+
+// Clears the currently selected point (sets x/y to null, keeps c=1, missing=false)
+export function clearSelectedPoint(){
+  const ref = getSelectedPointRef();
+  if (!ref) return false;
+  const { arr, idx } = ref;
+  if (!arr[idx]) return false;
+  arr[idx] = { x:null, y:null, missing:false, c:1 };
+  return true;
+}
+
+// Clears ALL points (body + both hands). Optional markMissing if you want to flag them.
+export function clearAllPoints({ markMissing = false } = {}){
+  const reset = () => ({ x:null, y:null, missing:markMissing, c:1 });
+  for (let i=0;i<kps.length;i++)   kps[i]   = reset();
+  for (let i=0;i<lhand.length;i++) lhand[i] = reset();
+  for (let i=0;i<rhand.length;i++) rhand[i] = reset();
+}
