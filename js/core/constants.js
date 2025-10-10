@@ -48,7 +48,8 @@ export const OP_COLORS = {
   larm: "#00FF00",
   rleg: "#FF00FF",
   lleg: "#0000FF",
-  joint: "#FFFFFF",
+  joint: "#FFFFFF"
+};
 
 // ----- HAND COLORS -----
 export const HAND_COLORS = {
