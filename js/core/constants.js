@@ -42,10 +42,29 @@ export const HAND_PAIRS = [
 
 // ----- COLORS -----
 export const OP_COLORS = {
-  torso:"#00FFFF", head:"#00FFFF",
-  rarm:"#FFA500", larm:"#00FF00",
-  rleg:"#FF00FF", lleg:"#0000FF",
-  joint:"#FFFFFF"
+  torso: "#00FFFF",
+  head: "#00FFFF",
+  rarm: "#FFA500",
+  larm: "#00FF00",
+  rleg: "#FF00FF",
+  lleg: "#0000FF",
+  joint: "#FFFFFF",
+
+  // === Right Hand (Warm) ===
+  rWrist: "#E65100",
+  rThumbBase: "#FF7043", rThumb1: "#FF8A65", rThumb2: "#FFAB91", rThumbEnd: "#FFE0B2",
+  rIndexBase: "#F4511E", rIndex1: "#FF7043", rIndex2: "#FF8A65", rIndexEnd: "#FFCCBC",
+  rMiddleBase: "#E64A19", rMiddle1: "#FF7043", rMiddle2: "#FF8A65", rMiddleEnd: "#FFCCBC",
+  rRingBase: "#D84315", rRing1: "#FF7043", rRing2: "#FF8A65", rRingEnd: "#FFCCBC",
+  rPinkyBase: "#BF360C", rPinky1: "#FF7043", rPinky2: "#FF8A65", rPinkyEnd: "#FFCCBC",
+
+  // === Left Hand (Cool) ===
+  lWrist: "#1B5E20",
+  lThumbBase: "#66BB6A", lThumb1: "#81C784", lThumb2: "#A5D6A7", lThumbEnd: "#C8E6C9",
+  lIndexBase: "#2E7D32", lIndex1: "#66BB6A", lIndex2: "#81C784", lIndexEnd: "#C8E6C9",
+  lMiddleBase: "#388E3C", lMiddle1: "#66BB6A", lMiddle2: "#81C784", lMiddleEnd: "#C8E6C9",
+  lRingBase: "#43A047", lRing1: "#66BB6A", lRing2: "#81C784", lRingEnd: "#C8E6C9",
+  lPinkyBase: "#4CAF50", lPinky1: "#81C784", lPinky2: "#A5D6A7", lPinkyEnd: "#C8E6C9"
 };
 
 // ----- CONSTANTS -----
