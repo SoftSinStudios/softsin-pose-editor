@@ -344,15 +344,36 @@ document.getElementById('file')?.addEventListener('change',(e)=>{
   img.src=url; img.style.maxWidth='none';
 });
 
+// Clear currently selected joint/hand point
 document.getElementById('clearSelected')?.addEventListener('click', () => {
-  if (selectedJoint !== null && joints[selectedJoint]) {
-    joints[selectedJoint] = null; // remove position data
-    selectedJoint = null;         // clear selection
-    draw();                       // re-render canvas
-    renderOverlay();              // update visuals
-    refreshStatuses();            // update UI indicators
+  if (selectedKind === 'body') {
+    const i = selectedJointIdx;
+    if (typeof i === 'number' && kps[i]) {
+      kps[i].x = null;
+      kps[i].y = null;
+      kps[i].missing = false; // keep as "not missing"; null coords hides it
+    }
+  } else if (selectedKind === 'lhand' || selectedKind === 'rhand') {
+    const arr = (selectedKind === 'lhand') ? lhand : rhand;
+    const i = selectedHandIdx;
+    if (typeof i === 'number' && arr[i]) {
+      arr[i].x = null;
+      arr[i].y = null;
+      arr[i].missing = false;
+    }
+  } else {
+    // nothing selected — optional status nudge
+    setStatus?.('Select a joint/hand in the list, then click “Clear Selected”.');
+    return;
   }
+
+  // auto-deselect and refresh visuals/UI
+  selectedKind = 'none';
+  draw();
+  renderOverlay();
+  refreshStatuses();
 });
+
 
 
 // ========= Init =========
