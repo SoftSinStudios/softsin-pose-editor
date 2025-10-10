@@ -29,3 +29,18 @@ export function limbForJoint(i) {
   }
   return 'torso';
 }
+
+export function colorForHand(side, index) {
+  const names = [
+    "Wrist",
+    "Thumb Base","Thumb 1","Thumb 2","Thumb End",
+    "Index Base","Index 1","Index 2","Index End",
+    "Middle Base","Middle 1","Middle 2","Middle End",
+    "Ring Base","Ring 1","Ring 2","Ring End",
+    "Pinky Base","Pinky 1","Pinky 2","Pinky End"
+  ];
+  const prefix = (side === 'L') ? 'l' : 'r';
+  const key = prefix + names[index].replace(/\s/g, '');
+  return OP_COLORS[key] || "#FFFFFF";
+}
+
