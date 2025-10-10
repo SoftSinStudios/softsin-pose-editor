@@ -344,6 +344,17 @@ document.getElementById('file')?.addEventListener('change',(e)=>{
   img.src=url; img.style.maxWidth='none';
 });
 
+document.getElementById('clearSelected')?.addEventListener('click', () => {
+  if (selectedJoint !== null && joints[selectedJoint]) {
+    joints[selectedJoint] = null; // remove position data
+    selectedJoint = null;         // clear selection
+    draw();                       // re-render canvas
+    renderOverlay();              // update visuals
+    refreshStatuses();            // update UI indicators
+  }
+});
+
+
 // ========= Init =========
 buildJointList(); buildHandLists(); refreshStatuses();
 setStatus('Load an image or template → Select a joint → Click to place and drag to position. MWheel: Zoom | Middle: Pan | Depth (z-order) sets depth position for bones | Tip: Adjust Bone/Joint thickness for more accuracy');
