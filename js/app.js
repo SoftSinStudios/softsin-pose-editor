@@ -3,7 +3,7 @@ import {
 } from './core/constants.js';
 
 import { stageWrap, stageInner, img, canvas, ctx, overlay, jointList, lhandList, rhandList, setStatus, showFloat, hideFloat } from './core/dom.js';
-import { limbForPair, colorForPair, colorForJoint, limbForJoint } from './core/utils.js';
+import { limbForPair, colorForPair, colorForJoint, limbForJoint, colorForHand } from './core/utils.js';
 import { draw, renderOverlay, moveOverlayDot } from './core/draw.js';
 import { exportJson, exportPosePng } from './core/exporters.js';
 import { buildTemplateMenus, loadTemplate, closeAllDropdowns } from './core/templates.js';
@@ -64,14 +64,18 @@ function buildHandList(listEl, side){
     item.dataset.kind= side==='L' ? 'lhand' : 'rhand';
     item.dataset.idx=i;
 
-    const bar=document.createElement('div'); bar.className='colorBar';
-    bar.style.background=usePoseColors ? (side==='L'?OP_COLORS.larm:OP_COLORS.rarm) : '#9aa';
+    const bar=document.createElement('div'); 
+    bar.className='colorBar';
+    // was: usePoseColors ? (side==='L'?OP_COLORS.larm:OP_COLORS.rarm) : '#9aa'
+    bar.style.background = usePoseColors ? colorForHand(side, i) : '#9aa';
 
-    const name=document.createElement('div'); name.className='jointName';
+    const name=document.createElement('div'); 
+    name.className='jointName';
     name.textContent = `${side} ${HAND_NAMES[i]}`;
 
-    const st=document.createElement('div'); st.className='status';
-    st.textContent=statusGlyph(side==='L'?'lhand':'rhand', i);
+    const st=document.createElement('div'); 
+    st.className='status';
+    st.textContent = statusGlyph(side==='L'?'lhand':'rhand', i);
 
     item.appendChild(bar); item.appendChild(name); item.appendChild(st);
     item.addEventListener('click',()=>{ selectHand(side==='L'?'lhand':'rhand', i); });
@@ -86,22 +90,29 @@ export function buildHandLists(){
 
 export function refreshStatuses(){
   const mark = (el, active)=>{ if (!el) return; el.classList.toggle('active', !!active); };
+
   if (jointList){
     [...jointList.children].forEach((el,idx)=>{
-      el.querySelector('.status').textContent=statusGlyph('body', idx);
-      el.querySelector('.colorBar').style.background=usePoseColors?colorForJoint(idx):'#9aa';
+      el.querySelector('.status').textContent = statusGlyph('body', idx);
+      el.querySelector('.colorBar').style.background = usePoseColors ? colorForJoint(idx) : '#9aa';
       mark(el, selectedKind==='body' && selectedJointIdx===idx);
     });
   }
+
   if (lhandList){
     [...lhandList.children].forEach((el,idx)=>{
-      el.querySelector('.status').textContent=statusGlyph('lhand', idx);
+      el.querySelector('.status').textContent = statusGlyph('lhand', idx);
+      // NEW: keep the color bar in sync with per-finger color
+      el.querySelector('.colorBar').style.background = usePoseColors ? colorForHand('L', idx) : '#9aa';
       mark(el, selectedKind==='lhand' && selectedHandIdx===idx);
     });
   }
+
   if (rhandList){
     [...rhandList.children].forEach((el,idx)=>{
-      el.querySelector('.status').textContent=statusGlyph('rhand', idx);
+      el.querySelector('.status').textContent = statusGlyph('rhand', idx);
+      // NEW: per-finger color for right hand
+      el.querySelector('.colorBar').style.background = usePoseColors ? colorForHand('R', idx) : '#9aa';
       mark(el, selectedKind==='rhand' && selectedHandIdx===idx);
     });
   }
