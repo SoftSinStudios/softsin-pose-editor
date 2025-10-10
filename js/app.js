@@ -9,7 +9,6 @@ import { exportJson, exportPosePng } from './core/exporters.js';
 import { buildTemplateMenus, loadTemplate, closeAllDropdowns } from './core/templates.js';
 
 import { clearSelectedPoint, setSelectedKind } from './core/state.js';
-import { draw, renderOverlay } from './core/draw.js';
 import { refreshStatuses } from './core/dom.js';
 
 import {
