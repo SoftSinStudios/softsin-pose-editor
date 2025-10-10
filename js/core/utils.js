@@ -1,16 +1,16 @@
 // Limb/color helpers isolated from app code
 import { BODY25_PAIRS, OP_COLORS, HAND_COLORS } from './constants.js';
 
-// ----- BODY25 -----
+/* ================= BODY_25 ================= */
 export function limbForPair(a, b) {
   const s = new Set([a, b]);
-  if ((s.has(1)&&s.has(2))||(s.has(2)&&s.has(3))||(s.has(3)&&s.has(4))) return "rarm";
-  if ((s.has(1)&&s.has(5))||(s.has(5)&&s.has(6))||(s.has(6)&&s.has(7))) return "larm";
-  if ((s.has(8)&&s.has(9))||(s.has(9)&&s.has(10))||(s.has(10)&&s.has(11))) return "rleg";
-  if ((s.has(8)&&s.has(12))||(s.has(12)&&s.has(13))||(s.has(13)&&s.has(14))) return "lleg";
-  if ((s.has(0)&&s.has(15))||(s.has(15)&&s.has(17))||(s.has(0)&&s.has(16))||(s.has(16)&&s.has(18))) return "head";
-  if ((s.has(1)&&s.has(0))||(s.has(1)&&s.has(8))||(s.has(1)&&s.has(9))||(s.has(1)&&s.has(12))) return "torso";
-  return "torso";
+  if ((s.has(1)&&s.has(2))||(s.has(2)&&s.has(3))||(s.has(3)&&s.has(4))) return 'rarm';
+  if ((s.has(1)&&s.has(5))||(s.has(5)&&s.has(6))||(s.has(6)&&s.has(7))) return 'larm';
+  if ((s.has(8)&&s.has(9))||(s.has(9)&&s.has(10))||(s.has(10)&&s.has(11))) return 'rleg';
+  if ((s.has(8)&&s.has(12))||(s.has(12)&&s.has(13))||(s.has(13)&&s.has(14))) return 'lleg';
+  if ((s.has(0)&&s.has(15))||(s.has(15)&&s.has(17))||(s.has(0)&&s.has(16))||(s.has(16)&&s.has(18))) return 'head';
+  if ((s.has(1)&&s.has(0))||(s.has(1)&&s.has(8))||(s.has(1)&&s.has(9))||(s.has(1)&&s.has(12))) return 'torso';
+  return 'torso';
 }
 
 export function colorForPair(a, b) {
@@ -31,36 +31,50 @@ export function limbForJoint(i) {
   return 'torso';
 }
 
-// ----- HAND COLOR HELPERS -----
-export function handColor(side, idx) {
-  // side: 'lhand' | 'rhand'
-  const p = (side === 'lhand') ? 'l' : 'r';
-  let key = null;
+/* ================= HAND COLORS =================
+   Uses HAND_COLORS from constants.js (keys like:
+   lWrist, lThumbBase, lThumb1, ..., rPinkyEnd).
+   side may be 'lhand'|'rhand' or 'l'|'r'.
+================================================= */
 
-  if (idx === 0) key = `${p}Wrist`;
-  else if (idx >= 1 && idx <= 4) {
-    const n = ['ThumbBase', 'Thumb1', 'Thumb2', 'ThumbEnd'];
-    key = p + n[idx - 1];
-  } else if (idx >= 5 && idx <= 8) {
-    const n = ['IndexBase', 'Index1', 'Index2', 'IndexEnd'];
-    key = p + n[idx - 5];
-  } else if (idx >= 9 && idx <= 12) {
-    const n = ['MiddleBase', 'Middle1', 'Middle2', 'MiddleEnd'];
-    key = p + n[idx - 9];
-  } else if (idx >= 13 && idx <= 16) {
-    const n = ['RingBase', 'Ring1', 'Ring2', 'RingEnd'];
-    key = p + n[idx - 13];
-  } else if (idx >= 17 && idx <= 20) {
-    const n = ['PinkyBase', 'Pinky1', 'Pinky2', 'PinkyEnd'];
-    key = p + n[idx - 17];
+function normSide(side) {
+  if (side === 'lhand' || side === 'L' || side === 'l') return 'l';
+  if (side === 'rhand' || side === 'R' || side === 'r') return 'r';
+  return side; // assume already 'l' or 'r'
+}
+
+function handKeyForIndex(prefix /* 'l'|'r' */, idx) {
+  if (idx === 0) return `${prefix}Wrist`;
+
+  const groups = [
+    { start:1, end:4,  name:'Thumb'  },
+    { start:5, end:8,  name:'Index'  },
+    { start:9, end:12, name:'Middle' },
+    { start:13,end:16, name:'Ring'   },
+    { start:17,end:20, name:'Pinky'  },
+  ];
+  for (const g of groups) {
+    if (idx >= g.start && idx <= g.end) {
+      const pos = idx - g.start;           // 0..3
+      const seg = ['Base','1','2','End'][pos];
+      return `${prefix}${g.name}${seg}`;   // e.g. lIndexBase
+    }
   }
-
-  return HAND_COLORS[key] || (side === 'lhand' ? '#26A69A' : '#FF9800');
+  return null;
 }
 
-export function handColorForPair(side, a, b) {
-  // Returns distal joint color (b)
-  return handColor(side, b);
+export function colorForHand(side, idx) {
+  const p = normSide(side);                // 'l' or 'r'
+  const key = handKeyForIndex(p, idx);
+  const fallback = (p === 'l' ? OP_COLORS.larm : OP_COLORS.rarm);
+  return (key && HAND_COLORS[key]) ? HAND_COLORS[key] : fallback;
 }
 
+export function colorForHandPair(side, a, b) {
+  // color segment by the distal joint (b)
+  return colorForHand(side, b);
+}
 
+/* ---- Back-compat aliases (if other files imported old names) ---- */
+export const handColor = colorForHand;
+export const handColorForPair = colorForHandPair;
