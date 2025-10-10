@@ -349,10 +349,12 @@ document.getElementById('reset')?.addEventListener('click', ()=>{
 });
 
 document.getElementById('clearstage')?.addEventListener('click', () => {
-  // Clear the form, which includes the file input
-  document.getElementById('myForm')?.reset();
+  const fileInput = document.getElementById('file');
 
-  // Reload the entire page
+  // Safe and allowed everywhere — clears the selected file
+  if (fileInput) fileInput.value = '';
+
+  // Reset the rest of the app instantly
   window.location.reload();
 });
 
