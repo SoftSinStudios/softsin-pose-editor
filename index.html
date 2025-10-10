@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SoftSin Studios — Art • Tools • Sensation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SoftSin Studios builds stylized art, atmospheric design, and browser-based creator tools — including our in-browser OpenPose editor." />
+  <meta name="keywords" content="SoftSin Studios, OpenPose editor, pose editor, ComfyUI, Stable Diffusion, AI art tools, creator tools, 3D pose, web editor" />
+  <meta name="author" content="SoftSin Studios" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="theme-color" content="#1a1b1e" />
+
+  <link rel="canonical" href="{{SITE_URL}}/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{SITE_URL}}/" />
+  <meta property="og:title" content="SoftSin Studios — Art • Tools • Sensation" />
+  <meta property="og:description" content="Stylized art, atmospheric design, and an in-browser OpenPose editor." />
+  <meta property="og:image" content="{{SITE_URL}}/images/banner-og.webp" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — Art • Tools • Sensation" />
+  <meta name="twitter:description" content="Stylized art, atmospheric design, and an in-browser OpenPose editor." />
+  <meta name="twitter:image" content="{{SITE_URL}}/images/banner-og.webp" />
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preload" as="image" href="/images/banner-og.webp" />
+  <link rel="preload" as="image" href="/images/logo.svg" />
+  <link rel="stylesheet" href="css/app.css" />
+
+  <!-- Optional tiny homepage JS if needed -->
+  <!-- <script type="module" src="/js/home.js"></script> -->
+
+  <!-- JSON-LD (Org + WebSite) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"SoftSin Studios","url":"{{SITE_URL}}/","logo":"{{SITE_URL}}/images/logo.svg","sameAs":["https://www.instagram.com/softsinstudios"]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","url":"{{SITE_URL}}/","name":"SoftSin Studios","potentialAction":{"@type":"SearchAction","target":"{{SITE_URL}}/?q={query}","query-input":"required name=query"}}
+  </script>
+
+  <!-- Optional analytics (commented) -->
+  <!-- <script defer data-domain="YOUR_DOMAIN" src="https://plausible.io/js/script.js"></script> -->
+  <!-- <script defer src="https://cdn.usefathom.com/script.js" data-site="YOUR_ID"></script> -->
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__banner" role="img" aria-label="SoftSin Studios atmospheric banner">
+      <img src="images/SoftSinStudios1600Banner.png" alt="" />
+    </div>
+    <div class="hero__inner">
+      <img class="logo" src="images/SoftSinStudios1024Logo.png" alt="SoftSin Studios logo" loading="eager" />
+      <h1 class="title">SoftSin Studios</h1>
+      <p class="tag">Stylized art, atmospheric design, and the tools that make them real.</p>
+      <nav class="cta" aria-label="primary">
+        <a class="btn btn--primary" href="pose.html">Launch Pose Editor</a>
+        <a class="btn btn--ghost" href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Join the Patreon</a>
+        <a class="btn btn--ghost" href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">View on DeviantArt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- DEMO -->
+  <section class="section" aria-labelledby="see-it-work">
+    <div class="wrap">
+      <h2 id="see-it-work">See it work</h2>
+      <p>The SoftSin Pose Editor lets you design poses in-browser and export JSON/PNG directly into your ControlNet/ComfyUI workflow.</p>
+
+      <div class="demo" aria-label="Editor workflow demo">
+        <div class="demo__media triple">
+          <figure>
+            <img src="images/SoftSinEditorDemo2.gif" alt="Pose creation in SoftSin Pose Editor" loading="lazy" />
+            <figcaption>1. Build the pose</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/SoftSinEditorDemo2.gif" alt="Loading the pose into ComfyUI Portable" loading="lazy" />
+            <figcaption>2. Load into ComfyUI Portable</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/SoftSinEditorDemo2.gif" alt="Pose donor, OpenPose map, and final render" loading="lazy" />
+            <figcaption>3. Final render</figcaption>
+          </figure>
+        </div>
+
+        <div class="demo__caption">
+          <span>Design → Integrate → Render — the full SoftSin workflow.</span>
+          <a class="btn btn--primary" href="pose.html">Try It Live</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" style="background:linear-gradient(180deg, #121317, #101116)" aria-labelledby="projects">
+    <div class="wrap">
+      <h2 id="projects">Projects</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>SoftSin Pose Editor</h3>
+          <p>Create BODY_25 + hands keypoints with depth control. Export JSON/PNG for ControlNet/SDXL.</p>
+          <div class="grow"></div>
+          <a class="btn btn--primary" href="pose.html">Open Editor</a>
+        </article>
+        <article class="card">
+          <h3>Art Collections</h3>
+          <p>Stylized sets from elegant portraits to darker, atmospheric works.</p>
+          <div class="grow"></div>
+          <a class="btn" href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">DeviantArt</a>
+        </article>
+        <article class="card">
+          <h3>Support &amp; Behind-the-Scenes</h3>
+          <p>Back the tools, get pose packs, workflows, and early experiments.</p>
+          <div class="grow"></div>
+          <a class="btn" href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Join Patreon</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2025 SoftSin Studios — All Rights Reserved</div>
+    <div class="links" aria-label="Footer links">
+      <a href="pose.html">Pose Editor</a>
+      <a href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Patreon</a>
+      <a href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">DeviantArt</a>
+    </div>
+  </footer>
+</body>
+</html>
