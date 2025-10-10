@@ -212,6 +212,11 @@ details.group > .btnlist { padding:10px; }
   z-index: 10;
 }
 
+label[for="showCursorLabel"],
+#showCursorLabel {
+  display: none !important;
+}
+
 /* topbar dropdowns */
 .dropdown { position: relative; }
 .dd-btn { display:inline-flex; align-items:center; gap:6px; }
