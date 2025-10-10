@@ -1,6 +1,7 @@
 // Limb/color helpers isolated from app code
-import { BODY25_PAIRS, OP_COLORS } from './constants.js';
+import { BODY25_PAIRS, OP_COLORS, HAND_COLORS } from './constants.js';
 
+// ----- BODY25 -----
 export function limbForPair(a, b) {
   const s = new Set([a, b]);
   if ((s.has(1)&&s.has(2))||(s.has(2)&&s.has(3))||(s.has(3)&&s.has(4))) return "rarm";
@@ -30,17 +31,36 @@ export function limbForJoint(i) {
   return 'torso';
 }
 
-export function colorForHand(side, index) {
-  const names = [
-    "Wrist",
-    "Thumb Base","Thumb 1","Thumb 2","Thumb End",
-    "Index Base","Index 1","Index 2","Index End",
-    "Middle Base","Middle 1","Middle 2","Middle End",
-    "Ring Base","Ring 1","Ring 2","Ring End",
-    "Pinky Base","Pinky 1","Pinky 2","Pinky End"
-  ];
-  const prefix = (side === 'L') ? 'l' : 'r';
-  const key = prefix + names[index].replace(/\s/g, '');
-  return OP_COLORS[key] || "#FFFFFF";
+// ----- HAND COLOR HELPERS -----
+export function handColor(side, idx) {
+  // side: 'lhand' | 'rhand'
+  const p = (side === 'lhand') ? 'l' : 'r';
+  let key = null;
+
+  if (idx === 0) key = `${p}Wrist`;
+  else if (idx >= 1 && idx <= 4) {
+    const n = ['ThumbBase', 'Thumb1', 'Thumb2', 'ThumbEnd'];
+    key = p + n[idx - 1];
+  } else if (idx >= 5 && idx <= 8) {
+    const n = ['IndexBase', 'Index1', 'Index2', 'IndexEnd'];
+    key = p + n[idx - 5];
+  } else if (idx >= 9 && idx <= 12) {
+    const n = ['MiddleBase', 'Middle1', 'Middle2', 'MiddleEnd'];
+    key = p + n[idx - 9];
+  } else if (idx >= 13 && idx <= 16) {
+    const n = ['RingBase', 'Ring1', 'Ring2', 'RingEnd'];
+    key = p + n[idx - 13];
+  } else if (idx >= 17 && idx <= 20) {
+    const n = ['PinkyBase', 'Pinky1', 'Pinky2', 'PinkyEnd'];
+    key = p + n[idx - 17];
+  }
+
+  return HAND_COLORS[key] || (side === 'lhand' ? '#26A69A' : '#FF9800');
 }
+
+export function handColorForPair(side, a, b) {
+  // Returns distal joint color (b)
+  return handColor(side, b);
+}
+
 
