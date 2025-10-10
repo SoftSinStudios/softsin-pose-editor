@@ -8,6 +8,10 @@ import { draw, renderOverlay, moveOverlayDot } from './core/draw.js';
 import { exportJson, exportPosePng } from './core/exporters.js';
 import { buildTemplateMenus, loadTemplate, closeAllDropdowns } from './core/templates.js';
 
+import { clearSelectedPoint, setSelectedKind } from './core/state.js';
+import { draw, renderOverlay } from './core/draw.js';
+import { refreshStatuses } from './core/dom.js';
+
 import {
   showSkeleton, setShowSkeleton,
   selectedKind, selectedJointIdx, selectedHandIdx, setSelected,
@@ -284,6 +288,13 @@ overlay.addEventListener('pointerdown', (e)=>{
   };
   document.addEventListener('pointermove', move);
   document.addEventListener('pointerup', up, {once:true});
+});
+
+document.getElementById('clearSelected')?.addEventListener('click', () => {
+  if (clearSelectedPoint()) {
+    setSelectedKind('none');
+    draw(); renderOverlay(); refreshStatuses();
+  }
 });
 
 // ========= Depth controls =========
