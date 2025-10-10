@@ -225,6 +225,16 @@ stageWrap.addEventListener('pointerup',(e)=>{
   }
 });
 
+
+// ========= Always Parse Metadata On Image Import =======
+
+document.getElementById('file')?.addEventListener('change', (e) => {
+  const f = e.target.files?.[0];
+  if (!f) return;
+  // autoHideSkeleton=true prevents “double bones” (see #2)
+  loadImageWithOptionalPose(f, { autoHideSkeleton: true });
+});
+
 // ========= Interaction (placing & dragging) =========
 stageWrap.addEventListener('pointerdown',(e)=>{
   if (!img.src) return;
