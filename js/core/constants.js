@@ -50,21 +50,21 @@ export const OP_COLORS = {
   lleg: "#0000FF",
   joint: "#FFFFFF",
 
-  // === Right Hand (Warm) ===
-  rWrist: "#E65100",
-  rThumbBase: "#FF7043", rThumb1: "#FF8A65", rThumb2: "#FFAB91", rThumbEnd: "#FFE0B2",
-  rIndexBase: "#F4511E", rIndex1: "#FF7043", rIndex2: "#FF8A65", rIndexEnd: "#FFCCBC",
-  rMiddleBase: "#E64A19", rMiddle1: "#FF7043", rMiddle2: "#FF8A65", rMiddleEnd: "#FFCCBC",
-  rRingBase: "#D84315", rRing1: "#FF7043", rRing2: "#FF8A65", rRingEnd: "#FFCCBC",
-  rPinkyBase: "#BF360C", rPinky1: "#FF7043", rPinky2: "#FF8A65", rPinkyEnd: "#FFCCBC",
+// === Right Hand (Warm) ===
+rWrist: "#E65100", // burnt orange anchor
+rThumbBase: "#FF7043", rThumb1: "#FF7043", rThumb2: "#FF7043", rThumbEnd: "#FF7043",
+rIndexBase: "#FF9800", rIndex1: "#FF9800", rIndex2: "#FF9800", rIndexEnd: "#FF9800",
+rMiddleBase: "#FFB74D", rMiddle1: "#FFB74D", rMiddle2: "#FFB74D", rMiddleEnd: "#FFB74D",
+rRingBase: "#F57C00", rRing1: "#F57C00", rRing2: "#F57C00", rRingEnd: "#F57C00",
+rPinkyBase: "#F4511E", rPinky1: "#F4511E", rPinky2: "#F4511E", rPinkyEnd: "#F4511E",
 
-  // === Left Hand (Cool) ===
-  lWrist: "#1B5E20",
-  lThumbBase: "#66BB6A", lThumb1: "#81C784", lThumb2: "#A5D6A7", lThumbEnd: "#C8E6C9",
-  lIndexBase: "#2E7D32", lIndex1: "#66BB6A", lIndex2: "#81C784", lIndexEnd: "#C8E6C9",
-  lMiddleBase: "#388E3C", lMiddle1: "#66BB6A", lMiddle2: "#81C784", lMiddleEnd: "#C8E6C9",
-  lRingBase: "#43A047", lRing1: "#66BB6A", lRing2: "#81C784", lRingEnd: "#C8E6C9",
-  lPinkyBase: "#4CAF50", lPinky1: "#81C784", lPinky2: "#A5D6A7", lPinkyEnd: "#C8E6C9"
+// === Left Hand (Cool) ===
+lWrist: "#00695C", // teal anchor
+lThumbBase: "#4DB6AC", lThumb1: "#4DB6AC", lThumb2: "#4DB6AC", lThumbEnd: "#4DB6AC",
+lIndexBase: "#26A69A", lIndex1: "#26A69A", lIndex2: "#26A69A", lIndexEnd: "#26A69A",
+lMiddleBase: "#80CBC4", lMiddle1: "#80CBC4", lMiddle2: "#80CBC4", lMiddleEnd: "#80CBC4",
+lRingBase: "#009688", lRing1: "#009688", lRing2: "#009688", lRingEnd: "#009688",
+lPinkyBase: "#00796B", lPinky1: "#00796B", lPinky2: "#00796B", lPinkyEnd: "#00796B"
 };
 
 // ----- CONSTANTS -----
