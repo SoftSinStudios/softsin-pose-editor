@@ -54,15 +54,19 @@ export async function loadImageWithOptionalPose(file, { autoHideSkeleton = true 
     console.warn('SoftSin PNG metadata parse failed (ok to ignore):', e);
   }
 
+  // guard flags for two-stage image load (original -> blackened)
+  let seededOnce = false;
+
   // 2) Load image
   const url = URL.createObjectURL(file);
   img.onload = () => {
     // ensure stage sizing recenters for the new image
     setFirstLoad(true);
 
-    // 3) If pose exists, seed state (and hide skeleton to avoid double-bones)
-    if (pose?.people?.[0]) {
-      if (autoHideSkeleton) setShowSkeleton(false);
+    // If we have a SoftSin pose and haven't seeded yet, hydrate state
+    if (pose?.people?.[0] && !seededOnce) {
+      // Always show bones when rehydrating (fixes joints-only surprise)
+      setShowSkeleton(true);
 
       const usePixels = (pose.keypoint_format || '').includes('pixels');
       const body = pose.people[0].pose_keypoints_2d || [];
@@ -109,11 +113,29 @@ export async function loadImageWithOptionalPose(file, { autoHideSkeleton = true 
       putHand(lhand, L);
       putHand(rhand, R);
 
-      // Allow any listeners to react to pose load (optional)
+      // Mark we’ve seeded, then (if not yet blackened) swap image pixels to solid black
+      seededOnce = true;
+
+      if (!img.dataset.ssBlackened) {
+        const w = img.naturalWidth  || canvas.width  || 1;
+        const h = img.naturalHeight || canvas.height || 1;
+
+        const black = document.createElement('canvas');
+        black.width = w; black.height = h;
+        const bt = black.getContext('2d');
+        bt.fillStyle = '#000';
+        bt.fillRect(0, 0, w, h);
+
+        img.dataset.ssBlackened = '1';
+        img.src = black.toDataURL('image/png'); // triggers a second onload
+        return; // wait for that onload to finish before announcing imageLoaded
+      }
+
+      // Optional: notify pose load (kept from your original)
       document.dispatchEvent(new CustomEvent('pose:poseLoaded', { detail: pose }));
     }
 
-    // 4) Tell app.js to size canvas & redraw UI
+    // 3) Tell app.js to size canvas & redraw UI (runs after blackened onload as well)
     document.dispatchEvent(new CustomEvent('pose:imageLoaded'));
 
     // optional: clean up object URL later
