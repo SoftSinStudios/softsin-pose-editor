@@ -286,64 +286,6 @@ overlay.addEventListener('pointerdown', (e)=>{
   document.addEventListener('pointerup', up, {once:true});
 });
 
-// Track last explicitly selected/used point
-let lastSelected = null;
-
-function rememberSelection(kind, idx){
-  lastSelected = { kind, idx };
-}
-
-// Update these to remember selection:
-function selectJoint(i){
-  selectedKind='body'; selectedJointIdx=i;
-  rememberSelection('body', i);
-  refreshStatuses();
-}
-function selectHand(kind,i){
-  selectedKind=kind; selectedHandIdx=i;
-  rememberSelection(kind, i);
-  refreshStatuses();
-}
-// Also remember when user drags a dot:
-function onDotDown(e){
-  if (e.button!==0) return;
-  e.preventDefault();
-  const kind=e.currentTarget.dataset.kind;
-  const idx=+e.currentTarget.dataset.idx;
-  dragging={kind, idx};
-  rememberSelection(kind, idx);
-  // ...rest of your handler...
-}
-
-// Clear helper
-function clearSelectedBone(){
-  // Prefer current selection; otherwise fall back to lastSelected
-  let kind = selectedKind;
-  let idx  = (kind==='body') ? selectedJointIdx : selectedHandIdx;
-
-  if (kind==='none' && lastSelected){
-    kind = lastSelected.kind;
-    idx  = lastSelected.idx;
-  }
-  if (!kind || kind==='none') return; // nothing to clear
-
-  const arr = (kind==='body') ? kps : (kind==='lhand' ? lhand : rhand);
-  const p = arr[idx];
-  if (!p) return;
-
-  // Clear the point (hide dot & lines)
-  p.x = null;
-  p.y = null;
-  p.missing = false; // not "missing", just cleared
-
-  // Keep selection so user can click again if they want
-  moveOverlayDot(kind, idx, p);
-  draw();
-  renderOverlay();
-  refreshStatuses();
-}
-
-
 // ========= Depth controls =========
 ;['rarm','larm','rleg','lleg','torso','head','lhand','rhand'].forEach(id=>{
   const el=document.getElementById('depth-'+id);
