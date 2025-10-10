@@ -51,20 +51,23 @@ export const OP_COLORS = {
   joint: "#FFFFFF",
 
 // === Right Hand (Warm) ===
-rWrist: "#E65100", // burnt orange anchor
-rThumbBase: "#FF7043", rThumb1: "#FF7043", rThumb2: "#FF7043", rThumbEnd: "#FF7043",
-rIndexBase: "#FF9800", rIndex1: "#FF9800", rIndex2: "#FF9800", rIndexEnd: "#FF9800",
-rMiddleBase: "#FFB74D", rMiddle1: "#FFB74D", rMiddle2: "#FFB74D", rMiddleEnd: "#FFB74D",
-rRingBase: "#F57C00", rRing1: "#F57C00", rRing2: "#F57C00", rRingEnd: "#F57C00",
-rPinkyBase: "#F4511E", rPinky1: "#F4511E", rPinky2: "#F4511E", rPinkyEnd: "#F4511E",
+// === Hands (Simplified Finger Colors) ===
+rWrist:  "#E65100", lWrist:  "#1B5E20",
 
-// === Left Hand (Cool) ===
-lWrist: "#00695C", // teal anchor
-lThumbBase: "#4DB6AC", lThumb1: "#4DB6AC", lThumb2: "#4DB6AC", lThumbEnd: "#4DB6AC",
-lIndexBase: "#26A69A", lIndex1: "#26A69A", lIndex2: "#26A69A", lIndexEnd: "#26A69A",
-lMiddleBase: "#80CBC4", lMiddle1: "#80CBC4", lMiddle2: "#80CBC4", lMiddleEnd: "#80CBC4",
-lRingBase: "#009688", lRing1: "#009688", lRing2: "#009688", lRingEnd: "#009688",
-lPinkyBase: "#00796B", lPinky1: "#00796B", lPinky2: "#00796B", lPinkyEnd: "#00796B"
+// Right hand — warm tones
+rThumb:  "#FF7043",
+rIndex:  "#FF8A65",
+rMiddle: "#FFB74D",
+rRing:   "#FFCA28",
+rPinky:  "#FFD54F",
+
+// Left hand — cool tones
+lThumb:  "#26A69A",
+lIndex:  "#4DB6AC",
+lMiddle: "#81C784",
+lRing:   "#AED581",
+lPinky:  "#C5E1A5",
+
 };
 
 // ----- CONSTANTS -----
