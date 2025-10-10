@@ -349,7 +349,11 @@ document.getElementById('reset')?.addEventListener('click', ()=>{
 });
 
 document.getElementById('clearstage')?.addEventListener('click', () => {
-  window.location.reload(); // instant, no pre-flicker
+  // Clear the form, which includes the file input
+  document.getElementById('myForm')?.reset();
+
+  // Reload the entire page
+  window.location.reload();
 });
 
 document.getElementById('exportJson')?.addEventListener('click', exportJson);
