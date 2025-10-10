@@ -1,4 +1,4 @@
-import { BODY25_PAIRS, HAND_PAIRS, OP_COLORS, N } from './constants.js';
+import { BODY25_PAIRS, HAND_PAIRS, OP_COLORS, N, HAND_COLORS } from './constants.js';
 import { canvas, img } from './dom.js';
 import {
   kps, lhand, rhand, boneStrokeWidth, jointRadius, colorJointsByLimb, usePoseColors,
@@ -34,6 +34,7 @@ export async function saveBlobAs(blob, suggestedName='pose.png') {
   downloadBlob(blob, name);
 }
 
+/* ---------- JSON export (unchanged) ---------- */
 export function exportJson() {
   const usePixels = document.getElementById('scaleOut')?.checked ?? true;
 
@@ -60,50 +61,137 @@ export function exportJson() {
   downloadBlob(new Blob([JSON.stringify(json,null,2)],{type:'application/json'}),'openpose_body25_hands.json');
 }
 
+/* ---------- Helpers for per-finger color mapping ---------- */
+// OpenPose hand indices:
+// 0: wrist
+// 1-4:   thumb (Base, 1, 2, End)
+// 5-8:   index
+// 9-12:  middle
+// 13-16: ring
+// 17-20: pinky
+function handKeyForIndex(side /* 'l'|'r' */, idx) {
+  const prefix = side === 'l' ? 'l' : 'r';
+  if (idx === 0) return `${prefix}Wrist`;
+
+  const map = [
+    { start:1, end:4, name:'Thumb'  },
+    { start:5, end:8, name:'Index'  },
+    { start:9, end:12,name:'Middle' },
+    { start:13,end:16,name:'Ring'   },
+    { start:17,end:20,name:'Pinky'  },
+  ];
+
+  for (const g of map) {
+    if (idx >= g.start && idx <= g.end) {
+      const pos = idx - g.start; // 0..3
+      const segName = ['Base','1','2','End'][pos];
+      return `${prefix}${g.name}${segName}`;
+    }
+  }
+  return null;
+}
+
+function handColorForIndex(side /* 'l'|'r' */, idx) {
+  const key = handKeyForIndex(side, idx);
+  return (key && HAND_COLORS[key]) ? HAND_COLORS[key] : null;
+}
+
+/* ---------- PNG export (uses per-finger colors) ---------- */
 export function exportPosePng() {
   const tmp=document.createElement('canvas'); tmp.width=canvas.width; tmp.height=canvas.height;
   const t=tmp.getContext('2d'); t.fillStyle='#000'; t.fillRect(0,0,tmp.width,tmp.height);
 
   const segs=[];
+
+  // Body segments (unchanged)
   for (const [a,b] of BODY25_PAIRS){
     const pa=kps[a], pb=kps[b];
     if (!pa || !pb || pa.x==null || pb.x==null || pa.missing || pb.missing) continue;
-    segs.push({ ax:pa.x, ay:pa.y, bx:pb.x, by:pb.y, color:usePoseColors?colorForPair(a,b):'#FFF', width:boneStrokeWidth, depth:depthForLimb(limbForPair(a,b)) });
+    segs.push({
+      ax:pa.x, ay:pa.y, bx:pb.x, by:pb.y,
+      color: usePoseColors ? colorForPair(a,b) : '#FFF',
+      width: boneStrokeWidth,
+      depth: depthForLimb(limbForPair(a,b))
+    });
   }
-  function hSegs(handArr, limbKey, color){
+
+  // Hand segments with per-joint color.
+  function handSegs(handArr, side /* 'l'|'r' */, limbKey /* 'lhand'|'rhand' */){
     for (const [a,b] of HAND_PAIRS){
       const pa=handArr[a], pb=handArr[b];
       if (!pa || !pb || pa.x==null || pb.x==null || pa.missing || pb.missing) continue;
-      segs.push({ ax:pa.x, ay:pa.y, bx:pb.x, by:pb.y, color, width:boneStrokeWidth, depth:depthForLimb(limbKey) });
+
+      // choose the color by distal/end joint (b) so each finger stays consistent
+      const segColor = usePoseColors
+        ? (handColorForIndex(side, b) || (side==='l' ? OP_COLORS.larm : OP_COLORS.rarm))
+        : '#FFF';
+
+      segs.push({
+        ax:pa.x, ay:pa.y, bx:pb.x, by:pb.y,
+        color: segColor,
+        width: boneStrokeWidth,
+        depth: depthForLimb(limbKey)
+      });
     }
-    const wBody = (limbKey==='lhand') ? kps[7] : kps[4];
-    const wHand = handArr[0];
-    if (wBody && wHand && wBody.x!=null && wHand.x!=null && !wBody.missing && !wHand.missing){
-      segs.push({ ax:wBody.x, ay:wBody.y, bx:wHand.x, by:wHand.y, color, width:boneStrokeWidth, depth:depthForLimb(limbKey) });
+
+    // Connect body wrist -> hand wrist using wrist color
+    const isLeft = (side === 'l');
+    const bodyWrist = isLeft ? kps[7] : kps[4];
+    const handWrist = handArr[0];
+    if (bodyWrist && handWrist && bodyWrist.x!=null && handWrist.x!=null && !bodyWrist.missing && !handWrist.missing){
+      const wristColor = usePoseColors
+        ? (handColorForIndex(side, 0) || (isLeft ? OP_COLORS.larm : OP_COLORS.rarm))
+        : '#FFF';
+      segs.push({
+        ax:bodyWrist.x, ay:bodyWrist.y, bx:handWrist.x, by:handWrist.y,
+        color: wristColor,
+        width: boneStrokeWidth,
+        depth: depthForLimb(limbKey)
+      });
     }
   }
-  hSegs(lhand,'lhand',usePoseColors?OP_COLORS.larm:'#FFF');
-  hSegs(rhand,'rhand',usePoseColors?OP_COLORS.rarm:'#FFF');
+  handSegs(lhand,'l','lhand');
+  handSegs(rhand,'r','rhand');
 
+  // Joints
   const joints=[];
+  // Body joints (unchanged)
   for (let i=0;i<N;i++){
     const p=kps[i]; if (!p || p.x==null || p.missing) continue;
-    joints.push({ x:p.x, y:p.y, r:jointRadius, fill:(colorJointsByLimb&&usePoseColors)?colorForJoint(i):OP_COLORS.joint, depth:depthForLimb(limbForJoint(i)) });
+    joints.push({
+      x:p.x, y:p.y, r:jointRadius,
+      fill:(colorJointsByLimb&&usePoseColors)?colorForJoint(i):OP_COLORS.joint,
+      depth:depthForLimb(limbForJoint(i))
+    });
   }
-  function hDots(arr, limbKey, col){
+  // Hand joints with per-joint color
+  function handDots(arr, side, limbKey){
     for (let i=0;i<arr.length;i++){
       const p=arr[i]; if (!p || p.x==null || p.missing) continue;
-      joints.push({ x:p.x, y:p.y, r:jointRadius, fill:(colorJointsByLimb&&usePoseColors)?col:OP_COLORS.joint, depth:depthForLimb(limbKey) });
+      const col = usePoseColors
+        ? (handColorForIndex(side, i) || (side==='l' ? OP_COLORS.larm : OP_COLORS.rarm))
+        : OP_COLORS.joint;
+      const fill = (colorJointsByLimb && usePoseColors) ? col : OP_COLORS.joint;
+      joints.push({ x:p.x, y:p.y, r:jointRadius, fill, depth:depthForLimb(limbKey) });
     }
   }
-  hDots(lhand,'lhand',OP_COLORS.larm);
-  hDots(rhand,'rhand',OP_COLORS.rarm);
+  handDots(lhand,'l','lhand');
+  handDots(rhand,'r','rhand');
 
+  // depth order & draw
   segs.sort((a,b)=>a.depth-b.depth);
   joints.sort((a,b)=>a.depth-b.depth);
 
-  for (const s of segs){ t.globalAlpha=alphaForDepth(s.depth); t.lineWidth=s.width; t.strokeStyle=s.color; t.beginPath(); t.moveTo(s.ax,s.ay); t.lineTo(s.bx,s.by); t.stroke(); }
-  for (const j of joints){ t.globalAlpha=alphaForDepth(j.depth); t.beginPath(); t.arc(j.x,j.y,j.r,0,Math.PI*2); t.fillStyle=j.fill; t.fill(); }
+  for (const s of segs){
+    t.globalAlpha=alphaForDepth(s.depth);
+    t.lineWidth=s.width; t.strokeStyle=s.color;
+    t.beginPath(); t.moveTo(s.ax,s.ay); t.lineTo(s.bx,s.by); t.stroke();
+  }
+  for (const j of joints){
+    t.globalAlpha=alphaForDepth(j.depth);
+    t.beginPath(); t.arc(j.x,j.y,j.r,0,Math.PI*2);
+    t.fillStyle=j.fill; t.fill();
+  }
   t.globalAlpha=1;
 
   tmp.toBlob(async (blob)=>{
