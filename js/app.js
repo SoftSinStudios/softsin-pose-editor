@@ -307,7 +307,22 @@ document.getElementById('reset')?.addEventListener('click', ()=>{
   resetPose();
   draw(); renderOverlay(); refreshStatuses();
 });
-document.getElementById('clearstage')?.addEventListener('click', ()=>{ location.reload(); });
+
+document.getElementById('clearstage')?.addEventListener('click', ()=>{
+  const fileInput = document.getElementById('file');
+  
+  // Clear the file name so it resets to "No file chosen"
+  if (fileInput) fileInput.value = '';
+
+  // Optional: clear the preview image before reload (nice UX touch)
+  if (typeof img !== 'undefined') {
+    try { URL.revokeObjectURL(img.src); } catch {}
+    img.removeAttribute('src');
+  }
+
+  // Now reload the canvas
+  location.reload();
+});
 
 document.getElementById('exportJson')?.addEventListener('click', exportJson);
 document.getElementById('exportPng')?.addEventListener('click', exportPosePng);
