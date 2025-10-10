@@ -348,14 +348,8 @@ document.getElementById('reset')?.addEventListener('click', ()=>{
   draw(); renderOverlay(); refreshStatuses();
 });
 
-document.getElementById('clearstage')?.addEventListener('click', ()=>{
-  const fileInput = document.getElementById('file');
-  if (fileInput) fileInput.value = '';
-  if (typeof img !== 'undefined') {
-    try { URL.revokeObjectURL(img.src); } catch {}
-    img.removeAttribute('src');
-  }
-  location.reload();
+document.getElementById('clearstage')?.addEventListener('click', () => {
+  window.location.reload(); // instant, no pre-flicker
 });
 
 document.getElementById('exportJson')?.addEventListener('click', exportJson);
