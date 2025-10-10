@@ -1,28 +1,11 @@
-import { BODY25_PAIRS, HAND_PAIRS, HAND_NAMES, OP_COLORS, N } from './constants.js';
-import { limbForPair, colorForPair, colorForJoint, limbForJoint } from './utils.js';
+import { BODY25_PAIRS, HAND_PAIRS, N } from './constants.js';
+import { limbForPair, colorForPair, colorForJoint, limbForJoint, handColor } from './utils.js';
 import { canvas, ctx, overlay } from './dom.js';
 import {
   kps, lhand, rhand,
   boneStrokeWidth, jointRadius, colorJointsByLimb, usePoseColors,
   alphaForDepth, depthForLimb, showSkeleton, imgScale
 } from './state.js';
-
-/* ===== hand color helper =====
-   Looks for keys like:
-   - lWrist / rWrist
-   - lThumbBase / rThumbBase
-   - lThumb1 / rThumb1
-   ...
-   Falls back to larm/rarm if not present.
-*/
-function handColor(limbKey, idx){
-  const prefix = (limbKey === 'lhand') ? 'l' : 'r';
-  const name = HAND_NAMES[idx] || '';
-  const key = (prefix + name.replace(/\s+/g, '')); // e.g. "lThumbBase"
-  // fallback to limb color if not explicitly defined
-  const fallback = (limbKey === 'lhand') ? OP_COLORS.larm : OP_COLORS.rarm;
-  return OP_COLORS[key] || fallback;
-}
 
 // ===== main draw =====
 export function draw() {
@@ -44,8 +27,9 @@ export function draw() {
     }
   }
 
-  // per-segment hand lines with per-joint colors
+  // === Hand Segments (per joint color) ===
   function handSegs(handArr, limbKey) {
+    const isLeft = limbKey === 'lhand';
     for (const [a,b] of HAND_PAIRS) {
       const pa=handArr[a], pb=handArr[b];
       if (!pa || !pb || pa.x==null || pb.x==null || pa.missing || pb.missing) continue;
@@ -57,11 +41,11 @@ export function draw() {
         depth: depthForLimb(limbKey)
       });
     }
-    // wrist tether to body wrist (BODY_25: R wrist=4, L wrist=7)
-    const isLeft = (limbKey === 'lhand');
+
+    // Wrist tether to BODY25 wrist (R=4, L=7)
     const bodyWrist = isLeft ? kps[7] : kps[4];
     const handWrist = handArr[0];
-    if (bodyWrist && handWrist && bodyWrist.x!=null && handWrist.x!=null && !bodyWrist.missing && !handWrist.missing){
+    if (bodyWrist && handWrist && bodyWrist.x!=null && handWrist.x!=null && !bodyWrist.missing && !handWrist.missing) {
       const tetherColor = usePoseColors ? handColor(limbKey, 0) : '#7fffd4';
       segs.push({
         ax:bodyWrist.x, ay:bodyWrist.y, bx:handWrist.x, by:handWrist.y,
@@ -71,10 +55,13 @@ export function draw() {
       });
     }
   }
+
   handSegs(lhand,'lhand');
   handSegs(rhand,'rhand');
 
-  const joints=[];
+  const joints = [];
+
+  // === BODY JOINTS ===
   for (let i=0;i<N;i++){
     const p=kps[i]; if (!p || p.x==null) continue;
     const limb = limbForJoint(i);
@@ -87,7 +74,7 @@ export function draw() {
     });
   }
 
-  // per-joint hand dots with per-joint colors
+  // === HAND JOINTS ===
   function handDots(handArr, limbKey){
     for (let i=0;i<handArr.length;i++){
       const p=handArr[i]; if (!p || p.x==null) continue;
@@ -105,6 +92,7 @@ export function draw() {
   handDots(lhand,'lhand');
   handDots(rhand,'rhand');
 
+  // === Draw sorted by depth ===
   segs.sort((a,b)=>a.depth-b.depth);
   joints.sort((a,b)=>a.depth-b.depth);
 
