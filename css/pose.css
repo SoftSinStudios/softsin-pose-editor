@@ -212,8 +212,7 @@ details.group > .btnlist { padding:10px; }
   z-index: 10;
 }
 
-label[for="showCursorLabel"],
-#showCursorLabel {
+#cursorlabel, label[for="cursorlabel"] {
   display: none !important;
 }
 
