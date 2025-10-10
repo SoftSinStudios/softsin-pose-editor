@@ -125,3 +125,6 @@ export const HELP_STATUS_TEXT =
   'Load an image or template → Select a joint → Click to place and drag to position. ' +
   'MWheel: Zoom | Middle: Pan | Depth (z-order) sets depth position for bones | ' +
   'Tip: Adjust Bone/Joint thickness for more accuracy';
+
+// Add near other constants
+export const PNG_POSE_TEXT_KEY = 'SoftSinPose';

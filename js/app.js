@@ -3,10 +3,11 @@ import {
 } from './core/constants.js';
 
 import { stageWrap, stageInner, img, canvas, ctx, overlay, jointList, lhandList, rhandList, setStatus, showFloat, hideFloat } from './core/dom.js';
-import { limbForPair, colorForPair, colorForJoint, limbForJoint, colorForHand } from './core/utils.js';
+import { limbForPair, colorForPair, colorForJoint, limbForJoint, handColor } from './core/utils.js';
 import { draw, renderOverlay, moveOverlayDot } from './core/draw.js';
 import { exportJson, exportPosePng } from './core/exporters.js';
 import { buildTemplateMenus, loadTemplate, closeAllDropdowns } from './core/templates.js';
+import { loadImageWithOptionalPose } from './core/importers.js';
 
 import {
   showSkeleton, setShowSkeleton,
@@ -66,8 +67,8 @@ function buildHandList(listEl, side){
 
     const bar=document.createElement('div'); 
     bar.className='colorBar';
-    // was: usePoseColors ? (side==='L'?OP_COLORS.larm:OP_COLORS.rarm) : '#9aa'
-    bar.style.background = usePoseColors ? colorForHand(side, i) : '#9aa';
+    // per-finger color bars (from constants via utils.handColor)
+    bar.style.background = usePoseColors ? handColor(side==='L' ? 'lhand' : 'rhand', i) : '#9aa';
 
     const name=document.createElement('div'); 
     name.className='jointName';
@@ -102,8 +103,7 @@ export function refreshStatuses(){
   if (lhandList){
     [...lhandList.children].forEach((el,idx)=>{
       el.querySelector('.status').textContent = statusGlyph('lhand', idx);
-      // NEW: keep the color bar in sync with per-finger color
-      el.querySelector('.colorBar').style.background = usePoseColors ? colorForHand('L', idx) : '#9aa';
+      el.querySelector('.colorBar').style.background = usePoseColors ? handColor('lhand', idx) : '#9aa';
       mark(el, selectedKind==='lhand' && selectedHandIdx===idx);
     });
   }
@@ -111,8 +111,7 @@ export function refreshStatuses(){
   if (rhandList){
     [...rhandList.children].forEach((el,idx)=>{
       el.querySelector('.status').textContent = statusGlyph('rhand', idx);
-      // NEW: per-finger color for right hand
-      el.querySelector('.colorBar').style.background = usePoseColors ? colorForHand('R', idx) : '#9aa';
+      el.querySelector('.colorBar').style.background = usePoseColors ? handColor('rhand', idx) : '#9aa';
       mark(el, selectedKind==='rhand' && selectedHandIdx===idx);
     });
   }
@@ -258,7 +257,6 @@ stageWrap.addEventListener('pointerdown',(e)=>{
   };
   const upH = ()=>{
     setDragging(null); hideFloat();
-    // Auto-deselect
     setSelected('none', 0);
     refreshStatuses();
     window.removeEventListener('pointermove', moveH);
@@ -297,33 +295,25 @@ overlay.addEventListener('pointerdown', (e)=>{
   document.addEventListener('pointerup', up, {once:true});
 });
 
-// (keep only this clearSelected handler)
+// Clear selected point
 document.getElementById('clearSelected')?.addEventListener('click', () => {
   if (selectedKind === 'body') {
     const i = selectedJointIdx;
     if (typeof i === 'number' && kps[i]) {
-      kps[i].x = null;
-      kps[i].y = null;
-      kps[i].missing = false;
+      kps[i].x = null; kps[i].y = null; kps[i].missing = false;
     }
   } else if (selectedKind === 'lhand' || selectedKind === 'rhand') {
     const arr = (selectedKind === 'lhand') ? lhand : rhand;
     const i = selectedHandIdx;
     if (typeof i === 'number' && arr[i]) {
-      arr[i].x = null;
-      arr[i].y = null;
-      arr[i].missing = false;
+      arr[i].x = null; arr[i].y = null; arr[i].missing = false;
     }
   } else {
     setStatus?.('Select a joint/hand in the list, then click “Clear Selected”.');
     return;
   }
-
-  // auto-deselect and refresh visuals/UI
   setSelected('none', 0);
-  draw();
-  renderOverlay();
-  refreshStatuses();
+  draw(); renderOverlay(); refreshStatuses();
 });
 
 // ========= Depth controls =========
@@ -350,12 +340,8 @@ document.getElementById('reset')?.addEventListener('click', ()=>{
 
 document.getElementById('clearstage')?.addEventListener('click', () => {
   const fileInput = document.getElementById('file');
-
-  // Safe and allowed everywhere — clears the selected file
-  if (fileInput) fileInput.value = '';
-
-  // Reset the rest of the app instantly
-  window.location.reload();
+  if (fileInput) fileInput.value = ''; // clear selected file safely
+  window.location.reload();            // refresh app state
 });
 
 document.getElementById('exportJson')?.addEventListener('click', exportJson);
@@ -364,18 +350,16 @@ document.getElementById('exportPng')?.addEventListener('click', exportPosePng);
 // ========= Templates & image load =========
 buildTemplateMenus();
 
+// Called by importer + template loader after image is ready
 document.addEventListener('pose:imageLoaded', ()=>{
   setCanvasSize(); draw(); renderOverlay(); buildJointList(); buildHandLists(); refreshStatuses();
 });
 
+// Use the new importer-based loader for file input
 document.getElementById('file')?.addEventListener('change',(e)=>{
-  const f=e.target.files?.[0]; if (!f) return;
-  const url=URL.createObjectURL(f);
-  img.onload=()=>{
-    setFirstLoad(true);
-    setCanvasSize(); draw(); renderOverlay(); buildJointList(); buildHandLists(); refreshStatuses();
-  };
-  img.src=url; img.style.maxWidth='none';
+  const f=e.target.files?.[0];
+  if (!f) return;
+  loadImageWithOptionalPose(f);
 });
 
 // ========= Init =========
