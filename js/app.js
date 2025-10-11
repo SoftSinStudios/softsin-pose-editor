@@ -1,5 +1,5 @@
 import { 
-  JOINTS, BODY25_PAIRS, HAND_NAMES, HAND_PAIRS, OP_COLORS, N, TEMPLATE_MAP 
+  JOINTS, BODY25_EDGES, HAND_NAMES, HAND_PAIRS, OP_COLORS, N, TEMPLATE_MAP 
 } from './core/constants.js';
 
 import { stageWrap, stageInner, img, canvas, ctx, overlay, jointList, lhandList, rhandList, setStatus, showFloat, hideFloat } from './core/dom.js';
@@ -67,7 +67,6 @@ function buildHandList(listEl, side){
 
     const bar=document.createElement('div'); 
     bar.className='colorBar';
-    // per-finger color bars (from constants via utils.handColor)
     bar.style.background = usePoseColors ? handColor(side==='L' ? 'lhand' : 'rhand', i) : '#9aa';
 
     const name=document.createElement('div'); 
@@ -228,10 +227,11 @@ stageWrap.addEventListener('pointerup',(e)=>{
 
 // ========= Always Parse Metadata On Image Import =======
 
+// Single, debounced file-input handler (removes duplicate listener)
 document.getElementById('file')?.addEventListener('change', (e) => {
   const f = e.target.files?.[0];
   if (!f) return;
-  // autoHideSkeleton=true prevents “double bones” (see #2)
+  // autoHideSkeleton=true prevents “double bones”
   loadImageWithOptionalPose(f, { autoHideSkeleton: true });
 });
 
@@ -354,8 +354,13 @@ document.getElementById('clearstage')?.addEventListener('click', () => {
   window.location.reload();            // refresh app state
 });
 
-document.getElementById('exportJson')?.addEventListener('click', exportJson);
-document.getElementById('exportPng')?.addEventListener('click', exportPosePng);
+// ========= Exports =========
+document.getElementById('exportJson')?.addEventListener('click', () => {
+  try { exportJson(); } catch (err) { console.error('Export JSON failed:', err); }
+});
+document.getElementById('exportPng')?.addEventListener('click', () => {
+  try { exportPosePng(); } catch (err) { console.error('Export PNG failed:', err); }
+});
 
 // ========= Templates & image load =========
 buildTemplateMenus();
@@ -363,13 +368,6 @@ buildTemplateMenus();
 // Called by importer + template loader after image is ready
 document.addEventListener('pose:imageLoaded', ()=>{
   setCanvasSize(); draw(); renderOverlay(); buildJointList(); buildHandLists(); refreshStatuses();
-});
-
-// Use the new importer-based loader for file input
-document.getElementById('file')?.addEventListener('change',(e)=>{
-  const f=e.target.files?.[0];
-  if (!f) return;
-  loadImageWithOptionalPose(f);
 });
 
 // ========= Init =========
