@@ -1,5 +1,5 @@
 // Limb/color helpers isolated from app code
-import { BODY25_PAIRS, OP_COLORS, HAND_COLORS } from './constants.js';
+import { BODY25_EDGES, OP_COLORS, HAND_COLORS } from './constants.js';
 
 /* ================= BODY_25 ================= */
 export function limbForPair(a, b) {
@@ -18,14 +18,14 @@ export function colorForPair(a, b) {
 }
 
 export function colorForJoint(i) {
-  for (const [a, b] of BODY25_PAIRS) {
+  for (const [a, b] of BODY25_EDGES) {
     if (a === i || b === i) return colorForPair(a, b);
   }
   return OP_COLORS.joint;
 }
 
 export function limbForJoint(i) {
-  for (const [a, b] of BODY25_PAIRS) {
+  for (const [a, b] of BODY25_EDGES) {
     if (a === i || b === i) return limbForPair(a, b);
   }
   return 'torso';
