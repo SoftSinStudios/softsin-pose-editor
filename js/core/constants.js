@@ -168,3 +168,12 @@ export const HELP_STATUS_TEXT =
 
 // Add near other constants
 export const PNG_POSE_TEXT_KEY = 'SoftSinPose';
+
+// ensure these exist at the bottom of exporters.js
+export function exportJson() {
+  // ... existing JSON export logic ...
+}
+
+export function exportPosePng() {
+  // ... existing PNG export logic ...
+}
