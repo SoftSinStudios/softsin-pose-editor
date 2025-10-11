@@ -122,3 +122,4 @@ function buildPosePayload() {
     if (!lp || lp.x==null || lp.y==null || lp.missing) L.push(0,0,0);
     else L.push(lp.x, lp.y, lp.c ?? 1);
     if (!rp || rp.x==null || rp.y==null || rp.m
+)
