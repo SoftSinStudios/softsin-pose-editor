@@ -18,7 +18,7 @@ export const BODY25_NAMES = [
 ];
 
 // Plain edge list: keep format-agnostic for max interop
-export const BODY25_EDGES = [
+export const BODY25_PAIRS = [
   // head
   [0,1], [0,15], [15,17], [0,16], [16,18],
   // torso / pelvis
