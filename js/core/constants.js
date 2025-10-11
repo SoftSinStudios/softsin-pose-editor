@@ -9,20 +9,31 @@ export const JOINTS = [
   "REye","LEye","REar","LEar","RBigToe","RSmallToe","RHeel","LBigToe","LSmallToe","LHeel"
 ];
 
-export const BODY25_PAIRS = [
-  [1,0],[1,2],[2,3],[3,4],
-  [1,5],[5,6],[6,7],
-  [1,8],
-  [8,9],[9,10],[10,11],
-  [8,12],[12,13],[13,14],
-  [0,15],[15,17],
-  [0,16],[16,18],
-  [1,9],[1,12],
-  [11,20],[20,21],[11,19],
-  [14,23],[23,24],[14,22]
+// ===== BODY_25 (OpenPose canonical) =====
+// Indices are from the subject's perspective (OpenPose convention).
+export const BODY25_NAMES = [
+  "Nose","Neck","RShoulder","RElbow","RWrist","LShoulder","LElbow","LWrist",
+  "MidHip","RHip","RKnee","RAnkle","LHip","LKnee","LAnkle",
+  "REye","LEye","REar","LEar","LBigToe","LSmallToe","LHeel","RBigToe","RSmallToe","RHeel"
 ];
 
-// ----- HANDS -----
+// Plain edge list: keep format-agnostic for max interop
+export const BODY25_EDGES = [
+  // head
+  [0,1], [0,15], [15,17], [0,16], [16,18],
+  // torso / pelvis
+  [1,8], [8,9], [8,12],
+  // right arm
+  [1,2], [2,3], [3,4],
+  // left arm
+  [1,5], [5,6], [6,7],
+  // right leg + foot
+  [9,10], [10,11], [11,22], [11,24], [22,23],
+  // left leg + foot
+  [12,13], [13,14], [14,19], [14,21], [19,20]
+];
+
+// ===== HANDS (21-point, standard) =====
 export const HAND_NAMES = [
   "Wrist",
   "Thumb Base","Thumb 1","Thumb 2","Thumb End",
@@ -40,35 +51,64 @@ export const HAND_PAIRS = [
   [0,17],[17,18],[18,19],[19,20]
 ];
 
-// ----- COLORS -----
+// ===== COLORS (kept separate from topology) =====
+// Common OpenPose-inspired scheme: cool=left, warm=right, cyan torso/head.
 export const OP_COLORS = {
   torso: "#00FFFF",
-  head: "#00FFFF",
-  rarm: "#FFA500",
-  larm: "#00FF00",
-  rleg: "#FF00FF",
-  lleg: "#0000FF",
+  head:  "#00FFFF",
+  rarm:  "#FFA500",
+  larm:  "#00FF00",
+  rleg:  "#FF00FF",
+  lleg:  "#0000FF",
+  rfoot: "#CC00CC",
+  lfoot: "#0000CC",
   joint: "#FFFFFF"
 };
 
-// ----- HAND COLORS -----
+// Group edges by semantic region (indices into BODY25_EDGES)
+export const BODY25_GROUPS = {
+  head:  [0,1,2,3,4],
+  torso: [5,6,7],
+  rarm:  [8,9,10],
+  larm:  [11,12,13],
+  rleg:  [14,15],
+  rfoot: [16,17,18],
+  lleg:  [19,20],
+  lfoot: [21,22,23]
+};
+
+// Derive per-edge colors at runtime (renderer can use this directly)
+export const BODY25_EDGE_COLORS = BODY25_EDGES.map((_, i) => {
+  if (BODY25_GROUPS.head.includes(i))  return OP_COLORS.head;
+  if (BODY25_GROUPS.torso.includes(i)) return OP_COLORS.torso;
+  if (BODY25_GROUPS.rarm.includes(i))  return OP_COLORS.rarm;
+  if (BODY25_GROUPS.larm.includes(i))  return OP_COLORS.larm;
+  if (BODY25_GROUPS.rleg.includes(i))  return OP_COLORS.rleg;
+  if (BODY25_GROUPS.rfoot.includes(i)) return OP_COLORS.rfoot;
+  if (BODY25_GROUPS.lleg.includes(i))  return OP_COLORS.lleg;
+  if (BODY25_GROUPS.lfoot.includes(i)) return OP_COLORS.lfoot;
+  return OP_COLORS.joint;
+});
+
+// ===== HAND COLORS (your existing palette is fine) =====
 export const HAND_COLORS = {
-  // === Right Hand (Warm) ===
-  rWrist: "#E65100", // burnt orange anchor
+  // Right Hand (Warm)
+  rWrist: "#E65100",
   rThumbBase: "#FF7043", rThumb1: "#FF7043", rThumb2: "#FF7043", rThumbEnd: "#FF7043",
   rIndexBase: "#FF9800", rIndex1: "#FF9800", rIndex2: "#FF9800", rIndexEnd: "#FF9800",
   rMiddleBase: "#FFB74D", rMiddle1: "#FFB74D", rMiddle2: "#FFB74D", rMiddleEnd: "#FFB74D",
   rRingBase: "#F57C00", rRing1: "#F57C00", rRing2: "#F57C00", rRingEnd: "#F57C00",
   rPinkyBase: "#F4511E", rPinky1: "#F4511E", rPinky2: "#F4511E", rPinkyEnd: "#F4511E",
 
-  // === Left Hand (Cool) ===
-  lWrist: "#00695C", // teal anchor
+  // Left Hand (Cool)
+  lWrist: "#00695C",
   lThumbBase: "#4DB6AC", lThumb1: "#4DB6AC", lThumb2: "#4DB6AC", lThumbEnd: "#4DB6AC",
   lIndexBase: "#26A69A", lIndex1: "#26A69A", lIndex2: "#26A69A", lIndexEnd: "#26A69A",
   lMiddleBase: "#80CBC4", lMiddle1: "#80CBC4", lMiddle2: "#80CBC4", lMiddleEnd: "#80CBC4",
   lRingBase: "#009688", lRing1: "#009688", lRing2: "#009688", lRingEnd: "#009688",
   lPinkyBase: "#00796B", lPinky1: "#00796B", lPinky2: "#00796B", lPinkyEnd: "#00796B"
 };
+
 
 // ----- CONSTANTS -----
 export const N = JOINTS.length;
