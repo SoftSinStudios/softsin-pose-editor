@@ -18,7 +18,7 @@ export const BODY25_NAMES = [
 ];
 
 // Plain edge list: keep format-agnostic for max interop
-export const BODY25_PAIRS = [
+export const BODY25_EDGES = [
   // head
   [0,1], [0,15], [15,17], [0,16], [16,18],
   // torso / pelvis
@@ -78,7 +78,7 @@ export const BODY25_GROUPS = {
 };
 
 // Derive per-edge colors at runtime (renderer can use this directly)
-export const BODY25_EDGE_COLORS = BODY25_PAIRS.map((_, i) => {
+export const BODY25_EDGE_COLORS = BODY25_EDGES.map((_, i) => {
   if (BODY25_GROUPS.head.includes(i))  return OP_COLORS.head;
   if (BODY25_GROUPS.torso.includes(i)) return OP_COLORS.torso;
   if (BODY25_GROUPS.rarm.includes(i))  return OP_COLORS.rarm;
