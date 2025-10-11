@@ -113,13 +113,33 @@ function buildPosePayload() {
   const body = [];
   for (let i = 0; i < N; i++) {
     const p = kps[i];
-    if (!p || p.x == null || p.y == null || p.missing) body.push(0,0,0);
+    if (!p || p.x == null || p.y == null || p.missing) body.push(0, 0, 0);
     else body.push(p.x, p.y, p.c ?? 1);
   }
+
   const L = [], R = [];
   for (let i = 0; i < 21; i++) {
     const lp = lhand[i], rp = rhand[i];
-    if (!lp || lp.x==null || lp.y==null || lp.missing) L.push(0,0,0);
-    else L.push(lp.x, lp.y, lp.c ?? 1);
-    if (!rp || rp.x==null || rp.y==null || rp.m
-)
+    if (!lp || lp.x == null || lp.y == null || lp.missing)
+      L.push(0, 0, 0);
+    else
+      L.push(lp.x, lp.y, lp.c ?? 1);
+
+    if (!rp || rp.x == null || rp.y == null || rp.missing)
+      R.push(0, 0, 0);
+    else
+      R.push(rp.x, rp.y, rp.c ?? 1);
+  }
+
+  return {
+    version: 1.3,
+    people: [{
+      pose_keypoints_2d: body,
+      face_keypoints_2d: [],
+      hand_left_keypoints_2d: L,
+      hand_right_keypoints_2d: R
+    }],
+    image_size: [canvas.width, canvas.height],
+    keypoint_format: "body25+hands-pixels"
+  };
+}
