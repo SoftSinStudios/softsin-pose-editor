@@ -1,4 +1,4 @@
-import { BODY25_PAIRS, HAND_PAIRS, N } from './constants.js';
+import { BODY25_EDGES, HAND_PAIRS, N } from './constants.js';
 import { limbForPair, colorForPair, colorForJoint, limbForJoint, handColor } from './utils.js';
 import { canvas, ctx, overlay } from './dom.js';
 import {
@@ -14,7 +14,7 @@ export function draw() {
 
   const segs = [];
   if (showSkeleton) {
-    for (const [a,b] of BODY25_PAIRS) {
+    for (const [a,b] of BODY25_EDGES) {
       const pa=kps[a], pb=kps[b];
       if (!pa || !pb || pa.x==null || pb.x==null || pa.missing || pb.missing) continue;
       const limb = limbForPair(a,b);
