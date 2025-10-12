@@ -69,6 +69,15 @@
     .meta { opacity: 0.7; font-size: 0.95rem; margin-top: 0.25rem; }
     .actions { margin-top: 1.25rem; }
     .sep { height: 1px; background: #26272b; border-radius: 1px; margin: 1rem auto; max-width: 780px; opacity: 0.7; }
+	
+	footer{
+      border-top:1px solid var(--border);
+      background:linear-gradient(180deg, #0c0d10, #0a0b0e);
+      color:#c6c8d0; padding:24px; text-align:center; font-size:14px;
+    }
+    .links{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:8px }
+    .links a{ color:#c6c8d0bb }
+    .links a:hover{ color:#fff }
   </style>
 </head>
 <body>
@@ -168,15 +177,19 @@
       <p>
         Your use of our software and sites is also subject to our Privacy Policy. If you believe content infringes your rights, contact us at the address above and include sufficient detail so we can investigate.
       </p>
-    </div>
-
-    <div class="actions">
-      <a class="btn" href="/">Return to Home</a>
-      <a class="btn" href="/privacypolicy.html">View Privacy Policy</a>
-	  <a class="btn" href="/returns.html">View Returns POlicy</a>
-	  <a class="btn" href="/pricing.html">View Pricing Guide</a>
-	  
-    </div>
   </main>
+ 
+  <footer>
+    <div>© 2025 SoftSin Studios — All Rights Reserved</div>
+    <div class="links" aria-label="Footer links">
+      <a href="pose.html">Pose Editor</a>
+      <a href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Patreon</a> |
+      <a href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">DeviantArt</a> |
+	  <a href="https://www.softsinstudios.com/pricing.html" target="_blank" rel="noopener">Pricing</a> |
+	  <a href="https://www.softsinstudios.com/returns.html" target="_blank" rel="noopener">Returns</a> |
+	  <a href="https://www.softsinstudios.com/tos.html" target="_blank" rel="noopener">Terms of Service</a> |
+	  <a href="https://www.softsinstudios.com/privacypolicy.html" target="_blank" rel="noopener">Privacy Policy</a>
+    </div>
+  </footer>
 </body>
 </html>
