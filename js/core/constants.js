@@ -47,7 +47,7 @@ export const OP_COLORS = {
   rarm: "#FF8C00",
   larm: "#00D16D",
   rleg: "#FF33FF",
-  lleg: "##2D6BFF",
+  lleg: "#2D6BFF",
   joint: "#FFFFFF"
 };
 
