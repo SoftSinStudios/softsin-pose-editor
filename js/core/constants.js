@@ -44,30 +44,30 @@ export const HAND_PAIRS = [
 export const OP_COLORS = {
   torso: "#00FFFF",
   head: "#00FFFF",
-  rarm: "#FFA500",
-  larm: "#00FF00",
-  rleg: "#FF00FF",
-  lleg: "#0000FF",
+  rarm: "#FF8C00",
+  larm: "#00D16D",
+  rleg: "#FF33FF",
+  lleg: "##2D6BFF",
   joint: "#FFFFFF"
 };
 
 // ----- HAND COLORS -----
 export const HAND_COLORS = {
-  // === Right Hand (Warm) ===
-  rWrist: "#E65100", // burnt orange anchor
-  rThumbBase: "#FF7043", rThumb1: "#FF7043", rThumb2: "#FF7043", rThumbEnd: "#FF7043",
-  rIndexBase: "#FF9800", rIndex1: "#FF9800", rIndex2: "#FF9800", rIndexEnd: "#FF9800",
-  rMiddleBase: "#FFB74D", rMiddle1: "#FFB74D", rMiddle2: "#FFB74D", rMiddleEnd: "#FFB74D",
-  rRingBase: "#F57C00", rRing1: "#F57C00", rRing2: "#F57C00", rRingEnd: "#F57C00",
-  rPinkyBase: "#F4511E", rPinky1: "#F4511E", rPinky2: "#F4511E", rPinkyEnd: "#F4511E",
+  // Right Hand (Warm)
+  rWrist:"#E65100",
+  rThumbBase:"#FF7A45", rThumb1:"#FF7A45", rThumb2:"#FF7A45", rThumbEnd:"#FF7A45",
+  rIndexBase:"#FFA040", rIndex1:"#FFA040", rIndex2:"#FFA040", rIndexEnd:"#FFA040",
+  rMiddleBase:"#FFB766", rMiddle1:"#FFB766", rMiddle2:"#FFB766", rMiddleEnd:"#FFB766",
+  rRingBase:"#F57C00",  rRing1:"#F57C00",  rRing2:"#F57C00",  rRingEnd:"#F57C00",
+  rPinkyBase:"#F4511E", rPinky1:"#F4511E", rPinky2:"#F4511E", rPinkyEnd:"#F4511E",
 
   // === Left Hand (Cool) ===
-  lWrist: "#00695C", // teal anchor
-  lThumbBase: "#4DB6AC", lThumb1: "#4DB6AC", lThumb2: "#4DB6AC", lThumbEnd: "#4DB6AC",
-  lIndexBase: "#26A69A", lIndex1: "#26A69A", lIndex2: "#26A69A", lIndexEnd: "#26A69A",
-  lMiddleBase: "#80CBC4", lMiddle1: "#80CBC4", lMiddle2: "#80CBC4", lMiddleEnd: "#80CBC4",
-  lRingBase: "#009688", lRing1: "#009688", lRing2: "#009688", lRingEnd: "#009688",
-  lPinkyBase: "#00796B", lPinky1: "#00796B", lPinky2: "#00796B", lPinkyEnd: "#00796B"
+  lWrist:"#00695C",
+  lThumbBase:"#4DB6AC", lThumb1:"#4DB6AC", lThumb2:"#4DB6AC", lThumbEnd:"#4DB6AC",
+  lIndexBase:"#26A69A", lIndex1:"#26A69A", lIndex2:"#26A69A", lIndexEnd:"#26A69A",
+  lMiddleBase:"#80CBC4", lMiddle1:"#80CBC4", lMiddle2:"#80CBC4", lMiddleEnd:"#80CBC4",
+  lRingBase:"#009688",  lRing1:"#009688",  lRing2:"#009688",  lRingEnd:"#009688",
+  lPinkyBase:"#00796B", lPinky1:"#00796B", lPinky2:"#00796B", lPinkyEnd:"#00796B"
 };
 
 // ----- CONSTANTS -----
