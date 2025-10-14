@@ -25,6 +25,23 @@ import {
   resetPose, alphaForDepth, depthForLimb
 } from './core/state.js';
 
+console.info('[SoftSinDepth] initDepth() complete');
+
+// app.js (top-level module, after all imports)
+const isDepthTool =
+  location.pathname.endsWith('depth.html') ||
+  location.pathname.endsWith('/depth.html') ||
+  document.title.toLowerCase().includes('softsindepth');
+
+if (isDepthTool) {
+  // Top-level await is fine in ESM in modern browsers
+  const { initDepth } = await import('./core/depth.js');
+  await initDepth();           // <-- this wires the sliders + bubbles
+  // Do NOT run the pose/editor boot below
+} else {
+  // existing Pose Editor boot goes here...
+}
+
 // ========= Status glyphs & lists =========
 function statusGlyph(kind, i){
   const p = (kind==='body') ? kps[i] : (kind==='lhand' ? lhand[i] : rhand[i]);

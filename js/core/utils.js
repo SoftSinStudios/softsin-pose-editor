@@ -78,3 +78,18 @@ export function colorForHandPair(side, a, b) {
 /* ---- Back-compat aliases (if other files imported old names) ---- */
 export const handColor = colorForHand;
 export const handColorForPair = colorForHandPair;
+
+/* ================= NUMERIC HELPERS =================
+   Small, pure helpers used across tools (depth, export, etc.)
+===================================================== */
+export const clamp = (v, lo = 0, hi = 1) =>
+  (v < lo ? lo : v > hi ? hi : v);
+
+export const clamp01 = (v) =>
+  (v < 0 ? 0 : v > 1 ? 1 : v);  // saturate
+
+export const lerp = (a, b, t) =>
+  a + (b - a) * t;
+
+export const remap = (x, in0, in1, out0 = 0, out1 = 1) =>
+  out0 + (out1 - out0) * ((x - in0) / (in1 - in0));

@@ -6,6 +6,9 @@ import {
 } from './state.js';
 import { colorForPair, limbForPair, limbForJoint, colorForJoint, handColor } from './utils.js';
 
+/* ---------- Fallback keys for add-ons (non-breaking) ---------- */
+const PNG_DEPTH_TEXT_KEY = 'SoftSin-Depth';   // used by SoftSinDepth (if caller passes metadata)
+
 /* ---------- Blob helpers ---------- */
 export function downloadBlob(blob, name) {
   const url = URL.createObjectURL(blob);
@@ -96,6 +99,44 @@ async function injectPngText(pngBlob, key, value) {
   out.set(textChunk, before.length);
   out.set(after, before.length + textChunk.length);
   return new Blob([out], { type: 'image/png' });
+}
+
+// inject many tEXt chunks (kept internal; exposed via helpers below)
+async function injectMany(pngBlob, entries /* array of [key,value] */) {
+  let b = pngBlob;
+  for (const [k, v] of entries) {
+    try { b = await injectPngText(b, k, v); } catch {}
+  }
+  return b;
+}
+
+/* ---------- Read a tEXt value by key (for verification/debug) ---------- */
+export async function extractPngText(pngBlob, key) {
+  const buf = new Uint8Array(await pngBlob.arrayBuffer());
+  const sig = [137,80,78,71,13,10,26,10];
+  for (let i = 0; i < 8; i++) if (buf[i] !== sig[i]) return null;
+
+  let i = 8;
+  while (i < buf.length) {
+    const dv   = new DataView(buf.buffer, buf.byteOffset + i);
+    const len  = dv.getUint32(0);
+    const t0   = buf[i+4], t1 = buf[i+5], t2 = buf[i+6], t3 = buf[i+7];
+    const type = String.fromCharCode(t0,t1,t2,t3);
+    if (type === 'tEXt') {
+      const data = buf.subarray(i + 8, i + 8 + len);
+      const nul  = data.indexOf(0);
+      if (nul > 0) {
+        const k = new TextDecoder().decode(data.subarray(0, nul));
+        if (k === key) {
+          const v = new TextDecoder().decode(data.subarray(nul + 1));
+          return v;
+        }
+      }
+    }
+    if (type === 'IEND') break;
+    i += 12 + len;
+  }
+  return null;
 }
 
 /* ---------- Build SoftSin pose payload (pixel coords) ---------- */
@@ -255,3 +296,121 @@ export function exportPosePng() {
     await saveBlobAs(stamped, suggested);
   },'image/png');
 }
+
+/* ---------- Canvas/PNG exporters (shared) ---------- */
+
+// tiny promise wrapper around toBlob (keeps main thread smooth)
+export function canvasToBlob(canvas, type = 'image/png', quality) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(b => b ? resolve(b) : reject(new Error('toBlob failed')), type, quality);
+  });
+}
+
+// trigger a download with a sane filename
+export async function exportCanvasPNG(canvas, baseName = 'depth') {
+  const blob = await canvasToBlob(canvas, 'image/png');
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${baseName}.png`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return blob; // handy if caller also wants clipboard, etc.
+}
+
+// optional nice-to-have: copy PNG to clipboard
+export async function copyCanvasPNGToClipboard(canvas) {
+  const blob = await canvasToBlob(canvas, 'image/png');
+  if (navigator.clipboard && window.ClipboardItem) {
+    await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+    return true;
+  }
+  return false; // caller can show a tooltip saying “clipboard not available”
+}
+
+/* ---------- NEW: generic helpers for stamped PNG (pose/depth/etc.) ---------- */
+
+// Write PNG from canvas and inject arbitrary tEXt chunks before download.
+// textMap: { key1: "value1", key2: "value2", ... }
+export async function exportStampedPNG(canvas, baseName = 'image', textMap = null) {
+  let blob = await canvasToBlob(canvas, 'image/png');
+  if (textMap && typeof textMap === 'object') {
+    const entries = Object.entries(textMap).map(([k,v]) => [String(k), String(v)]);
+    blob = await injectMany(blob, entries);
+  }
+  // Use native save picker when available (with suggested name)
+  await saveBlobAs(blob, `${baseName}.png`);
+  return blob;
+}
+
+/* ---------- NEW: depth-specific convenience wrapper ---------- */
+// Accepts a plain object `depthMeta` (e.g. { bias, contrast, edge, smooth, invert, version })
+// and embeds it under the SoftSin-Depth tEXt key.
+export async function exportDepthPNG(canvasRef, baseName = 'depth', depthMeta = null) {
+  const text = depthMeta ? { [PNG_DEPTH_TEXT_KEY]: JSON.stringify(depthMeta) } : null;
+  return exportStampedPNG(canvasRef, baseName, text);
+}
+
+/* ---------- NEW: interactive export API (reuses existing dialog if present) ---------- */
+
+// Opens an existing export dialog if your HTML defines it; otherwise falls back to save dialog.
+// Expected DOM (if present):
+//   #exportDialog (container), #expName (input), #expConfirm (button), #expCancel (button)
+export async function openExportDialog({ canvas: cnv, baseName = 'image', textMap = null } = {}) {
+  const dlg = document.getElementById('exportDialog');
+  const nameEl = document.getElementById('expName');
+  const okBtn = document.getElementById('expConfirm');
+  const cancelBtn = document.getElementById('expCancel');
+
+  if (!dlg || !nameEl || !okBtn || !cancelBtn) {
+    // No dialog in this UI → just write the file.
+    return exportStampedPNG(cnv, baseName, textMap);
+  }
+
+  nameEl.value = baseName;
+  dlg.classList.add('open');
+
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      dlg.classList.remove('open');
+      okBtn.removeEventListener('click', onOk);
+      cancelBtn.removeEventListener('click', onCancel);
+    };
+    const onOk = async () => {
+      try {
+        const finalBase = (nameEl.value || baseName).replace(/\.png$/i, '');
+        const blob = await exportStampedPNG(cnv, finalBase, textMap);
+        cleanup(); resolve(blob);
+      } catch (e) {
+        cleanup(); reject(e);
+      }
+    };
+    const onCancel = () => { cleanup(); reject(new DOMException('User canceled', 'AbortError')); };
+
+    okBtn.addEventListener('click', onOk);
+    cancelBtn.addEventListener('click', onCancel);
+  });
+}
+
+// Legacy-ish thin wrappers some code may call
+export async function exportPNGInteractive({ canvas: cnv, baseName = 'image', textMap = null } = {}) {
+  return openExportDialog({ canvas: cnv, baseName, textMap });
+}
+
+export async function startExportPNG(cnv, baseName = 'image', textMap = null) {
+  return openExportDialog({ canvas: cnv, baseName, textMap });
+}
+
+/* ---------- Readers for embedded depth settings (debug/QA) ---------- */
+export async function readDepthSettingsFromPng(pngBlob) {
+  const txt = await extractPngText(pngBlob, PNG_DEPTH_TEXT_KEY);
+  if (!txt) return null;
+  try { return JSON.parse(txt); } catch { return null; }
+}
+
+/* ---- Back-compat: ensure named exports are present (explicit) ---- */
+export {
+  PNG_DEPTH_TEXT_KEY // exposed in case caller wants the key name
+};
