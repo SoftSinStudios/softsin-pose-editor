@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SoftSin JSON Maker — SoftSin Studios</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1a1b1e" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="css/json.css?v=5" />
+
+  <link rel="modulepreload" href="/js/app.js" />
+  <script type="module" src="/js/app.js"></script>
+</head>
+
+<body>
+  <div id="layout">
+    <!-- Top bar -->
+    <div id="topbar">
+	  <a href="index.html"><button id="home">Home</button></a>
+      <a href="pose.html"><button id="home">Pose Editor</button></a>	
+      <a href="node.html"><button id="home">ComfyUI Nodes</button></a>
+      <input id="jsonFile" type="file" accept="application/json,.json" hidden />
+      <button id="importJson">Load JSON</button>
+      <button id="exportJson">Export JSON</button>
+      <button id="clearAll" class="danger">Clear All</button>
+    </div>
+
+    <!-- Left -->
+    <aside id="left">
+      <div class="panel">
+        <h3>Structure</h3>
+        <div class="muted">Use the center panel to create JSON categories and list items.</div>
+      </div>
+    </aside>
+
+    <!-- Center -->
+    <div id="stageWrap">
+      <div id="stageInner">
+        <!-- Provide the legacy nodes with their ORIGINAL IDs so other scripts don't crash -->
+        <img id="img" alt="" />
+        <canvas id="canvas"></canvas>
+        <div id="overlay"></div>
+
+        <form id="jsonForm" autocomplete="off" onsubmit="return false;">
+          <div class="card">
+            <div class="card-head">
+              <strong>Root</strong>
+              <span id="counts" class="muted"></span>
+            </div>
+
+            <!-- Two-column header: file name | version -->
+            <div class="form-row two-col"
+                 style="display:grid;grid-template-columns:minmax(280px,1fr) minmax(280px,1fr);gap:16px;margin-bottom:10px;align-items:start;">
+              <div class="col">
+                <label for="filename">file name</label>
+                <input id="filename" type="text" placeholder="Enter file name, this will be the exported file name" />
+                <div class="hint">&#9888; json constructor automatically places underscores between words</div>
+              </div>
+              <div class="col">
+                <label for="version">version</label>
+                <input id="version" type="text" placeholder="for file version iteration" />
+                <div class="hint">&#8505;: Version (major.minor.patch — e.g. 1.0.0)</div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="rootTags">Descriptors (optional): short keywords describing the content or context.</label>
+              <input id="rootTags" type="text" placeholder="theme description: ie. wilderness environment prompts" />
+              <div class="hint">&#9888; Use commas to separate tags</div>
+            </div>
+
+            <!-- Hidden SoftSin branding/meta (not user-visible) -->
+            <input
+              id="brandMeta"
+              type="hidden"
+              value="Created with the SoftSin Studio JSON Creator V1.00: https://www.softsinstudios.com, © 2025" />
+          </div>
+
+          <!-- dynamic categories -->
+          <div id="categories" class="card-list"></div>
+
+          <div class="toolbar">
+            <button type="button" id="btnAddCategory">+ Category</button>
+            <button type="button" id="btnAddItem">+ List Item</button>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><strong>Preview (read-only)</strong></div>
+            <textarea id="jsonPreview" readonly placeholder="JSON preview will appear here..."></textarea>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <!-- Right -->
+	<aside id="right">
+	  <div class="sideCard">
+		<h3>JSON Info</h3>
+		<div id="info" class="muted">Start by adding a Category and List Items.</div>
+
+		<div class="support-block">
+		  <label class="row">Show Some Love</label>
+		  <a href="https://www.buymeacoffee.com/softsinstudios"
+			 title="Support development and buy me a beer"
+			 target="_blank"
+			 rel="noopener">
+			<img src="/images/donate.png"
+				 alt="Buy me a Beer"
+				 style="display:block; margin:10px auto; cursor:pointer;"/>
+		  </a>
+		</div>
+	  </div>
+	</aside>
+
+    <!-- Status -->
+    <div id="status1">SoftSin JSON Maker ready.</div>
+  </div>
+
+  <footer>
+    <div class="links" aria-label="Footer links">
+	  <a href="https://www.softsinstudios.com">Home</a>|
+	  <a href="/pose.html">Pose Editor</a> |
+	  <a href="/node.html">ComfyUI Nodes</a> |
+      <a href="https://deviantart.com/softsinstudios">DeviantArt</a> |
+	  <a href="/pricing.html">Pricing</a> |
+	  <a href="/returns.html">Returns</a> |
+	  <a href="/tos.html">Terms of Service</a> |
+	  <a href="/privacypolicy.html">Privacy Policy</a
+    </div>
+  </footer>
+
+  <script src="js/jsonmaker.js"></script>
+</body>
+</html>

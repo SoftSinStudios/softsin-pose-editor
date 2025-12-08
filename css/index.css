@@ -69,6 +69,79 @@
     .btn--primary{ background: linear-gradient(180deg, var(--accent), #c33636); border-color:#ff6a6a33; opacity: 0.75; }
     .btn--primary:hover{ box-shadow:0 0 0 4px var(--ring) }
     .btn--ghost{ background:transparent }
+	
+	/* Hide default arrow */
+	details summary::-webkit-details-marker {
+	  display: none;
+	}
+	details summary::marker {
+	  display: none;
+	}
+
+	/* Summary container as flex */
+	details summary.step-title {
+	  display: flex;
+	  align-items: center;     /* vertical centering */
+	  gap: 0.5rem;             /* spacing between icon and text */
+	  font-size: 1.4rem;
+	  font-weight: 700;
+	  cursor: pointer;
+	  list-style: none;
+	  padding: 0.25rem 0;
+	  position: relative;
+	}
+
+	/* The + / – icon */
+	details summary.step-title::before {
+	  content: "+";
+	  font-size: 1.3rem;
+	  font-weight: 900;
+	  line-height: 1;
+	  display: inline-block;
+	  width: 1rem;             /* keeps alignment consistent */
+	  text-align: center;
+	  position: relative;
+	  top: 1px;                /* micro-adjust for pixel-perfect alignment */
+	}
+
+	/* Open state (show –) */
+	details[open] summary.step-title::before {
+	  content: "–";
+	}
+	
+	/* Accent link styling for announcement blocks */
+	.announcements a {
+	  text-decoration: none;
+	  font-weight: 600;
+	  transition: color 0.2s ease, text-shadow 0.2s ease;
+	}
+
+	/* Patreon – soft warm red (same tone as main button) */
+	.link-patreon {
+	  color: var(--accent-red, #ff5c5c);
+	}
+	.link-patreon:hover {
+	  color: #ff7a7a;
+	  text-shadow: 0 0 6px #ff7a7a55;
+	}
+
+	/* Facebook – soft blue variant to complement red theme */
+	.link-facebook {
+	  color: #5ea0ff;
+	}
+	.link-facebook:hover {
+	  color: #82baff;
+	  text-shadow: 0 0 6px #82baff55;
+	}
+
+	/* DeviantArt – muted green, slightly desaturated for readability */
+	.link-deviantart {
+	  color: #4ed37f;
+	}
+	.link-deviantart:hover {
+	  color: #6ff0a0;
+	  text-shadow: 0 0 6px #6ff0a055;
+	}
 
     /* SECTIONS */
     .section{
@@ -121,7 +194,7 @@
       background:#111; padding:16px; aspect-ratio:auto; place-items:unset;
     }
     .demo__media.triple figure{
-      flex:1 1 320px; max-width:360px; margin:0; display:flex; flex-direction:column; gap:6px; text-align:center;
+      flex:1 1 320px; max-width:680px; margin:0; display:flex; flex-direction:column; gap:6px; text-align:center;
     }
     .demo__media.triple img{
       width:100%; height:auto; border-radius:8px; border:1px solid var(--border);
@@ -165,3 +238,111 @@
     @media (prefers-reduced-motion: reduce){
       .btn:hover{ transform:none; box-shadow:none }
     }
+	
+.composer-workflow-diagram {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.composer-workflow-diagram img {
+  max-width: 900px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.node-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 1rem;
+}
+
+/* Card shell */
+.node-card {
+  background: var(--panel, #111);
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+}
+
+.node-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  cursor: zoom-in;
+  position: relative;
+  z-index: 1;
+}
+
+.node-card figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.image-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.96); /* almost solid black */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.image-zoom-content {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: flex-start;   /* <- top-aligns image and text */
+  max-width: 95vw;
+  max-height: 90vh;
+}
+
+.image-zoom-text {
+  flex-shrink: 0;
+  width: auto;
+  max-width: 420px;            /* hard stop: max readable width */
+  color: #e5e5e5;
+  font-size: 1rem;
+  line-height: 1.55;
+  padding: 14px 16px;
+  background: rgba(0,0,0,0.90);
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  overflow-wrap: break-word;
+}
+/* kill the default top margin so text sits tight to the top */
+.image-zoom-text p {
+  margin: 0 0 0.75em;
+}
+
+/* optional: tidy the bullets */
+.image-zoom-text ul {
+  margin: 0 0 0 1.25em;
+  padding: 0;
+}
+
+/* stack vertically on screens under 900px */
+@media (max-width: 900px) {
+  .image-zoom-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-zoom-content img {
+    max-width: 80vw;
+  }
+
+  .image-zoom-text {
+    max-width: 80vw;
+  }
+}
+
+

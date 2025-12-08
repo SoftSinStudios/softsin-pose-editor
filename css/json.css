@@ -1,0 +1,168 @@
+:root{
+  --bg:#0e0f12; --fg:#e9e9ec; --mut:#9aa; --border:#2a2d34;
+  --btn:#151720; --btn-hov:#3a3f4a;
+  --panel:#10131a; --top:#0b0c10; --stage:#292c33;
+  --accent:#6ae3ff;
+}
+*{ box-sizing:border-box; }
+
+html,body{
+  height:100%; margin:0; background:var(--bg); color:var(--fg);
+  font:14px/1.35 system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+#layout{
+  display:grid;
+  grid-template-columns:220px 1fr 220px;
+  grid-template-rows:auto 1fr auto;
+  height:100vh;
+}
+
+/* topbar */
+#topbar{
+  grid-column:1 / -1; display:flex; align-items:center; gap:8px;
+  padding:8px; background:var(--top); border-bottom:1px solid var(--border);
+}
+
+/* ───────── Buttons ───────── */
+button{
+  background:var(--btn);
+  color:var(--fg);
+  border:1px solid var(--border);
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:background .15s ease, border-color .15s ease, color .15s ease;
+}
+button:hover{
+  background:var(--btn-hov);
+  border-color:var(--btn-hov);
+}
+button.mini{ padding:4px 8px; font-size:13px; border-radius:6px; }
+.grow{ flex:1; }
+
+/* + buttons — green hover (text stays white) */
+button.addItemBelow,
+#addCategory,
+#addListItem,
+#btnAddCategory,
+#btnAddItem{
+  color:var(--fg);
+}
+button.addItemBelow:hover,
+#addCategory:hover,
+#addListItem:hover,
+#btnAddCategory:hover,
+#btnAddItem:hover{
+  background:rgba(120,255,120,0.06);
+  border-color:#3f5a3f;
+}
+
+/* - buttons — red hover (text turns light red on hover only) */
+button.removeItem,
+button.removeCatSoft{
+  color:var(--fg);
+}
+button.removeItem:hover,
+button.removeCatSoft:hover{
+  color:#ffb0b0;
+  background:rgba(255,120,120,0.06);
+  border-color:#5a3f3f;
+}
+
+/* neutral defaults for everything else */
+button.danger, button.warn{
+  color:inherit;
+  border-color:var(--border);
+  box-shadow:none;
+}
+
+/* sides */
+#left{ border-right:1px solid var(--border); min-height:0; overflow:auto; }
+#right{ border-left:1px solid var(--border); min-height:0; overflow:auto; }
+.panel,.sideCard{
+  margin:10px; padding:10px; background:var(--panel);
+  border:1px solid var(--border); border-radius:8px;
+}
+.panel h3,.sideCard h3{ margin:0 0 10px; font-size:14px; font-weight:600; }
+.muted{ color:var(--mut); font-size:12px; }
+
+.support-block {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.support-block .row {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--fg);
+}
+
+/* center */
+#stageWrap{ background:var(--stage); display:grid; place-items:start center; overflow:auto; }
+#stageInner{ width:min(960px,100%); padding:16px; display:grid; gap:12px; position:relative; }
+
+/* hide legacy nodes (but they still exist to keep other scripts happy) */
+#img,#canvas,#overlay{ display:none; }
+
+/* cards + form */
+.card{
+  border:1px solid var(--border); border-radius:10px;
+  background:var(--panel); padding:10px; overflow:hidden; max-width:100%;
+}
+.card-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.actions{ display:flex; gap:6px; }
+
+.form-row{ display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+
+/* two-column helper (the HTML also inlines a grid as a fallback) */
+.form-row.two-col{ display:flex; flex-direction:row; flex-wrap:wrap; gap:16px; margin-bottom:10px; }
+.form-row.two-col .col{ flex:1 1 50%; min-width:320px; display:flex; flex-direction:column; gap:6px; }
+
+.form-row>label{ font-size:13px; font-weight:600; color:#d5d7de; margin-bottom:2px; }
+.form-row input[type="text"]{
+  background:#0f1117; color:var(--fg); border:1px solid var(--border);
+  padding:9px 12px; border-radius:8px;
+}
+input::placeholder{ color:#6b6b6b; opacity:1; }
+.hint{ font-size:11px; color:#9aa; }
+
+.card-list{ display:grid; gap:10px; }
+.category .item-row{ align-items:center; }
+
+/* row actions under each item input */
+.row-actions{ display:flex; gap:8px; justify-content:center; margin-top:8px; }
+
+/* toolbar */
+.toolbar{ display:flex; gap:8px; margin:10px 0; }
+
+/* preview */
+#jsonPreview{
+  display:block; width:100%; max-width:100%; min-height:260px;
+  background:linear-gradient(#0000 23px, #0004 24px) repeat-y, #111;
+  background-size:100% 24px;
+  border:1px solid var(--border); border-radius:8px;
+  color:var(--fg); padding:12px 14px;
+  font:13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  resize:vertical; overflow:auto;
+}
+
+/* status */
+#status1{
+  grid-column:1 / -1; padding:6px 10px; color:#9aa;
+  border-top:1px solid var(--border); background:var(--top);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+/* footer */
+footer{ padding:14px; text-align:center; color:#c6c8d0; }
+.links{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.links a{ color:#c6c8d0bb; text-decoration:none } 
+links a:hover{ color:#fff }
+
+/* responsive: stack filename/version on narrow widths */
+@media (max-width:780px){
+  .form-row.two-col{ display:grid; grid-template-columns:1fr; }
+  .form-row.two-col .col{ min-width:0; }
+}

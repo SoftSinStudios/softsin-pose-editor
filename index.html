@@ -30,8 +30,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preload" as="image" href="/images/banner-og.webp" />
   <link rel="preload" as="image" href="/images/logo.svg" />
-  <link rel="stylesheet" href="css/app.css" />
-
+  <link rel="stylesheet" href="css/index.css" />
+ 
   <!-- Optional tiny homepage JS if needed -->
   <!-- <script type="module" src="/js/home.js"></script> -->
 
@@ -60,21 +60,53 @@
       <h1 class="title">SoftSin Studios</h1>
       <p class="tag">Stylized art, atmospheric design, and the tools that make them real.</p>
       <nav class="cta" aria-label="primary">
-        <a class="btn btn--primary" href="pose.html">Launch Pose Editor</a>
-		<a class="btn btn--primary" href="depth.html">Launch Depth Map Editor</a>
-        <a class="btn btn--ghost" href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Join the Patreon</a>
-        <a class="btn btn--ghost" href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">View on DeviantArt</a>
+        <a class="btn btn--primary" href="pose.html">Pose Editor</a>
+		<a class="btn btn--primary" href="json.html">Json Creator</a>
+		<a class="btn btn--primary" href="node.html">Node Suite: In Development </a>
+        <a class="btn btn--primary" href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">View on DeviantArt</a>
       </nav>
     </div>
   </header>
 
   <!-- important information -->
+  
+		<section class="section" aria-labelledby="softsin-overview">
+	  <div class="wrap">
+		<div class="announcements" aria-label="softsin-overview">
+		  <h2 id="softsin-overview">SoftSin Studios - Tools for Artists, Built by an Artist</h2>
+
+		  <p>🎨 <strong>SoftSin Studios</strong> is an independent creative initiative built and maintained by one person: a developer, musician, and lifelong artist who believes that powerful creative tools should be free, transparent, and open to everyone.</p>
+
+		  <p>I design and build every SoftSin tool by hand, from the code and interface to the systems that hold it all together. There are no teams, no investors, and no corporate filters. Just a drive to make art-focused software that works fast, stays ethical, and keeps creators at the center of the process.</p>
+
+		  <p>The goal is simple. Remove barriers, empower artists, and give back to the same creative community that shaped me. Every line of code and every feature is built with usability, honesty, and creative freedom in mind. The ecosystem will always be transparent, without paywalls or subscriptions, and dedicated to providing accessible tools for real people doing real work.</p>
+
+		  <ul>
+			<li>✅ 100% self-funded and community supported</li>
+			<li>✅ Built for artists, developers, and AI creators</li>
+			<li>✅ Focused on clarity, ethics, and iteration over hype</li>
+			<li>✅ Integrated ecosystem: Pose, Depth, Post Processing, and JSON Editors</li>
+			<li>✅ Free to use, modify, and learn from</li>
+		  </ul>
+
+		  <p class="note">⚠️ <strong>Note:</strong> SoftSin Studios is a living ecosystem. The tools evolve, break, improve, and grow in real time. Every update is another step toward refining a creative suite that puts people first.</p>
+
+		  <p>💬 Join the SoftSin Studios community and stay connected:</p>
+
+		  <p>👉 <a href="https://www.facebook.com/softsinstudios" class="link-facebook" target="_blank" rel="noopener noreferrer"><strong>Facebook</strong></a> — release announcements, ecosystem news, and community posts.</p>
+
+		  <p>👉 <a href="https://www.deviantart.com/softsinstudios" class="link-deviantart" target="_blank" rel="noopener noreferrer"><strong>DeviantArt</strong></a> — exclusive galleries and renders made with the SoftSin ecosystem.</p>
+
+		</div>
+	  </div>
+	</section>
+
 	<section class="section" aria-labelledby="pose-editor-overview">
 	  <div class="wrap">
 	<div class="announcements" aria-label="pose-editor-overview">
 			<h2 id="pose-editor-overview">Introducing the SoftSin Pose Editor - Built for Artists. Free for Everyone</h2>
 
-			<p>🧠 <strong>SoftSin Pose Editor</strong> — a browser-based pose and skeleton editor built for artists, animators, and game creators who need fast, accurate reference tools without the bloat or paywalls.</p>
+			<p>🧠 <strong>SoftSin Pose Editor</strong> - a browser-based pose and skeleton editor built for artists, animators, and game creators who need fast, accurate reference tools without the bloat or paywalls.</p>
 
 			<p>After months of work, the SoftSin Pose Editor is live and ready for use!</p>
 
@@ -95,47 +127,90 @@
 
 			<p>If you enjoy the SoftSin Pose Editor, share it with your friends, art circles, and social media groups. Your support helps keep it free and evolving for everyone.</p>
 
-			<p>The project is fully self-funded and released as freeware, supported by anyone who wants to see it grow.</p>
+			<p>The project is fully self-funded and released as freeware, supported by anyone who wants to see it grow.</p><br>
 
-			<p>If you'd like to help development (or buy me a beer 🍺), you can support the project here:</p>
-			
-			<p>👉 <a href="https://www.buymeacoffee.com/softsinstudios" target="_blank" rel="noopener noreferrer">https://www.buymeacoffee.com/softsinstudios</a></p>
+			<div class="demo__media triple">
+			  <figure>
+				<img src="assets/gifs/poseedit.gif" alt="Pose creation in SoftSin Pose Editor" loading="lazy" />
+			 </figure>
+			</div>
+		</div>
+	<div>
+	</section>
+	
+	<section class="section" aria-labelledby="json-editor-overview">
+	  <div class="wrap">
+		<div class="announcements" aria-label="json-editor-overview">
+		  <h2 id="json-editor-overview">Introducing the SoftSin JSON Editor - Built for Developers. Free for Everyone.</h2>
+
+		  <p>🧠 <strong>SoftSin JSON Editor</strong> is a browser-based structured data editor created for developers, artists, and system designers who work with SoftSin configuration files, vocabularies, and node data. It provides an intuitive way to build, validate, and export JSON files without relying on external software or complex IDEs.</p>
+
+		  <p>After extensive development, the SoftSin JSON Editor is live and ready for use!</p>
+
+		  <ul>
+			<li>✅ 100% completely free</li>
+			<li>✅ No downloads, sign-ups, or installations</li>
+			<li>✅ Edit, validate, and format JSON directly in your browser</li>
+			<li>✅ Real-time syntax checking with inline error feedback</li>
+			<li>✅ Import and export JSON files instantly</li>
+			<li>✅ Supports indentation, auto-formatting, and syntax highlighting</li>
+			<li>✅ Create and organize structured vocabularies for SoftSin tools</li>
+			<li>✅ Works seamlessly with SoftSin Pose, Depth, and Post Processing Editors</li>
+			<li>✅ Lightweight, fast, and designed for practical daily use</li>
+		  </ul>
+
+		  <p class="note">⚠️ <strong>Note:</strong> Only JSON files formatted for the SoftSin ecosystem will retain key–value metadata on re-import. External JSON structures may load but could require manual adjustment. ⚠️</p>
+
+		  <p>If you find the SoftSin JSON Editor useful, share it with your creative or development communities. Every mention helps keep it free, open, and evolving.</p>
+
+		  <p>The project is entirely self funded and released as freeware, supported by developers and artists who believe in accessible creative tools.</p><br>
+		  
+		  <div class="demo__media triple">
+			  <figure>
+				<img src="images/nodes/json.png" alt="json creation in SoftSin json creator" loading="lazy" />
+			 </figure>
+		  </div>
 		</div>
 	  </div>
 	</section>
-  
-  <!-- Demo -->
-  <section class="section" aria-labelledby="see-it-work">
-    <div class="wrap">
-      <h2 id="see-it-work">See it work</h2>
-      <p>The SoftSin Pose Editor lets you design poses in-browser and export JSON/PNG directly into your ControlNet/ComfyUI workflow.</p>
+	
+	<section class="section" aria-labelledby="composer-suite-overview">
+	  <div class="wrap">
+		<div class="announcements" aria-label="composer-suite-overview">
+		  <h2 id="composer-suite-overview">SoftSin Composer Suite for ComfyUI Portable</h2>
 
-      <div class="demo" aria-label="Editor workflow demo">
-        <div class="demo__media triple">
-          <figure>
-            <img src="images/SoftSinEditorDemo2.gif" alt="Pose creation in SoftSin Pose Editor" loading="lazy" />
-            <figcaption>1. Build the pose</figcaption>
-          </figure>
+		  <p>🧩 <strong>SoftSin Composer Suite</strong> is a modular system of custom nodes built for <strong>ComfyUI Portable</strong>, designed to bring structured creativity and precision control to AI art workflows.</p>
 
-          <figure>
-            <img src="assets/gifs/poseedit.gif" alt="Loading the pose into ComfyUI Portable" loading="lazy" />
-            <figcaption>2. Edit/Export/Import</figcaption>
-          </figure>
+		  <p>The suite introduces an integrated approach to prompt composition, pose management, lighting, and environment setup — each node communicating through shared JSON data for a unified creative pipeline. It’s engineered for creators who want flexibility, accuracy, and speed without sacrificing control or clarity.</p>
 
-          <figure>
-            <img src="images/SoftSinEditorDemo2.gif" alt="Pose donor, OpenPose map, and final render" loading="lazy" />
-            <figcaption>3. Final render</figcaption>
-          </figure>
-        </div>
+		  <ul>
+			<li>✅ Modular node architecture (Prompt, Pose, Lighting, Environment, and more)</li>
+			<li>✅ JSON-driven data system for seamless cross-node communication</li>
+			<li>✅ Built to complement SoftSin web tools: Pose, Depth, Post Processing Editors, and Json Creator</li>
+			<li>✅ Consistent UI design and standardized field layouts for clarity and workflow speed</li>
+			<li>✅ Designed and tested with ComfyUI Portable builds</li>
+		  </ul>
 
-        <div class="demo__caption">
-          <span>Design → Integrate → Render — the full SoftSin workflow.</span>
-          <a class="btn btn--primary" href="pose.html">Try It Live</a>
-        </div>
-      </div>
-    </div>
-  </section>
+		  <p class="note">⚠️ <strong>Note:</strong> Compatibility with non-portable or custom ComfyUI builds has not yet been verified. The suite is developed and optimized around the ComfyUI Portable environment, and behavior may differ on other distributions.</p>
 
+		  <p>The SoftSin Composer Suite represents the core of the SoftSin ecosystem — a structured, ethical approach to AI-assisted art that empowers human direction while keeping the creative process transparent and repeatable.</p>
+
+		  <p>Development updates, node documentation, and upcoming release details will be shared through SoftSin Studios channels.</p>
+
+		  <p>💬 Join the SoftSin Studios community and stay connected:</p>
+
+		  <p>👉 <a href="https://www.facebook.com/softsinstudios" class="link-facebook" target="_blank" rel="noopener noreferrer"><strong>Facebook</strong></a> — release announcements, ecosystem news, and community posts.</p>
+
+		  <p>👉 <a href="https://www.deviantart.com/softsinstudios" class="link-deviantart" target="_blank" rel="noopener noreferrer"><strong>DeviantArt</strong></a> — exclusive galleries and renders made with the SoftSin ecosystem.</p>
+		  <div class="demo__media triple">
+			  <figure>
+				<img src="images/nodes/basic_workflow.png" alt="SoftSin ComfyUI Custom Node Suite" loading="lazy" />
+			 </figure>
+		  </div>
+		 </div>
+	  </div>
+	</section>
+  	
   <!-- PROJECTS -->
   <section class="section" style="background:linear-gradient(180deg, #121317, #101116)" aria-labelledby="projects">
     <div class="wrap">
@@ -148,17 +223,17 @@
           <a class="btn btn--primary" href="pose.html">Open Editor</a>
         </article>
         <article class="card">
-          <h3>SoftSin Depth Map Editor</h3>
-          <p>Fast, zero-install depth map editor. Tune Bias, Contrast, Edges, Smooth, Invert and export PNG for ControlNet/SDXL.</p>
+          <h3>SoftSin Json creator and editor</h3>
+          <p>Fast, zero-install Json creation and editing tool. Create your json files fast with our intuitive creation and editing process.</p>
           <div class="grow"></div>
-          <a class="btn btn--primary" href="depth.html" target="_blank" rel="noopener">Open Editor</a>
+          <a class="btn btn--primary" href="json.html" target="_blank" rel="noopener">Open Editor</a>
         </article>
-        <article class="card">
-          <h3>Support &amp; Behind-the-Scenes</h3>
-          <p>Back the tools, get pose packs, workflows, and early experiments.</p>
-          <div class="grow"></div>
-          <a class="btn" href="https://www.patreon.com/softsinstudios" target="_blank" rel="noopener">Join Patreon</a>
-        </article>
+		<article class="card">
+		  <h3>SoftSin Composer Suite for ComfyUI Portable</h3>
+		  <p>Modular node system for ComfyUI Portable. Compose prompts, control lighting, manage poses, and build structured AI art workflows powered by JSON-driven data.</p>
+		  <div class="grow"></div>
+		  <a class="btn btn--primary" href="node.html" target="_blank" rel="noopener">View Details</a>
+		</article>
       </div>
     </div>
   </section>
@@ -167,8 +242,8 @@
     <div>© 2025 SoftSin Studios — All Rights Reserved</div>
     <div class="links" aria-label="Footer links">
       <a href="/pose.html">Pose Editor</a> |
-	  <a href="/depth.html">Depth Editor</a> |
-	  <a href="https://patreon.com/softsinstudios">Patreon</a> |
+	  <a href="/depth.html">Json Creator</a> |
+	  <a href="/node.html">ComfyUI Nodes</a> |
       <a href="https://deviantart.com/softsinstudios">DeviantArt</a> |
 	  <a href="/pricing.html">Pricing</a> |
 	  <a href="/returns.html">Returns</a> |

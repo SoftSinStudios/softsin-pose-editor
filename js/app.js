@@ -27,13 +27,21 @@ import {
 
 console.info('[SoftSinDepth] initDepth() complete');
 
+// === ADD: post-page guard (no other behavior changed) ========================
+const IS_POST = !!window.SoftSinPostMode;
+// ============================================================================
+
 // app.js (top-level module, after all imports)
 const isDepthTool =
-  location.pathname.endsWith('depth.html') ||
-  location.pathname.endsWith('/depth.html') ||
-  document.title.toLowerCase().includes('softsindepth');
+  !IS_POST && (
+    location.pathname.endsWith('depth.html') ||
+    location.pathname.endsWith('/depth.html') ||
+    document.title.toLowerCase().includes('softsindepth')
+  );
 
-if (isDepthTool) {
+if (IS_POST) {
+  console.info('[SoftSin] app.js loaded in Post mode — skipping Pose/Depth boot');
+} else if (isDepthTool) {
   // Top-level await is fine in ESM in modern browsers
   const { initDepth } = await import('./core/depth.js');
   await initDepth();           // <-- this wires the sliders + bubbles

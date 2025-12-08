@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SoftSin Studios — Art • Tools • Sensation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SoftSin Studios builds stylized art, atmospheric design, and browser-based creator tools — including our in-browser OpenPose editor." />
+  <meta name="keywords" content="SoftSin Studios, OpenPose editor, pose editor, ComfyUI, Stable Diffusion, AI art tools, creator tools, 3D pose, web editor" />
+  <meta name="author" content="SoftSin Studios" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="theme-color" content="#1a1b1e" />
+
+  <link rel="canonical" href="{{SITE_URL}}/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{SITE_URL}}/" />
+  <meta property="og:title" content="SoftSin Studios — Art • Tools • Sensation" />
+  <meta property="og:description" content="Stylized art, atmospheric design, and an in-browser OpenPose editor." />
+  <meta property="og:image" content="{{SITE_URL}}/images/banner-og.webp" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — Art • Tools • Sensation" />
+  <meta name="twitter:description" content="Stylized art, atmospheric design, and an in-browser OpenPose editor." />
+  <meta name="twitter:image" content="{{SITE_URL}}/images/banner-og.webp" />
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preload" as="image" href="/images/banner-og.webp" />
+  <link rel="preload" as="image" href="/images/logo.svg" />
+  <link rel="stylesheet" href="css/index.css" />
+ 
+  <!-- Optional tiny homepage JS if needed -->
+  <!-- <script type="module" src="/js/home.js"></script> -->
+
+  <!-- JSON-LD (Org + WebSite) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"SoftSin Studios","url":"{{SITE_URL}}/","logo":"{{SITE_URL}}/images/logo.svg","sameAs":["https://www.instagram.com/softsinstudios"]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","url":"{{SITE_URL}}/","name":"SoftSin Studios","potentialAction":{"@type":"SearchAction","target":"{{SITE_URL}}/?q={query}","query-input":"required name=query"}}
+  </script>
+
+  <!-- Optional analytics (commented) -->
+  <!-- <script defer data-domain="YOUR_DOMAIN" src="https://plausible.io/js/script.js"></script> -->
+  <!-- <script defer src="https://cdn.usefathom.com/script.js" data-site="YOUR_ID"></script> -->
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__banner" role="img" aria-label="SoftSin Studios atmospheric banner">
+      <img src="images/SoftSinStudios1600Banner.png" alt="" />
+    </div>
+    <div class="hero__inner">
+      <img class="logo" src="images/SoftSinStudios1024Logo.png" alt="SoftSin Studios logo" loading="eager" />
+      <h1 class="title">SoftSin Studios ComfyUI Nodes</h1>
+      <p class="tag">Create with purpose. The SoftSin Composer Suite transforms scattered ideas into organized, intelligent art pipelines.</p>
+      <nav class="cta" aria-label="primary">
+	    <a class="btn btn--primary" href="index.html">Home</a>
+		<a class="btn btn--primary" href="pose.html">Pose Editor</a>
+        <a class="btn btn--primary" href="json.html">Json Editor</a>
+        <a class="btn btn--primary" href="https://www.deviantart.com/softsinstudios" target="_blank" rel="noopener">My DeviantArt gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- important information -->
+  
+	<section class="section" aria-labelledby="composer-suite-overview">
+	  <div class="wrap">
+		<div class="announcements" aria-label="composer-suite-overview">
+		  <a class="btn btn--primary" href="https://github.com/SoftSinStudios/softsin-release-store/raw/main/composer/softsin_composer_suite_V1_0_0.zip" style="display:block; margin:0 auto; width:max-content;">Download The Nodes v1.0.0</a><br><br>
+		  <h2 id="composer-suite-overview">SoftSin Composer Suite for ComfyUI Portable</h2>
+
+		  <p>🧩 <strong>SoftSin Composer Suite</strong> is a modular system of custom nodes built for <strong>ComfyUI Portable</strong>, designed to bring structured creativity and precision control to AI art workflows.</p>
+
+		  <p>The suite introduces an integrated approach to prompt composition, pose management, lighting, and environment setup — each node communicating through shared JSON data for a unified creative pipeline. It’s engineered for creators who want flexibility, accuracy, and speed without sacrificing control or clarity.</p>
+
+		  <ul>
+			<li>✅ Modular node architecture (Prompt, Pose, Lighting, Environment, and more)</li>
+			<li>✅ JSON-driven data system for seamless cross-node communication</li>
+			<li>✅ Built to complement SoftSin web tools: Pose, Depth, Post Processing Editors, and Json Creator</li>
+			<li>✅ Consistent UI design and standardized field layouts for clarity and workflow speed</li>
+			<li>✅ Designed and tested with ComfyUI Portable builds</li>
+			<li>✅ Fully customizable .Json files</li>
+		  </ul>
+
+		  <p class="note">⚠️ <strong>Note:</strong> Compatibility with non-portable or custom ComfyUI builds has not yet been verified. The suite is developed and optimized around the ComfyUI Portable environment, and behavior may differ on other distributions.</p>
+
+		  <p>The SoftSin Composer Suite represents the core of the SoftSin ecosystem — a structured, ethical approach to AI-assisted art that empowers human direction while keeping the creative process transparent and repeatable.</p>
+
+		  <p>Development updates, node documentation, and upcoming release details will be shared through SoftSin Studios channels.</p>
+
+		  <p>💬 Join the SoftSin Studios community and stay connected:</p>
+
+		  <p>👉 <a href="https://www.deviantart.com/softsinstudios" class="link-deviantart" target="_blank" rel="noopener noreferrer"><strong>DeviantArt</strong></a> — exclusive galleries and renders made with the SoftSin ecosystem.</p>
+
+		  </div>
+	  </div>
+	</section>
+	
+	<section class="section" aria-labelledby="composer-howto">
+  <div class="wrap">
+  <div class="announcements" aria-label="composer-howto">
+    <h2 id="composer-howto">⚠️ SoftSin Composer Suite for ComfyUI Portable — Install & Use</h2>
+
+    <p>
+      Install is simple: verify the download, drop one folder into
+      <code>custom_nodes</code>, restart ComfyUI. Everything else is workflow and customization.
+    </p>
+
+    <!-- 1) VERIFY -->
+    <details open>
+      <summary class="step-title">1) Verify the release</summary>
+      <ol>
+        <li>Locate the signed bundle:
+          <br><code>softsin_composer_bundle.zip</code>
+        </li>
+        <li>Unzip it into a folder.</li>
+        <li>Open <code>README.txt</code> inside that folder.</li>
+        <li>Follow the README steps to verify the signature and version number.</li>
+        <li>Once the checks pass, continue to install.</li>
+      </ol>
+    </details>
+
+    <!-- 2) INSTALL NODES -->
+    <details>
+      <summary class="step-title">2) Install the node suite</summary>
+      <ol>
+        <li>From the verified bundle folder, find the directory:
+          <br><code>softsin_composer</code>
+        </li>
+        <li>Open your ComfyUI Portable directory and go to:
+          <br><code>/ComfyUI/custom_nodes/</code>
+        </li>
+        <li>Copy the entire <code>softsin_composer</code> folder into
+          <br><code>/ComfyUI/custom_nodes/</code>
+        </li>
+        <li>Restart ComfyUI Portable.</li>
+        <li>In the node menu, look for the <strong>SoftSin</strong> category.</li>
+      </ol>
+    </details>
+
+    <!-- 3) DATA FOLDER (ALREADY BUNDLED) -->
+    <details>
+      <summary class="step-title">3) Data files (JSON vocabularies)</summary>
+      <p>
+        The Suite ships with its own data folder:
+        <code>softsin_data</code>.
+        It lives inside <code>softsin_composer</code> and is used by all SoftSin nodes.
+      </p>
+      <ul>
+        <li>You do <strong>not</strong> need to move, rename, or create this folder.</li>
+        <li>JSON files inside <code>softsin_data</code> can be edited to add or tweak options.</li>
+        <li>
+          Do <strong>not</strong> rename categories or add new category names unless you are
+          comfortable editing Python and understanding how the nodes read those keys.
+          In short: edit at your own risk.
+        </li>
+      </ul>
+    </details>
+
+    <!-- 4) FIRST RUN -->
+    <details>
+      <summary class="step-title">4) First run checklist</summary>
+      <ul>
+        <li>Launch ComfyUI Portable.</li>
+        <li>Confirm the <strong>SoftSin</strong> category appears in the node list.</li>
+        <li>Add a SoftSin node and open its dropdowns.</li>
+        <li>If dropdowns are empty or broken, check:
+          <code>custom_nodes/softsin_composer/softsin_data/</code>
+          still exists and hasn’t been renamed.
+        </li>
+      </ul>
+    </details>
+
+    <!-- 5) BASIC WORKFLOW (IMAGE BLOCK) -->
+    <details>
+      <summary class="step-title">5) Basic workflow (visual)</summary>
+      <figure class="node-card">
+        <!-- replace this src with your actual image path -->
+        <img src="/images/nodes/basic_workflow.png"
+             alt="SoftSin Composer basic workflow inside ComfyUI">
+      </figure>
+    </details>
+
+    <!-- 6) NODE REFERENCE (IMAGE GRID) -->
+    <details>
+      <summary class="step-title">6) SoftSin nodes - click on node to enlarge</summary>
+
+      <div class="node-grid">
+        <!-- 4 × 5 portrait grid; swap src/alt to your actual images -->
+		
+		<figure class="node-card">
+          <img src="/images/nodes/prompt_composer.png" alt="SoftSin Prompt Composer node"
+		  data-help="<p>This is the brain of the operation. This node takes inputs from all other SiftSin nodes and writes them in a properly formatted prompt targeting SDXL workflows.</p> <p>This will work with most workflows but may be produce unwanted geometry in some instances.</p><p>Follow the following rules to get the most out of the SoftSin Composer Node suite:</p>
+		  <ul>
+			<li>Base Prompt: Connect the Quality Node here.</li>
+			<li>Pose: Connect the Pose Node here.</li>
+			<li>Clothing: Connect the Clothing Node here.</li>
+			<li>Physical_Attrs: Connect Physical (Male or Female) Node here.</li>
+			<li>Composition: Connect the Composition Node here.</li>
+			<li>Lighting: Connect the Lighting Node here.</li>
+			<li>Environment: Connect either the Environmental Attributes or the Environmental Presets Node here.</li>
+			<li>Extras: Use this block to to expand your prompt via natural language or tagging, Example: Danburoo Tagging.</li>
+			<li>Negative_Base: Place all global negatives in this block.</li>
+			<li>Negative Extras: This block is used to refine per render negatives without destroying the global negatives list.</li>
+		  </ul>">
+		  
+          <figcaption>Prompt Composer</figcaption>
+        </figure>
+		
+        <figure class="node-card">
+          <img src="/images/nodes/environattributes.png" alt="SoftSin Environmental Attributes node"
+		  data-help="<p>This is the environmental attributes node. This node is responsible for shaping the environment around your model. If you are just creating landscapes, this will be your main tool.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Environment input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Environmental Attributes</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/environments.png" alt="SoftSin Environments Presets node"
+		  data-help="<p>This is the environmental preset node. THThere are roughly 100 preset environments in SDXL prompt format. Simply pick the one you want and render away. Using this node may require you to use a negative prompt or tags.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Environment input of the Prompt Composer Node .</li>
+		</ul>">
+		  
+		  <figcaption>Environments Presets</figcaption>
+        </figure>		
+		
+        <figure class="node-card">
+          <img src="/images/nodes/male_physical_attributes.png" alt="SoftSin Physical Attributes node" 
+		  data-help="<p>This is the male attributes node. This node is responsible for shaping your male models in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Physical_attrs input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Male Physical Attributes</figcaption>
+        </figure>
+		
+		<figure class="node-card">
+          <img src="/images/nodes/female_physical_attributes.png" alt="SoftSin Physical Attributes node"
+		  data-help="<p>This is the female attributes node. This node is responsible for shaping your female models in your renders. Note: Pubic hair is listed as it does affect how clothing geometry is rendered on the female body.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Physical_attrs input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Female Physical Attributes</figcaption>
+        </figure>
+		
+		<figure class="node-card">
+          <img src="/images/nodes/male_clothing_outfits.png" alt="SoftSin Clothing Outfits node"
+		  data-help="<p>This is the male outfits node. This node is responsible for creating the clothed style of the male models in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Clothing input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Clothing: male Outfits</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/male_clothing_uniforms.png" alt="SoftSin Clothing Uniforms node"
+		  data-help="<p>This is the male uniforms node. This node is responsible for creating the uniform set style of the male models in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Clothing input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Clothing: male Uniforms</figcaption>
+        </figure>
+		
+		<figure class="node-card">
+          <img src="/images/nodes/female_clothing_outfits.png" alt="SoftSin Clothing Outfits node"
+		  data-help="<p>This is the female clothing node. This node is responsible for creating the clothed style of the female models in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Clothing input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Clothing: Female Outfits</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/female_clothing_uniforms.png" alt="SoftSin Clothing Uniforms node"
+		  data-help="<p>This is the female uniform node. This node is responsible for creating the uniform set style of the female models in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Clothing input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Clothing: Female Uniforms</figcaption>
+        </figure>
+		
+		<figure class="node-card">
+          <img src="images/nodes/female_clothing_swimsuits.png" alt="SoftSin Clothing Swimsuits node"
+		  data-help="<p>This is the female swimsuit node. This node is responsible for creating the more playful style of the female models in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Clothing input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Clothing: Female Swimsuits</figcaption>
+        </figure>
+		
+		<figure class="node-card">
+          <img src="/images/nodes/female_clothing_lingerie.png" alt="SoftSin Clothing Lingerie node"
+		  data-help="<p>This is the female lingerie node. This node is responsible for creating the more intimate style of the female models in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Clothing input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Clothing: Female Lingerie</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/poses.png" alt="SoftSin Poses node"
+		  data-help="<p>This is the poses node. This node is responsible for creating the poses for the models in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Pose input of the Prompt Composer Node .</li>
+		</ul>">
+		  
+          <figcaption>Poses</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/lighting.png" alt="SoftSin Lighting node"
+		  data-help="<p>This is the lighting node. This node is responsible for creating the lighting for your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Lighting input of the Prompt Composer Node .</li>
+		</ul>">
+		
+          <figcaption>Lighting</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/image_composition.png" alt="SoftSin Image Composition node"
+		  data-help="<p>This is the image composition node. This node is responsible for creating the composition for your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  
+		  <p> There are several options in this node that will assist you with overall composition of your renders</p>
+		  
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Compisition input of the Prompt Composer Node .</li>
+		</ul>"
+		
+          <figcaption>Image Composition</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/quality.png" alt="SoftSin Quality node"
+		  data-help="<p>This is the image quality node. This node is responsible for overall quality for your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  
+		  <p>This node is formatted for both SDXL and Danburoo tagging</p>
+		  
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the either the Base_prompt or Extras input of the Prompt Composer Node.</li>
+		</ul>"
+		
+          <figcaption>Image Quality</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/generic_male_triggers.png" alt="SoftSin LoRAs Triggers node"
+		  data-help="<p>This is the male triggers node. This node uses a list of generic male first names to help shape the male model bone structure in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the extras input of the male physical attributes Node .</li>
+			
+			<li><strong>NOTE:</strong>: This system avoids real names or identifiable personal characteristics and complies with requirements prohibiting unauthorized use of real individuals’ identities.</li>
+		</ul>">
+		
+          <figcaption>Generic Male Name Triggers</figcaption>
+        </figure>
+		
+		<figure class="node-card">
+          <img src="/images/nodes/generic_female_triggers.png" alt="SoftSin LoRAs Triggers node"
+		  data-help="<p>This is the female triggers node. This node uses a list of generic female first names to help shape the female model bone structure in your renders.</p> <p>Pro Tip: The .Json can be edited to add a wider dataset or you can place your custom descirptors in the EXTRAS section.</p>
+		  <ul>
+			<li><strong>Connection Info</strong>: This connects to the Clothing input of the female physical attributes Node.</li>
+			
+			<li><strong>NOTE:</strong>: This system avoids real names or identifiable personal characteristics and complies with requirements prohibiting unauthorized use of real individuals’ identities.</li>
+		</ul>">
+		
+          <figcaption>Generic Female Name Triggers</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/combine.png" alt="SoftSin Combine node"
+		  data-help="<p>This is the custom combine node. This node is responsible for combining several nodes together within the SoftSin Node Suite</p> 
+		  
+		  <ul>
+			<li><strong>Connection Info</strong>: This node accepts two inputs and can be doubled as many times as you need or until you reach the render model character limit</li>
+		</ul>"
+		
+          <figcaption>Soft Sin Combine</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/metadata.png" alt="SoftSin Metadata node"
+		  data-help="<p>This is the custom Metadata node. It allows you to define your own metadata fields—such as artist name, year, orientation, and resolution—instead of relying on ComfyUI’s default metadata. 
+		  <br><br>
+		  Use responsibly. Images generated with custom metadata may be rejected or have limited editing functionality on platforms that require standard metadata formats, such as OpenAI, Civitai, or other services that depend on vanilla metadata.</p>
+
+		<ul>
+		  <li><strong>Connection Info</strong>: Connect this node to the Extra_pnginfo input of the SoftSin Save Image node input.</li>
+		</ul>"
+		
+          <figcaption>SoftSin Metadata</figcaption>
+        </figure>
+
+        <figure class="node-card">
+          <img src="/images/nodes/save_image.png" alt="SoftSin Save Image node"
+		  data-help="<p>This is the custom SoftSin Save Image node. It allows you to define a custom file name and subfolder for your workflow’s render pipeline.
+		  <br><br>
+		  The SoftSin Metadata node injects your custom metadata through the <strong>extra_pnginfo</strong> input. These two nodes work together: the Save Image node can operate on its own, but the SoftSin Metadata node <strong>requires</strong> this custom Save Image node.</p>
+
+		<ul>
+		  <li><strong>Connection Info</strong>: Connect the SoftSin Metadata node to this node’s <strong>extra_pnginfo</strong> input.</li>
+		  <br>
+		  <li><strong>NOTE</strong>: You must use a <strong>Preview Image</strong> node connected from the VAE Decode output. Using the vanilla Save Image node will break metadata injection and may prevent your render from saving.</li>
+		</ul>"
+		
+          <figcaption>SoftSin Save Image</figcaption>
+        </figure>
+      </div>
+    </details>
+
+    <!-- 7) JSON CUSTOMIZATION (GIF) -->
+    <details>
+      <summary class="step-title">7) JSON customization (advanced)</summary>
+            <figure class="node-card">
+        <!-- replace this src with your actual image path -->
+        <img src="/images/nodes/json.png"
+             alt="SoftSin Composer basic workflow inside ComfyUI">
+      </figure>
+          Advanced users can extend the vocabularies by editing JSON inside
+          <code>softsin_data</code>. Changing category names or structures requires Python
+          changes and is not supported for casual users.
+        </figcaption>
+      </figure>
+    </details>
+
+    <p class="note">
+      Note: The Suite is built and tested on ComfyUI Portable. Other builds may behave differently.
+    </p>
+  </div>
+</div>
+</section>
+
+	  <!-- PROJECTS -->
+	  <section class="section" style="background:linear-gradient(180deg, #121317, #101116)" aria-labelledby="projects">
+		<div class="wrap">
+		  <h2 id="projects">Projects</h2>
+		  <div class="cards">
+			<article class="card">
+			  <h3>SoftSin Pose Editor</h3>
+			  <p>Create BODY_25 + hands keypoints with depth control. Export JSON/PNG for ControlNet/SDXL.</p>
+			  <div class="grow"></div>
+			  <a class="btn btn--primary" href="pose.html">Open Editor</a>
+			</article>
+			<article class="card">
+			  <h3>SoftSin Json creator and editor</h3>
+			  <p>Fast, zero-install Json creation and editing tool. Create your json files fast with our intuitive creation and editing process.</p>
+			  <div class="grow"></div>
+			  <a class="btn btn--primary" href="json.html" target="_blank" rel="noopener">Open Editor</a>
+			</article>
+		  </div>
+		</div>
+	  </section>
+
+  <footer>
+    <div>© 2025 SoftSin Studios — All Rights Reserved</div>
+    <div class="links" aria-label="Footer links">
+      <a href="/pose.html">Pose Editor</a> |
+	  <a href="/depth.html">Json Creator</a> |
+      <a href="https://deviantart.com/softsinstudios">DeviantArt</a> |
+	  <a href="/pricing.html">Pricing</a> |
+	  <a href="/returns.html">Returns</a> |
+	  <a href="/tos.html">Terms of Service</a> |
+	  <a href="/privacypolicy.html">Privacy Policy</a>
+    </div>
+  </footer>
+  
+  <div id="nodeZoomOverlay" class="image-zoom-overlay">
+    <div class="image-zoom-content">
+      <img alt="SoftSin node preview">
+      <div class="image-zoom-text"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const overlay = document.getElementById('nodeZoomOverlay');
+    if (!overlay) return;
+
+    const overlayImg  = overlay.querySelector('img');
+    const overlayText = overlay.querySelector('.image-zoom-text');
+
+    // CLICK to enlarge + show help text
+    document.querySelectorAll('.node-card img').forEach(img => {
+      img.addEventListener('click', () => {
+        overlayImg.src = img.src;
+
+        const help = img.getAttribute('data-help') || '';
+        overlayText.innerHTML = help;
+
+        overlay.style.display = 'flex';
+      });
+    });
+
+    // Close overlay on click anywhere in the overlay
+    overlay.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      overlayImg.src = '';
+      if (overlayText) overlayText.textContent = '';
+    });
+  })();
+</script>
+
+</body>
+</html>
