@@ -1,7 +1,15 @@
 // Limb/color helpers isolated from app code
-import { BODY25_PAIRS, OP_COLORS, HAND_COLORS } from './constants.js';
+import {
+  BODY25_PAIRS,
+  BODY25_RENDER_PAIRS,
+  OP_BODY25_BONE_COLORS,
+  OP_COLORS,
+  HAND_COLORS
+} from './constants.js';
 
 /* ================= BODY_25 ================= */
+
+// Legacy limb resolver (USED for depth, UI, back-compat)
 export function limbForPair(a, b) {
   const s = new Set([a, b]);
   if ((s.has(1)&&s.has(2))||(s.has(2)&&s.has(3))||(s.has(3)&&s.has(4))) return 'rarm';
@@ -13,10 +21,29 @@ export function limbForPair(a, b) {
   return 'torso';
 }
 
-export function colorForPair(a, b) {
-  return OP_COLORS[limbForPair(a, b)];
+/* -------------------------------------------------
+   ADDITIVE: OpenPose render-pair indexed bone color
+   ------------------------------------------------- */
+function renderPairIndex(a, b) {
+  return BODY25_RENDER_PAIRS.findIndex(p => p[0] === a && p[1] === b);
 }
 
+/* -------------------------------------------------
+   Bone color resolver
+   - Uses OpenPose palette when available
+   - Falls back to legacy limb colors safely
+   ------------------------------------------------- */
+export function colorForPair(a, b) {
+  const idx = renderPairIndex(a, b);
+  if (idx !== -1 && OP_BODY25_BONE_COLORS[idx]) {
+    return OP_BODY25_BONE_COLORS[idx];
+  }
+  return OP_COLORS[limbForPair(a, b)] || OP_COLORS.torso;
+}
+
+/* -------------------------------------------------
+   Joint color (legacy behavior preserved)
+   ------------------------------------------------- */
 export function colorForJoint(i) {
   for (const [a, b] of BODY25_PAIRS) {
     if (a === i || b === i) return colorForPair(a, b);
@@ -32,18 +59,16 @@ export function limbForJoint(i) {
 }
 
 /* ================= HAND COLORS =================
-   Uses HAND_COLORS from constants.js (keys like:
-   lWrist, lThumbBase, lThumb1, ..., rPinkyEnd).
-   side may be 'lhand'|'rhand' or 'l'|'r'.
+   Uses HAND_COLORS from constants.js
 ================================================= */
 
 function normSide(side) {
   if (side === 'lhand' || side === 'L' || side === 'l') return 'l';
   if (side === 'rhand' || side === 'R' || side === 'r') return 'r';
-  return side; // assume already 'l' or 'r'
+  return side;
 }
 
-function handKeyForIndex(prefix /* 'l'|'r' */, idx) {
+function handKeyForIndex(prefix, idx) {
   if (idx === 0) return `${prefix}Wrist`;
 
   const groups = [
@@ -55,38 +80,36 @@ function handKeyForIndex(prefix /* 'l'|'r' */, idx) {
   ];
   for (const g of groups) {
     if (idx >= g.start && idx <= g.end) {
-      const pos = idx - g.start;           // 0..3
+      const pos = idx - g.start;
       const seg = ['Base','1','2','End'][pos];
-      return `${prefix}${g.name}${seg}`;   // e.g. lIndexBase
+      return `${prefix}${g.name}${seg}`;
     }
   }
   return null;
 }
 
 export function colorForHand(side, idx) {
-  const p = normSide(side);                // 'l' or 'r'
+  const p = normSide(side);
   const key = handKeyForIndex(p, idx);
   const fallback = (p === 'l' ? OP_COLORS.larm : OP_COLORS.rarm);
   return (key && HAND_COLORS[key]) ? HAND_COLORS[key] : fallback;
 }
 
 export function colorForHandPair(side, a, b) {
-  // color segment by the distal joint (b)
   return colorForHand(side, b);
 }
 
-/* ---- Back-compat aliases (if other files imported old names) ---- */
+/* ---- Back-compat aliases ---- */
 export const handColor = colorForHand;
 export const handColorForPair = colorForHandPair;
 
-/* ================= NUMERIC HELPERS =================
-   Small, pure helpers used across tools (depth, export, etc.)
-===================================================== */
+/* ================= NUMERIC HELPERS ================= */
+
 export const clamp = (v, lo = 0, hi = 1) =>
   (v < lo ? lo : v > hi ? hi : v);
 
 export const clamp01 = (v) =>
-  (v < 0 ? 0 : v > 1 ? 1 : v);  // saturate
+  (v < 0 ? 0 : v > 1 ? 1 : v);
 
 export const lerp = (a, b, t) =>
   a + (b - a) * t;
