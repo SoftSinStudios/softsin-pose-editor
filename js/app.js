@@ -1,5 +1,6 @@
 import { 
-  JOINTS, BODY25_PAIRS, HAND_NAMES, HAND_PAIRS, OP_COLORS, N, TEMPLATE_MAP 
+  JOINTS, BODY25_PAIRS, HAND_NAMES, HAND_PAIRS, OP_COLORS, N, TEMPLATE_MAP,
+  BODY25_UI_ORDER
 } from './core/constants.js';
 
 import { stageWrap, stageInner, img, canvas, ctx, overlay, jointList, lhandList, rhandList, setStatus, showFloat, hideFloat } from './core/dom.js';
@@ -62,10 +63,18 @@ function statusGlyph(kind, i){
 export function buildJointList(){
   if (!jointList) return;
   jointList.innerHTML='';
-  for (let i=0;i<N;i++){
+
+  // UI order should be flow-optimized, not index-optimized.
+  // Fall back safely if BODY25_UI_ORDER is missing or malformed.
+  const order = (Array.isArray(BODY25_UI_ORDER) && BODY25_UI_ORDER.length === N)
+    ? BODY25_UI_ORDER
+    : Array.from({ length: N }, (_, i) => i);
+
+  for (const i of order){
     const item=document.createElement('div');
     item.className='jointItem';
-    item.dataset.kind='body'; item.dataset.idx=i;
+    item.dataset.kind='body';
+    item.dataset.idx=i;
 
     const bar=document.createElement('div'); bar.className='colorBar';
     bar.style.background=usePoseColors?colorForJoint(i):'#9aa';
@@ -118,7 +127,9 @@ export function refreshStatuses(){
   const mark = (el, active)=>{ if (!el) return; el.classList.toggle('active', !!active); };
 
   if (jointList){
-    [...jointList.children].forEach((el,idx)=>{
+    [...jointList.children].forEach((el)=>{
+      const idx = +(el.dataset.idx ?? -1);
+      if (idx < 0) return;
       el.querySelector('.status').textContent = statusGlyph('body', idx);
       el.querySelector('.colorBar').style.background = usePoseColors ? colorForJoint(idx) : '#9aa';
       mark(el, selectedKind==='body' && selectedJointIdx===idx);
