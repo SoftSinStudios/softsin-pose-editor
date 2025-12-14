@@ -1,11 +1,53 @@
-import { BODY25_PAIRS, HAND_PAIRS, N } from './constants.js';
-import { limbForPair, colorForPair, colorForJoint, limbForJoint, handColor } from './utils.js';
+import {
+  BODY25_PAIRS,
+  BODY25_RENDER_PAIRS,
+  HAND_PAIRS,
+  N,
+  opBody25JointColor
+} from './constants.js';
+
+import {
+  limbForPair,
+  colorForPair,
+  limbForJoint,
+  handColor
+} from './utils.js';
+
 import { canvas, ctx, overlay } from './dom.js';
+
 import {
   kps, lhand, rhand,
   boneStrokeWidth, jointRadius, colorJointsByLimb, usePoseColors,
   alphaForDepth, depthForLimb, showSkeleton, imgScale
 } from './state.js';
+
+/* =========================================================
+   Debug / Verification
+   - Toggle in console: window.SOFTSIN_SHOW_PAIR_INDEX = true/false
+   - Shows BODY25_RENDER_PAIRS index numbers at segment midpoints
+   ========================================================= */
+function shouldShowPairIndex() {
+  try { return !!window.SOFTSIN_SHOW_PAIR_INDEX; } catch { return false; }
+}
+
+function drawPairIndexLabel(ctx, i, ax, ay, bx, by) {
+  const mx = (ax + bx) * 0.5;
+  const my = (ay + by) * 0.5;
+
+  ctx.save();
+  ctx.globalAlpha = 1;
+  ctx.font = '12px monospace';
+  ctx.textBaseline = 'middle';
+
+  // outline for readability on bright segments
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = '#000000';
+  ctx.strokeText(String(i), mx + 6, my - 6);
+
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText(String(i), mx + 6, my - 6);
+  ctx.restore();
+}
 
 // ===== main draw =====
 export function draw() {
@@ -13,21 +55,29 @@ export function draw() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
   const segs = [];
+  const showIdx = shouldShowPairIndex();
+
   if (showSkeleton) {
-    for (const [a,b] of BODY25_PAIRS) {
-      const pa=kps[a], pb=kps[b];
+    // === BODY SEGMENTS (OpenPose render order) ===
+    // use indexed iteration so we can label the segment index for verification
+    for (let i = 0; i < BODY25_RENDER_PAIRS.length; i++) {
+      const [a, b] = BODY25_RENDER_PAIRS[i];
+      const pa = kps[a], pb = kps[b];
       if (!pa || !pb || pa.x==null || pb.x==null || pa.missing || pb.missing) continue;
+
       const limb = limbForPair(a,b);
+
       segs.push({
         ax:pa.x, ay:pa.y, bx:pb.x, by:pb.y,
         color: usePoseColors ? colorForPair(a,b) : '#7fffd4',
         width: boneStrokeWidth,
-        depth: depthForLimb(limb)
+        depth: depthForLimb(limb),
+        _pairIndex: i
       });
     }
   }
 
-  // === Hand Segments (per joint color) ===
+  // === Hand Segments (unchanged) ===
   function handSegs(handArr, limbKey) {
     const isLeft = limbKey === 'lhand';
     for (const [a,b] of HAND_PAIRS) {
@@ -38,7 +88,8 @@ export function draw() {
         ax:pa.x, ay:pa.y, bx:pb.x, by:pb.y,
         color: segColor,
         width: boneStrokeWidth,
-        depth: depthForLimb(limbKey)
+        depth: depthForLimb(limbKey),
+        _pairIndex: null
       });
     }
 
@@ -51,7 +102,8 @@ export function draw() {
         ax:bodyWrist.x, ay:bodyWrist.y, bx:handWrist.x, by:handWrist.y,
         color: tetherColor,
         width: boneStrokeWidth,
-        depth: depthForLimb(limbKey)
+        depth: depthForLimb(limbKey),
+        _pairIndex: null
       });
     }
   }
@@ -61,11 +113,11 @@ export function draw() {
 
   const joints = [];
 
-  // === BODY JOINTS ===
+  // === BODY JOINTS (unchanged) ===
   for (let i=0;i<N;i++){
     const p=kps[i]; if (!p || p.x==null) continue;
     const limb = limbForJoint(i);
-    const jointColor=(colorJointsByLimb && usePoseColors) ? colorForJoint(i) : '#FFFFFF';
+    const jointColor=(colorJointsByLimb && usePoseColors) ? opBody25JointColor(i) : '#FFFFFF';
     joints.push({
       x:p.x, y:p.y,
       fill: p.missing ? '#666666' : jointColor,
@@ -74,7 +126,7 @@ export function draw() {
     });
   }
 
-  // === HAND JOINTS ===
+  // === HAND JOINTS (unchanged) ===
   function handDots(handArr, limbKey){
     for (let i=0;i<handArr.length;i++){
       const p=handArr[i]; if (!p || p.x==null) continue;
@@ -98,19 +150,34 @@ export function draw() {
 
   for (const s of segs){
     ctx.globalAlpha = alphaForDepth(s.depth);
-    ctx.lineWidth = s.width; ctx.strokeStyle = s.color;
-    ctx.beginPath(); ctx.moveTo(s.ax,s.ay); ctx.lineTo(s.bx,s.by); ctx.stroke();
+    ctx.lineWidth = s.width;
+    ctx.strokeStyle = s.color;
+    ctx.beginPath();
+    ctx.moveTo(s.ax,s.ay);
+    ctx.lineTo(s.bx,s.by);
+    ctx.stroke();
+
+    // Debug labels: body segments only
+    if (showIdx && s._pairIndex != null) {
+      drawPairIndexLabel(ctx, s._pairIndex, s.ax, s.ay, s.bx, s.by);
+    }
   }
+
   for (const j of joints){
     ctx.globalAlpha = alphaForDepth(j.depth);
-    ctx.beginPath(); ctx.arc(j.x, j.y, jointRadius, 0, Math.PI*2);
-    ctx.fillStyle = j.fill; ctx.fill();
-    ctx.lineWidth = 2; ctx.strokeStyle = j.stroke; ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(j.x, j.y, jointRadius, 0, Math.PI*2);
+    ctx.fillStyle = j.fill;
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = j.stroke;
+    ctx.stroke();
   }
+
   ctx.globalAlpha = 1;
 }
 
-// ===== Overlay =====
+// ===== Overlay (unchanged) =====
 export function renderOverlay() {
   overlay.innerHTML='';
   function append(kind, arr, count){
