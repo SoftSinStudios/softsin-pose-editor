@@ -225,3 +225,16 @@ export const OP_BODY25_BONE_COLORS = Object.freeze([
   "#FF0055","#FF007F",
   "#00FF99","#33FFCC","#66FFFF"
 ]);
+
+export const BODY25_UI_ORDER = [
+  0, 1,        // Nose, Neck
+  15, 16,      // Eyes
+  17, 18,      // Ears
+  2, 3, 4,     // R arm
+  5, 6, 7,     // L arm
+  8,           // MidHip
+  9, 10, 11,   // R leg
+  19, 20, 21,  // R foot
+  12, 13, 14,  // L leg
+  22, 23, 24   // L foot
+];
