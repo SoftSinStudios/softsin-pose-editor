@@ -1,10 +1,13 @@
-import { BODY25_PAIRS, HAND_PAIRS, N, PNG_POSE_TEXT_KEY } from './constants.js';
+import { BODY25_PAIRS, BODY25_RENDER_PAIRS, HAND_PAIRS, N, PNG_POSE_TEXT_KEY, opBody25JointColor } from './constants.js';
 import { canvas, img } from './dom.js';
 import {
-  kps, lhand, rhand, boneStrokeWidth, jointRadius, colorJointsByLimb, usePoseColors,
+  kps, lhand, rhand,
+  boneStrokeWidth, jointRadius, colorJointsByLimb, usePoseColors,
+  showSkeleton, dimBackLayers, depthMap,
   alphaForDepth, depthForLimb
 } from './state.js';
-import { colorForPair, limbForPair, limbForJoint, colorForJoint, handColor } from './utils.js';
+
+import { colorForPair, limbForPair, limbForJoint, handColor } from './utils.js';
 
 /* ---------- Fallback keys for add-ons (non-breaking) ---------- */
 const PNG_DEPTH_TEXT_KEY = 'SoftSin-Depth';   // used by SoftSinDepth (if caller passes metadata)
@@ -155,6 +158,18 @@ function buildPosePayload() {
     if (!rp || rp.x==null || rp.y==null || rp.missing) R.push(0,0,0);
     else R.push(rp.x, rp.y, rp.c ?? 1);
   }
+
+  // ✅ NEW: persist view/options so import can restore after refresh/hard refresh
+  const softsin_view = {
+    usePoseColors: !!usePoseColors,
+    colorJointsByLimb: !!colorJointsByLimb,
+    boneStrokeWidth: Number(boneStrokeWidth),
+    jointRadius: Number(jointRadius),
+    showSkeleton: !!showSkeleton,
+    dimBackLayers: !!dimBackLayers,
+    depthMap: { ...depthMap }
+  };
+
   return {
     version: 1.3,
     people: [{
@@ -164,7 +179,10 @@ function buildPosePayload() {
       hand_right_keypoints_2d: R
     }],
     image_size: [canvas.width, canvas.height],
-    keypoint_format: "body25+hands-pixels"
+    keypoint_format: "body25+hands-pixels",
+
+    // ✅ NEW
+    softsin_view
   };
 }
 
@@ -203,8 +221,8 @@ export function exportPosePng() {
 
   const segs=[];
 
-  // BODY
-  for (const [a,b] of BODY25_PAIRS){
+  // BODY  (ONLY CHANGE: use render pairs)
+  for (const [a,b] of BODY25_RENDER_PAIRS){
     const pa=kps[a], pb=kps[b];
     if (!pa || !pb || pa.x==null || pb.x==null || pa.missing || pb.missing) continue;
     segs.push({
@@ -250,7 +268,7 @@ export function exportPosePng() {
     const p=kps[i]; if (!p || p.x==null || p.missing) continue;
     joints.push({
       x:p.x, y:p.y, r:jointRadius,
-      fill:(colorJointsByLimb&&usePoseColors)?colorForJoint(i):'#FFF',
+      fill:(colorJointsByLimb&&usePoseColors)?opBody25JointColor(i):'#FFF',
       depth:depthForLimb(limbForJoint(i))
     });
   }
@@ -346,8 +364,6 @@ export async function exportStampedPNG(canvas, baseName = 'image', textMap = nul
 }
 
 /* ---------- NEW: depth-specific convenience wrapper ---------- */
-// Accepts a plain object `depthMeta` (e.g. { bias, contrast, edge, smooth, invert, version })
-// and embeds it under the SoftSin-Depth tEXt key.
 export async function exportDepthPNG(canvasRef, baseName = 'depth', depthMeta = null) {
   const text = depthMeta ? { [PNG_DEPTH_TEXT_KEY]: JSON.stringify(depthMeta) } : null;
   return exportStampedPNG(canvasRef, baseName, text);
@@ -355,17 +371,13 @@ export async function exportDepthPNG(canvasRef, baseName = 'depth', depthMeta = 
 
 /* ---------- NEW: interactive export API (reuses existing dialog if present) ---------- */
 
-// Opens an existing export dialog if your HTML defines it; otherwise falls back to save dialog.
-// Expected DOM (if present):
-//   #exportDialog (container), #expName (input), #expConfirm (button), #expCancel (button)
-export async function openExportDialog({ canvas: cnv, baseName = 'image', textMap = null } = {}) {
+export async function openExportDialog({ canvas: cnv, baseName: baseName = 'image', textMap = null } = {}) {
   const dlg = document.getElementById('exportDialog');
   const nameEl = document.getElementById('expName');
   const okBtn = document.getElementById('expConfirm');
   const cancelBtn = document.getElementById('expCancel');
 
   if (!dlg || !nameEl || !okBtn || !cancelBtn) {
-    // No dialog in this UI → just write the file.
     return exportStampedPNG(cnv, baseName, textMap);
   }
 
@@ -412,5 +424,5 @@ export async function readDepthSettingsFromPng(pngBlob) {
 
 /* ---- Back-compat: ensure named exports are present (explicit) ---- */
 export {
-  PNG_DEPTH_TEXT_KEY // exposed in case caller wants the key name
+  PNG_DEPTH_TEXT_KEY
 };
