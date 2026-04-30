@@ -51,6 +51,8 @@ let editorPreviewMode = false;
 let loadedPosts = [];
 let editingThreadId = null;
 let editingReplyId = null;
+let boardPresenceChannel = null;
+let boardPresenceUserKey = null;
 
 const fallbackCategories = [
   { id: null, name: "General", slug: "general", description: "Public discussion for the SoftSin Studios ecosystem." },
@@ -1127,6 +1129,8 @@ function setComposerForSignedIn() {
 }
 
 function setSignedOut() {
+  stopBoardPresence();
+
   currentUser = null;
   currentProfile = null;
 
@@ -1155,6 +1159,7 @@ function setSignedIn(user, profile) {
   }
 
   setComposerForSignedIn();
+  startBoardPresence();
 }
 
 async function getProfile(userId) {
@@ -1212,6 +1217,90 @@ async function signOut() {
   }
 
   setSignedOut();
+}
+
+
+function setOnlineNowCount(value) {
+  if (!onlineNowCount) return;
+
+  const count = Number.isFinite(value) ? value : 0;
+  onlineNowCount.textContent = formatCount(Math.max(0, count));
+}
+
+function updateBoardPresenceCount(channel = boardPresenceChannel) {
+  if (!channel || channel !== boardPresenceChannel) return;
+
+  const presenceState = channel.presenceState();
+  const onlineCount = Object.keys(presenceState || {}).length;
+
+  setOnlineNowCount(onlineCount);
+}
+
+async function stopBoardPresence() {
+  const channel = boardPresenceChannel;
+
+  boardPresenceChannel = null;
+  boardPresenceUserKey = null;
+  setOnlineNowCount(0);
+
+  if (!channel) return;
+
+  try {
+    await supabase.removeChannel(channel);
+  } catch (error) {
+    console.warn("Board presence cleanup failed:", error);
+  }
+}
+
+async function startBoardPresence() {
+  if (!onlineNowCount) return;
+
+  if (!currentUser?.id) {
+    await stopBoardPresence();
+    return;
+  }
+
+  if (boardPresenceChannel && boardPresenceUserKey === currentUser.id) {
+    updateBoardPresenceCount();
+    return;
+  }
+
+  await stopBoardPresence();
+
+  const channel = supabase.channel("softsin-board-online", {
+    config: {
+      presence: {
+        key: currentUser.id
+      }
+    }
+  });
+
+  boardPresenceChannel = channel;
+  boardPresenceUserKey = currentUser.id;
+  setOnlineNowCount(0);
+
+  channel.on("presence", { event: "sync" }, () => {
+    updateBoardPresenceCount(channel);
+  });
+
+  channel.subscribe(async (status) => {
+    if (channel !== boardPresenceChannel) return;
+
+    if (status === "SUBSCRIBED") {
+      await channel.track({
+        user_id: currentUser.id,
+        display_name: getDisplayName(currentUser, currentProfile),
+        online_at: new Date().toISOString()
+      });
+      updateBoardPresenceCount(channel);
+      return;
+    }
+
+    if (status === "CHANNEL_ERROR" || status === "TIMED_OUT" || status === "CLOSED") {
+      console.warn("Board presence status:", status);
+      setOnlineNowCount(0);
+    }
+  });
 }
 
 
@@ -1275,8 +1364,8 @@ async function loadBoardTotalsStat() {
 }
 
 async function loadForumStats() {
-  if (onlineNowCount) {
-    setForumStat(onlineNowCount, "0");
+  if (!boardPresenceChannel) {
+    setOnlineNowCount(0);
   }
 
   await Promise.all([
