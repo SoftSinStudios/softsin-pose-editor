@@ -549,6 +549,7 @@ button.btn {
 .mini-editor-textarea {
   min-height: 160px;
   resize: vertical;
+  overflow: hidden;
   line-height: 1.55;
 }
 

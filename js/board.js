@@ -587,6 +587,15 @@ function updateMiniEditorCount(editorId) {
   count.textContent = `${textarea.value.length} / 20000`;
 }
 
+function resizeMiniEditorTextarea(editorId) {
+  const { textarea } = getMiniEditorElements(editorId);
+
+  if (!textarea) return;
+
+  textarea.style.height = "auto";
+  textarea.style.height = `${Math.max(textarea.scrollHeight, 160)}px`;
+}
+
 function syncMiniEditorPreview(editorId) {
   const { textarea, preview } = getMiniEditorElements(editorId);
 
@@ -765,11 +774,13 @@ function attachMiniEditor(editorId) {
     button.addEventListener("click", (event) => {
       event.preventDefault();
       applyMiniEditorAction(editorId, button.dataset.miniEditorAction);
+      resizeMiniEditorTextarea(editorId);
     });
   });
 
   textarea.addEventListener("input", () => {
     updateMiniEditorCount(editorId);
+    resizeMiniEditorTextarea(editorId);
 
     if (textarea.hidden) {
       syncMiniEditorPreview(editorId);
@@ -777,6 +788,7 @@ function attachMiniEditor(editorId) {
   });
 
   updateMiniEditorCount(editorId);
+  resizeMiniEditorTextarea(editorId);
   updateToolbarForRole();
 }
 
