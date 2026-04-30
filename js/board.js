@@ -1269,7 +1269,6 @@ async function startBoardPresence() {
 
   const channel = supabase.channel("softsin-board-online", {
     config: {
-      private: true,
       presence: {
         key: currentUser.id
       }
