@@ -8,6 +8,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const signedOutBox = document.getElementById("signedOutBox");
 const signedInBox = document.getElementById("signedInBox");
 const loginDiscord = document.getElementById("loginDiscord");
+const loginGoogle = document.getElementById("loginGoogle");
 const logout = document.getElementById("logout");
 const userAvatar = document.getElementById("userAvatar");
 const userName = document.getElementById("userName");
@@ -1096,7 +1097,7 @@ function setComposerForSignedOut() {
   }
 
   composerText.disabled = true;
-  composerText.placeholder = currentThread ? "Sign in with Discord to reply..." : "Sign in with Discord to post...";
+  composerText.placeholder = currentThread ? "Sign in to reply..." : "Sign in to post...";
 
   updateComposerHelperText();
 
@@ -1191,20 +1192,29 @@ async function refreshSession() {
   setSignedIn(user, profile);
 }
 
-async function signInWithDiscord() {
+async function signInWithProvider(provider) {
   const redirectTo = window.location.href.split("#")[0];
+  const providerName = provider.charAt(0).toUpperCase() + provider.slice(1);
 
   const { error } = await supabase.auth.signInWithOAuth({
-    provider: "discord",
+    provider,
     options: {
       redirectTo
     }
   });
 
   if (error) {
-    console.error("Discord sign-in failed:", error);
-    composerStatus.textContent = "Discord sign-in failed. Check console and Supabase redirect URLs.";
+    console.error(`${providerName} sign-in failed:`, error);
+    composerStatus.textContent = `${providerName} sign-in failed. Check console and Supabase redirect URLs.`;
   }
+}
+
+function signInWithDiscord() {
+  return signInWithProvider("discord");
+}
+
+function signInWithGoogle() {
+  return signInWithProvider("google");
 }
 
 async function signOut() {
@@ -1886,7 +1896,7 @@ async function softDeleteThreadAndReplies(threadId) {
 
   composerText.value = "";
   composerText.placeholder = signedInBox.hidden
-    ? "Sign in with Discord to post..."
+    ? "Sign in to post..."
     : "Write the first post for this thread...";
 
   updateComposerHelperText();
@@ -2239,7 +2249,7 @@ function closeThreadView() {
   }
 
   composerText.placeholder = signedInBox.hidden
-    ? "Sign in with Discord to post..."
+    ? "Sign in to post..."
     : "Write the first post for this thread...";
 
   updateComposerHelperText();
@@ -2280,7 +2290,7 @@ async function openThread(threadId) {
   setEditorPreviewMode(false);
 
   composerText.placeholder = signedInBox.hidden
-    ? "Sign in with Discord to reply..."
+    ? "Sign in to reply..."
     : "Write a reply...";
 
   updateComposerHelperText();
@@ -2387,7 +2397,7 @@ function selectCategory(slug) {
   }
 
   composerText.placeholder = signedInBox.hidden
-    ? "Sign in with Discord to post..."
+    ? "Sign in to post..."
     : "Write the first post for this thread...";
 
   updateComposerHelperText();
@@ -2424,7 +2434,7 @@ async function createThread() {
   const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
 
   if (sessionError || !sessionData.session) {
-    composerStatus.textContent = "Sign in with Discord before creating a thread.";
+    composerStatus.textContent = "Sign in before creating a thread.";
     return;
   }
 
@@ -2511,7 +2521,7 @@ async function createReply() {
   const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
 
   if (sessionError || !sessionData.session) {
-    composerStatus.textContent = "Sign in with Discord before replying.";
+    composerStatus.textContent = "Sign in before replying.";
     return;
   }
 
@@ -2664,7 +2674,14 @@ if (openRulesReminder) {
   });
 }
 
-loginDiscord.addEventListener("click", signInWithDiscord);
+if (loginDiscord) {
+  loginDiscord.addEventListener("click", signInWithDiscord);
+}
+
+if (loginGoogle) {
+  loginGoogle.addEventListener("click", signInWithGoogle);
+}
+
 logout.addEventListener("click", signOut);
 
 supabase.auth.onAuthStateChange(() => {

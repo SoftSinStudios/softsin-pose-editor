@@ -63,7 +63,7 @@
         <h1>Read freely. Sign in to post.</h1>
         <p class="lead">
           Public release notes, support threads, workflow discussion, and community posts for the SoftSin ecosystem.
-          Reading stays open. Posting and replies require Discord login.
+          Reading stays open. Posting and replies require sign-in.
         </p>
         <div class="hero-actions">
           <button class="btn primary" id="newTopicTop" type="button" disabled>New Topic</button>
@@ -101,8 +101,17 @@
           <div class="side-title">Account</div>
 
           <div id="signedOutBox">
-            <p class="account-note">Sign in with Discord to create topics and reply.</p>
-            <button class="btn primary full" id="loginDiscord" type="button">Continue with Discord</button>
+            <p class="account-note">Sign in to create topics and reply.</p>
+            <div class="auth-options" aria-label="Sign in options">
+              <button class="btn primary full auth-provider-btn" id="loginDiscord" type="button">
+                <span class="auth-provider-icon discord-mark" aria-hidden="true">D</span>
+                <span>Continue with Discord</span>
+              </button>
+              <button class="btn full auth-provider-btn google-login" id="loginGoogle" type="button">
+                <span class="auth-provider-icon google-mark" aria-hidden="true">G</span>
+                <span>Continue with Google</span>
+              </button>
+            </div>
           </div>
 
           <div id="signedInBox" hidden>
@@ -193,7 +202,7 @@
             <span class="editor-count" id="editorCharCount">0 / 20000</span>
           </div>
 
-          <textarea id="composerText" placeholder="Sign in with Discord to post..." disabled></textarea>
+          <textarea id="composerText" placeholder="Sign in to post..." disabled></textarea>
           <div class="editor-preview markdown-body" id="editorPreview" hidden></div>
 
           <div class="composer-actions">
