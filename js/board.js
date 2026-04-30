@@ -30,6 +30,10 @@ const editorButtons = Array.from(document.querySelectorAll("[data-editor-action]
 const editorPreviewToggle = document.getElementById("editorPreviewToggle");
 const editorPreview = document.getElementById("editorPreview");
 const editorCharCount = document.getElementById("editorCharCount");
+const onlineNowCount = document.getElementById("onlineNowCount");
+const newestMemberName = document.getElementById("newestMemberName");
+const threadTotalCount = document.getElementById("threadTotalCount");
+const postTotalCount = document.getElementById("postTotalCount");
 
 const READ_THREADS_KEY = "softsin_read_threads_v1";
 
@@ -1210,6 +1214,77 @@ async function signOut() {
   setSignedOut();
 }
 
+
+function setForumStat(element, value) {
+  if (!element) return;
+
+  element.textContent = value || "—";
+}
+
+function formatCount(value) {
+  if (!Number.isFinite(value)) return "—";
+
+  return new Intl.NumberFormat().format(value);
+}
+
+async function loadNewestMemberStat() {
+  if (!newestMemberName) return;
+
+  setForumStat(newestMemberName, "Loading...");
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("display_name, username, created_at")
+    .order("created_at", { ascending: false, nullsFirst: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    console.warn("Newest member stat failed:", error);
+    setForumStat(newestMemberName, "Unavailable");
+    return;
+  }
+
+  setForumStat(newestMemberName, data ? getProfileName(data) : "No members yet");
+}
+
+async function loadBoardTotalsStat() {
+  const [threadsResult, postsResult] = await Promise.all([
+    supabase
+      .from("threads")
+      .select("id", { count: "exact", head: true }),
+    supabase
+      .from("posts")
+      .select("id", { count: "exact", head: true })
+      .is("deleted_at", null)
+  ]);
+
+  if (threadsResult.error) {
+    console.warn("Thread total stat failed:", threadsResult.error);
+    setForumStat(threadTotalCount, "Unavailable");
+  } else {
+    setForumStat(threadTotalCount, formatCount(threadsResult.count));
+  }
+
+  if (postsResult.error) {
+    console.warn("Post total stat failed:", postsResult.error);
+    setForumStat(postTotalCount, "Unavailable");
+  } else {
+    setForumStat(postTotalCount, formatCount(postsResult.count));
+  }
+}
+
+async function loadForumStats() {
+  if (onlineNowCount) {
+    setForumStat(onlineNowCount, "Next");
+  }
+
+  await Promise.all([
+    loadNewestMemberStat(),
+    loadBoardTotalsStat()
+  ]);
+}
+
 async function loadCategoryCounts(categories = currentCategories) {
   if (!categories.length) return;
 
@@ -2245,11 +2320,13 @@ async function loadCategories() {
     console.warn("Using fallback categories:", error);
     renderCategories(fallbackCategories);
     await loadCategoryCounts(fallbackCategories);
+    await loadForumStats();
     return;
   }
 
   renderCategories(data);
   await loadCategoryCounts(data);
+  await loadForumStats();
 }
 
 async function createThread() {
