@@ -248,6 +248,12 @@ function renderMarkdownLite(raw) {
       return;
     }
 
+    if (/^(---|\*\*\*|___|<hr\s*\/?\s*>)$/i.test(trimmed)) {
+      closeList();
+      html.push('<hr class="markdown-divider" />');
+      return;
+    }
+
     if (trimmed.startsWith("> ")) {
       closeList();
       html.push(`<div class="markdown-quote">${formatInlineMarkdown(trimmed.slice(2))}</div>`);
@@ -295,6 +301,7 @@ function stripMarkdownForPreview(raw) {
     .replace(/\*\*([^*]+)\*\*/g, "$1")
     .replace(/\*([^*]+)\*/g, "$1")
     .replace(/`([^`]+)`/g, "$1")
+    .replace(/^\s*(---|\*\*\*|___|<hr\s*\/?\s*>)\s*$/gim, " ")
     .replace(/^>\s+/gm, "")
     .replace(/^\s*-\s+/gm, "")
     .replace(/^\s*\d+\.\s+/gm, "")
@@ -478,6 +485,28 @@ function numberedSelectedLines() {
   updateCharCount();
 }
 
+function insertDivider() {
+  if (!composerText || composerText.disabled) return;
+
+  setEditorPreviewMode(false);
+
+  const start = composerText.selectionStart;
+  const end = composerText.selectionEnd;
+  const value = composerText.value;
+  const before = value.slice(0, start);
+  const after = value.slice(end);
+  const prefix = before && !before.endsWith("\n") ? "\n" : "";
+  const suffix = after && !after.startsWith("\n") ? "\n" : "";
+  const divider = `${prefix}---${suffix}`;
+  const next = `${before}${divider}${after}`;
+  const cursor = before.length + divider.length;
+
+  composerText.value = next;
+  composerText.focus();
+  composerText.setSelectionRange(cursor, cursor);
+  updateCharCount();
+}
+
 function insertLink() {
   if (!composerText || composerText.disabled || !userCanUseMediaTools()) return;
 
@@ -534,6 +563,9 @@ function applyEditorAction(action) {
     case "ol":
       numberedSelectedLines();
       break;
+    case "divider":
+      insertDivider();
+      break;
     case "link":
       insertLink();
       break;
@@ -561,6 +593,7 @@ function renderMiniEditor(editorId, value = "") {
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="quote">Quote</button>
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="ul">• List</button>
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="ol">1. List</button>
+      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="divider">Divider</button>
       ${mediaTools}
       <button class="editor-tool mini-preview-toggle" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="preview">Preview</button>
       <span class="editor-count mini-editor-count" id="${escapeHtml(editorId)}Count">${String(value || "").length} / 20000</span>
@@ -684,6 +717,30 @@ function miniNumberedSelectedLines(editorId) {
   updateMiniEditorCount(editorId);
 }
 
+function miniInsertDivider(editorId) {
+  const { textarea } = getMiniEditorElements(editorId);
+
+  if (!textarea || textarea.disabled) return;
+
+  setMiniEditorPreviewMode(editorId, false);
+
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const value = textarea.value;
+  const before = value.slice(0, start);
+  const after = value.slice(end);
+  const prefix = before && !before.endsWith("\n") ? "\n" : "";
+  const suffix = after && !after.startsWith("\n") ? "\n" : "";
+  const divider = `${prefix}---${suffix}`;
+  const next = `${before}${divider}${after}`;
+  const cursor = before.length + divider.length;
+
+  textarea.value = next;
+  textarea.focus();
+  textarea.setSelectionRange(cursor, cursor);
+  updateMiniEditorCount(editorId);
+}
+
 function miniInsertLink(editorId) {
   if (!userCanUseMediaTools()) return;
 
@@ -747,6 +804,9 @@ function applyMiniEditorAction(editorId, action) {
       break;
     case "ol":
       miniNumberedSelectedLines(editorId);
+      break;
+    case "divider":
+      miniInsertDivider(editorId);
       break;
     case "link":
       miniInsertLink(editorId);
