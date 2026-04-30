@@ -1276,7 +1276,7 @@ async function loadBoardTotalsStat() {
 
 async function loadForumStats() {
   if (onlineNowCount) {
-    setForumStat(onlineNowCount, "Next");
+    setForumStat(onlineNowCount, "0");
   }
 
   await Promise.all([
