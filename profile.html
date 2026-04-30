@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SoftSin Studios — Profile</title>
+  
+  <meta name="description" content="SoftSin Studios message board profile page." />  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#070a10" />
+  <link rel="canonical" href="https://softsinstudios.com/profile.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoftSin Studios" />
+  <meta property="og:title" content="SoftSin Studios — Profile" />
+  <meta property="og:description" content="SoftSin Studios message board profile page." />
+  <meta property="og:url" content="https://softsinstudios.com/profile.html" />
+  <meta property="og:image" content="https://softsinstudios.com/images/softsin-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — Profile" />
+  <meta name="twitter:description" content="SoftSin Studios message board profile page." />
+  <meta name="twitter:image" content="https://softsinstudios.com/images/softsin-og.png" />
+
+<link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <style>
+    .brand .mark {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: transparent;
+    }
+  </style>
+</head>
+<body class="profile-page">
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+        <span>
+          <strong>SoftSin Studios</strong>
+          <span>Creator tools, art, music, and workflows</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials & Gallery</a>
+        <a href="board.html">Message Board</a>
+        <a href="#" class="btn primary">Tool Hub</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Profile</span>
+        <h1>Manage your board identity.</h1>
+        <p class="lead">
+          Update the public name, username, and bio shown on the SoftSin Studios message board.
+          Discord still handles sign-in. This page only edits your local board profile.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="board.html">Back to Board</a>
+          <a class="btn" href="index.html">Home</a>
+        </div>
+      </div>
+
+      <aside class="visual-card">
+        <div class="visual" aria-label="Profile visual placeholder"></div>
+      </aside>
+    </section>
+
+    <main class="profile-layout">
+      <section class="profile-card">
+        <div id="signedOutProfile">
+          <div class="profile-empty">
+            <h2>Sign in required</h2>
+            <p>You need to sign in with Discord before editing your profile.</p>
+            <button class="btn primary" id="loginDiscord" type="button">Continue with Discord</button>
+          </div>
+        </div>
+
+        <div id="signedInProfile" hidden>
+          <div class="profile-head">
+            <img id="profileAvatar" class="profile-avatar" alt="" />
+            <div>
+              <h2 id="profileDisplayHeading">SoftSin member</h2>
+              <p id="profileMeta">Loading profile...</p>
+            </div>
+          </div>
+
+          <form class="profile-form" id="profileForm">
+            <label class="field">
+              <span>Display name</span>
+              <input id="displayNameInput" type="text" maxlength="80" placeholder="Display name" />
+            </label>
+
+            <label class="field">
+              <span>Username</span>
+              <input id="usernameInput" type="text" maxlength="40" placeholder="username" />
+            </label>
+
+            <label class="field">
+              <span>Bio</span>
+              <textarea id="bioInput" maxlength="500" placeholder="Short public bio"></textarea>
+            </label>
+
+            <div class="profile-readonly">
+              <div>
+                <span>Role</span>
+                <strong id="roleValue">member</strong>
+              </div>
+              <div>
+                <span>Email</span>
+                <strong id="emailValue">Not available</strong>
+              </div>
+            </div>
+
+            <div class="profile-actions">
+              <span class="tiny" id="profileStatus">Loading...</span>
+              <div class="profile-buttons">
+                <button class="btn" id="logout" type="button">Sign out</button>
+                <button class="btn primary" id="saveProfile" type="submit">Save Profile</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html">Tool Hub</a>
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="tos.html">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="js/profile.js"></script>
+</body>
+</html>

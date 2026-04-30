@@ -1,0 +1,257 @@
+/* SoftSin Studios — Tool Hub page */
+
+.toolhub-page .toolhub-hero {
+  padding: 34px 0 24px;
+  align-items: start;
+}
+
+.toolhub-page .toolhub-hero h1 {
+  font-size: clamp(34px, 5vw, 64px);
+  max-width: 840px;
+}
+
+.toolhub-page .lead {
+  max-width: 760px;
+}
+
+.toolhub-visual {
+  min-height: 340px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 58% 18%, rgba(103,232,255,.32), transparent 12rem),
+    radial-gradient(circle at 28% 70%, rgba(255,94,120,.22), transparent 14rem),
+    linear-gradient(145deg, #111824, #070a10);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.toolhub-visual::after {
+  content: "SoftSin Tool Hub";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: rgba(5,7,11,.72);
+  color: var(--muted);
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(16px);
+}
+
+.hub-orbit {
+  width: min(78%, 390px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+  transform: rotate(-2deg);
+  padding-bottom: 44px;
+}
+
+.hub-orbit span {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(5,7,11,.62);
+  backdrop-filter: blur(14px);
+  padding: 14px 15px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 0 18px 50px rgba(0,0,0,.22);
+}
+
+.hub-orbit span:nth-child(2n) {
+  color: var(--accent);
+  transform: translateY(12px);
+}
+
+.hub-orbit span:nth-child(3n) {
+  color: var(--accent2);
+}
+
+.toolhub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 16px;
+}
+
+.toolhub-card {
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.toolhub-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 85% 18%, rgba(103,232,255,.12), transparent 9rem),
+    radial-gradient(circle at 18% 92%, rgba(255,94,120,.10), transparent 10rem);
+  opacity: .9;
+}
+
+.toolhub-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.toolhub-card.featured {
+  min-height: 430px;
+}
+
+.tool-label {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line2);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--accent);
+  background: rgba(103,232,255,.07);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.toolhub-card h3 {
+  font-size: 22px;
+  letter-spacing: -.4px;
+}
+
+.toolhub-card p {
+  color: var(--muted);
+}
+
+.toolhub-card .btn {
+  text-align: center;
+  justify-content: center;
+}
+
+
+.tool-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.22);
+  object-fit: cover;
+  object-position: center;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.24),
+    0 0 45px rgba(103,232,255,.08);
+}
+
+.toolhub-card.featured .tool-preview {
+  aspect-ratio: 1 / 1;
+  max-height: 360px;
+  object-fit: cover;
+}
+
+.tool-orb {
+  width: 134px;
+  height: 134px;
+  border-radius: 40px;
+  margin: 8px auto;
+  border: 1px solid rgba(103,232,255,.28);
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.22), transparent 28%),
+    linear-gradient(135deg, rgba(103,232,255,.28), rgba(255,94,120,.18));
+  box-shadow: 0 0 80px rgba(103,232,255,.14);
+  transform: rotate(10deg);
+}
+
+.featured .tool-orb {
+  width: 190px;
+  height: 190px;
+  border-radius: 52px;
+  margin: auto;
+}
+
+.pose-orb {
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.22), transparent 28%),
+    linear-gradient(135deg, rgba(103,232,255,.34), rgba(255,94,120,.20));
+}
+
+.prompt-orb {
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.22), transparent 28%),
+    linear-gradient(135deg, rgba(93,255,159,.25), rgba(103,232,255,.18));
+}
+
+.json-orb {
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.20), transparent 28%),
+    linear-gradient(135deg, rgba(255,209,102,.25), rgba(103,232,255,.18));
+}
+
+.node-orb {
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.20), transparent 28%),
+    linear-gradient(135deg, rgba(255,94,120,.28), rgba(103,232,255,.18));
+}
+
+.list-orb {
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.20), transparent 28%),
+    linear-gradient(135deg, rgba(103,232,255,.25), rgba(160,130,255,.18));
+}
+
+.social-orb {
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.20), transparent 28%),
+    linear-gradient(135deg, rgba(255,94,120,.26), rgba(255,209,102,.18));
+}
+
+@media (max-width: 1040px) {
+  .toolhub-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .toolhub-card.featured {
+    grid-row: auto;
+    min-height: 360px;
+  }
+
+  .featured .tool-orb {
+    width: 150px;
+    height: 150px;
+    border-radius: 44px;
+  }
+}
+
+@media (max-width: 700px) {
+  .toolhub-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolhub-card,
+  .toolhub-card.featured {
+    min-height: 360px;
+  }
+
+  .hub-orbit {
+    grid-template-columns: 1fr;
+  }
+
+  .hub-orbit span:nth-child(2n) {
+    transform: none;
+  }
+}

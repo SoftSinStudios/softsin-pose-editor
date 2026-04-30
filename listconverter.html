@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SoftSin Studios — List Formatter</title>
+  <meta name="description" content="SoftSin Studios List Formatter converts one-item-per-line text into clean quoted lists for prompt banks, JavaScript arrays, and workflow cleanup." />  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#070a10" />
+  <link rel="canonical" href="https://softsinstudios.com/listconverter.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoftSin Studios" />
+  <meta property="og:title" content="SoftSin Studios — List Formatter" />
+  <meta property="og:description" content="SoftSin Studios List Formatter converts one-item-per-line text into clean quoted lists for prompt banks, JavaScript arrays, and workflow cleanup." />
+  <meta property="og:url" content="https://softsinstudios.com/listconverter.html" />
+  <meta property="og:image" content="https://softsinstudios.com/images/softsin-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — List Formatter" />
+  <meta name="twitter:description" content="SoftSin Studios List Formatter converts one-item-per-line text into clean quoted lists for prompt banks, JavaScript arrays, and workflow cleanup." />
+  <meta name="twitter:image" content="https://softsinstudios.com/images/softsin-og.png" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/listconverter.css" />
+  <style>
+    .brand .mark {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: transparent;
+    }
+  </style>
+</head>
+<body class="listconverter-page">
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+        <span>
+          <strong>SoftSin Studios</strong>
+          <span>Clean tools for AI art and creator workflows</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials &amp; Gallery</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html" class="btn primary">Tool Hub</a>
+      </nav>
+    </header>
+
+    <section class="hero list-hero">
+      <div>
+        <span class="eyebrow">List Formatter</span>
+        <h1>Clean up raw lists before they hit your tools.</h1>
+        <p class="lead">
+          Paste a rough one-item-per-line list and turn it into a quoted, comma-separated string you can drop into prompt banks, helper scripts, JSON-adjacent data, or tool code without cleaning every comma by hand.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#listTool">Open Formatter</a>
+          <a class="btn" href="json.html">JSON Maker</a>
+          <a class="btn" href="sdcomposer.html">Prompt Composer</a>
+        </div>
+      </div>
+
+      <aside class="visual-card list-visual-card">
+        <div class="list-visual" aria-label="List Formatter visual preview">
+          <div class="list-visual-stack">
+            <span>angry</span>
+            <span>annoyed</span>
+            <span>blush</span>
+            <span>closed eyes</span>
+            <strong>'angry', 'annoyed', 'blush', 'closed eyes'</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <main class="list-tool-shell section" id="listTool">
+      <section class="panel list-tool-panel">
+        <div class="panel-head list-panel-head">
+          <div>
+            <h2>Formatter</h2>
+            <p>Paste one item per line. The formatter trims extra spacing, ignores empty lines, and returns a copy-ready quoted list.</p>
+          </div>
+          <div class="list-actions top-actions">
+            <button class="btn primary" id="formatBtn" type="button">Format List</button>
+            <button class="btn" id="copyBtn" type="button">Copy Output</button>
+            <button class="btn red" id="clearBtn" type="button">Clear</button>
+          </div>
+        </div>
+
+        <div class="converter-grid">
+          <article class="converter-card">
+            <div class="field-head">
+              <label for="input">Input</label>
+              <span>Paste raw list items</span>
+            </div>
+            <textarea id="input" spellcheck="false" placeholder="angry
+annoyed
+blush
+closed eyes"></textarea>
+          </article>
+
+          <article class="converter-card">
+            <div class="field-head">
+              <label for="output">Output</label>
+              <span>Copy-ready output</span>
+            </div>
+            <textarea id="output" readonly spellcheck="false" placeholder="'angry', 'annoyed', 'blush', 'closed eyes'"></textarea>
+          </article>
+        </div>
+
+        <div class="tool-footer-row">
+          <div class="status-pill" id="status">Ready.</div>
+          <div class="format-note">
+            Output format: <code>'item', 'item', 'item'</code>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="card-grid section">
+      <article class="card">
+        <h3>Prompt banks</h3>
+        <p>Convert tag lists, expression sets, style words, and wildcard options into strings that are ready for prompt tools and helper arrays.</p>
+      </article>
+      <article class="card">
+        <h3>Script-friendly text</h3>
+        <p>Turn messy notes into consistent quoted items before pasting them into JavaScript, small utilities, or structured workflow files.</p>
+      </article>
+      <article class="card">
+        <h3>No file wrangling</h3>
+        <p>This tool is meant for quick cleanup: paste, format, copy, and get back to building.</p>
+      </article>
+    </section>
+    <footer class="footer">
+      © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html">Tool Hub</a>
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="tos.html">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function getItems() {
+      const input = document.getElementById("input").value;
+
+      return input
+        .split(/\r?\n/)
+        .map(item => item.trim())
+        .filter(item => item.length > 0);
+    }
+
+    function formatList() {
+      const items = getItems();
+      const formatted = items.map(item => `'${item}'`).join(", ");
+
+      document.getElementById("output").value = formatted;
+      document.getElementById("status").textContent = `${items.length} item(s) formatted.`;
+    }
+
+    function copyOutput() {
+      const output = document.getElementById("output");
+      const status = document.getElementById("status");
+
+      if (!output.value.trim()) {
+        status.textContent = "Nothing to copy.";
+        return;
+      }
+
+      navigator.clipboard.writeText(output.value)
+        .then(() => {
+          status.textContent = "Output copied to clipboard.";
+        })
+        .catch(() => {
+          output.select();
+          output.setSelectionRange(0, 999999);
+          status.textContent = "Copy failed. Output selected for manual copy.";
+        });
+    }
+
+    function clearAll() {
+      document.getElementById("input").value = "";
+      document.getElementById("output").value = "";
+      document.getElementById("status").textContent = "Ready.";
+      document.getElementById("input").focus();
+    }
+
+    document.getElementById("formatBtn").addEventListener("click", formatList);
+    document.getElementById("copyBtn").addEventListener("click", copyOutput);
+    document.getElementById("clearBtn").addEventListener("click", clearAll);
+  </script>
+</body>
+</html>

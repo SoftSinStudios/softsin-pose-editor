@@ -1,135 +1,257 @@
 <!doctype html>
 <html lang="en">
 <head>
+
   <meta charset="utf-8" />
-  <title>SoftSin JSON Maker — SoftSin Studios</title>
+  <title>SoftSin Studios — JSON Maker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#1a1b1e" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="css/json.css?v=5" />
+<meta name="description" content="Build clean category and list JSON for prompt libraries, tool data, presets, and creator workflow files." />  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#070a10" />
+  <link rel="canonical" href="https://softsinstudios.com/json.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoftSin Studios" />
+  <meta property="og:title" content="SoftSin Studios — JSON Maker" />
+  <meta property="og:description" content="Build clean category and list JSON for prompt libraries, tool data, presets, and creator workflow files." />
+  <meta property="og:url" content="https://softsinstudios.com/json.html" />
+  <meta property="og:image" content="https://softsinstudios.com/images/softsin-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — JSON Maker" />
+  <meta name="twitter:description" content="Build clean category and list JSON for prompt libraries, tool data, presets, and creator workflow files." />
+  <meta name="twitter:image" content="https://softsinstudios.com/images/softsin-og.png" />
+
+<link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/json.css" />
 
   <link rel="modulepreload" href="/js/app.js" />
   <script type="module" src="/js/app.js"></script>
+  <style>
+    .brand .mark {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: transparent;
+    }
+  </style>
 </head>
 
-<body>
-  <div id="layout">
-    <!-- Top bar -->
-    <div id="topbar">
-	  <a href="index.html"><button id="home">Home</button></a>
-      <a href="pose.html"><button id="home">Pose Editor</button></a>	
-      <a href="node.html"><button id="home">ComfyUI Nodes</button></a>
-      <input id="jsonFile" type="file" accept="application/json,.json" hidden />
-      <button id="importJson">Load JSON</button>
-      <button id="exportJson">Export JSON</button>
-      <button id="clearAll" class="danger">Clear All</button>
-    </div>
+<body class="json-page">
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+        <span>
+          <strong>SoftSin Studios</strong>
+          <span>Clean tools for AI art and creator workflows</span>
+        </span>
+      </a>
 
-    <!-- Left -->
-    <aside id="left">
-      <div class="panel">
-        <h3>Structure</h3>
-        <div class="muted">Use the center panel to create JSON categories and list items.</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials &amp; Gallery</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html" class="btn primary">Tool Hub</a>
+      </nav>
+    </header>
+
+    <section class="hero json-hero">
+      <div>
+        <span class="eyebrow">JSON Maker</span>
+        <h1>Build clean JSON files without fighting brackets and commas.</h1>
+        <p class="lead">
+          Create organized category-based JSON for prompt libraries, tag banks, presets, tool data, and workflow files. Add categories, add list items, preview the structure, then export a clean file you can reuse.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#jsonMakerTool">Open JSON Maker</a>
+          <button class="btn" id="importJsonHero" type="button">Load JSON</button>
+          <button class="btn" id="exportJsonHero" type="button">Export JSON</button>
+        </div>
       </div>
-    </aside>
 
-    <!-- Center -->
-    <div id="stageWrap">
-      <div id="stageInner">
-        <!-- Provide the legacy nodes with their ORIGINAL IDs so other scripts don't crash -->
-        <img id="img" alt="" />
-        <canvas id="canvas"></canvas>
-        <div id="overlay"></div>
-
-        <form id="jsonForm" autocomplete="off" onsubmit="return false;">
-          <div class="card">
-            <div class="card-head">
-              <strong>Root</strong>
-              <span id="counts" class="muted"></span>
-            </div>
-
-            <!-- Two-column header: file name | version -->
-            <div class="form-row two-col"
-                 style="display:grid;grid-template-columns:minmax(280px,1fr) minmax(280px,1fr);gap:16px;margin-bottom:10px;align-items:start;">
-              <div class="col">
-                <label for="filename">file name</label>
-                <input id="filename" type="text" placeholder="Enter file name, this will be the exported file name" />
-                <div class="hint">&#9888; json constructor automatically places underscores between words</div>
-              </div>
-              <div class="col">
-                <label for="version">version</label>
-                <input id="version" type="text" placeholder="for file version iteration" />
-                <div class="hint">&#8505;: Version (major.minor.patch — e.g. 1.0.0)</div>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <label for="rootTags">Descriptors (optional): short keywords describing the content or context.</label>
-              <input id="rootTags" type="text" placeholder="theme description: ie. wilderness environment prompts" />
-              <div class="hint">&#9888; Use commas to separate tags</div>
-            </div>
-
-            <!-- Hidden SoftSin branding/meta (not user-visible) -->
-            <input
-              id="brandMeta"
-              type="hidden"
-              value="Created with the SoftSin Studio JSON Creator V1.00: https://www.softsinstudios.com, © 2025" />
+      <aside class="visual-card json-visual-card">
+        <div class="json-preview-visual" aria-label="JSON Maker visual preview">
+          <div class="json-visual-stack">
+            <span>{</span>
+            <span>"category": "prompts"</span>
+            <span>"items": [ ... ]</span>
+            <span>"version": "1.0.0"</span>
+            <span>}</span>
           </div>
+        </div>
+      </aside>
+    </section>
 
-          <!-- dynamic categories -->
-          <div id="categories" class="card-list"></div>
-
-          <div class="toolbar">
-            <button type="button" id="btnAddCategory">+ Category</button>
-            <button type="button" id="btnAddItem">+ List Item</button>
-          </div>
-
-          <div class="card">
-            <div class="card-head"><strong>Preview (read-only)</strong></div>
-            <textarea id="jsonPreview" readonly placeholder="JSON preview will appear here..."></textarea>
-          </div>
-        </form>
+    <section class="panel section json-intro">
+      <div class="panel-head">
+        <h2>Build reusable data files</h2>
+        <p>This tool turns loose lists and category notes into readable JSON files that can be loaded, edited, versioned, and reused across SoftSin tools or your own workflow experiments.</p>
       </div>
-    </div>
+      <div class="json-info-grid">
+        <article class="json-info-card">
+          <strong>Category-first structure</strong>
+          <span>Group related items under named categories so prompt banks, tags, presets, and tool data stay easy to read.</span>
+        </article>
+        <article class="json-info-card">
+          <strong>Live read-only preview</strong>
+          <span>See the generated structure before you save it, so bad commas and broken brackets do not become tomorrow’s swamp monster.</span>
+        </article>
+        <article class="json-info-card">
+          <strong>Import and continue</strong>
+          <span>Bring an existing file back in, update the categories or items, then export a fresh version when the data changes.</span>
+        </article>
+      </div>
+    </section>
 
-    <!-- Right -->
-    <!-- Right -->
-	<aside id="right">
-	  <div class="sideCard">
-		<h3>JSON Info</h3>
-		<div id="info" class="muted">Start by adding a Category and List Items.</div>
+    <main id="jsonMakerTool" class="json-maker-shell section">
+      <aside id="left" class="json-side panel">
+        <div class="panel-head compact-head">
+          <h2>Structure</h2>
+          <p>Follow the workflow below to turn rough list data into a structured JSON file.</p>
+        </div>
 
-		<div class="support-block">
-		  <label class="row">Show Some Love</label>
-		  <a href="https://www.buymeacoffee.com/softsinstudios"
-			 title="Support development and buy me a beer"
-			 target="_blank"
-			 rel="noopener">
-			<img src="/images/donate.png"
-				 alt="Buy me a Beer"
-				 style="display:block; margin:10px auto; cursor:pointer;"/>
-		  </a>
-		</div>
-	  </div>
-	</aside>
+        <div class="json-side-body">
+          <div class="side-title">Workflow</div>
+          <div class="workflow-list">
+            <span>1. Name the file</span>
+            <span>2. Add categories</span>
+            <span>3. Add list items</span>
+            <span>4. Review preview</span>
+            <span>5. Export JSON</span>
+          </div>
+        </div>
 
-    <!-- Status -->
-    <div id="status1">SoftSin JSON Maker ready.</div>
+        <div class="side-section-like">
+          <div class="side-title">Notes</div>
+          <p class="mini-note">
+            The file name field controls the exported filename. Descriptors are optional, but they help explain what the file is for when your library starts growing teeth.
+          </p>
+        </div>
+      </aside>
+
+      <section id="stageWrap" class="json-main panel">
+        <div class="json-toolbar">
+          <div>
+            <span class="side-title">Working File</span>
+            <h2>JSON Builder</h2>
+            <p>Create grouped data while the tool handles the JSON formatting in the background.</p>
+          </div>
+
+          <div class="json-actions" aria-label="JSON maker actions">
+            <input id="jsonFile" type="file" accept="application/json,.json" hidden />
+            <button class="btn" id="importJson" type="button">Load JSON</button>
+            <button class="btn" id="exportJson" type="button">Export JSON</button>
+            <button class="btn red" id="clearAll" type="button">Clear All</button>
+          </div>
+        </div>
+
+        <div id="stageInner" class="json-stage-inner">
+          <!-- Legacy nodes kept with original IDs so existing scripts stay calm. -->
+          <img id="img" alt="" />
+          <canvas id="canvas"></canvas>
+          <div id="overlay"></div>
+
+          <form id="jsonForm" autocomplete="off" onsubmit="return false;">
+            <div class="card root-card">
+              <div class="card-head">
+                <strong>Root</strong>
+                <span id="counts" class="muted"></span>
+              </div>
+
+              <div class="form-row two-col">
+                <div class="col">
+                  <label for="filename">File name</label>
+                  <input id="filename" type="text" placeholder="Example: expression_tags or lighting_presets" />
+                  <div class="hint">Spaces are converted to underscores for cleaner filenames.</div>
+                </div>
+
+                <div class="col">
+                  <label for="version">Version</label>
+                  <input id="version" type="text" placeholder="Example: 1.0.0" />
+                  <div class="hint">Use major.minor.patch when you want version tracking, for example 1.0.0.</div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="rootTags">Descriptors <span class="label-soft">optional</span></label>
+                <input id="rootTags" type="text" placeholder="Example: portrait lighting tags, pose keywords, environment prompts" />
+                <div class="hint">Use commas to separate descriptors.</div>
+              </div>
+
+              <input
+                id="brandMeta"
+                type="hidden"
+                value="Created with the SoftSin Studio JSON Creator V1.00: https://www.softsinstudios.com, © 2025" />
+            </div>
+
+            <div id="categories" class="card-list"></div>
+
+            <div class="toolbar json-form-actions">
+              <button class="btn primary" type="button" id="btnAddCategory">+ Category</button>
+              <button class="btn" type="button" id="btnAddItem">+ List Item</button>
+            </div>
+
+            <div class="card preview-card">
+              <div class="card-head"><strong>Preview <span class="label-soft">read-only</span></strong></div>
+              <textarea id="jsonPreview" readonly placeholder="JSON preview will appear here..."></textarea>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <aside id="right" class="json-side panel">
+        <div class="panel-head compact-head">
+          <h2>Build Info</h2>
+          <p>Current file status and support options.</p>
+        </div>
+
+        <div class="json-side-body">
+          <div id="info" class="muted json-info-box">Start by naming the file, then add a category and list items.</div>
+
+          <div class="support-block">
+            <div class="side-title">Show Some Love</div>
+            <a href="https://www.buymeacoffee.com/softsinstudios"
+               title="Support development and buy me a beer"
+               target="_blank"
+               rel="noopener">
+              <img src="/images/donate.png" alt="Buy me a Beer" />
+            </a>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <footer class="footer">
+      © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html">Tool Hub</a>
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="tos.html">Terms of Service</a>
+      </div>
+    </footer>
   </div>
 
-  <footer>
-    <div class="links" aria-label="Footer links">
-	  <a href="https://www.softsinstudios.com">Home</a>|
-	  <a href="/pose.html">Pose Editor</a> |
-	  <a href="/node.html">ComfyUI Nodes</a> |
-      <a href="https://deviantart.com/softsinstudios">DeviantArt</a> |
-	  <a href="/pricing.html">Pricing</a> |
-	  <a href="/returns.html">Returns</a> |
-	  <a href="/tos.html">Terms of Service</a> |
-	  <a href="/privacypolicy.html">Privacy Policy</a
-    </div>
-  </footer>
+  <script>
+    const importHero = document.getElementById('importJsonHero');
+    const exportHero = document.getElementById('exportJsonHero');
+    const importMain = document.getElementById('importJson');
+    const exportMain = document.getElementById('exportJson');
 
+    if (importHero && importMain) {
+      importHero.addEventListener('click', () => importMain.click());
+    }
+
+    if (exportHero && exportMain) {
+      exportHero.addEventListener('click', () => exportMain.click());
+    }
+  </script>
   <script src="js/jsonmaker.js"></script>
 </body>
 </html>

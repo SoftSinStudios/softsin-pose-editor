@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SoftSin Studios — SD Prompt Composer</title>
+  <meta name="description" content="SoftSin Studios SD Prompt Composer builds structured positive and negative prompts for Stable Diffusion and ComfyUI workflows." />  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#070a10" />
+  <link rel="canonical" href="https://softsinstudios.com/sdcomposer.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoftSin Studios" />
+  <meta property="og:title" content="SoftSin Studios — SD Prompt Composer" />
+  <meta property="og:description" content="SoftSin Studios SD Prompt Composer builds structured positive and negative prompts for Stable Diffusion and ComfyUI workflows." />
+  <meta property="og:url" content="https://softsinstudios.com/sdcomposer.html" />
+  <meta property="og:image" content="https://softsinstudios.com/images/softsin-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — SD Prompt Composer" />
+  <meta name="twitter:description" content="SoftSin Studios SD Prompt Composer builds structured positive and negative prompts for Stable Diffusion and ComfyUI workflows." />
+  <meta name="twitter:image" content="https://softsinstudios.com/images/softsin-og.png" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/sdcomposer.css" />
+  <style>
+    .brand .mark {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: transparent;
+    }
+  </style>
+</head>
+<body class="composer-page">
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+        <span>
+          <strong>SoftSin Studios</strong>
+          <span>Clean tools for AI art and creator workflows.</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials &amp; Gallery</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html" class="btn primary">Tool Hub</a>
+      </nav>
+    </header>
+
+    <section class="hero composer-hero">
+      <div>
+        <span class="eyebrow">Prompt Composer</span>
+        <h1>Build structured prompts without turning the textbox into soup.</h1>
+        <p class="lead">
+          Build positive and negative Stable Diffusion prompts with clear sections, subject-specific fields, live previews, and exports that stay useful outside the browser.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#composerTool">Open Composer</a>
+          <a class="btn" href="board.html">Support Board</a>
+          <a class="btn" href="index.html">Home</a>
+        </div>
+      </div>
+
+      <aside class="visual-card composer-visual-card">
+        <div class="composer-preview-visual" aria-label="SD Prompt Composer visual preview">
+          <div class="visual-stack">
+            <span>IDENTITY</span>
+            <span>OUTFIT</span>
+            <span>POSE</span>
+            <span>LIGHTING</span>
+            <span>QUALITY</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel section composer-intro">
+      <div class="panel-head">
+        <h2>Prompt structure that stays readable</h2>
+        <p>The composer separates identity, outfit, pose, environment, lighting, and quality so prompts stay editable instead of collapsing into one long tag pile.</p>
+      </div>
+      <div class="composer-info-grid">
+        <article class="composer-info-card">
+          <strong>Subject-first workflow</strong>
+          <span>Choose the kind of image first, then work with fields that fit the subject.</span>
+        </article>
+        <article class="composer-info-card">
+          <strong>Live prompt assembly</strong>
+          <span>The preview updates as you type, strips empty sections, and keeps the final order consistent.</span>
+        </article>
+        <article class="composer-info-card">
+          <strong>Positive / negative split</strong>
+          <span>Keep the main prompt and cleanup prompt separate so they are easier to copy, test, and revise.</span>
+        </article>
+      </div>
+    </section>
+
+    <main class="prompt-composer-shell section" id="composerTool">
+      <aside class="prompt-side panel">
+        <div class="panel-head compact-head">
+          <h2>Prompt Subject</h2>
+          <p>Start with the image type. The field set changes so you are not fighting irrelevant inputs.</p>
+        </div>
+        <div class="prompt-side-body">
+          <div id="tabList" class="tab-list"></div>
+        </div>
+
+        <div class="side-section-like">
+          <div class="side-title">Notes</div>
+          <p class="mini-note">
+            Type naturally. The composer handles section order, spacing, empty fields, and the final positive / negative split.
+          </p>
+        </div>
+      </aside>
+
+      <section class="prompt-main panel">
+        <div class="composer-toolbar">
+          <div>
+            <span class="side-title">Current Build</span>
+            <h2 id="subjectTitle">Person</h2>
+            <p id="subjectDescription"></p>
+          </div>
+          <div class="composer-metrics" aria-label="Prompt metrics and actions">
+            <button class="btn" id="exportJsonBtn" type="button">Export JSON</button>
+            <button class="btn" id="exportTxtBtn" type="button">Export TXT</button>
+            <button class="btn" id="loadExampleBtn" type="button">Load Example</button>
+            <button class="btn red" id="clearBtn" type="button">Clear</button>
+          </div>
+        </div>
+
+        <div class="preview-grid">
+          <article class="prompt-preview positive-preview">
+            <div class="preview-head">
+              <span>Positive Prompt</span>
+              <button class="btn" data-copy="positive" type="button">Copy</button>
+            </div>
+            <pre id="positivePreview"></pre>
+          </article>
+
+          <article class="prompt-preview negative-preview">
+            <div class="preview-head">
+              <span>Negative Prompt</span>
+              <button class="btn" data-copy="negative" type="button">Copy</button>
+            </div>
+            <pre id="negativePreview"></pre>
+          </article>
+        </div>
+
+        <section class="form-card-soft">
+          <div id="fieldContainer" class="field-grid"></div>
+        </section>
+      </section>
+
+      <aside class="prompt-side panel">
+        <div class="panel-head compact-head">
+          <h2>Global Helpers</h2>
+          <p>Use quick chips for common lighting, composition, and quality language.</p>
+        </div>
+        <div class="helper-list">
+          <article class="helper-block-soft">
+            <h3>Lighting</h3>
+            <p>Add common lighting cues without rebuilding the phrase every time.</p>
+            <div class="chip-group" data-target="lighting">
+              <button class="chip" type="button">soft natural light</button>
+              <button class="chip" type="button">studio soft light</button>
+              <button class="chip" type="button">dramatic rim light</button>
+              <button class="chip" type="button">golden hour</button>
+              <button class="chip" type="button">overcast light</button>
+              <button class="chip" type="button">volumetric light</button>
+            </div>
+          </article>
+
+          <article class="helper-block-soft">
+            <h3>Composition</h3>
+            <p>Append framing and camera language to the active composition field.</p>
+            <div class="chip-group" data-target="composition">
+              <button class="chip" type="button">close-up</button>
+              <button class="chip" type="button">wide shot</button>
+              <button class="chip" type="button">low angle</button>
+              <button class="chip" type="button">eye level</button>
+              <button class="chip" type="button">centered composition</button>
+              <button class="chip" type="button">shallow depth of field</button>
+            </div>
+          </article>
+
+          <article class="helper-block-soft">
+            <h3>Style / Quality</h3>
+            <p>Add broad style and quality cues after the core subject is already defined.</p>
+            <div class="chip-group" data-target="style">
+              <button class="chip" type="button">photorealistic</button>
+              <button class="chip" type="button">cinematic still</button>
+              <button class="chip" type="button">concept art</button>
+              <button class="chip" type="button">highly detailed</button>
+              <button class="chip" type="button">sharp focus</button>
+              <button class="chip" type="button">realistic texture</button>
+            </div>
+          </article>
+
+          <div class="quick-copy-box">
+            <button class="btn primary full" id="copyPositiveBtn" type="button">Copy Positive</button>
+            <button class="btn full" id="copyNegativeBtn" type="button">Copy Negative</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <footer class="footer">
+      © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html">Tool Hub</a>
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="tos.html">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+
+    const SUBJECTS = {
+      person: {
+        label: 'Person',
+        description: 'For portraits, character work, fashion, editorial images, and human-focused prompts.',
+        positiveOrder: ['subject', 'description', 'outfit', 'pose', 'expression', 'environment', 'lighting', 'composition', 'style', 'details'],
+        negativeOrder: ['negativePrompt'],
+        fields: [
+          { key: 'subject', label: 'Subject', hint: 'Example: middle-aged woman, elderly man, cyberpunk dancer' },
+          { key: 'outfit', label: 'Outfit', hint: 'Clothing, materials, accessories, fabric behavior' },
+          { key: 'pose', label: 'Pose / Action', hint: 'Standing, seated, walking, leaning, or physical action' },
+          { key: 'expression', label: 'Expression', hint: 'Emotion, gaze, mouth, attitude, mood' },
+          { key: 'environment', label: 'Environment', hint: 'Where the subject exists' },
+          { key: 'lighting', label: 'Lighting', hint: 'Light direction, softness, time of day, mood' },
+          { key: 'composition', label: 'Composition', hint: 'Camera angle, framing, focal feel, crop' },
+          { key: 'style', label: 'Style / Quality', hint: 'Photography, cinematic still, realism, detail' },
+          { key: 'description', label: 'Description', hint: 'Appearance, age cues, features, build, hair, or anything identity-related', type: 'textarea', full: true },
+          { key: 'details', label: 'Extra Details', hint: 'Useful details that do not fit cleanly in the fields above', type: 'textarea', full: true },
+          { key: 'negativePrompt', label: 'Negative Prompt', hint: 'Artifacts, errors, styles, or content you want the model to avoid', type: 'textarea', full: true }
+        ]
+      },
+      creature: {
+        label: 'Creature',
+        description: 'For animals, monsters, aliens, biomechanical subjects, and fantasy creatures.',
+        positiveOrder: ['subject', 'description', 'surface', 'action', 'habitat', 'lighting', 'composition', 'style', 'details'],
+        negativeOrder: ['negativePrompt'],
+        fields: [
+          { key: 'subject', label: 'Creature', hint: 'Example: biomechanical wolf, abyssal leviathan, horned forest spirit' },
+          { key: 'surface', label: 'Surface / Materials', hint: 'Fur, scales, bark, chitin, wet skin, metal plating' },
+          { key: 'action', label: 'Action / State', hint: 'Prowling, roaring, perched, sleeping, stalking' },
+          { key: 'habitat', label: 'Habitat / Environment', hint: 'Forest floor, frozen cave, ruined lab, alien marsh' },
+          { key: 'lighting', label: 'Lighting', hint: 'Light mood and separation' },
+          { key: 'composition', label: 'Composition', hint: 'View, angle, scale, framing' },
+          { key: 'style', label: 'Style / Quality', hint: 'Concept art, realism, cinematic, painterly' },
+          { key: 'description', label: 'Description', hint: 'Body form, size, limbs, head shape, species traits', type: 'textarea', full: true },
+          { key: 'details', label: 'Extra Details', hint: 'Particles, breath, glowing eyes, scene extras', type: 'textarea', full: true },
+          { key: 'negativePrompt', label: 'Negative Prompt', hint: 'Artifacts, errors, styles, or content you want the model to avoid', type: 'textarea', full: true }
+        ]
+      },
+      vehicle: {
+        label: 'Vehicle',
+        description: 'For cars, bikes, aircraft, ships, mechs, and designed transport subjects.',
+        positiveOrder: ['subject', 'design', 'materials', 'condition', 'action', 'environment', 'lighting', 'composition', 'style', 'details'],
+        negativeOrder: ['negativePrompt'],
+        fields: [
+          { key: 'subject', label: 'Vehicle', hint: 'Example: retro muscle car, armored dropship, dieselpunk hoverbike' },
+          { key: 'materials', label: 'Materials / Finish', hint: 'Brushed metal, matte paint, chrome, carbon fiber' },
+          { key: 'condition', label: 'Condition', hint: 'Factory clean, weathered, battle-worn, rusted' },
+          { key: 'action', label: 'Action / State', hint: 'Parked, drifting, hovering, landing, speeding' },
+          { key: 'environment', label: 'Environment', hint: 'Garage, highway, stormfront, hangar, runway' },
+          { key: 'lighting', label: 'Lighting', hint: 'Sunlight, studio reflections, headlights, neon spill' },
+          { key: 'composition', label: 'Composition', hint: 'Three-quarter view, front profile, low angle, wide frame' },
+          { key: 'style', label: 'Style / Quality', hint: 'Concept art, cinematic render, photoreal, industrial design' },
+          { key: 'design', label: 'Design Language', hint: 'Shape, era, silhouette, visual identity', type: 'textarea', full: true },
+          { key: 'details', label: 'Extra Details', hint: 'Decals, smoke, rain streaks, engine glow, dirt', type: 'textarea', full: true },
+          { key: 'negativePrompt', label: 'Negative Prompt', hint: 'Artifacts, errors, styles, or content you want the model to avoid', type: 'textarea', full: true }
+        ]
+      },
+      environment: {
+        label: 'Environment',
+        description: 'For architecture, landscapes, interiors, cityscapes, and location-first prompts.',
+        positiveOrder: ['subject', 'structure', 'atmosphere', 'weather', 'lighting', 'composition', 'style', 'details'],
+        negativeOrder: ['negativePrompt'],
+        fields: [
+          { key: 'subject', label: 'Environment', hint: 'Example: abandoned cathedral interior, overgrown train station, brutalist megacity' },
+          { key: 'atmosphere', label: 'Atmosphere / Mood', hint: 'Somber, sterile, nostalgic, threatening, dreamlike' },
+          { key: 'weather', label: 'Weather / Time', hint: 'Rain, fog, snowfall, dawn light, dusk haze' },
+          { key: 'lighting', label: 'Lighting', hint: 'How the environment is lit' },
+          { key: 'composition', label: 'Composition', hint: 'Wide shot, centered path, layered depth, vanishing point' },
+          { key: 'style', label: 'Style / Quality', hint: 'Matte painting, photoreal, cinematic, concept art' },
+          { key: 'structure', label: 'Structure / Terrain', hint: 'Architecture, terrain, landmarks, materials, surfaces', type: 'textarea', full: true },
+          { key: 'details', label: 'Extra Details', hint: 'Dust, foliage, reflections, debris, distant lights', type: 'textarea', full: true },
+          { key: 'negativePrompt', label: 'Negative Prompt', hint: 'Artifacts, errors, styles, or content you want the model to avoid', type: 'textarea', full: true }
+        ]
+      },
+      object: {
+        label: 'Object',
+        description: 'For props, products, artifacts, tools, tech, and isolated object prompts.',
+        positiveOrder: ['subject', 'description', 'materials', 'placement', 'background', 'lighting', 'composition', 'style', 'details'],
+        negativeOrder: ['negativePrompt'],
+        fields: [
+          { key: 'subject', label: 'Object', hint: 'Example: luxury perfume bottle, antique revolver, sci-fi helmet' },
+          { key: 'materials', label: 'Materials / Finish', hint: 'Glass, brass, leather, velvet, polished stone' },
+          { key: 'placement', label: 'Placement / State', hint: 'Resting on black glass, suspended, displayed on pedestal' },
+          { key: 'background', label: 'Background / Environment', hint: 'Studio backdrop, tabletop, velvet drape, shelf' },
+          { key: 'lighting', label: 'Lighting', hint: 'Product light, reflections, edge light' },
+          { key: 'composition', label: 'Composition', hint: 'Macro shot, product shot, centered framing, close crop' },
+          { key: 'style', label: 'Style / Quality', hint: 'Luxury product photography, realism, sharp detail' },
+          { key: 'description', label: 'Description', hint: 'Form, age, era, branding, craftsmanship', type: 'textarea', full: true },
+          { key: 'details', label: 'Extra Details', hint: 'Etching, condensation, dust, fingerprints, scratches', type: 'textarea', full: true },
+          { key: 'negativePrompt', label: 'Negative Prompt', hint: 'Artifacts, errors, styles, or content you want the model to avoid', type: 'textarea', full: true }
+        ]
+      },
+      abstract: {
+        label: 'Abstract',
+        description: 'For symbolic, conceptual, non-literal, and design-heavy image prompts.',
+        positiveOrder: ['subject', 'symbolism', 'forms', 'palette', 'atmosphere', 'lighting', 'composition', 'style', 'details'],
+        negativeOrder: ['negativePrompt'],
+        fields: [
+          { key: 'subject', label: 'Concept', hint: 'Example: grief as collapsing architecture, digital transcendence, fractured memory' },
+          { key: 'forms', label: 'Forms / Shape Language', hint: 'Angular, fluid, fragmented, geometric, organic' },
+          { key: 'palette', label: 'Color / Palette', hint: 'Muted cobalt and ash, red and gold contrast, monochrome' },
+          { key: 'atmosphere', label: 'Atmosphere', hint: 'Dreamlike, oppressive, sterile, transcendent, surreal' },
+          { key: 'lighting', label: 'Lighting', hint: 'Glow, contrast, haze, silhouette, bloom' },
+          { key: 'composition', label: 'Composition', hint: 'Centered symbol, asymmetrical, void-heavy, layered' },
+          { key: 'style', label: 'Style / Quality', hint: 'Graphic design, surreal painting, concept art, mixed media' },
+          { key: 'symbolism', label: 'Symbolism', hint: 'Metaphors, motifs, themes, emotional language', type: 'textarea', full: true },
+          { key: 'details', label: 'Extra Details', hint: 'Texture, particles, fractured surfaces, glyphs', type: 'textarea', full: true },
+          { key: 'negativePrompt', label: 'Negative Prompt', hint: 'Artifacts, errors, styles, or content you want the model to avoid', type: 'textarea', full: true }
+        ]
+      },
+      scene: {
+        label: 'Scene',
+        description: 'For scenes with multiple important subjects, roles, actions, or interactions.',
+        positiveOrder: ['subject', 'relationships', 'action', 'environment', 'lighting', 'composition', 'style', 'details'],
+        negativeOrder: ['negativePrompt'],
+        fields: [
+          { key: 'subject', label: 'Primary Subjects', hint: 'Example: knight and dragon, family at dinner, convoy in storm' },
+          { key: 'action', label: 'Action / Event', hint: 'What is happening in the scene' },
+          { key: 'environment', label: 'Environment', hint: 'Where the scene takes place' },
+          { key: 'lighting', label: 'Lighting', hint: 'How the whole scene is lit' },
+          { key: 'composition', label: 'Composition', hint: 'Subject placement, depth, focal hierarchy, angle' },
+          { key: 'style', label: 'Style / Quality', hint: 'Cinematic, illustrated, photoreal, concept art' },
+          { key: 'relationships', label: 'Relationships / Roles', hint: 'How the subjects relate, contrast, or interact', type: 'textarea', full: true },
+          { key: 'details', label: 'Extra Details', hint: 'Secondary objects, particles, debris, supporting cues', type: 'textarea', full: true },
+          { key: 'negativePrompt', label: 'Negative Prompt', hint: 'Artifacts, errors, styles, or content you want the model to avoid', type: 'textarea', full: true }
+        ]
+      }
+    };
+    const state = {
+      activeType: 'person',
+      values: {}
+    };
+
+    function ensureState(type) {
+      if (!state.values[type]) state.values[type] = {};
+      SUBJECTS[type].fields.forEach(field => {
+        if (!(field.key in state.values[type])) state.values[type][field.key] = '';
+      });
+    }
+
+    function cleanPart(value) {
+      return String(value || '')
+        .replace(/\s+/g, ' ')
+        .replace(/\s+,/g, ',')
+        .replace(/,{2,}/g, ',')
+        .trim()
+        .replace(/^,+|,+$/g, '')
+        .trim();
+    }
+
+    function splitParts(value) {
+      return String(value || '')
+        .split(',')
+        .map(part => cleanPart(part))
+        .filter(Boolean);
+    }
+
+    function uniqParts(parts) {
+      const out = [];
+      const seen = new Set();
+      parts.forEach(part => {
+        const cleaned = cleanPart(part);
+        if (!cleaned) return;
+        const key = cleaned.toLowerCase();
+        if (seen.has(key)) return;
+        seen.add(key);
+        out.push(cleaned);
+      });
+      return out;
+    }
+
+    const SECTION_MAPS = {
+      person: [
+        ['IDENTITY', ['subject', 'description']],
+        ['OUTFIT', ['outfit']],
+        ['POSE', ['pose', 'expression']],
+        ['ENVIRONMENT', ['environment', 'details']],
+        ['LIGHTING', ['lighting']],
+        ['QUALITY', ['composition', 'style']]
+      ],
+      creature: [
+        ['IDENTITY', ['subject', 'description', 'surface']],
+        ['POSE', ['action']],
+        ['ENVIRONMENT', ['habitat', 'details']],
+        ['LIGHTING', ['lighting']],
+        ['QUALITY', ['composition', 'style']]
+      ],
+      vehicle: [
+        ['IDENTITY', ['subject', 'design', 'materials', 'condition']],
+        ['POSE', ['action']],
+        ['ENVIRONMENT', ['environment', 'details']],
+        ['LIGHTING', ['lighting']],
+        ['QUALITY', ['composition', 'style']]
+      ],
+      environment: [
+        ['IDENTITY', ['subject', 'structure']],
+        ['ENVIRONMENT', ['atmosphere', 'weather', 'details']],
+        ['LIGHTING', ['lighting']],
+        ['QUALITY', ['composition', 'style']]
+      ],
+      object: [
+        ['IDENTITY', ['subject', 'description', 'materials']],
+        ['ENVIRONMENT', ['placement', 'background', 'details']],
+        ['LIGHTING', ['lighting']],
+        ['QUALITY', ['composition', 'style']]
+      ],
+      abstract: [
+        ['IDENTITY', ['subject', 'symbolism', 'forms', 'palette']],
+        ['ENVIRONMENT', ['atmosphere', 'details']],
+        ['LIGHTING', ['lighting']],
+        ['QUALITY', ['composition', 'style']]
+      ],
+      scene: [
+        ['IDENTITY', ['subject', 'relationships']],
+        ['POSE', ['action']],
+        ['ENVIRONMENT', ['environment', 'details']],
+        ['LIGHTING', ['lighting']],
+        ['QUALITY', ['composition', 'style']]
+      ]
+    };
+
+    function buildPositivePrompt(type) {
+      ensureState(type);
+      const values = state.values[type];
+      const sections = SECTION_MAPS[type] || [];
+      const lines = sections.map(([label, keys]) => {
+        const parts = [];
+        keys.forEach(key => {
+          splitParts(values[key] || '').forEach(part => parts.push(part));
+        });
+        const clean = uniqParts(parts);
+        if (!clean.length) return '';
+        return `${label}: ${clean.join(', ')}.`;
+      }).filter(Boolean);
+      return lines.join('\n\n');
+    }
+
+    function buildNegativePrompt(type) {
+      ensureState(type);
+      const values = state.values[type];
+      return uniqParts(splitParts(values.negativePrompt || '')).join(', ');
+    }
+
+    function autoResizeField(field) {
+      if (!field || field.tagName !== 'TEXTAREA') return;
+      field.style.height = 'auto';
+      field.style.height = field.scrollHeight + 'px';
+    }
+
+    function renderTabs() {
+      const tabList = document.getElementById('tabList');
+      tabList.innerHTML = '';
+      Object.entries(SUBJECTS).forEach(([key, cfg]) => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn' + (state.activeType === key ? ' active' : '');
+        btn.textContent = cfg.label;
+        btn.addEventListener('click', () => {
+          state.activeType = key;
+          renderTabs();
+          renderFields();
+          updatePreviews();
+        });
+        tabList.appendChild(btn);
+      });
+    }
+
+    function renderFields() {
+      ensureState(state.activeType);
+      const cfg = SUBJECTS[state.activeType];
+      document.getElementById('subjectTitle').textContent = cfg.label;
+      document.getElementById('subjectDescription').textContent = cfg.description;
+      const box = document.getElementById('fieldContainer');
+      box.innerHTML = '';
+
+      cfg.fields.forEach(field => {
+        const row = document.createElement('div');
+        row.className = 'field-row' + (field.full ? ' full' : '');
+
+        const label = document.createElement('div');
+        label.className = 'field-label';
+        label.textContent = field.label;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'field-wrap';
+
+        const input = document.createElement('textarea');
+        input.className = 'auto-grow-field';
+        input.rows = field.type === 'textarea' ? 3 : 1;
+        input.value = state.values[state.activeType][field.key] || '';
+        input.placeholder = field.hint;
+        input.dataset.key = field.key;
+        input.addEventListener('input', e => {
+          state.values[state.activeType][field.key] = e.target.value;
+          autoResizeField(e.target);
+          updatePreviews();
+        });
+
+        const hint = document.createElement('div');
+        hint.className = 'field-hint';
+        hint.textContent = field.hint;
+
+        wrap.appendChild(input);
+        wrap.appendChild(hint);
+        row.appendChild(label);
+        row.appendChild(wrap);
+        box.appendChild(row);
+        autoResizeField(input);
+      });
+    }
+
+    function updatePreviews() {
+      const cfg = SUBJECTS[state.activeType];
+      const positive = buildPositivePrompt(state.activeType);
+      const negative = buildNegativePrompt(state.activeType);
+      document.getElementById('positivePreview').textContent = positive || 'Your positive prompt preview will appear here.';
+      document.getElementById('negativePreview').textContent = negative || 'Your negative prompt preview will appear here.';
+      syncChipStates();
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+
+    function syncChipStates() {
+      const map = {
+        lighting: 'lighting',
+        composition: 'composition',
+        style: 'style'
+      };
+      document.querySelectorAll('.chip-group').forEach(group => {
+        const key = map[group.dataset.target];
+        const current = key ? splitParts(state.values[state.activeType][key] || '') : [];
+        group.querySelectorAll('.chip').forEach(chip => {
+          const phrase = cleanPart(chip.textContent);
+          chip.classList.toggle('active', current.includes(phrase));
+        });
+      });
+    }
+
+    function toggleMappedField(target, phrase) {
+      ensureState(state.activeType);
+      const map = {
+        lighting: 'lighting',
+        composition: 'composition',
+        style: 'style'
+      };
+      const key = map[target];
+      if (!key) return;
+      const incoming = cleanPart(phrase);
+      if (!incoming) return;
+      const current = splitParts(state.values[state.activeType][key] || '');
+      const exists = current.includes(incoming);
+      const next = exists ? current.filter(part => part !== incoming) : uniqParts([...current, incoming]);
+      state.values[state.activeType][key] = next.join(', ');
+      renderFields();
+      updatePreviews();
+    }
+
+    function exportJson() {
+      const payload = {
+        activeType: state.activeType,
+        values: state.values,
+        positive: buildPositivePrompt(state.activeType),
+        negative: buildNegativePrompt(state.activeType)
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sdprompt-composer.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+
+    function exportTxt() {
+      const positive = buildPositivePrompt(state.activeType);
+      const negative = buildNegativePrompt(state.activeType);
+      const subjectLabel = SUBJECTS[state.activeType]?.label || state.activeType;
+      const content = [
+        'SD Prompt Composer',
+        'Subject Type: ' + subjectLabel,
+        '',
+        'POSITIVE PROMPT:',
+        positive || '',
+        '',
+        'NEGATIVE PROMPT:',
+        negative || ''
+      ].join('\n');
+
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sdprompt-composer.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearCurrent() {
+      ensureState(state.activeType);
+      SUBJECTS[state.activeType].fields.forEach(field => state.values[state.activeType][field.key] = '');
+      renderFields();
+      updatePreviews();
+    }
+
+    function loadExample() {
+      const samples = {
+        person: {
+          subject: 'middle-aged woman',
+          description: 'silver hair, sharp features, elegant presence',
+          outfit: 'black silk blouse, tailored pencil skirt, minimal jewelry',
+          pose: 'standing beside a hotel bar',
+          expression: 'calm, confident gaze',
+          environment: 'luxury hotel lounge',
+          lighting: 'soft warm practical lighting, subtle rim light',
+          composition: 'three-quarter view, waist-up shot',
+          style: 'cinematic still, photorealistic, sharp focus',
+          details: 'polished marble reflections',
+          negativePrompt: 'bad anatomy, bad eyes, extra fingers, merged clothing, text, watermark, blurry, lowres'
+        },
+        creature: {
+          subject: 'biomechanical wolf',
+          description: 'lean predatory frame, exposed servos, angular skull',
+          surface: 'matte black plating, carbon fiber spine, amber glowing eyes',
+          action: 'prowling through shallow fog',
+          habitat: 'ruined industrial corridor',
+          lighting: 'dramatic rim light, low ambient haze',
+          composition: 'low angle, wide shot',
+          style: 'concept art, highly detailed',
+          details: 'sparks, drifting dust',
+          negativePrompt: 'broken limbs, fused anatomy, melted textures, duplicated legs, awkward silhouette, text, watermark, blurry, lowres'
+        },
+        vehicle: {
+          subject: 'dieselpunk hoverbike',
+          design: 'low aggressive silhouette, exposed engine housings, heavy front forks',
+          materials: 'weathered brass, steel plating, matte black trim',
+          condition: 'battle-worn with light rust',
+          action: 'hovering above a rain-soaked alley',
+          environment: 'industrial city street at night',
+          lighting: 'wet reflections, neon backlight',
+          composition: 'three-quarter view, low angle',
+          style: 'cinematic render, highly detailed',
+          details: 'steam vents, rain streaks',
+          negativePrompt: 'warped body, broken symmetry, melted metal, muddy reflections, distorted wheels, warped perspective, text, watermark, blurry, lowres'
+        },
+        environment: {
+          subject: 'abandoned cathedral interior',
+          structure: 'cracked marble floors, collapsed pews, towering arches, broken stained glass',
+          atmosphere: 'somber, sacred, dust-heavy silence',
+          weather: 'cold dawn light through lingering mist',
+          lighting: 'volumetric light rays, soft ambient gloom',
+          composition: 'wide shot, centered aisle, deep perspective',
+          style: 'matte painting, photorealistic detail',
+          details: 'floating dust, scattered debris, vine growth',
+          negativePrompt: 'warped buildings, floating geometry, flat lighting, muddy fog, bad framing, cluttered scene, text, watermark, blurry, lowres'
+        },
+        object: {
+          subject: 'luxury perfume bottle',
+          description: 'sleek rectangular bottle with beveled edges and gold cap',
+          materials: 'clear glass, amber liquid, brushed gold hardware',
+          placement: 'resting on black reflective glass',
+          background: 'dark studio backdrop',
+          lighting: 'controlled product lighting with edge highlights',
+          composition: 'macro product shot, centered framing',
+          style: 'luxury product photography, sharp detail',
+          details: 'fine condensation, faint reflection',
+          negativePrompt: 'warped geometry, broken edges, bad reflections, muddy texture, cut off object, awkward framing, text, watermark, blurry, lowres'
+        },
+        abstract: {
+          subject: 'fractured memory',
+          symbolism: 'shattered mirrored forms dissolving into fog and light',
+          forms: 'fragmented geometry, drifting layered shapes',
+          palette: 'cold silver, pale blue, muted charcoal',
+          atmosphere: 'dreamlike, distant, melancholic',
+          lighting: 'soft bloom, internal glow',
+          composition: 'central fracture point, negative space',
+          style: 'surreal painting, mixed media texture',
+          details: 'dust motes, faint glyph patterns',
+          negativePrompt: 'muddy concept, unreadable symbolism, visual noise, oversaturation, bad balance, awkward spacing, text, watermark, blurry, lowres'
+        },
+        scene: {
+          subject: 'knight and dragon',
+          relationships: 'the knight stands defiant while the dragon circles overhead',
+          action: 'standoff before an imminent clash',
+          environment: 'ruined fortress courtyard at dusk',
+          lighting: 'storm light, fire glow, rim light on armor',
+          composition: 'wide cinematic frame with clear subject separation',
+          style: 'epic fantasy concept art, highly detailed',
+          details: 'embers, torn banners, drifting ash',
+          negativePrompt: 'duplicated subjects, merged limbs, inconsistent scale, overlap confusion, poor separation, weak focal point, cluttered layout, text, watermark, blurry, lowres'
+        }
+      };
+      state.values[state.activeType] = { ...state.values[state.activeType], ...samples[state.activeType] };
+      renderFields();
+      updatePreviews();
+    }
+
+    function init() {
+      Object.keys(SUBJECTS).forEach(ensureState);
+      renderTabs();
+      renderFields();
+      updatePreviews();
+
+      document.getElementById('copyPositiveBtn').addEventListener('click', () => {
+        copyText(buildPositivePrompt(state.activeType));
+      });
+      document.getElementById('copyNegativeBtn').addEventListener('click', () => {
+        copyText(buildNegativePrompt(state.activeType));
+      });
+      document.querySelectorAll('[data-copy]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const which = btn.dataset.copy;
+          if (which === 'positive') copyText(buildPositivePrompt(state.activeType));
+          if (which === 'negative') copyText(buildNegativePrompt(state.activeType));
+        });
+      });
+      document.getElementById('clearBtn').addEventListener('click', clearCurrent);
+      document.getElementById('exportJsonBtn').addEventListener('click', exportJson);
+      document.getElementById('exportTxtBtn').addEventListener('click', exportTxt);
+      document.getElementById('loadExampleBtn').addEventListener('click', loadExample);
+
+      document.querySelectorAll('.chip-group').forEach(group => {
+        group.addEventListener('click', e => {
+          const chip = e.target.closest('.chip');
+          if (!chip) return;
+          toggleMappedField(group.dataset.target, chip.textContent);
+        });
+      });
+    }
+
+    init();
+  
+  </script>
+</body>
+</html>

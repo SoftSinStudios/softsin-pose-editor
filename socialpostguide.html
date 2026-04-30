@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SoftSin Studios — Social Post Guide</title>
+  <meta name="description" content="A SoftSin Studios creator preflight guide for image posting specs, crop-risk notes, tagging reminders, AI disclosure guidance, and copy-ready posting checklists." />  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#070a10" />
+  <link rel="canonical" href="https://softsinstudios.com/socialpostguide.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoftSin Studios" />
+  <meta property="og:title" content="SoftSin Studios — Social Post Guide" />
+  <meta property="og:description" content="A SoftSin Studios creator preflight guide for image posting specs, crop-risk notes, tagging reminders, AI disclosure guidance, and copy-ready posting checklists." />
+  <meta property="og:url" content="https://softsinstudios.com/socialpostguide.html" />
+  <meta property="og:image" content="https://softsinstudios.com/images/softsin-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — Social Post Guide" />
+  <meta name="twitter:description" content="A SoftSin Studios creator preflight guide for image posting specs, crop-risk notes, tagging reminders, AI disclosure guidance, and copy-ready posting checklists." />
+  <meta name="twitter:image" content="https://softsinstudios.com/images/softsin-og.png" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/socialpostguide.css" />
+  <style>
+    .brand .mark {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: transparent;
+    }
+  </style>
+</head>
+<body class="social-post-page">
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+        <span>
+          <strong>SoftSin Studios</strong>
+          <span>Creator tools, art, music, and workflows</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials &amp; Gallery</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html" class="btn primary">Tool Hub</a>
+      </nav>
+    </header>
+
+    <section class="hero spg-hero">
+      <div>
+        <span class="eyebrow">Social Post Guide</span>
+        <h1>Post-ready image specs without the platform scavenger hunt.</h1>
+        <p class="lead">
+          Choose a platform, content type, and posting goal to get practical export sizes, aspect ratios, crop-risk notes, tagging guidance, AI disclosure reminders, and a copy-ready checklist.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#guideTool">Open Guide</a>
+          <a class="btn" href="toolhub.html">Tool Hub</a>
+          <a class="btn" href="https://socialpostguide.com/" target="_blank" rel="noopener">Standalone Site</a>
+        </div>
+      </div>
+
+      <aside class="visual-card spg-visual-card">
+        <div class="spg-visual" aria-label="Social Post Guide visual preview">
+          <div class="spg-visual-stack">
+            <span>Instagram · 1080×1350</span>
+            <span>Facebook · 1200×628</span>
+            <span>X · 1200×675</span>
+            <span>Pinterest · 1000×1500</span>
+            <strong>Check the crop before the platform eats the edges.</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel section spg-intro">
+      <div class="panel-head">
+        <h2>Creator posting preflight</h2>
+        <p>Use this page before exporting or posting finished images, especially when the platform crop can wreck faces, text, signatures, or composition.</p>
+      </div>
+
+      <div class="spg-info-grid">
+        <article class="spg-info-card">
+          <strong>Export targets</strong>
+          <span>Recommended dimensions, aspect ratios, and file notes for common social image formats.</span>
+        </article>
+        <article class="spg-info-card">
+          <strong>Crop risk</strong>
+          <span>Safe-zone and edge-pressure notes for posts, stories, previews, and vertical art.</span>
+        </article>
+        <article class="spg-info-card">
+          <strong>Posting checklist</strong>
+          <span>Copy plain-English specs or a posting checklist without rebuilding the same note every time.</span>
+        </article>
+      </div>
+    </section>
+
+    <main class="spg-tool section" id="guideTool">
+      <section class="panel spg-main-panel">
+        <div class="panel-head spg-control-head">
+          <div>
+            <h2 id="recordTitle">Instagram Feed Post</h2>
+            <p id="recordSubtitle">Export specs, crop risk, and posting checklist</p>
+          </div>
+
+          <div class="spg-copy-actions">
+            <button class="btn primary" id="copyChecklistBtn" type="button">Copy Checklist</button>
+            <button class="btn" id="copySpecsBtn" type="button">Copy Specs</button>
+          </div>
+        </div>
+
+        <div class="spg-controls">
+          <label>
+            <span>Platform</span>
+            <select id="platformSelect"></select>
+          </label>
+
+          <label>
+            <span>Content type</span>
+            <select id="typeSelect"></select>
+          </label>
+
+          <label>
+            <span>Posting goal</span>
+            <select id="goalSelect">
+              <option value="clarity">Maximum clarity</option>
+              <option value="coverage">Maximum screen coverage</option>
+              <option value="safe">Lowest crop risk</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="spg-dashboard">
+          <article class="spec-card primary-spec">
+            <span class="spec-label">Recommended export</span>
+            <strong id="sizeValue">1080 × 1350 px</strong>
+            <p id="ratioValue">4:5 portrait</p>
+          </article>
+
+          <article class="spec-card">
+            <span class="spec-label">File notes</span>
+            <strong id="fileValue">JPG / PNG</strong>
+            <p id="fileNote">Keep text-heavy images crisp.</p>
+          </article>
+
+          <article class="spec-card">
+            <span class="spec-label">Risk level</span>
+            <strong id="riskValue">Medium</strong>
+            <p id="riskNote">Watch top and bottom crop pressure.</p>
+          </article>
+        </div>
+
+        <div class="spg-content-grid">
+          <article class="spg-content-card">
+            <h3>Tags, mentions, and labels</h3>
+            <p id="taggingText"></p>
+          </article>
+
+          <article class="spg-content-card">
+            <h3>Posting notes</h3>
+            <p id="postingText"></p>
+          </article>
+
+          <article class="spg-content-card">
+            <h3>AI and disclosure notes</h3>
+            <p id="aiText"></p>
+          </article>
+
+          <article class="spg-content-card checklist-card">
+            <h3>Copy checklist</h3>
+            <ul id="checklistList"></ul>
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel preview-panel">
+        <div class="panel-head compact-head">
+          <h2>Visual Preview</h2>
+          <p>Safe zone, crop risk, and screen fill.</p>
+        </div>
+
+        <div class="preview-stage">
+          <div class="preview-frame" id="previewFrame">
+            <div class="safe-zone">
+              <span>Safe</span>
+            </div>
+            <div class="pressure pressure-top">Top crop / UI area</div>
+            <div class="pressure pressure-bottom">Bottom crop / caption area</div>
+          </div>
+        </div>
+
+        <div class="preview-caption" id="previewCaption">
+          Keep faces, text, logos, and signatures inside the safe zone.
+        </div>
+
+        <div class="status-pill" id="copyStatus">Ready.</div>
+      </aside>
+    </main>
+
+    <section class="panel section">
+      <div class="panel-head">
+        <h2>Platform comparison</h2>
+        <p>Common image-post exports from the current guide data. Use this table for quick cross-post planning.</p>
+      </div>
+
+      <div class="comparison-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Content type</th>
+              <th>Recommended size</th>
+              <th>Aspect ratio</th>
+              <th>File notes</th>
+            </tr>
+          </thead>
+          <tbody id="comparisonBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel section source-panel">
+      <div class="panel-head">
+        <h2>Reference links</h2>
+        <p>Social platforms change their requirements. Use this page as a fast preflight helper, then check the official docs before major campaigns or paid posts.</p>
+      </div>
+
+      <div class="source-grid">
+        <a href="https://www.facebook.com/business/help/469767027114079" target="_blank" rel="noopener">
+          <strong>Meta image size guidance</strong>
+          <span>Facebook/Instagram ad image ratios and minimums.</span>
+        </a>
+        <a href="https://business.x.com/en/help/campaign-setup/creative-ad-specifications" target="_blank" rel="noopener">
+          <strong>X creative specs</strong>
+          <span>Image ad ratios and recommended exports.</span>
+        </a>
+        <a href="https://business.pinterest.com/creative-best-practices/" target="_blank" rel="noopener">
+          <strong>Pinterest creative best practices</strong>
+          <span>2:3 pin recommendation and file notes.</span>
+        </a>
+        <a href="https://www.deviantartsupport.com/kb/en/article/what-file-types-can-i-submit-to-deviantart" target="_blank" rel="noopener">
+          <strong>DeviantArt upload file types</strong>
+          <span>Supported upload limits and file-size notes.</span>
+        </a>
+      </div>
+    </section>
+    <footer class="footer">
+      © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html">Tool Hub</a>
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="tos.html">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const GUIDE_DATA = {
+      instagram: {
+        label: "Instagram",
+        ai: "Meta may apply AI labels automatically and creators should disclose realistic AI-generated or significantly AI-modified media when appropriate. For SoftSin-style image posts, keep disclosure plain and avoid making the image look like documentary evidence.",
+        tagging: "Use relevant hashtags sparingly, tag collaborators only when they are actually involved, and keep important caption details in the first lines. Alt text is useful for accessibility and search context.",
+        types: {
+          feed: {
+            label: "Feed Post",
+            size: "1080 × 1350 px",
+            ratio: "4:5 portrait",
+            file: "JPG / PNG",
+            fileNote: "Use high-quality JPG for finished art; PNG can help text and UI-heavy images.",
+            risk: "Medium",
+            riskNote: "Strong feed coverage, but keep text away from the very top and bottom.",
+            preview: "portrait",
+            posting: "Best all-around choice for art visibility in feed. Square still works, but 4:5 usually uses more vertical space.",
+            checklist: [
+              "Export 1080 × 1350 px for portrait feed coverage.",
+              "Keep signatures and text away from the outer edges.",
+              "Write a caption with the important sentence first.",
+              "Add relevant hashtags without stuffing.",
+              "Use AI disclosure if the image needs it."
+            ]
+          },
+          square: {
+            label: "Square Post",
+            size: "1080 × 1080 px",
+            ratio: "1:1 square",
+            file: "JPG / PNG",
+            fileNote: "Safe and predictable for grids, previews, and cross-posting.",
+            risk: "Low",
+            riskNote: "Lowest crop risk, but less screen coverage than portrait.",
+            preview: "square",
+            posting: "Use this when consistency matters more than screen coverage.",
+            checklist: [
+              "Export 1080 × 1080 px.",
+              "Center the subject and avoid edge-critical details.",
+              "Check the caption and first comment before posting.",
+              "Use only relevant tags and mentions."
+            ]
+          },
+          story: {
+            label: "Story / Reel Cover",
+            size: "1080 × 1920 px",
+            ratio: "9:16 vertical",
+            file: "JPG / PNG",
+            fileNote: "Leave breathing room for UI overlays.",
+            risk: "High",
+            riskNote: "Top and bottom UI areas can chew text, faces, or logos.",
+            preview: "story",
+            posting: "Use a central safe zone. Avoid important content in the top and bottom bands.",
+            checklist: [
+              "Export 1080 × 1920 px.",
+              "Keep important content inside the center safe zone.",
+              "Avoid tiny text.",
+              "Check stickers, links, and UI overlays before publishing."
+            ]
+          }
+        }
+      },
+      facebook: {
+        label: "Facebook",
+        ai: "Meta labeling rules and platform detection may apply to realistic AI-generated or AI-modified media. For creator posts, clear voluntary disclosure can reduce confusion and comment drama.",
+        tagging: "Tag pages or people only when relevant. For page posts, use concise captions and avoid burying external links if reach matters.",
+        types: {
+          photo: {
+            label: "Photo Post",
+            size: "1080 × 1350 px",
+            ratio: "4:5 portrait",
+            file: "JPG / PNG",
+            fileNote: "Good portrait choice for feed visibility.",
+            risk: "Medium",
+            riskNote: "Usually safe, but preview crops can vary by surface.",
+            preview: "portrait",
+            posting: "Portrait images often earn more screen space in feed than square or landscape posts.",
+            checklist: [
+              "Export 1080 × 1350 px for portrait feed use.",
+              "Keep important content centered.",
+              "Write a direct first line.",
+              "Add relevant page/person tags only when they make sense."
+            ]
+          },
+          link: {
+            label: "Link Share Image",
+            size: "1200 × 628 px",
+            ratio: "1.91:1 landscape",
+            file: "JPG / PNG",
+            fileNote: "Best for link previews and article cards.",
+            risk: "Medium",
+            riskNote: "Small text can become unreadable in previews.",
+            preview: "landscape",
+            posting: "Use simple imagery and large text if the image will become a link preview.",
+            checklist: [
+              "Export 1200 × 628 px.",
+              "Avoid small text.",
+              "Verify the link preview before publishing.",
+              "Use a direct caption that explains the click."
+            ]
+          },
+          story: {
+            label: "Story",
+            size: "1080 × 1920 px",
+            ratio: "9:16 vertical",
+            file: "JPG / PNG",
+            fileNote: "Design around top/bottom UI.",
+            risk: "High",
+            riskNote: "Top and bottom overlays are the main hazard.",
+            preview: "story",
+            posting: "Use the center safe zone and avoid detailed captions inside the image.",
+            checklist: [
+              "Export 1080 × 1920 px.",
+              "Keep text and faces inside the safe zone.",
+              "Preview on mobile.",
+              "Avoid edge-critical details."
+            ]
+          }
+        }
+      },
+      x: {
+        label: "X",
+        ai: "X has been rolling out AI-labeling/disclosure controls. Use plain disclosure for synthetic or heavily AI-edited images when authenticity could matter.",
+        tagging: "Mentions can pull people into the post. Use hashtags sparingly; X search often works better with natural keywords than tag stuffing.",
+        types: {
+          single: {
+            label: "Single Image Post",
+            size: "1200 × 675 px",
+            ratio: "16:9 landscape",
+            file: "JPG / PNG / WebP",
+            fileNote: "Strong default for timeline readability.",
+            risk: "Low",
+            riskNote: "Landscape is predictable, but vertical art may need a crop-safe export.",
+            preview: "landscape",
+            posting: "Best for clean timeline display, screenshots, banners, and art previews with text.",
+            checklist: [
+              "Export 1200 × 675 px for a safe landscape post.",
+              "Use PNG for text-heavy images.",
+              "Keep caption concise.",
+              "Avoid overloading hashtags."
+            ]
+          },
+          square: {
+            label: "Square Image",
+            size: "1200 × 1200 px",
+            ratio: "1:1 square",
+            file: "JPG / PNG / WebP",
+            fileNote: "Good cross-post format.",
+            risk: "Low",
+            riskNote: "Reliable framing for single-image posts.",
+            preview: "square",
+            posting: "Use this when the same image is going to multiple platforms.",
+            checklist: [
+              "Export 1200 × 1200 px.",
+              "Center the subject.",
+              "Keep text readable at reduced preview size.",
+              "Use direct alt text when useful."
+            ]
+          },
+          portrait: {
+            label: "Portrait Image",
+            size: "1440 × 1800 px",
+            ratio: "4:5 portrait",
+            file: "JPG / PNG / WebP",
+            fileNote: "Useful for art posts and mobile screen coverage.",
+            risk: "Medium",
+            riskNote: "Different clients may preview vertical media differently.",
+            preview: "portrait",
+            posting: "Use when vertical art matters more than landscape predictability.",
+            checklist: [
+              "Export 1440 × 1800 px.",
+              "Keep important content away from edges.",
+              "Check mobile preview.",
+              "Use a clear first sentence."
+            ]
+          }
+        }
+      },
+      pinterest: {
+        label: "Pinterest",
+        ai: "If AI generation is material to the work or offer, disclose plainly in the pin description or destination page. Avoid implying a product/photo is real if it is synthetic.",
+        tagging: "Pinterest is search-heavy. Use a clear title, relevant description, and keywords that match what the image actually shows.",
+        types: {
+          standard: {
+            label: "Standard Pin",
+            size: "1000 × 1500 px",
+            ratio: "2:3 vertical",
+            file: "PNG / JPEG",
+            fileNote: "Pinterest recommends 2:3; taller pins may be cropped in feeds.",
+            risk: "Low",
+            riskNote: "2:3 is the safe vertical pin format.",
+            preview: "pin",
+            posting: "Best default for artwork, guides, product images, and visual references.",
+            checklist: [
+              "Export 1000 × 1500 px.",
+              "Use a clear title.",
+              "Write a keyword-rich but natural description.",
+              "Avoid making the pin taller than necessary.",
+              "Verify the destination link."
+            ]
+          },
+          idea: {
+            label: "Full-Bleed / Idea Style",
+            size: "1080 × 1920 px",
+            ratio: "9:16 vertical",
+            file: "PNG / JPEG",
+            fileNote: "Good for full-screen mobile layouts.",
+            risk: "Medium",
+            riskNote: "Leave space for UI and text overlays.",
+            preview: "story",
+            posting: "Use for mobile-first, step-by-step, or full-screen visual content.",
+            checklist: [
+              "Export 1080 × 1920 px.",
+              "Keep text in the center safe zone.",
+              "Use large readable type.",
+              "Check that the pin still works as a small thumbnail."
+            ]
+          }
+        }
+      },
+      deviantart: {
+        label: "DeviantArt",
+        ai: "Use the platform’s available AI-related labeling/settings when applicable. Be clear in the description if the work is AI-generated, AI-assisted, or heavily edited.",
+        tagging: "DeviantArt supports up to 30 tags. Use relevant tags rather than filling all slots with weak keywords.",
+        types: {
+          deviation: {
+            label: "Deviation Upload",
+            size: "Flexible; 1600–2400 px long edge is a practical web export",
+            ratio: "Artwork native ratio",
+            file: "Images up to 80 MB",
+            fileNote: "Upload limits are more flexible than social feeds; choose display size intentionally.",
+            risk: "Low",
+            riskNote: "Main risk is over-compression, huge uploads, or bad display sizing.",
+            preview: "free",
+            posting: "Use native composition for art. For preview-friendly posts, export a clean web version instead of only a giant master file.",
+            checklist: [
+              "Export a web-safe display copy.",
+              "Use a clear title and description.",
+              "Add relevant tags, up to 30 if useful.",
+              "Set download/display options intentionally.",
+              "Disclose AI generation or assistance when applicable."
+            ]
+          },
+          gallery: {
+            label: "Gallery / Promo Image",
+            size: "1200 × 675 or 1600 × 900 px",
+            ratio: "16:9 landscape",
+            file: "JPG / PNG",
+            fileNote: "Useful for banners, promo images, and collection previews.",
+            risk: "Medium",
+            riskNote: "Avoid tiny text and edge-critical details.",
+            preview: "landscape",
+            posting: "Use when you need a cleaner promotional image rather than a full-resolution artwork upload.",
+            checklist: [
+              "Export 16:9 for promo use.",
+              "Keep title text large.",
+              "Link or reference the full deviation.",
+              "Use tags that match the content."
+            ]
+          }
+        }
+      }
+    };
+
+    const platformSelect = document.getElementById("platformSelect");
+    const typeSelect = document.getElementById("typeSelect");
+    const goalSelect = document.getElementById("goalSelect");
+    const copyStatus = document.getElementById("copyStatus");
+
+    function populatePlatforms() {
+      Object.entries(GUIDE_DATA).forEach(([key, platform]) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = platform.label;
+        platformSelect.appendChild(option);
+      });
+    }
+
+    function populateTypes() {
+      const platform = GUIDE_DATA[platformSelect.value];
+      typeSelect.innerHTML = "";
+
+      Object.entries(platform.types).forEach(([key, record]) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = record.label;
+        typeSelect.appendChild(option);
+      });
+    }
+
+    function currentRecord() {
+      const platform = GUIDE_DATA[platformSelect.value];
+      const record = platform.types[typeSelect.value];
+      return { platform, record };
+    }
+
+    function goalNote(goal, record) {
+      if (goal === "coverage") return "Favor the taller/mobile-filling option, but keep important content inside the safe zone.";
+      if (goal === "safe") return "Favor centered composition, wider margins, and fewer edge-critical details.";
+      return record.posting;
+    }
+
+    function renderRecord() {
+      const { platform, record } = currentRecord();
+      const goal = goalSelect.value;
+
+      document.getElementById("recordTitle").textContent = `${platform.label} ${record.label}`;
+      document.getElementById("recordSubtitle").textContent = goalNote(goal, record);
+
+      document.getElementById("sizeValue").textContent = record.size;
+      document.getElementById("ratioValue").textContent = record.ratio;
+      document.getElementById("fileValue").textContent = record.file;
+      document.getElementById("fileNote").textContent = record.fileNote;
+      document.getElementById("riskValue").textContent = record.risk;
+      document.getElementById("riskNote").textContent = record.riskNote;
+
+      document.getElementById("taggingText").textContent = platform.tagging;
+      document.getElementById("postingText").textContent = record.posting;
+      document.getElementById("aiText").textContent = platform.ai;
+
+      const checklist = document.getElementById("checklistList");
+      checklist.innerHTML = "";
+      record.checklist.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        checklist.appendChild(li);
+      });
+
+      const previewFrame = document.getElementById("previewFrame");
+      previewFrame.className = `preview-frame ${record.preview} goal-${goal}`;
+
+      const captionMap = {
+        clarity: "Keep faces, text, logos, and signatures inside the safe zone.",
+        coverage: "Coverage mode fills more of the frame. Keep important details away from the top and bottom crop areas.",
+        safe: "Safe mode uses wider margins for the lowest crop risk."
+      };
+
+      document.getElementById("previewCaption").textContent = captionMap[goal] || record.riskNote;
+      copyStatus.textContent = "Ready.";
+    }
+
+    function renderComparison() {
+      const body = document.getElementById("comparisonBody");
+      body.innerHTML = "";
+
+      Object.values(GUIDE_DATA).forEach(platform => {
+        Object.values(platform.types).forEach(record => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${platform.label}</td>
+            <td>${record.label}</td>
+            <td>${record.size}</td>
+            <td>${record.ratio}</td>
+            <td>${record.file}</td>
+          `;
+          body.appendChild(tr);
+        });
+      });
+    }
+
+    function specsText() {
+      const { platform, record } = currentRecord();
+      return [
+        `${platform.label} ${record.label}`,
+        `Recommended export: ${record.size}`,
+        `Aspect ratio: ${record.ratio}`,
+        `File notes: ${record.file} — ${record.fileNote}`,
+        `Crop risk: ${record.risk} — ${record.riskNote}`
+      ].join("\\n");
+    }
+
+    function checklistText() {
+      const { platform, record } = currentRecord();
+      return [
+        `${platform.label} ${record.label} checklist:`,
+        ...record.checklist.map(item => `- ${item}`)
+      ].join("\\n");
+    }
+
+    function fallbackCopyText(text) {
+      const box = document.createElement("textarea");
+      box.value = text;
+      box.setAttribute("readonly", "");
+      box.style.position = "fixed";
+      box.style.left = "-9999px";
+      document.body.appendChild(box);
+      box.select();
+      box.setSelectionRange(0, box.value.length);
+
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } catch (err) {
+        copied = false;
+      }
+
+      document.body.removeChild(box);
+      return copied;
+    }
+
+    function copyText(text, message) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            copyStatus.textContent = message;
+          })
+          .catch(() => {
+            copyStatus.textContent = fallbackCopyText(text)
+              ? message
+              : "Copy failed. Select and copy manually.";
+          });
+        return;
+      }
+
+      copyStatus.textContent = fallbackCopyText(text)
+        ? message
+        : "Copy failed. Select and copy manually.";
+    }
+
+    platformSelect.addEventListener("change", () => {
+      populateTypes();
+      renderRecord();
+    });
+
+    typeSelect.addEventListener("change", renderRecord);
+    goalSelect.addEventListener("change", renderRecord);
+
+    document.getElementById("copySpecsBtn").addEventListener("click", () => {
+      copyText(specsText(), "Spec summary copied.");
+    });
+
+    document.getElementById("copyChecklistBtn").addEventListener("click", () => {
+      copyText(checklistText(), "Checklist copied.");
+    });
+
+    populatePlatforms();
+    populateTypes();
+    renderRecord();
+    renderComparison();
+  </script>
+</body>
+</html>

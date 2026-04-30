@@ -1,196 +1,246 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Terms of Service — SoftSin Studios</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta name="theme-color" content="#1a1b1e" />
 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SoftSin Studios — Terms of Service</title>
+  <meta name="description" content="Terms of Service for SoftSin Studios tools, message board, creator resources, downloads, and website usage." />  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#070a10" />
+  <link rel="canonical" href="https://softsinstudios.com/tos.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoftSin Studios" />
+  <meta property="og:title" content="SoftSin Studios — Terms of Service" />
+  <meta property="og:description" content="Terms of Service for SoftSin Studios tools, message board, creator resources, downloads, and website usage." />
+  <meta property="og:url" content="https://softsinstudios.com/tos.html" />
+  <meta property="og:image" content="https://softsinstudios.com/images/softsin-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — Terms of Service" />
+  <meta name="twitter:description" content="Terms of Service for SoftSin Studios tools, message board, creator resources, downloads, and website usage." />
+  <meta name="twitter:image" content="https://softsinstudios.com/images/softsin-og.png" />
+
+  <link rel="stylesheet" href="css/base.css" />
+    <style>
+      .legal-hero {
+        padding: 34px 0 18px;
+      }
+
+      .legal-hero h1 {
+        font-size: clamp(34px, 5vw, 58px);
+        max-width: 900px;
+      }
+
+      .legal-panel {
+        padding: 24px;
+      }
+
+      .legal-content {
+        display: grid;
+        gap: 22px;
+        max-width: 980px;
+      }
+
+      .legal-content section {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.10)),
+          rgba(0,0,0,.16);
+        padding: 18px;
+      }
+
+      .legal-content h2 {
+        margin: 0 0 10px;
+        font-size: 20px;
+        letter-spacing: -.02em;
+      }
+
+      .legal-content p,
+      .legal-content li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .legal-content ul {
+        margin: 10px 0 0;
+        padding-left: 20px;
+      }
+
+      .legal-note {
+        border-color: rgba(103,232,255,.22) !important;
+        background:
+          linear-gradient(180deg, rgba(103,232,255,.055), rgba(0,0,0,.12)),
+          rgba(0,0,0,.16) !important;
+      }
+
+      .legal-date {
+        color: var(--soft);
+        font-size: 13px;
+        font-weight: 850;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+      }
+    </style>
   <style>
-    :root { color-scheme: dark; }
-    body {
-      margin: 0;
-      min-height: 100dvh;
-      display: grid;
-      place-items: center;
-      background: #0f1012;
-      color: #eaeaea;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
-      text-align: center;
-      line-height: 1.6;
-      padding: 2rem;
-    }
-    main { width: 100%; max-width: 980px; }
-    h1 {
-      font-size: 2.25rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.4px;
-    }
-    h2 {
-      font-size: 1.25rem;
-      margin: 1.25rem 0 0.5rem;
-      letter-spacing: 0.2px;
-    }
-    p, ul {
-      max-width: 720px;
-      margin: 0.5rem auto 1rem;
-      opacity: 0.95;
-    }
-    ul { padding-left: 1.25rem; text-align: left; }
-    .hint { opacity: 0.6; font-size: 0.9rem; }
-    a.btn {
+    .brand .mark {
       display: inline-block;
-      padding: 0.6rem 1rem;
-      border: 1px solid #3a3b3f;
-      border-radius: 8px;
-      color: #eaeaea;
-      text-decoration: none;
-      transition: background 0.15s ease;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: transparent;
     }
-    a.btn:hover { background: #1a1b1e; }
-    .logo { margin: 0 auto 1rem; opacity: 0.85; }
-    .logo img {
-      max-width: 100%;
-      height: auto;
-      opacity: .5;
-      filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.2));
-      border-radius: 10px;
-    }
-    .logo img { 
-	 width: auto;
-	 height: auto;
-	 opacity: .5;
-	 filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.2)); 	 
-	}
-    
-    /* Legal body should be readable left-aligned while keeping overall page centered */
-    .legal { text-align: left; margin: 1rem auto 0; max-width: 780px; }
-    .meta { opacity: 0.7; font-size: 0.95rem; margin-top: 0.25rem; }
-    .actions { margin-top: 1.25rem; }
-    .sep { height: 1px; background: #26272b; border-radius: 1px; margin: 1rem auto; max-width: 780px; opacity: 0.7; }
-	
-	footer{
-      border-top:1px solid var(--border);
-      background:linear-gradient(180deg, #0c0d10, #0a0b0e);
-      color:#c6c8d0; padding:24px; text-align:center; font-size:14px;
-    }
-    .links{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:8px }
-    .links a{ color:#c6c8d0bb }
-    .links a:hover{ color:#fff }
   </style>
 </head>
+
 <body>
-  <main role="main">
-    <div class="logo">
-      <img src="/images/SoftSinStudios1600Banner.png" alt="SoftSin Studios banner" />
-    </div>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="SoftSin Studios home">
+        <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+        <span>
+          <strong>SoftSin Studios</strong>
+          <span>Creator tools, art, and workflows</span>
+        </span>
+      </a>
 
-    <h1>Terms of Service</h1>
-    <p class="meta">Last updated: October 12, 2025</p>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html" class="btn primary">Tool Hub</a>
+      </nav>
+    </header>
 
-    <div class="legal">
-      <p>
-        These Terms of Service govern your access to and use of software, sites, and services provided by SoftSin Studios, including the SoftSin Pose Editor. By using our software or sites you agree to these terms.
-      </p>
+    <section class="hero legal-hero">
+      <div>
+        <span class="eyebrow">Terms of Service</span>
+        <h1>Terms for using SoftSin Studios.</h1>
+        <p class="lead">
+          These terms cover use of the SoftSin Studios website, browser tools, message board, documentation, downloads, and related creator resources.
+        </p>
+        <p class="legal-date">Last updated: April 30, 2026</p>
+      </div>
+    </section>
 
-      <div class="sep"></div>
+    <main class="panel section legal-panel">
+      <div class="legal-content">
+        <section class="legal-note">
+          <h2>Plain-English summary</h2>
+          <p>
+            Use the tools responsibly, do not abuse the site or message board, review your own exports before publishing them, and understand that SoftSin Studios tools and resources are provided as-is.
+          </p>
+        </section>
 
-      <h2>1. Who we are</h2>
-      <p>
-        SoftSin Studios creates digital tools for artists. The SoftSin Pose Editor is distributed as freeware. Some optional features or digital items may be offered as paid add-ons or donations processed by third-party providers. All items are delivered digitally.
-      </p>
+        <section>
+          <h2>Acceptance of terms</h2>
+          <p>
+            By using SoftSin Studios, you agree to these Terms of Service. If you do not agree, do not use the website, tools, message board, downloads, or related services.
+          </p>
+        </section>
 
-      <h2>2. Eligibility</h2>
-      <p>
-        You must be legally capable of entering into a contract in your place of residence. If you use our software on behalf of an organization, you represent that you have authority to accept these terms on its behalf.
-      </p>
+        <section>
+          <h2>Use of tools</h2>
+          <p>
+            SoftSin Studios provides creator tools for workflows such as pose editing, prompt formatting, JSON creation, list formatting, ComfyUI documentation, and social posting references.
+          </p>
+          <ul>
+            <li>You are responsible for how you use the tools and exported files.</li>
+            <li>You are responsible for reviewing generated, exported, copied, or downloaded content before publishing or using it elsewhere.</li>
+            <li>Tools may change, break, be removed, or be updated without notice.</li>
+          </ul>
+        </section>
 
-      <h2>3. License to use the software</h2>
-      <p>
-        We grant you a nonexclusive, nontransferable, revocable license to use the software for your own lawful purposes in compliance with these terms and any license notice that appears in the software or documentation. We reserve all rights not expressly granted.
-      </p>
+        <section>
+          <h2>No warranty</h2>
+          <p>
+            SoftSin Studios tools, pages, documentation, downloads, and message board features are provided as-is and as-available. No guarantee is made that the site or tools will be error-free, uninterrupted, secure, compatible with your workflow, or suitable for a specific purpose.
+          </p>
+        </section>
 
-      <h2>4. Acceptable use</h2>
-      <ul>
-        <li>Do not attempt to disrupt, reverse engineer, or circumvent protections in the software or services except where permitted by applicable law.</li>
-        <li>Do not use the services to violate any law, infringe intellectual property, or harm others.</li>
-        <li>Do not automate high-volume requests that degrade service stability.</li>
-      </ul>
+        <section>
+          <h2>AI art, prompts, and workflow responsibility</h2>
+          <p>
+            SoftSin Studios may provide tools and references related to AI art workflows, Stable Diffusion, ComfyUI, metadata, prompts, and image preparation. You are responsible for following the rules, licenses, terms, and laws that apply to the models, platforms, files, and outputs you use.
+          </p>
+        </section>
 
-      <h2>5. Accounts and purchases</h2>
-      <p>
-        Donations and any optional paid features may be processed by third-party payment providers. Those transactions are subject to the provider’s terms and privacy practices. Prices and availability may change. All digital items are delivered electronically upon completion of payment.
-      </p>
+        <section>
+          <h2>Message board rules</h2>
+          <p>
+            If you use the message board, you agree not to spam, harass, abuse, impersonate others, post illegal content, post malware, exploit the site, or deliberately disrupt the community.
+          </p>
+          <p>
+            SoftSin Studios may moderate, edit, hide, lock, delete, or remove content and accounts when needed to protect the site, users, or project.
+          </p>
+        </section>
 
-      <h2>6. Intellectual property</h2>
-      <p>
-        The software, documentation, site content, and branding are owned by SoftSin Studios or our licensors and are protected by law. This does not limit your rights in content that you create using the tools. You retain any rights you have in your own outputs and assets, subject to third-party rights in any material you choose to import or reference.
-      </p>
+        <section>
+          <h2>User-generated content</h2>
+          <p>
+            You are responsible for the content you post or submit. By posting on public areas of the site, you understand that your content may be visible to others. Do not post content you do not have the right to share.
+          </p>
+        </section>
 
-      <h2>7. Feedback</h2>
-      <p>
-        If you send suggestions or feedback, you grant SoftSin Studios a perpetual, worldwide, royalty-free license to use those suggestions to improve our products and services without obligation to you.
-      </p>
+        <section>
+          <h2>Downloads and resources</h2>
+          <p>
+            Any downloads, examples, pose files, JSON files, guides, templates, or workflow resources are provided as-is. You are responsible for scanning, testing, and validating files before using them in your own setup.
+          </p>
+        </section>
 
-      <h2>8. Third-party content and links</h2>
-      <p>
-        Our software may interact with third-party services or link to third-party sites. We do not control and are not responsible for third-party materials, terms, or policies.
-      </p>
+        <section>
+          <h2>Prohibited use</h2>
+          <p>
+            You may not use SoftSin Studios to attack, scrape, overload, reverse-engineer protected systems, distribute malware, violate laws, infringe rights, or interfere with the normal operation of the site or related services.
+          </p>
+        </section>
 
-      <h2>9. No warranties</h2>
-      <p>
-        The software and services are provided as is and as available. To the maximum extent allowed by law, SoftSin Studios disclaims all warranties, including implied warranties of merchantability, fitness for a particular purpose, and noninfringement. We do not guarantee that the software will be uninterrupted, secure, or error-free.
-      </p>
+        <section>
+          <h2>External links and third-party services</h2>
+          <p>
+            SoftSin Studios may link to external platforms, galleries, social pages, support services, authentication providers, hosting providers, or other third-party services. Those services are controlled by their own terms and policies.
+          </p>
+        </section>
 
-      <h2>10. Limitation of liability</h2>
-      <p>
-        To the maximum extent allowed by law, SoftSin Studios will not be liable for indirect, incidental, special, consequential, or punitive damages, or for lost profits, revenues, data, or business opportunities. Our total liability for any claim arising out of or relating to these terms or the services will not exceed the amount you paid to us for the specific item or feature in the twelve months before the claim, or one hundred US dollars if no payments were made.
-      </p>
+        <section>
+          <h2>Changes to the site and terms</h2>
+          <p>
+            SoftSin Studios may update tools, pages, documentation, links, features, or these terms at any time. Continued use of the site after changes means you accept the updated terms.
+          </p>
+        </section>
 
-      <h2>11. Indemnity</h2>
-      <p>
-        You agree to defend, indemnify, and hold harmless SoftSin Studios and its contributors from claims, damages, liabilities, and expenses arising from your use of the software or services or your violation of these terms or applicable law.
-      </p>
+        <section>
+          <h2>Limitation of liability</h2>
+          <p>
+            To the maximum extent allowed by law, SoftSin Studios is not responsible for losses, damages, data loss, workflow problems, publishing issues, account issues, or other consequences resulting from use of the site, tools, downloads, or external links.
+          </p>
+        </section>
 
-      <h2>12. Changes to the services and terms</h2>
-      <p>
-        We may update the software or these terms to improve functionality, security, or compliance. If changes are material we will post an updated date at the top of this page. Continued use after changes means you accept the updated terms.
-      </p>
-
-      <h2>13. Termination</h2>
-      <p>
-        You may stop using the software at any time. We may suspend or terminate access if you violate these terms or if required by law. Sections that by their nature should survive termination will survive.
-      </p>
-
-      <h2>14. Governing law</h2>
-      <p>
-        These terms are governed by the laws of the State of Texas, USA, without regard to conflict of laws rules. Where permitted, disputes will be resolved in the state or federal courts located in Texas, and the parties consent to personal jurisdiction there.
-      </p>
-
-      <h2>15. Contact</h2>
-      <p>
-        Questions or notices can be sent to <a href="mailto:softsinstudios@gmail.com">support@softsinstudios.com</a>.
-      </p>
-
-      <h2>16. Additional policies</h2>
-      <p>
-        Your use of our software and sites is also subject to our Privacy Policy. If you believe content infringes your rights, contact us at the address above and include sufficient detail so we can investigate.
-      </p>
-  </main>
- 
-  <footer>
-    <div>© 2025 SoftSin Studios — All Rights Reserved</div>
-    <div class="links" aria-label="Footer links">
-      <a href="/pose.html">Pose Editor</a> |
-	  <a href="/depth.html">Depth Editor</a> |
-      <a href="https://www.patreon.com/softsinstudios">Patreon</a> |
-      <a href="https://www.deviantart.com/softsinstudios">DeviantArt</a> |
-	  <a href="https://www.softsinstudios.com">Home</a> |
-	  <a href="/pricing.html">Pricing</a> |
-	  <a href="/returns.html">Returns</a> |
-	  <a href="/privacypolicy.html">Privacy Policy</a>
-    </div>
-  </footer>
+        <section>
+          <h2>Contact and support</h2>
+          <p>
+            For support, bug reports, feedback, or questions about these terms, use the SoftSin Studios message board or official support links provided on the website.
+          </p>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html">Tool Hub</a>
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="tos.html">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>

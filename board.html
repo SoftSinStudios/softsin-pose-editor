@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SoftSin Studios — Message Board</title>
+  
+  <meta name="description" content="SoftSin Studios message board for release notes, support, roadmap posts, known issues, and tool discussion." />  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#070a10" />
+  <link rel="canonical" href="https://softsinstudios.com/board.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoftSin Studios" />
+  <meta property="og:title" content="SoftSin Studios — Message Board" />
+  <meta property="og:description" content="SoftSin Studios message board for release notes, support, roadmap posts, known issues, and tool discussion." />
+  <meta property="og:url" content="https://softsinstudios.com/board.html" />
+  <meta property="og:image" content="https://softsinstudios.com/images/softsin-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoftSin Studios — Message Board" />
+  <meta name="twitter:description" content="SoftSin Studios message board for release notes, support, roadmap posts, known issues, and tool discussion." />
+  <meta name="twitter:image" content="https://softsinstudios.com/images/softsin-og.png" />
+
+<link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/board.css" />
+  <style>
+    .brand .mark {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: transparent;
+    }
+  </style>
+</head>
+<body class="board-page">
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+        <span>
+          <strong>SoftSin Studios</strong>
+          <span>Creator tools, art, and workflows</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html" class="active">Message Board</a>
+        <a href="toolhub.html" class="btn primary">Tool Hub</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Message board</span>
+        <h1>Read freely. Sign in to post.</h1>
+        <p class="lead">
+          Public release notes, support threads, workflow discussion, and community posts for the SoftSin ecosystem.
+          Reading stays open. Posting and replies require Discord login.
+        </p>
+        <div class="hero-actions">
+          <button class="btn primary" id="newTopicTop" type="button" disabled>New Topic</button>
+          <a class="btn" href="socials.html">Socials</a>
+          <a class="btn" href="index.html">Home</a>
+        </div>
+      </div>
+      <aside class="visual-card board-visual-card">
+        <img class="board-hero-image" src="images/messageboard_hero.png" alt="SoftSin Studios message board preview" loading="eager" decoding="async" />
+      </aside>
+    </section>
+
+    <main class="board">
+      <aside class="sidebar">
+        <section class="side-section account-card">
+          <div class="side-title">Account</div>
+
+          <div id="signedOutBox">
+            <p class="account-note">Sign in with Discord to create topics and reply.</p>
+            <button class="btn primary full" id="loginDiscord" type="button">Continue with Discord</button>
+          </div>
+
+          <div id="signedInBox" hidden>
+            <div class="user-row">
+              <img id="userAvatar" class="user-avatar" alt="" />
+              <div>
+                <strong id="userName">Signed in</strong>
+                <span id="userRole">member</span>
+              </div>
+            </div>
+
+            <div class="account-actions">
+              <a class="btn full" href="profile.html">Profile</a>
+              <button class="btn full" id="logout" type="button">Sign out</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-section">
+          <div class="side-title">Channels</div>
+          <div id="categoryList">
+            <a class="channel active" href="#" data-slug="general"><span>General</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="pose-editor"><span>Pose Editor</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="release-notes"><span>Release Notes</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="json-maker"><span>JSON Maker</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="comfyui-nodes"><span>ComfyUI Nodes</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="sd-prompt-composer"><span>SD Prompt Composer</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="showcase"><span>Showcase</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="known-issues"><span>Known Issues</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="roadmap"><span>Roadmap</span><span class="pill">0</span></a>
+            <a class="channel" href="#" data-slug="support-issues"><span>Support Issues</span><span class="pill">0</span></a>
+          </div>
+        </section>
+
+        <section class="side-section">
+          <div class="side-title">Quick Links</div>
+          <a class="channel" href="#" id="rulesLink"><span>Rules</span></a>
+        </section>
+      </aside>
+
+      <section class="main-panel">
+        <div class="panel-head">
+          <div>
+            <h2 id="boardTitle">General</h2>
+            <p id="boardSubtitle">Public discussion for the SoftSin Studios ecosystem.</p>
+          </div>
+          <input class="search" type="search" placeholder="Search threads..." />
+        </div>
+
+        <div class="thread-list" id="threadList">
+          <article class="thread">
+            <div class="avatar">SS</div>
+            <div>
+              <h3>Board frontend wiring starts here</h3>
+              <p>This static placeholder confirms the layout. Real threads will be loaded from Supabase next.</p>
+              <span class="tag good">Pinned</span>
+            </div>
+            <div class="meta">0 replies<br>Today</div>
+          </article>
+        </div>
+
+        <div class="rules-reminder" id="rulesReminder">
+          <span>Before posting, skim the board rules so the workshop stays clean.</span>
+          <button class="btn" id="openRulesReminder" type="button">Read Rules</button>
+        </div>
+
+        <form class="composer" id="composer">
+          <input
+            id="composerTitle"
+            class="composer-title"
+            type="text"
+            placeholder="Thread title"
+            maxlength="140"
+            disabled
+          />
+
+          <div class="editor-toolbar" id="editorToolbar" aria-label="Text editor toolbar">
+            <button class="editor-tool" type="button" data-editor-action="bold"><strong>B</strong></button>
+            <button class="editor-tool" type="button" data-editor-action="italic"><em>I</em></button>
+            <button class="editor-tool" type="button" data-editor-action="code">Code</button>
+            <button class="editor-tool" type="button" data-editor-action="quote">Quote</button>
+            <button class="editor-tool" type="button" data-editor-action="ul">• List</button>
+            <button class="editor-tool" type="button" data-editor-action="ol">1. List</button>
+            <button class="editor-tool" type="button" data-editor-action="link">Link</button>
+            <button class="editor-tool" type="button" data-editor-action="image">Image</button>
+            <button class="editor-tool editor-preview-toggle" id="editorPreviewToggle" type="button">Preview</button>
+            <span class="editor-count" id="editorCharCount">0 / 20000</span>
+          </div>
+
+          <textarea id="composerText" placeholder="Sign in with Discord to post..." disabled></textarea>
+          <div class="editor-preview markdown-body" id="editorPreview" hidden></div>
+
+          <div class="composer-actions">
+            <span class="tiny" id="composerStatus">Read freely. Sign in to post or reply.</span>
+            <button class="btn primary" id="postMessage" type="button" disabled>Create Thread</button>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer class="footer">
+      © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="board.html">Message Board</a>
+        <a href="toolhub.html">Tool Hub</a>
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="tos.html">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="js/board.js"></script>
+</body>
+</html>
