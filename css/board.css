@@ -500,6 +500,73 @@ button.btn {
   overflow-wrap: anywhere;
 }
 
+.edit-panel {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.thread-edit-panel {
+  align-items: stretch;
+}
+
+.edit-label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.edit-title-input,
+.edit-textarea,
+.mini-editor-textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(0,0,0,.25);
+  color: var(--text);
+  padding: 12px 13px;
+  font: inherit;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.edit-title-input::placeholder,
+.edit-textarea::placeholder,
+.mini-editor-textarea::placeholder {
+  color: #6f7a8d;
+}
+
+.edit-title-input:focus,
+.edit-textarea:focus,
+.mini-editor-textarea:focus {
+  border-color: var(--line2);
+  box-shadow:
+    0 0 0 4px rgba(103, 232, 255, .07),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.edit-textarea,
+.mini-editor-textarea {
+  min-height: 160px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.mini-editor-toolbar {
+  margin: 2px 0 0;
+}
+
+.mini-editor-preview {
+  min-height: 160px;
+}
+
+.edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
 .markdown-body {
   line-height: 1.55;
 }
