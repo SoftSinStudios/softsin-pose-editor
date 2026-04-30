@@ -129,6 +129,27 @@
                 <button class="btn primary" id="saveProfile" type="submit">Save Profile</button>
               </div>
             </div>
+
+            <section class="danger-zone" aria-labelledby="dangerZoneTitle">
+              <div class="danger-copy">
+                <span class="danger-eyebrow">Danger Zone</span>
+                <h3 id="dangerZoneTitle">Delete account</h3>
+                <p>
+                  This deletes your Supabase login and anonymizes your local SoftSin board profile data. Existing threads
+                  and replies stay visible as <strong>Deleted member</strong> so conversations do not collapse into soup.
+                </p>
+                <p class="danger-note">
+                  This uses the server-side delete-user-function Edge Function. The action cannot be undone from this page.
+                </p>
+              </div>
+              <div class="danger-controls">
+                <label class="danger-confirm" for="deleteConfirmInput">
+                  Type <strong>DELETE</strong> to enable deletion.
+                </label>
+                <input id="deleteConfirmInput" type="text" autocomplete="off" spellcheck="false" placeholder="DELETE" />
+                <button class="btn danger" id="deleteProfile" type="button" disabled>Delete Account</button>
+              </div>
+            </section>
           </form>
         </div>
       </section>

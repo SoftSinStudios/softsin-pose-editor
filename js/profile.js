@@ -22,6 +22,8 @@ const roleValue = document.getElementById("roleValue");
 const emailValue = document.getElementById("emailValue");
 const profileStatus = document.getElementById("profileStatus");
 const saveProfile = document.getElementById("saveProfile");
+const deleteConfirmInput = document.getElementById("deleteConfirmInput");
+const deleteProfile = document.getElementById("deleteProfile");
 
 let currentUser = null;
 let currentProfile = null;
@@ -87,6 +89,14 @@ function setSignedOut() {
 
   signedOutProfile.hidden = false;
   signedInProfile.hidden = true;
+
+  if (deleteConfirmInput) {
+    deleteConfirmInput.value = "";
+  }
+
+  if (deleteProfile) {
+    deleteProfile.disabled = true;
+  }
 }
 
 function renderProfile(user, profile) {
@@ -125,6 +135,7 @@ function setSignedIn(user, profile) {
   signedInProfile.hidden = false;
 
   renderProfile(user, profile);
+  updateDeleteButtonState();
 }
 
 async function getProfile(userId) {
@@ -230,8 +241,7 @@ async function saveProfileChanges() {
 
   currentProfile = data || {
     ...currentProfile,
-    ...profilePayload,
-    role: currentProfile?.role || "member"
+    ...profilePayload
   };
 
   renderProfile(currentUser, currentProfile);
@@ -240,12 +250,73 @@ async function saveProfileChanges() {
   saveProfile.disabled = false;
 }
 
+function updateDeleteButtonState() {
+  if (!deleteConfirmInput || !deleteProfile) return;
+
+  deleteProfile.disabled = deleteConfirmInput.value.trim() !== "DELETE" || !currentUser;
+}
+
+async function deleteBoardProfile() {
+  if (!currentUser) {
+    profileStatus.textContent = "Sign in before deleting your account.";
+    return;
+  }
+
+  if (!deleteConfirmInput || deleteConfirmInput.value.trim() !== "DELETE") {
+    profileStatus.textContent = "Type DELETE before deleting your account.";
+    return;
+  }
+
+  const confirmed = window.confirm(
+    "Delete your SoftSin account? This deletes your Supabase login and anonymizes your board profile as Deleted member. Existing posts stay visible. This cannot be undone from this page."
+  );
+
+  if (!confirmed) return;
+
+  deleteProfile.disabled = true;
+  saveProfile.disabled = true;
+  profileStatus.textContent = "Deleting account...";
+
+  const { data, error } = await supabase.functions.invoke("delete-user-function", {
+    method: "POST"
+  });
+
+  if (error || !data?.ok) {
+    console.error("Account delete failed:", error || data);
+    profileStatus.textContent = data?.error || error?.message || "Account delete failed.";
+    saveProfile.disabled = false;
+    updateDeleteButtonState();
+    return;
+  }
+
+  profileStatus.textContent = "Account deleted. Signing out...";
+
+  const { error: signOutError } = await supabase.auth.signOut();
+
+  if (signOutError) {
+    console.error("Sign out after account delete failed:", signOutError);
+  }
+
+  currentUser = null;
+  currentProfile = null;
+  setSignedOut();
+  window.location.href = "board.html";
+}
+
 if (loginDiscord) {
   loginDiscord.addEventListener("click", signInWithDiscord);
 }
 
 if (logout) {
   logout.addEventListener("click", signOut);
+}
+
+if (deleteConfirmInput) {
+  deleteConfirmInput.addEventListener("input", updateDeleteButtonState);
+}
+
+if (deleteProfile) {
+  deleteProfile.addEventListener("click", deleteBoardProfile);
 }
 
 if (profileForm) {
