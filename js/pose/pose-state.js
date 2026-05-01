@@ -33,6 +33,7 @@ export const BODY25_POINTS = {
   lElbow:    { rgb: [85, 255, 0], hex: "#55ff00" },
   lWrist:    { rgb: [0, 255, 0], hex: "#00ff00" },
   midHip:    { rgb: [255, 0, 0], hex: "#ff0000" },
+  tail:      { rgb: [255, 48, 88], hex: "#ff3058" },
   rHip:      { rgb: [0, 255, 85], hex: "#00ff55" },
   rKnee:     { rgb: [0, 255, 170], hex: "#00ffaa" },
   rAnkle:    { rgb: [0, 255, 255], hex: "#00ffff" },
@@ -43,39 +44,39 @@ export const BODY25_POINTS = {
   lFoot:     { rgb: [0, 0, 255], hex: "#0000ff" }
 };
 
-// Default pose layout (centered neutral A-pose)
+// Default pose layout (centered neutral)
 export function createDefaultKeypoints() {
   return {
-    // Front-facing BODY_25 layout:
+    nose: { x: 512, y: 300 },
+    neck: { x: 512, y: 390 },
+
+    // Front-facing default dummy:
     // BODY_25 names stay anatomical, so the subject's right side appears on the viewer's left.
-    // This starter pose is intentionally neutral, proportional, and easy to edit.
-    nose: { x: 512, y: 220 },
-    neck: { x: 512, y: 305 },
+    rEye: { x: 479, y: 280 },
+    lEye: { x: 545, y: 280 },
+    rEar: { x: 439, y: 292 },
+    lEar: { x: 585, y: 292 },
 
-    rEye: { x: 492, y: 205 },
-    lEye: { x: 532, y: 205 },
-    rEar: { x: 470, y: 220 },
-    lEar: { x: 554, y: 220 },
+    rShoulder: { x: 404, y: 320 },
+    rElbow: { x: 324, y: 450 },
+    rWrist: { x: 284, y: 580 },
 
-    rShoulder: { x: 430, y: 330 },
-    rElbow: { x: 365, y: 470 },
-    rWrist: { x: 330, y: 620 },
+    lShoulder: { x: 620, y: 320 },
+    lElbow: { x: 700, y: 450 },
+    lWrist: { x: 740, y: 580 },
 
-    lShoulder: { x: 594, y: 330 },
-    lElbow: { x: 659, y: 470 },
-    lWrist: { x: 694, y: 620 },
+    midHip: { x: 512, y: 560 },
+    tail: { x: 512, y: 700 },
 
-    midHip: { x: 512, y: 580 },
+    rHip: { x: 434, y: 580 },
+    rKnee: { x: 374, y: 760 },
+    rAnkle: { x: 334, y: 930 },
+    rFoot: { x: 290, y: 968 },
 
-    rHip: { x: 460, y: 585 },
-    rKnee: { x: 438, y: 745 },
-    rAnkle: { x: 420, y: 900 },
-    rFoot: { x: 376, y: 930 },
-
-    lHip: { x: 564, y: 585 },
-    lKnee: { x: 586, y: 745 },
-    lAnkle: { x: 604, y: 900 },
-    lFoot: { x: 648, y: 930 }
+    lHip: { x: 590, y: 580 },
+    lKnee: { x: 650, y: 760 },
+    lAnkle: { x: 690, y: 930 },
+    lFoot: { x: 734, y: 968 }
   };
 }
 
@@ -83,6 +84,7 @@ export function createDefaultKeypoints() {
 export const BODY25_BONES = {
   "nose-neck": { from: "nose", to: "neck", curve: true },
   "neck-midhip": { from: "neck", to: "midHip", curve: true },
+  "midhip-tail": { from: "midHip", to: "tail", curve: true, hiddenByDefault: true },
   "neck-rshoulder": { from: "neck", to: "rShoulder", curve: true },
   "neck-lshoulder": { from: "neck", to: "lShoulder", curve: true },
   "nose-reye": { from: "nose", to: "rEye" },
@@ -108,13 +110,23 @@ export const BODY25_BONES = {
   "lankle-lfoot": { from: "lAnkle", to: "lFoot" }
 };
 
+function getDefaultBoneMode(boneId) {
+  const boneDef = BODY25_BONES[boneId];
+
+  if (boneDef?.hiddenByDefault) {
+    return BONE_MODES.HIDDEN;
+  }
+
+  return boneDef?.curve ? BONE_MODES.CURVE : BONE_MODES.STRAIGHT;
+}
+
 // Create full state
 export function createState() {
   const bones = {};
 
   Object.keys(BODY25_BONES).forEach(id => {
     bones[id] = {
-      mode: BODY25_BONES[id].curve ? BONE_MODES.CURVE : BONE_MODES.STRAIGHT,
+      mode: getDefaultBoneMode(id),
       weight: DEFAULT_LINE_WEIGHT,
       z: Z_DEPTH.FOREGROUND,
       handles: []
@@ -212,7 +224,7 @@ export function restoreHiddenBone(state, boneId = state.selectedBone) {
 
   if (bone.mode === BONE_MODES.HIDDEN) {
     bone.mode =
-      bone.handles?.length && BODY25_BONES[boneId]?.curve
+      BODY25_BONES[boneId]?.curve
         ? BONE_MODES.CURVE
         : BONE_MODES.STRAIGHT;
   }
