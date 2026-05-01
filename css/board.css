@@ -572,6 +572,9 @@ button.btn {
 }
 
 .thread-view-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   padding: 16px 24px 14px;
   margin-bottom: 4px;
 }
