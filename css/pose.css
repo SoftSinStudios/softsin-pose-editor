@@ -768,3 +768,153 @@
     padding: 10px;
   }
 }
+
+/* First-pass compact editor layout: file/canvas/export tools left, bone chips right */
+.pose-workbench {
+  grid-template-columns: 240px minmax(520px, calc(100vh - 190px)) 240px;
+}
+
+.pose-side-rail-left,
+.pose-side-rail-right {
+  min-height: 0;
+}
+
+.pose-sidebar-group {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.pose-sidebar-grid.two-up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.pose-tool-btn {
+  border-color: var(--line);
+  color: var(--muted);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.16)),
+    rgba(0,0,0,.18);
+  box-shadow: none;
+}
+
+.pose-tool-btn:hover,
+.pose-tool-btn:focus-visible {
+  border-color: rgba(255,255,255,.18);
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(0,0,0,.14)),
+    rgba(0,0,0,.22);
+}
+
+.pose-tool-btn.reset-outline {
+  color: color-mix(in srgb, var(--danger, #ff5e78), white 12%);
+  border-color: rgba(255,94,120,.34);
+  background:
+    linear-gradient(180deg, rgba(255,94,120,.045), rgba(0,0,0,.16)),
+    rgba(0,0,0,.18);
+}
+
+.pose-tool-btn.reset-outline:hover,
+.pose-tool-btn.reset-outline:focus-visible {
+  color: #ff8da0;
+  border-color: rgba(255,94,120,.56);
+  box-shadow: 0 0 18px rgba(255,94,120,.12);
+}
+
+.export-size-control-sidebar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.export-size-control-sidebar label {
+  min-width: 0;
+}
+
+.export-size-control-sidebar input {
+  width: 100%;
+  min-width: 0;
+}
+
+.pose-reset-group {
+  margin-top: auto;
+}
+
+.pose-reset-group .btn {
+  width: 100%;
+}
+
+.pose-side-rail-right {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(103,232,255,.28) rgba(0,0,0,.12);
+}
+
+.pose-side-rail-right .bone-color-panel-rail {
+  display: grid;
+  gap: 12px;
+  padding: 4px 0 0;
+  width: 100%;
+}
+
+.pose-side-rail-right .bone-group {
+  border-radius: 14px;
+  padding: 10px;
+  background:
+    radial-gradient(circle at 30% 0%, rgba(103,232,255,.055), transparent 5rem),
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.12)),
+    rgba(0,0,0,.18);
+}
+
+.pose-side-rail-right .side-title {
+  font-size: 9px;
+  letter-spacing: .13em;
+  margin-bottom: 8px;
+}
+
+.pose-side-rail-right .bone-color-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.pose-side-rail-right .bone-chip {
+  min-height: 34px;
+  border-radius: 10px;
+  font-size: 9px;
+  letter-spacing: .025em;
+  padding: 0 6px 5px 12px;
+}
+
+.pose-side-rail-right .bone-chip::before {
+  width: 5px;
+}
+
+.pose-side-rail-right .bone-chip::after {
+  left: 10px;
+  right: 7px;
+  bottom: 5px;
+  height: 2px;
+}
+
+@media (max-width: 1180px) {
+  .pose-side-rail-right {
+    overflow: visible;
+  }
+
+  .pose-side-rail-right .bone-color-panel-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .pose-sidebar-grid.two-up,
+  .export-size-control-sidebar,
+  .pose-side-rail-right .bone-color-panel-rail {
+    grid-template-columns: 1fr;
+  }
+}

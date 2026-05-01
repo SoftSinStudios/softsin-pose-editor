@@ -59,13 +59,99 @@
       </nav>
     </header>
 
-    <section class="panel section pose-control-panel" aria-label="Pose controls">
-      <div class="panel-head compact-head">
-        <h2>Bone Color</h2>
-        <p>Select a BODY_25 bone target. Click the selected color again to deselect it.</p>
+    <div class="pose-legacy-state-fields" hidden aria-hidden="true">
+        <input id="selectedBoneName" type="text" value="" readonly />
+        <input id="selectedBoneRgb" type="text" value="" readonly />
+        <select id="boneModeSelect">
+          <option value="straight">Straight</option>
+          <option value="curve">Curved</option>
+          <option value="hidden">Hidden</option>
+        </select>
+        <input id="lineWeightInput" type="number" min="1" max="24" step="1" value="6" />
+        <button type="button" id="saveJsonBtn">Save JSON</button>
+        <button type="button" id="copyPoseJsonBtn">Copy Pose JSON</button>
       </div>
 
-      <div class="bone-color-panel bone-color-panel-wide">
+    <main class="pose-editor-shell section" id="poseEditor" data-editor="body25">
+      <section class="pose-stage-panel panel" aria-label="BODY_25 workspace">
+        <div class="pose-workbench">
+          <aside class="pose-side-rail pose-side-rail-left" aria-label="File, canvas, export, and selected bone controls">
+            <div class="pose-sidebar-group pose-sidebar-file-actions" aria-label="File actions">
+              <div class="pose-sidebar-grid two-up">
+                <button class="btn pose-tool-btn" type="button" id="loadImageBtn" title="Load a reference image for tracing. SoftSin pose PNGs with embedded pose data load as editable poses instead.">Load Image</button>
+                <button class="btn pose-tool-btn" type="button" id="loadPoseBtn" title="Load a saved SoftSin pose JSON file as an editable pose.">Load JSON</button>
+              </div>
+            </div>
+
+            <div class="pose-sidebar-group" aria-label="Canvas resolution">
+              <div class="export-size-control export-size-control-sidebar" aria-label="Export resolution">
+                <label title="Set the PNG export width. This controls the final exported image width.">
+                  <span>Width</span>
+                  <input id="exportWidthInput" type="number" min="1" max="8192" step="1" value="1024" inputmode="numeric" title="Set the PNG export width. Any whole-number resolution is allowed." />
+                </label>
+                <label title="Set the PNG export height. This controls the final exported image height.">
+                  <span>Height</span>
+                  <input id="exportHeightInput" type="number" min="1" max="8192" step="1" value="1024" inputmode="numeric" title="Set the PNG export height. Any whole-number resolution is allowed." />
+                </label>
+              </div>
+            </div>
+
+            <div class="pose-sidebar-group" aria-label="Export actions">
+              <div class="pose-sidebar-grid two-up">
+                <button class="btn pose-tool-btn" type="button" id="exportPngBtn" title="Export the current pose as a clean PNG using the selected width and height. SoftSin pose data is embedded for re-import.">Export PNG</button>
+                <button class="btn pose-tool-btn" type="button" id="downloadPoseJsonBtn" title="Export the current editable pose as a JSON project file.">Export JSON</button>
+              </div>
+            </div>
+
+            <label class="pose-depth-control" title="Place the selected bone in the foreground or background layer.">
+              <select id="zDepthSelect" title="Place the selected bone in the foreground or background layer.">
+                <option value="foreground">Foreground</option>
+                <option value="background">Background</option>
+              </select>
+            </label>
+
+            <div class="pose-side-button-stack">
+              <button class="btn" type="button" id="addCurveHandleBtn" title="Add one curve point to the selected bone. Only supported guide bones can use this.">Add Curve Point</button>
+              <button class="btn" type="button" id="clearCurveHandlesBtn" title="Remove the curve point from the selected bone and return it to a straight bone.">Clear Curve Points</button>
+            </div>
+
+            <div class="pose-sidebar-group pose-reset-group" aria-label="Reset editor">
+              <button class="btn pose-tool-btn reset-outline" type="button" id="resetPoseBtn" title="Reset the editor back to the default starter pose.">Reset</button>
+            </div>
+          </aside>
+
+          <div class="canvas-frame">
+            <div class="canvas-grid" id="poseCanvasHost" aria-label="Pose editor canvas" title="Left click bones or joints to select and edit. Mouse wheel zooms. Middle mouse button pans the canvas.">
+              <div class="canvas-crosshair" aria-hidden="true"></div>
+
+              <canvas
+                id="poseCanvas"
+                class="pose-canvas"
+                title="Left click bones or joints to select them. Drag joints or curve points to shape the pose. Mouse wheel zooms, middle mouse pans."
+                width="1024"
+                height="1024"
+                aria-label="Editable BODY_25 pose canvas"
+              ></canvas>
+
+              <canvas
+                id="poseExportCanvas"
+                class="pose-export-canvas"
+                width="1024"
+                height="1024"
+                hidden
+                aria-hidden="true"
+              ></canvas>
+
+              <input id="poseFileInput" type="file" accept="application/json,.json" hidden />
+              <input id="poseImageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,image/svg+xml" hidden />
+            </div>
+          </div>
+
+          <aside class="pose-side-rail pose-side-rail-right" aria-label="Bone visibility and color controls">
+            <button class="btn visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones gray out in the bone color list.">Hide Bone</button>
+            <button class="btn visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Unhide Bone</button>
+
+      <div class="bone-color-panel bone-color-panel-rail">
         <div class="bone-group">
           <div class="side-title" title="Face bones connect the nose, eyes, ears, and neck guide.">Face</div>
           <div class="bone-color-grid" role="toolbar" aria-label="Face bone colors">
@@ -110,94 +196,6 @@
           </div>
         </div>
       </div>
-
-      <div class="pose-legacy-state-fields" hidden aria-hidden="true">
-        <input id="selectedBoneName" type="text" value="" readonly />
-        <input id="selectedBoneRgb" type="text" value="" readonly />
-        <select id="boneModeSelect">
-          <option value="straight">Straight</option>
-          <option value="curve">Curved</option>
-          <option value="hidden">Hidden</option>
-        </select>
-        <input id="lineWeightInput" type="number" min="1" max="24" step="1" value="6" />
-        <button type="button" id="saveJsonBtn">Save JSON</button>
-        <button type="button" id="copyPoseJsonBtn">Copy Pose JSON</button>
-      </div>
-    </section>
-
-    <main class="pose-editor-shell section" id="poseEditor" data-editor="body25">
-      <section class="pose-stage-panel panel" aria-label="BODY_25 workspace">
-        <div class="pose-status-row pose-action-row" id="poseStatusRow" aria-label="Pose file actions">
-          <button class="btn" type="button" id="loadImageBtn" title="Load a reference image for tracing. SoftSin pose PNGs with embedded pose data load as editable poses instead.">Load Image</button>
-          <button class="btn" type="button" id="loadPoseBtn" title="Load a saved SoftSin pose JSON file as an editable pose.">Load JSON</button>
-
-          <div class="export-size-control" aria-label="Export resolution">
-            <label title="Set the PNG export width. This controls the final exported image width.">
-              <span>Width</span>
-              <input id="exportWidthInput" type="number" min="1" max="8192" step="1" value="1024" inputmode="numeric" / title="Set the PNG export width. Any whole-number resolution is allowed.">
-            </label>
-            <label title="Set the PNG export height. This controls the final exported image height.">
-              <span>Height</span>
-              <input id="exportHeightInput" type="number" min="1" max="8192" step="1" value="1024" inputmode="numeric" / title="Set the PNG export height. Any whole-number resolution is allowed.">
-            </label>
-          </div>
-
-          <button class="btn primary" type="button" id="exportPngBtn" title="Export the current pose as a clean PNG using the selected width and height. SoftSin pose data is embedded for re-import.">Export PNG</button>
-          <button class="btn" type="button" id="downloadPoseJsonBtn" title="Export the current editable pose as a JSON project file.">Export JSON</button>
-          <button class="btn red" type="button" id="resetPoseBtn" title="Reset the editor back to the default starter pose.">Reset</button>
-        </div>
-
-        <div class="pose-workbench">
-          <aside class="pose-side-rail pose-side-rail-left" aria-label="Selected bone controls">
-            <label class="pose-depth-control" title="Place the selected bone in the foreground or background layer.">
-              
-              <select id="zDepthSelect" title="Place the selected bone in the foreground or background layer.">
-                <option value="foreground">Foreground</option>
-                <option value="background">Background</option>
-              </select>
-            </label>
-
-            <div class="pose-side-button-stack">
-              <button class="btn" type="button" id="addCurveHandleBtn" title="Add one curve point to the selected bone. Only supported guide bones can use this.">Add Curve Point</button>
-              <button class="btn" type="button" id="clearCurveHandlesBtn" title="Remove the curve point from the selected bone and return it to a straight bone.">Clear Curve Points</button>
-             </div>
-          </aside>
-
-          <div class="canvas-frame">
-            <div class="canvas-grid" id="poseCanvasHost" aria-label="Pose editor canvas" title="Left click bones or joints to select and edit. Mouse wheel zooms. Middle mouse button pans the canvas.">
-              <div class="canvas-crosshair" aria-hidden="true"></div>
-
-              <canvas
-                id="poseCanvas"
-                class="pose-canvas"
-                title="Left click bones or joints to select them. Drag joints or curve points to shape the pose. Mouse wheel zooms, middle mouse pans."
-                width="1024"
-                height="1024"
-                aria-label="Editable BODY_25 pose canvas"
-              ></canvas>
-
-              <canvas
-                id="poseExportCanvas"
-                class="pose-export-canvas"
-                width="1024"
-                height="1024"
-                hidden
-                aria-hidden="true"
-              ></canvas>
-
-              <input id="poseFileInput" type="file" accept="application/json,.json" hidden />
-              <input id="poseImageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,image/svg+xml" hidden />
-            </div>
-          </div>
-
-          <aside class="pose-side-rail pose-side-rail-right" aria-label="Bone visibility controls">
-            <button class="btn visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones are removed from the visible pose and listed in the hidden bones tray.">Hide Bone</button>
-            <button class="btn visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Unhide Bone</button>
-
-            <div class="deleted-bones-panel" id="deletedBonesPanel" hidden title="Hidden bones appear here. Select one, then use Unhide Bone to restore it.">
-              <div class="deleted-bones-title">Bones hidden</div>
-              <div class="deleted-bones-list" id="deletedBonesList" aria-label="Hidden bones" title="Hidden bones appear here. Select one, then use Unhide Bone to restore it."></div>
-            </div>
           </aside>
         </div>
       </section>
