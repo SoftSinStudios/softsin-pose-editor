@@ -1060,3 +1060,84 @@
     font-size: 12px;
   }
 }
+
+/* Narrow desktop guard: keep the editor usable when the browser is not full width.
+   This is desktop-friendly fallback behavior, not a mobile-first redesign. */
+@media (max-width: 1450px) and (min-width: 1041px) {
+  .pose-workbench {
+    grid-template-columns: 240px minmax(520px, calc(100vh - 220px));
+    gap: 18px;
+    align-items: start;
+  }
+
+  .pose-canvas-stack {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .pose-canvas-stack .canvas-frame {
+    width: min(100%, calc(100vh - 220px));
+  }
+
+  .pose-side-rail-left {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+    height: auto;
+    max-height: none;
+  }
+
+  .pose-side-rail-right {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .pose-side-rail-right .bone-color-panel-rail {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    padding-top: 0;
+  }
+
+  .pose-side-rail-right .bone-group {
+    padding: 10px;
+  }
+
+  .pose-side-rail-right .bone-color-grid {
+    grid-template-columns: repeat(2, minmax(64px, 1fr));
+    gap: 7px;
+  }
+
+  .pose-side-rail-right .bone-chip {
+    min-height: 32px;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .pose-workbench {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .pose-canvas-stack,
+  .pose-side-rail-left,
+  .pose-side-rail-right {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .pose-canvas-stack .canvas-frame {
+    width: min(100%, 860px);
+  }
+
+  .pose-side-rail-left,
+  .pose-side-rail-right {
+    height: auto;
+    max-height: none;
+  }
+}
