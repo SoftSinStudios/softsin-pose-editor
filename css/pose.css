@@ -1073,13 +1073,13 @@
 }
 
 .pose-workbench {
-  grid-template-columns: 240px minmax(680px, 940px) 240px;
+  grid-template-columns: 240px minmax(680px, 900px) 240px;
   gap: 24px;
   justify-content: center;
 }
 
 .pose-canvas-stack .canvas-frame {
-  width: min(100%, 940px);
+  width: min(100%, 900px);
 }
 
 .pose-side-rail-left,
