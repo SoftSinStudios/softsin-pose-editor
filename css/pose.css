@@ -1014,3 +1014,49 @@
     font-size: 12px;
   }
 }
+
+/* Pose helper placement refinement: keep the tip attached to the canvas column */
+.pose-canvas-stack {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  align-self: start;
+}
+
+.pose-canvas-stack .canvas-frame {
+  width: min(100%, calc(100vh - 190px));
+}
+
+.pose-canvas-stack .pose-editor-tip {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: 8px 14px;
+  border: 1px solid rgba(103, 232, 255, .10);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.10)),
+    rgba(0,0,0,.14);
+  color: color-mix(in srgb, var(--muted), var(--text) 12%);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: .005em;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1180px) {
+  .pose-canvas-stack .canvas-frame {
+    width: min(100%, 860px);
+  }
+}
+
+@media (max-width: 760px) {
+  .pose-canvas-stack .pose-editor-tip {
+    border-radius: 16px;
+    font-size: 12px;
+  }
+}
