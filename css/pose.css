@@ -1061,8 +1061,8 @@
   }
 }
 
-/* Narrow desktop guard: keep the editor usable when the browser is not full width.
-   This is desktop-friendly fallback behavior, not a mobile-first redesign. */
+/* Narrow desktop guard: gently compress the three-column desktop layout.
+   This keeps the workstation shape intact instead of moving bones under the canvas. */
 @media (max-width: 1450px) {
   .pose-workbench {
     grid-template-columns: 220px minmax(520px, calc(100vh - 220px)) 220px;
@@ -1073,47 +1073,14 @@
   .pose-side-rail {
     padding: 14px 12px;
   }
-}
-  .pose-canvas-stack {
-    grid-column: 2;
-    grid-row: 1;
-    align-self: start;
-  }
 
   .pose-canvas-stack .canvas-frame {
     width: min(100%, calc(100vh - 220px));
   }
 
-  .pose-side-rail-left {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    align-self: stretch;
-    height: auto;
-    max-height: none;
-  }
-
-  .pose-side-rail-right {
-    grid-column: 2;
-    grid-row: 2;
-    align-self: start;
-    height: auto;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .pose-side-rail-right .bone-color-panel-rail {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-    padding-top: 0;
-  }
-
-  .pose-side-rail-right .bone-group {
-    padding: 10px;
-  }
-
   .pose-side-rail-right .bone-color-grid {
-    grid-template-columns: repeat(2, minmax(64px, 1fr));
-    gap: 7px;
+    grid-template-columns: repeat(2, minmax(70px, 1fr));
+    gap: 6px;
   }
 
   .pose-side-rail-right .bone-chip {
