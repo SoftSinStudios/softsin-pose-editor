@@ -918,3 +918,49 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Pose layout iteration 2: controls left, bones right, square canvas locked */
+.pose-workbench {
+  align-items: start;
+}
+
+.canvas-frame {
+  align-self: start;
+  justify-self: center;
+  width: min(100%, calc(100vh - 190px));
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+.pose-side-rail-left {
+  align-self: start;
+}
+
+.pose-side-rail-right {
+  align-self: start;
+  max-height: calc(100vh - 190px);
+}
+
+.pose-side-button-stack .visibility-action,
+.pose-side-button-stack .pose-tool-btn {
+  width: 100%;
+}
+
+.pose-side-button-stack .reset-outline {
+  margin-top: 4px;
+}
+
+.pose-side-rail-right > .visibility-action {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .canvas-frame {
+    width: min(100%, 860px);
+  }
+
+  .pose-side-rail-right {
+    max-height: none;
+  }
+}

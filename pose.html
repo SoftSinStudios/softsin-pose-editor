@@ -111,13 +111,13 @@
             </label>
 
             <div class="pose-side-button-stack">
+              <button class="btn visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones gray out in the bone color list.">Hide Bone</button>
+              <button class="btn visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Unhide Bone</button>
               <button class="btn" type="button" id="addCurveHandleBtn" title="Add one curve point to the selected bone. Only supported guide bones can use this.">Add Curve Point</button>
               <button class="btn" type="button" id="clearCurveHandlesBtn" title="Remove the curve point from the selected bone and return it to a straight bone.">Clear Curve Points</button>
+              <button class="btn pose-tool-btn reset-outline" type="button" id="resetPoseBtn" title="Reset the editor back to the default starter pose.">Reset Canvas</button>
             </div>
 
-            <div class="pose-sidebar-group pose-reset-group" aria-label="Reset editor">
-              <button class="btn pose-tool-btn reset-outline" type="button" id="resetPoseBtn" title="Reset the editor back to the default starter pose.">Reset</button>
-            </div>
           </aside>
 
           <div class="canvas-frame">
@@ -147,10 +147,7 @@
             </div>
           </div>
 
-          <aside class="pose-side-rail pose-side-rail-right" aria-label="Bone visibility and color controls">
-            <button class="btn visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones gray out in the bone color list.">Hide Bone</button>
-            <button class="btn visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Unhide Bone</button>
-
+          <aside class="pose-side-rail pose-side-rail-right" aria-label="Bone color controls">
       <div class="bone-color-panel bone-color-panel-rail">
         <div class="bone-group">
           <div class="side-title" title="Face bones connect the nose, eyes, ears, and neck guide.">Face</div>
