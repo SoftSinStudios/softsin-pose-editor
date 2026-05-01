@@ -966,3 +966,32 @@
     max-height: none;
   }
 }
+
+/* Pose layout correction: equal-height rails and restored balanced workstation frame */
+.pose-workbench {
+  align-items: stretch;
+}
+
+.pose-side-rail-left,
+.pose-side-rail-right {
+  align-self: stretch;
+  margin-top: 0;
+  height: 100%;
+  max-height: calc(100vh - 190px);
+}
+
+.pose-side-rail-left {
+  justify-content: start;
+}
+
+.pose-side-button-stack {
+  margin-top: 0;
+}
+
+@media (max-width: 1180px) {
+  .pose-side-rail-left,
+  .pose-side-rail-right {
+    height: auto;
+    max-height: none;
+  }
+}
