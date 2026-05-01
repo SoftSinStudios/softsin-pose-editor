@@ -573,7 +573,8 @@ button.btn {
 
 .thread-view-actions {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  align-items: center;
   padding: 16px 24px 0;
 }
 
@@ -581,6 +582,7 @@ button.btn {
   min-width: 72px;
   padding: 8px 14px;
   border-radius: 999px;
+  white-space: nowrap;
 }
 
 .post-body-box {

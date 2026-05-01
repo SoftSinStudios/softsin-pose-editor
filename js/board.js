@@ -1041,10 +1041,13 @@ function renderRulesView() {
   }
 
   threadList.innerHTML = `
+    <div class="thread-view-actions">
+      <button class="btn back-button" id="backFromRules" type="button">Back</button>
+    </div>
+
     <article class="thread rules-header-card">
       <div class="avatar yellow">!</div>
       <div>
-        <button class="btn back-button" id="backFromRules" type="button">Back</button>
         <h3>SoftSin Studios board rules</h3>
         <p>These rules keep the message board useful, readable, and sane. The goal is not ceremony. The goal is a clean workshop.</p>
         <span class="tag warn">Required Reading</span>
