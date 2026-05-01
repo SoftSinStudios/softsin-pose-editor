@@ -1063,13 +1063,17 @@
 
 /* Narrow desktop guard: keep the editor usable when the browser is not full width.
    This is desktop-friendly fallback behavior, not a mobile-first redesign. */
-@media (max-width: 1450px) and (min-width: 1041px) {
+@media (max-width: 1450px) {
   .pose-workbench {
-    grid-template-columns: 240px minmax(520px, calc(100vh - 220px));
-    gap: 18px;
-    align-items: start;
+    grid-template-columns: 220px minmax(520px, calc(100vh - 220px)) 220px;
+    gap: 14px;
+    padding: 14px;
   }
 
+  .pose-side-rail {
+    padding: 14px 12px;
+  }
+}
   .pose-canvas-stack {
     grid-column: 2;
     grid-row: 1;
