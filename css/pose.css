@@ -1061,54 +1061,46 @@
   }
 }
 
-/* Narrow desktop guard: gently compress the three-column desktop layout.
-   This keeps the workstation shape intact instead of moving bones under the canvas. */
-@media (max-width: 1450px) {
-  .pose-workbench {
-    grid-template-columns: 220px minmax(520px, calc(100vh - 220px)) 220px;
-    gap: 14px;
-    padding: 14px;
-  }
-
-  .pose-side-rail {
-    padding: 14px 12px;
-  }
-
-  .pose-canvas-stack .canvas-frame {
-    width: min(100%, calc(100vh - 220px));
-  }
-
-  .pose-side-rail-right .bone-color-grid {
-    grid-template-columns: repeat(2, minmax(70px, 1fr));
-    gap: 6px;
-  }
-
-  .pose-side-rail-right .bone-chip {
-    min-height: 32px;
-    font-size: 8px;
-  }
+/* Pose canvas widening pass: keep the skeleton square, give the editor more room */
+.pose-page .shell {
+  width: min(1560px, calc(100% - 36px));
 }
 
-@media (max-width: 1040px) {
-  .pose-workbench {
-    grid-template-columns: 1fr;
-    align-items: stretch;
+.pose-page .topbar {
+  max-width: 1020px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pose-workbench {
+  grid-template-columns: 240px minmax(680px, 940px) 240px;
+  gap: 24px;
+  justify-content: center;
+}
+
+.pose-canvas-stack .canvas-frame {
+  width: min(100%, 940px);
+}
+
+.pose-side-rail-left,
+.pose-side-rail-right {
+  max-height: none;
+}
+
+.pose-stage-panel {
+  overflow: visible;
+}
+
+@media (max-width: 1180px) {
+  .pose-page .shell {
+    width: min(100% - 24px, 1180px);
   }
 
-  .pose-canvas-stack,
-  .pose-side-rail-left,
-  .pose-side-rail-right {
-    grid-column: auto;
-    grid-row: auto;
+  .pose-workbench {
+    gap: 18px;
   }
 
   .pose-canvas-stack .canvas-frame {
     width: min(100%, 860px);
-  }
-
-  .pose-side-rail-left,
-  .pose-side-rail-right {
-    height: auto;
-    max-height: none;
   }
 }
