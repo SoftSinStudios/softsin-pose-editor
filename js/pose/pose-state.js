@@ -44,39 +44,44 @@ export const BODY25_POINTS = {
   lFoot:     { rgb: [0, 0, 255], hex: "#0000ff" }
 };
 
-// Default pose layout (centered neutral)
+// Default pose layout (centered neutral A-pose)
 export function createDefaultKeypoints() {
   return {
-    nose: { x: 512, y: 300 },
-    neck: { x: 512, y: 390 },
+    // Head and torso stay centered so the starter pose reads as human first,
+    // then users can push it into stylized or quadruped shapes as needed.
+    nose: { x: 512, y: 250 },
+    neck: { x: 512, y: 335 },
 
     // Front-facing default dummy:
     // BODY_25 names stay anatomical, so the subject's right side appears on the viewer's left.
-    rEye: { x: 479, y: 280 },
-    lEye: { x: 545, y: 280 },
-    rEar: { x: 439, y: 292 },
-    lEar: { x: 585, y: 292 },
+    rEye: { x: 487, y: 235 },
+    lEye: { x: 537, y: 235 },
+    rEar: { x: 460, y: 252 },
+    lEar: { x: 564, y: 252 },
 
-    rShoulder: { x: 404, y: 320 },
-    rElbow: { x: 324, y: 450 },
-    rWrist: { x: 284, y: 580 },
+    // Balanced shoulders with a mild A-pose arm angle.
+    rShoulder: { x: 420, y: 365 },
+    rElbow: { x: 360, y: 505 },
+    rWrist: { x: 330, y: 645 },
 
-    lShoulder: { x: 620, y: 320 },
-    lElbow: { x: 700, y: 450 },
-    lWrist: { x: 740, y: 580 },
+    lShoulder: { x: 604, y: 365 },
+    lElbow: { x: 664, y: 505 },
+    lWrist: { x: 694, y: 645 },
 
-    midHip: { x: 512, y: 560 },
+    // Centered pelvis with hips narrower than shoulders.
+    midHip: { x: 512, y: 575 },
     tail: { x: 512, y: 700 },
 
-    rHip: { x: 434, y: 580 },
-    rKnee: { x: 374, y: 760 },
-    rAnkle: { x: 334, y: 930 },
-    rFoot: { x: 290, y: 968 },
+    // Upright legs with a slight natural stance.
+    rHip: { x: 456, y: 590 },
+    rKnee: { x: 444, y: 760 },
+    rAnkle: { x: 436, y: 920 },
+    rFoot: { x: 400, y: 955 },
 
-    lHip: { x: 590, y: 580 },
-    lKnee: { x: 650, y: 760 },
-    lAnkle: { x: 690, y: 930 },
-    lFoot: { x: 734, y: 968 }
+    lHip: { x: 568, y: 590 },
+    lKnee: { x: 580, y: 760 },
+    lAnkle: { x: 588, y: 920 },
+    lFoot: { x: 624, y: 955 }
   };
 }
 
