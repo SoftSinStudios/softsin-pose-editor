@@ -995,3 +995,22 @@
     max-height: none;
   }
 }
+
+/* Pose editor helper text */
+.pose-editor-tip {
+  width: min(100%, 760px);
+  margin: 0 auto 20px;
+  padding: 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.55;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .pose-editor-tip {
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+}
