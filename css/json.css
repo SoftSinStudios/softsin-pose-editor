@@ -98,9 +98,10 @@
 
 .json-maker-shell {
   display: grid;
-  grid-template-columns: 230px minmax(0, 1fr) 260px;
+  grid-template-columns: 230px minmax(0, 1fr);
   gap: 18px;
   align-items: start;
+  width: 100%;
 }
 
 .json-side,
@@ -450,11 +451,7 @@ button.red:hover {
 }
 
 @media (max-width: 1180px) {
-  .json-maker-shell {
-    grid-template-columns: 230px minmax(0, 1fr);
-  }
-
-  .json-maker-shell > .json-side:last-child {
+  .json-maker-shell > .json-side:last-child:not(:first-child) {
     grid-column: 1 / -1;
   }
 }
