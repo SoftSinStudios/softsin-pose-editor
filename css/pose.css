@@ -952,9 +952,12 @@
   .bone-color-panel-wide {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
+@media (max-width: 860px) {
   .pose-workbench {
     grid-template-columns: 1fr;
+    align-items: stretch;
   }
 
   .pose-canvas-stack,
@@ -1002,30 +1005,6 @@
 
   .pose-side-rail-right .bone-color-panel-rail {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 860px) {
-  .pose-workbench {
-    grid-template-columns: 1fr;
-    align-items: stretch;
-  }
-
-  .pose-canvas-stack,
-  .pose-side-rail-left,
-  .pose-side-rail-right {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .pose-canvas-stack .canvas-frame {
-    width: min(100%, 860px);
-  }
-
-  .pose-side-rail-left,
-  .pose-side-rail-right {
-    height: auto;
-    max-height: none;
   }
 }
 
