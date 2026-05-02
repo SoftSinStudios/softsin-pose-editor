@@ -8,7 +8,8 @@ import {
   BODY25_BONES,
   BONE_MODES,
   Z_DEPTH,
-  DEFAULT_LINE_WEIGHT
+  DEFAULT_LINE_WEIGHT,
+  DEFAULT_JOINT_RADIUS
 } from "./pose-state.js";
 
 import {
@@ -31,6 +32,10 @@ export function buildPoseProject(state) {
     exportSize: {
       width: state.exportSize?.width || state.canvas.width,
       height: state.exportSize?.height || state.canvas.height
+    },
+    appearance: {
+      boneThickness: state.appearance?.boneThickness || DEFAULT_LINE_WEIGHT,
+      jointThickness: state.appearance?.jointThickness || DEFAULT_JOINT_RADIUS
     },
     selectedBone: state.selectedBone || null,
     keypoints: structuredClone(state.keypoints),
@@ -69,6 +74,21 @@ export function loadPoseProject(rawProject) {
         sanitizeNumber(rawProject.exportSize.height, freshState.exportSize.height),
         256,
         4096
+      )
+    };
+  }
+
+  if (rawProject.appearance && typeof rawProject.appearance === "object") {
+    freshState.appearance = {
+      boneThickness: clamp(
+        sanitizeNumber(rawProject.appearance.boneThickness, freshState.appearance.boneThickness),
+        1,
+        48
+      ),
+      jointThickness: clamp(
+        sanitizeNumber(rawProject.appearance.jointThickness, freshState.appearance.jointThickness),
+        1,
+        48
       )
     };
   }

@@ -38,7 +38,7 @@
   </style>
 </head>
 
-<script type="module" src="js/pose/pose-editor.js?v=pngmeta-20260429-2"></script>
+<script type="module" src="js/pose/pose-editor.js?v=thickness-20260501-1"></script>
 
 <body class="pose-page">
   <div class="shell">
@@ -92,6 +92,17 @@
                 <label title="Set the PNG export height. This controls the final exported image height.">
                   <span>Height</span>
                   <input id="exportHeightInput" type="number" min="1" max="8192" step="1" value="1024" inputmode="numeric" title="Set the PNG export height. Any whole-number resolution is allowed." />
+                </label>
+              </div>
+
+              <div class="export-size-control export-size-control-sidebar pose-thickness-control" aria-label="Pose line thickness">
+                <label title="Set the global bone thickness used in the editor and exported PNG.">
+                  <span>Bone Thickness</span>
+                  <input id="boneThicknessInput" type="number" min="1" max="48" step="1" value="6" inputmode="numeric" title="Set the global bone thickness used in the editor and exported PNG." />
+                </label>
+                <label title="Set the global joint thickness used in the editor and exported PNG.">
+                  <span>Joint Thickness</span>
+                  <input id="jointThicknessInput" type="number" min="1" max="48" step="1" value="7" inputmode="numeric" title="Set the global joint thickness used in the editor and exported PNG." />
                 </label>
               </div>
             </div>

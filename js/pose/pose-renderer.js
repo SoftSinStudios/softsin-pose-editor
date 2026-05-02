@@ -6,10 +6,12 @@ import {
   BODY25_POINTS,
   BODY25_BONES,
   BONE_MODES,
-  Z_DEPTH
+  Z_DEPTH,
+  DEFAULT_LINE_WEIGHT,
+  DEFAULT_JOINT_RADIUS
 } from "./pose-state.js";
 
-const JOINT_RADIUS = 7;
+const JOINT_RADIUS = DEFAULT_JOINT_RADIUS;
 const HANDLE_RADIUS = 8;
 const HANDLE_STROKE = "#ffffff";
 const HANDLE_FILL = "#67e8ff";
@@ -310,10 +312,11 @@ function drawBone(ctx, state, boneId, boneDef, boneState, config) {
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   ctx.strokeStyle = color;
-  ctx.lineWidth = boneState.weight;
+  const boneThickness = getBoneThickness(state);
+  ctx.lineWidth = boneThickness;
 
   if (config.showSelected && state.selectedBone === boneId) {
-    drawSelectedBoneOutline(ctx, from, to, boneState);
+    drawSelectedBoneOutline(ctx, from, to, boneState, boneThickness);
   }
 
   ctx.beginPath();
@@ -330,12 +333,12 @@ function drawBone(ctx, state, boneId, boneDef, boneState, config) {
   ctx.restore();
 }
 
-function drawSelectedBoneOutline(ctx, from, to, boneState) {
+function drawSelectedBoneOutline(ctx, from, to, boneState, boneThickness = DEFAULT_LINE_WEIGHT) {
   ctx.save();
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   ctx.strokeStyle = SELECTED_OUTLINE;
-  ctx.lineWidth = boneState.weight + 5;
+  ctx.lineWidth = boneThickness + 5;
   ctx.globalAlpha = 0.32;
 
   ctx.beginPath();
@@ -354,6 +357,7 @@ function drawSelectedBoneOutline(ctx, from, to, boneState) {
 
 function drawJoints(ctx, state) {
   const visiblePointIds = getVisiblePointIds(state);
+  const jointThickness = getJointThickness(state);
 
   for (const [pointId, point] of Object.entries(state.keypoints)) {
     if (!point || !visiblePointIds.has(pointId)) {
@@ -365,7 +369,7 @@ function drawJoints(ctx, state) {
 
     ctx.save();
     ctx.beginPath();
-    ctx.arc(point.x, point.y, JOINT_RADIUS, 0, Math.PI * 2);
+    ctx.arc(point.x, point.y, jointThickness, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
 
@@ -418,6 +422,19 @@ function drawCurveHandles(ctx, state) {
 
     ctx.restore();
   }
+}
+
+function getBoneThickness(state) {
+  return clampThickness(state?.appearance?.boneThickness, DEFAULT_LINE_WEIGHT);
+}
+
+function getJointThickness(state) {
+  return clampThickness(state?.appearance?.jointThickness, JOINT_RADIUS);
+}
+
+function clampThickness(value, fallback) {
+  const numericValue = Math.round(Number(value) || fallback);
+  return Math.max(1, Math.min(48, numericValue));
 }
 
 function getBoneColor(boneDef) {

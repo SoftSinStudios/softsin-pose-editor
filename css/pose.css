@@ -841,6 +841,14 @@
   min-width: 0;
 }
 
+.pose-thickness-control {
+  margin-top: 10px;
+}
+
+.pose-thickness-control span {
+  letter-spacing: .08em;
+}
+
 .pose-reset-group {
   margin-top: auto;
 }

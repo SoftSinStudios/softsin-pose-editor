@@ -10,12 +10,13 @@ import {
   setLineWeight,
   setZDepth,
   setExportSize,
+  setPoseThickness,
   addCurveHandle,
   clearCurveHandles,
   restoreHiddenBone,
   moveHandle,
   setBackgroundImage
-} from "./pose-state.js?v=pngmeta-20260429-2";
+} from "./pose-state.js?v=thickness-20260501-1";
 
 import {
   resizeCanvasToDisplay,
@@ -23,7 +24,7 @@ import {
   getCanvasPoint,
   getCanvasDisplayPoint,
   preloadBackgroundImage
-} from "./pose-renderer.js?v=pngmeta-20260429-2";
+} from "./pose-renderer.js?v=thickness-20260501-1";
 
 import {
   downloadJson,
@@ -32,7 +33,7 @@ import {
   jsonToState,
   exportPosePng,
   readPoseStateFromPngFile
-} from "./pose-io.js?v=pngmeta-20260429-2";
+} from "./pose-io.js?v=thickness-20260501-1";
 
 let state = createState();
 
@@ -79,6 +80,8 @@ const dom = {
   exportPngBtn: document.getElementById("exportPngBtn"),
   exportWidthInput: document.getElementById("exportWidthInput"),
   exportHeightInput: document.getElementById("exportHeightInput"),
+  boneThicknessInput: document.getElementById("boneThicknessInput"),
+  jointThicknessInput: document.getElementById("jointThicknessInput"),
   resetPoseBtn: document.getElementById("resetPoseBtn"),
 
   copyPoseJsonBtn: document.getElementById("copyPoseJsonBtn"),
@@ -309,6 +312,8 @@ function bindPropertyControls() {
 
   safeAddEvent(dom.exportWidthInput, "input", handleExportSizeInput);
   safeAddEvent(dom.exportHeightInput, "input", handleExportSizeInput);
+  safeAddEvent(dom.boneThicknessInput, "input", handlePoseThicknessInput);
+  safeAddEvent(dom.jointThicknessInput, "input", handlePoseThicknessInput);
 }
 
 function handleExportSizeInput() {
@@ -316,6 +321,17 @@ function handleExportSizeInput() {
     state,
     dom.exportWidthInput?.value,
     dom.exportHeightInput?.value
+  );
+
+  syncUI();
+  redraw();
+}
+
+function handlePoseThicknessInput() {
+  setPoseThickness(
+    state,
+    dom.boneThicknessInput?.value,
+    dom.jointThicknessInput?.value
   );
 
   syncUI();
@@ -770,6 +786,14 @@ function syncUI() {
 
   if (dom.exportHeightInput) {
     dom.exportHeightInput.value = state.exportSize?.height || state.canvas.height;
+  }
+
+  if (dom.boneThicknessInput) {
+    dom.boneThicknessInput.value = state.appearance?.boneThickness || 6;
+  }
+
+  if (dom.jointThicknessInput) {
+    dom.jointThicknessInput.value = state.appearance?.jointThickness || 7;
   }
 
   const selectedIsHidden = selectedBoneState?.mode === BONE_MODES.HIDDEN;

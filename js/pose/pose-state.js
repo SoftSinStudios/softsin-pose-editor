@@ -6,6 +6,7 @@ export const CANVAS_SIZE = {
 };
 
 export const DEFAULT_LINE_WEIGHT = 6;
+export const DEFAULT_JOINT_RADIUS = 7;
 
 export const BONE_MODES = {
   STRAIGHT: "straight",
@@ -147,6 +148,10 @@ export function createState() {
       width: CANVAS_SIZE.width,
       height: CANVAS_SIZE.height
     },
+    appearance: {
+      boneThickness: DEFAULT_LINE_WEIGHT,
+      jointThickness: DEFAULT_JOINT_RADIUS
+    },
     selectedBone: null,
     backgroundImage: {
       enabled: false,
@@ -166,6 +171,14 @@ export function setExportSize(state, width, height) {
   state.exportSize = {
     width: clamp(Math.round(Number(width) || CANVAS_SIZE.width), 1, 8192),
     height: clamp(Math.round(Number(height) || CANVAS_SIZE.height), 1, 8192)
+  };
+}
+
+export function setPoseThickness(state, boneThickness, jointThickness) {
+  state.appearance = {
+    ...(state.appearance || {}),
+    boneThickness: clamp(Math.round(Number(boneThickness) || DEFAULT_LINE_WEIGHT), 1, 48),
+    jointThickness: clamp(Math.round(Number(jointThickness) || DEFAULT_JOINT_RADIUS), 1, 48)
   };
 }
 
