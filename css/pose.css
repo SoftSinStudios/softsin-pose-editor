@@ -1161,3 +1161,33 @@
   text-align: center;
 }
 
+/* Compact left rail spacing */
+.pose-side-rail-left {
+  gap: 14px;
+}
+
+/* The thickness box already has internal grouping, so don't add extra lift */
+.pose-side-rail-left .pose-thickness-control {
+  margin-top: 0;
+}
+
+/* Do not let Reset Canvas get shoved to the floor */
+.pose-side-rail-left .pose-reset-group {
+  margin-top: 0;
+}
+
+/* Slightly tighter action-button stack */
+.pose-side-rail-left .pose-side-button-stack {
+  gap: 10px;
+}
+
+/* Keep two-up buttons contained without making them overly tall */
+.pose-sidebar-grid.two-up .btn {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 8px;
+  white-space: normal;
+  line-height: 1.15;
+  text-align: center;
+}
