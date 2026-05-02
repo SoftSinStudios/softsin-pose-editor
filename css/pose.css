@@ -1149,3 +1149,14 @@
     max-height: none;
   }
 }
+
+/* Keep two-up sidebar buttons readable by allowing tighter wrapping */
+.pose-sidebar-grid.two-up .btn {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 8px;
+  white-space: normal;
+  line-height: 1.15;
+  text-align: center;
+}
