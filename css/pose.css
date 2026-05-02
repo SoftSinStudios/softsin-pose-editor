@@ -893,7 +893,7 @@
 /* Responsive layout                                                           */
 /* ========================================================================== */
 
-@media (max-width: 1450px) and (min-width: 1041px) {
+@media (max-width: 1450px) and (min-width: 861px) {
   .pose-workbench {
     grid-template-columns: 240px minmax(520px, calc(100vh - 220px));
     gap: 18px;
