@@ -1160,3 +1160,43 @@
   line-height: 1.15;
   text-align: center;
 }
+
+/* Left rail spacing rhythm */
+.pose-side-rail-left {
+  gap: 0;
+}
+
+.pose-side-rail-left .pose-sidebar-group {
+  margin-bottom: 26px;
+}
+
+.pose-side-rail-left .pose-sidebar-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Keep paired control boxes visually grouped tighter */
+.pose-side-rail-left .export-size-control-sidebar {
+  margin-bottom: 0;
+}
+
+/* Export buttons need more breathing room from controls above */
+.pose-side-rail-left .pose-sidebar-group:has(.pose-tool-btn) {
+  margin-bottom: 34px;
+}
+
+/* Dropdown should sit as its own section */
+.pose-side-rail-left .pose-depth-control {
+  margin-bottom: 32px;
+}
+
+/* Action stack spacing */
+.pose-side-rail-left .pose-side-button-stack {
+  gap: 14px;
+  margin-top: 8px;
+}
+
+/* Reset stays anchored at bottom when there is spare height */
+.pose-reset-group {
+  margin-top: auto;
+  padding-top: 22px;
+}
