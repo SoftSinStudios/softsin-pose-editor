@@ -1005,7 +1005,7 @@
   }
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 860px) {
   .pose-workbench {
     grid-template-columns: 1fr;
     align-items: stretch;
