@@ -1,5 +1,9 @@
 /* SoftSin Studios — Pose Editor page */
 
+/* ========================================================================== */
+/* Hero / product preview                                                      */
+/* ========================================================================== */
+
 .pose-page .pose-hero {
   padding: 34px 0 24px;
   align-items: start;
@@ -114,7 +118,9 @@
   );
 }
 
-/* Pose control deck */
+/* ========================================================================== */
+/* Control panel header / legacy panel pieces                                  */
+/* ========================================================================== */
 
 .pose-control-panel {
   overflow: hidden;
@@ -140,6 +146,514 @@
   font-weight: 900;
   margin-bottom: 10px;
 }
+
+.pose-control-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 18px 18px;
+}
+
+.pose-control-actions .btn {
+  font: inherit;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.pose-action-row {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.08)),
+    rgba(0,0,0,.12);
+}
+
+.pose-action-row .btn {
+  font: inherit;
+  cursor: pointer;
+  min-width: 126px;
+  justify-content: center;
+}
+
+.pose-legacy-state-fields {
+  display: none !important;
+}
+
+/* ========================================================================== */
+/* Editor workspace layout                                                     */
+/* ========================================================================== */
+
+.pose-editor-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.pose-stage-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.pose-workbench {
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 240px minmax(520px, calc(100vh - 190px)) 240px;
+  justify-content: center;
+  align-items: stretch;
+  gap: 18px;
+}
+
+.pose-side-rail {
+  min-width: 0;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.08)),
+    rgba(0,0,0,.14);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pose-side-rail-left,
+.pose-side-rail-right {
+  min-height: 0;
+  align-self: stretch;
+  height: 100%;
+  max-height: calc(100vh - 190px);
+  margin-top: 0;
+}
+
+.pose-side-rail-left {
+  align-items: stretch;
+  justify-content: start;
+}
+
+.pose-side-rail-right {
+  align-items: stretch;
+  padding-top: 20px;
+  gap: 12px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(103,232,255,.28) rgba(0,0,0,.12);
+}
+
+.pose-side-rail .btn {
+  font: inherit;
+  cursor: pointer;
+  justify-content: center;
+  width: fit-content;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.pose-side-rail-left .btn,
+.pose-side-rail-right .btn {
+  width: 100%;
+}
+
+.pose-side-button-stack {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  margin-top: 0;
+}
+
+.pose-side-button-stack .visibility-action,
+.pose-side-button-stack .pose-tool-btn,
+.pose-side-button-stack .reset-outline {
+  width: 100%;
+}
+
+.pose-side-button-stack .reset-outline {
+  margin-top: 4px;
+}
+
+.pose-side-rail-right > .visibility-action {
+  display: none;
+}
+
+/* ========================================================================== */
+/* Canvas                                                                      */
+/* ========================================================================== */
+
+.pose-canvas-stack {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  align-self: start;
+}
+
+.canvas-frame {
+  align-self: start;
+  justify-self: center;
+  width: min(100%, calc(100vh - 190px));
+  min-width: 0;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(103,232,255,.08), transparent 18rem),
+    rgba(0,0,0,.25);
+  padding: 14px;
+  overflow: hidden;
+}
+
+.pose-canvas-stack .canvas-frame {
+  width: min(100%, calc(100vh - 190px));
+}
+
+.canvas-grid {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.06);
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-color: rgba(5,7,11,.72);
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-crosshair {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.canvas-crosshair::before,
+.canvas-crosshair::after {
+  content: "";
+  position: absolute;
+  background: rgba(103,232,255,.18);
+  z-index: 0;
+}
+
+.canvas-crosshair::before {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.canvas-crosshair::after {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.pose-canvas,
+.pose-export-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 2;
+}
+
+.pose-export-canvas[hidden] {
+  display: none;
+}
+
+/* ========================================================================== */
+/* Canvas helper tip                                                           */
+/* ========================================================================== */
+
+.pose-editor-tip {
+  width: min(100%, 760px);
+  margin: 0 auto 20px;
+  padding: 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.pose-canvas-stack .pose-editor-tip {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: 16px 22px;
+  border: 1px solid rgba(103, 232, 255, .10);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.10)),
+    rgba(0,0,0,.14);
+  color: color-mix(in srgb, var(--muted), var(--text) 12%);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: .005em;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* ========================================================================== */
+/* Sidebar groups / controls                                                   */
+/* ========================================================================== */
+
+.pose-sidebar-group {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.pose-sidebar-grid.two-up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.pose-sidebar-grid.two-up .btn {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 8px;
+  white-space: normal;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.export-size-control,
+.export-size-control-sidebar {
+  gap: 8px;
+  width: 100%;
+}
+
+.export-size-control {
+  display: inline-flex;
+  align-items: end;
+  padding: 6px 8px;
+  border: 1px solid rgba(103,232,255,.16);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.12)),
+    rgba(0,0,0,.18);
+}
+
+.export-size-control-sidebar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.export-size-control label {
+  display: grid;
+  gap: 4px;
+}
+
+.export-size-control-sidebar label {
+  min-width: 0;
+}
+
+.export-size-control span {
+  color: var(--soft);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .10em;
+}
+
+.export-size-control input {
+  width: 88px;
+  min-height: 34px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 11px;
+  background: rgba(0,0,0,.26);
+  color: var(--text);
+  padding: 7px 9px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  outline: none;
+}
+
+.export-size-control-sidebar input {
+  width: 100%;
+  min-width: 0;
+}
+
+.export-size-control input:focus {
+  border-color: rgba(103,232,255,.52);
+  box-shadow:
+    0 0 0 1px rgba(103,232,255,.10),
+    0 0 18px rgba(103,232,255,.12);
+}
+
+.pose-thickness-control {
+  margin-top: 10px;
+}
+
+.pose-thickness-control span {
+  letter-spacing: .08em;
+}
+
+.pose-depth-control {
+  display: grid;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.pose-depth-control span {
+  color: var(--soft);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.pose-depth-control select {
+  width: 100%;
+  border: 1px solid rgba(94,255,154,.38);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(94,255,154,.055), rgba(0,0,0,.18)),
+    rgba(0,0,0,.25);
+  color: var(--text);
+  padding: 11px 12px;
+  outline: none;
+  font: inherit;
+  min-height: 44px;
+  box-shadow:
+    0 0 0 1px rgba(94,255,154,.06),
+    0 0 18px rgba(94,255,154,.16);
+}
+
+.pose-depth-control select:focus {
+  border-color: rgba(94,255,154,.72);
+  box-shadow:
+    0 0 0 1px rgba(94,255,154,.18),
+    0 0 24px rgba(94,255,154,.24);
+}
+
+.pose-depth-control select:disabled {
+  border-color: var(--line);
+  box-shadow: none;
+  opacity: .55;
+}
+
+.pose-reset-group {
+  margin-top: auto;
+}
+
+.pose-reset-group .btn {
+  width: 100%;
+}
+
+/* ========================================================================== */
+/* Buttons                                                                     */
+/* ========================================================================== */
+
+.pose-tool-btn {
+  border-color: var(--line);
+  color: var(--muted);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.16)),
+    rgba(0,0,0,.18);
+  box-shadow: none;
+}
+
+.pose-tool-btn:hover,
+.pose-tool-btn:focus-visible {
+  border-color: rgba(255,255,255,.18);
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(0,0,0,.14)),
+    rgba(0,0,0,.22);
+}
+
+.pose-tool-btn.reset-outline {
+  color: color-mix(in srgb, var(--danger, #ff5e78), white 12%);
+  border-color: rgba(255,94,120,.34);
+  background:
+    linear-gradient(180deg, rgba(255,94,120,.045), rgba(0,0,0,.16)),
+    rgba(0,0,0,.18);
+}
+
+.pose-tool-btn.reset-outline:hover,
+.pose-tool-btn.reset-outline:focus-visible {
+  color: #ff8da0;
+  border-color: rgba(255,94,120,.56);
+  box-shadow: 0 0 18px rgba(255,94,120,.12);
+}
+
+.btn.insert {
+  border-color: rgba(94,255,154,.34);
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(94,255,154,.09), rgba(0,0,0,.13)),
+    rgba(0,0,0,.18);
+  box-shadow: 0 0 16px rgba(94,255,154,.10);
+}
+
+.btn.insert:hover {
+  border-color: rgba(94,255,154,.62);
+  box-shadow: 0 0 22px rgba(94,255,154,.18);
+}
+
+.btn.visibility-action,
+#addCurveHandleBtn,
+#clearCurveHandlesBtn {
+  border-color: var(--line);
+  color: var(--muted);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.16)),
+    rgba(0,0,0,.18);
+  box-shadow: none;
+}
+
+.btn.visibility-action.can-use,
+#addCurveHandleBtn.can-use,
+#clearCurveHandlesBtn.can-use {
+  border-color: rgba(94,255,154,.54);
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(94,255,154,.09), rgba(0,0,0,.13)),
+    rgba(0,0,0,.18);
+  box-shadow:
+    0 0 0 1px rgba(94,255,154,.08),
+    0 0 20px rgba(94,255,154,.18);
+}
+
+.btn.visibility-action.can-use:hover,
+#addCurveHandleBtn.can-use:hover,
+#clearCurveHandlesBtn.can-use:hover {
+  border-color: rgba(94,255,154,.78);
+  box-shadow:
+    0 0 0 1px rgba(94,255,154,.16),
+    0 0 26px rgba(94,255,154,.25);
+}
+
+.btn.visibility-action:disabled,
+#addCurveHandleBtn:disabled,
+#clearCurveHandlesBtn:disabled {
+  cursor: not-allowed;
+  opacity: .52;
+}
+
+/* ========================================================================== */
+/* Bone color controls                                                         */
+/* ========================================================================== */
 
 .bone-color-panel {
   display: grid;
@@ -243,626 +757,6 @@
     0 0 18px rgba(190, 200, 215, .10);
 }
 
-.pose-control-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 18px 18px;
-}
-
-.pose-control-actions .btn {
-  font: inherit;
-  cursor: pointer;
-  min-height: 44px;
-}
-
-.pose-depth-control {
-  display: grid;
-  gap: 6px;
-  min-width: 180px;
-}
-
-.pose-depth-control span {
-  color: var(--soft);
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  font-size: 10px;
-  font-weight: 900;
-}
-
-.pose-depth-control select {
-  width: 100%;
-  border: 1px solid rgba(94,255,154,.38);
-  border-radius: 14px;
-  background:
-    linear-gradient(180deg, rgba(94,255,154,.055), rgba(0,0,0,.18)),
-    rgba(0,0,0,.25);
-  color: var(--text);
-  padding: 11px 12px;
-  outline: none;
-  font: inherit;
-  min-height: 44px;
-  box-shadow:
-    0 0 0 1px rgba(94,255,154,.06),
-    0 0 18px rgba(94,255,154,.16);
-}
-
-.pose-depth-control select:focus {
-  border-color: rgba(94,255,154,.72);
-  box-shadow:
-    0 0 0 1px rgba(94,255,154,.18),
-    0 0 24px rgba(94,255,154,.24);
-}
-
-.pose-depth-control select:disabled {
-  border-color: var(--line);
-  box-shadow: none;
-  opacity: .55;
-}
-
-.btn.insert {
-  border-color: rgba(94,255,154,.34);
-  color: var(--text);
-  background:
-    linear-gradient(180deg, rgba(94,255,154,.09), rgba(0,0,0,.13)),
-    rgba(0,0,0,.18);
-  box-shadow: 0 0 16px rgba(94,255,154,.10);
-}
-
-.btn.insert:hover {
-  border-color: rgba(94,255,154,.62);
-  box-shadow: 0 0 22px rgba(94,255,154,.18);
-}
-
-
-
-#addCurveHandleBtn,
-#clearCurveHandlesBtn {
-  border-color: var(--line);
-  color: var(--muted);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.16)),
-    rgba(0,0,0,.18);
-  box-shadow: none;
-}
-
-#addCurveHandleBtn.can-use,
-#clearCurveHandlesBtn.can-use {
-  border-color: rgba(94,255,154,.54);
-  color: var(--text);
-  background:
-    linear-gradient(180deg, rgba(94,255,154,.09), rgba(0,0,0,.13)),
-    rgba(0,0,0,.18);
-  box-shadow:
-    0 0 0 1px rgba(94,255,154,.08),
-    0 0 20px rgba(94,255,154,.18);
-}
-
-#addCurveHandleBtn.can-use:hover,
-#clearCurveHandlesBtn.can-use:hover {
-  border-color: rgba(94,255,154,.78);
-  box-shadow:
-    0 0 0 1px rgba(94,255,154,.16),
-    0 0 26px rgba(94,255,154,.25);
-}
-
-#addCurveHandleBtn:disabled,
-#clearCurveHandlesBtn:disabled {
-  cursor: not-allowed;
-  opacity: .52;
-}
-
-.btn.visibility-action {
-  border-color: var(--line);
-  color: var(--muted);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.16)),
-    rgba(0,0,0,.18);
-  box-shadow: none;
-}
-
-.btn.visibility-action.can-use {
-  border-color: rgba(94,255,154,.54);
-  color: var(--text);
-  background:
-    linear-gradient(180deg, rgba(94,255,154,.09), rgba(0,0,0,.13)),
-    rgba(0,0,0,.18);
-  box-shadow:
-    0 0 0 1px rgba(94,255,154,.08),
-    0 0 20px rgba(94,255,154,.18);
-}
-
-.btn.visibility-action.can-use:hover {
-  border-color: rgba(94,255,154,.78);
-  box-shadow:
-    0 0 0 1px rgba(94,255,154,.16),
-    0 0 26px rgba(94,255,154,.25);
-}
-
-.btn.visibility-action:disabled {
-  cursor: not-allowed;
-  opacity: .52;
-}
-
-.deleted-bones-panel {
-  display: grid;
-  gap: 12px;
-  margin-top: 16px;
-  width: 100%;
-}
-
-.deleted-bones-panel[hidden] {
-  display: none;
-}
-
-.deleted-bones-title {
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 900;
-  text-align: center;
-  text-transform: lowercase;
-  letter-spacing: .02em;
-}
-
-.deleted-bones-list {
-  display: grid;
-  gap: 8px;
-  justify-items: center;
-}
-
-.deleted-bone-chip {
-  width: min(100%, 136px);
-  min-height: 42px;
-}
-
-.deleted-bone-chip[aria-pressed="true"] {
-  border-color: color-mix(in srgb, var(--bone-color), white 32%);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--bone-color), transparent 65%),
-    0 0 22px color-mix(in srgb, var(--bone-color), transparent 72%);
-}
-
-.pose-legacy-state-fields {
-  display: none !important;
-}
-
-/* Wide editor workspace */
-
-.pose-editor-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 18px;
-  align-items: stretch;
-}
-
-.pose-stage-panel {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.pose-workbench {
-  padding: 18px;
-  display: grid;
-  grid-template-columns: 220px minmax(520px, calc(100vh - 190px)) 220px;
-  justify-content: center;
-  align-items: stretch;
-  gap: 18px;
-}
-
-.pose-side-rail {
-  min-width: 0;
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 22px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.08)),
-    rgba(0,0,0,.14);
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.pose-side-rail-left {
-  align-items: stretch;
-}
-
-.pose-side-rail-right {
-  align-items: stretch;
-  padding-top: 20px;
-  gap: 12px;
-}
-
-.pose-side-button-stack {
-  display: grid;
-  gap: 14px;
-  justify-items: center;
-}
-
-.pose-side-rail .btn {
-  font: inherit;
-  cursor: pointer;
-  justify-content: center;
-  width: fit-content;
-  min-height: 44px;
-  white-space: nowrap;
-}
-
-.pose-side-rail-left .btn {
-  width: 100%;
-}
-
-.pose-side-rail-right .btn {
-  width: 100%;
-}
-
-
-.canvas-frame {
-  width: 100%;
-  min-width: 0;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(103,232,255,.08), transparent 18rem),
-    rgba(0,0,0,.25);
-  padding: 14px;
-  overflow: hidden;
-  aspect-ratio: 1 / 1;
-}
-
-.canvas-grid {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.06);
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-  background-size: 32px 32px;
-  background-color: rgba(5,7,11,.72);
-  position: relative;
-  overflow: hidden;
-}
-
-.canvas-crosshair {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.canvas-crosshair::before,
-.canvas-crosshair::after {
-  content: "";
-  position: absolute;
-  background: rgba(103,232,255,.18);
-  z-index: 0;
-}
-
-.canvas-crosshair::before {
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-}
-
-.canvas-crosshair::after {
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-}
-
-.pose-canvas,
-.pose-export-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 2;
-}
-
-.pose-export-canvas[hidden] {
-  display: none;
-}
-
-.pose-action-row {
-  border-bottom: 1px solid var(--line);
-  padding: 14px 16px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.08)),
-    rgba(0,0,0,.12);
-}
-
-.pose-action-row .btn {
-  font: inherit;
-  cursor: pointer;
-  min-width: 126px;
-  justify-content: center;
-}
-
-
-.export-size-control {
-  display: inline-flex;
-  align-items: end;
-  gap: 8px;
-  padding: 6px 8px;
-  border: 1px solid rgba(103,232,255,.16);
-  border-radius: 16px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.12)),
-    rgba(0,0,0,.18);
-}
-
-.export-size-control label {
-  display: grid;
-  gap: 4px;
-}
-
-.export-size-control span {
-  color: var(--soft);
-  font-size: 10px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: .10em;
-}
-
-.export-size-control input {
-  width: 88px;
-  min-height: 34px;
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 11px;
-  background: rgba(0,0,0,.26);
-  color: var(--text);
-  padding: 7px 9px;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 850;
-  outline: none;
-}
-
-.export-size-control input:focus {
-  border-color: rgba(103,232,255,.52);
-  box-shadow:
-    0 0 0 1px rgba(103,232,255,.10),
-    0 0 18px rgba(103,232,255,.12);
-}
-
-/* Pose pack/card content */
-
-.pose-pack-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  padding: 16px;
-}
-
-.pose-pack-card {
-  display: grid;
-  gap: 10px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 16px;
-  background: rgba(255,255,255,.03);
-}
-
-.pack-label {
-  display: inline-flex;
-  width: fit-content;
-  border: 1px solid var(--line2);
-  border-radius: 999px;
-  padding: 5px 9px;
-  color: var(--accent);
-  background: rgba(103,232,255,.07);
-  font-size: 11px;
-  font-weight: 950;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.pose-pack-card h3 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.pose-pack-card p {
-  margin: 0;
-  color: var(--muted);
-}
-
-@media (max-width: 1180px) {
-  .bone-color-panel-wide {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .pose-workbench {
-    grid-template-columns: 1fr;
-  }
-
-  .pose-side-rail {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: end;
-  }
-
-  .pose-side-button-stack {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .pose-side-rail-left .btn,
-  .pose-side-rail-right .btn {
-    width: auto;
-    min-width: 168px;
-  }
-
-  
-  .canvas-frame {
-    width: min(100%, 860px);
-    min-width: 0;
-    justify-self: center;
-  }
-}
-
-@media (max-width: 940px) {
-  .bone-color-panel-wide,
-  .pose-pack-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .bone-color-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .pose-action-row {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 640px) {
-  .bone-color-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .pose-control-actions .btn,
-  .pose-action-row .btn,
-  .pose-side-rail-left .btn,
-  .pose-side-rail-right .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .export-size-control {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .export-size-control input {
-    width: min(36vw, 140px);
-  }
-
-  .pose-side-rail {
-    padding: 14px;
-  }
-
-  .pose-side-button-stack {
-    width: 100%;
-  }
-
-  .pose-workbench {
-    padding: 12px;
-  }
-
-  .canvas-frame {
-    padding: 10px;
-  }
-}
-
-/* First-pass compact editor layout: file/canvas/export tools left, bone chips right */
-.pose-workbench {
-  grid-template-columns: 240px minmax(520px, calc(100vh - 190px)) 240px;
-}
-
-.pose-side-rail-left,
-.pose-side-rail-right {
-  min-height: 0;
-}
-
-.pose-sidebar-group {
-  display: grid;
-  gap: 10px;
-  width: 100%;
-}
-
-.pose-sidebar-grid.two-up {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  width: 100%;
-}
-
-.pose-tool-btn {
-  border-color: var(--line);
-  color: var(--muted);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.16)),
-    rgba(0,0,0,.18);
-  box-shadow: none;
-}
-
-.pose-tool-btn:hover,
-.pose-tool-btn:focus-visible {
-  border-color: rgba(255,255,255,.18);
-  color: var(--text);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.055), rgba(0,0,0,.14)),
-    rgba(0,0,0,.22);
-}
-
-.pose-tool-btn.reset-outline {
-  color: color-mix(in srgb, var(--danger, #ff5e78), white 12%);
-  border-color: rgba(255,94,120,.34);
-  background:
-    linear-gradient(180deg, rgba(255,94,120,.045), rgba(0,0,0,.16)),
-    rgba(0,0,0,.18);
-}
-
-.pose-tool-btn.reset-outline:hover,
-.pose-tool-btn.reset-outline:focus-visible {
-  color: #ff8da0;
-  border-color: rgba(255,94,120,.56);
-  box-shadow: 0 0 18px rgba(255,94,120,.12);
-}
-
-.export-size-control-sidebar {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  width: 100%;
-}
-
-.export-size-control-sidebar label {
-  min-width: 0;
-}
-
-.export-size-control-sidebar input {
-  width: 100%;
-  min-width: 0;
-}
-
-.pose-thickness-control {
-  margin-top: 10px;
-}
-
-.pose-thickness-control span {
-  letter-spacing: .08em;
-}
-
-.pose-reset-group {
-  margin-top: auto;
-}
-
-.pose-reset-group .btn {
-  width: 100%;
-}
-
-.pose-side-rail-right {
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(103,232,255,.28) rgba(0,0,0,.12);
-}
-
 .pose-side-rail-right .bone-color-panel-rail {
   display: grid;
   gap: 12px;
@@ -909,168 +803,96 @@
   height: 2px;
 }
 
-@media (max-width: 1180px) {
-  .pose-side-rail-right {
-    overflow: visible;
-  }
+/* ========================================================================== */
+/* Deleted bones                                                               */
+/* ========================================================================== */
 
-  .pose-side-rail-right .bone-color-panel-rail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .pose-sidebar-grid.two-up,
-  .export-size-control-sidebar,
-  .pose-side-rail-right .bone-color-panel-rail {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* Pose layout iteration 2: controls left, bones right, square canvas locked */
-.pose-workbench {
-  align-items: start;
-}
-
-.canvas-frame {
-  align-self: start;
-  justify-self: center;
-  width: min(100%, calc(100vh - 190px));
-  height: auto;
-  aspect-ratio: 1 / 1;
-}
-
-.pose-side-rail-left {
-  align-self: start;
-  margin-top: 18px;
-  max-height: calc(100vh - 208px);
-}
-
-.pose-side-rail-right {
-  align-self: start;
-  max-height: calc(100vh - 190px);
-}
-
-.pose-side-button-stack .visibility-action,
-.pose-side-button-stack .pose-tool-btn {
+.deleted-bones-panel {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
   width: 100%;
 }
 
-.pose-side-button-stack .reset-outline {
-  margin-top: 4px;
-}
-
-.pose-side-rail-right > .visibility-action {
+.deleted-bones-panel[hidden] {
   display: none;
 }
 
-@media (max-width: 1180px) {
-  .canvas-frame {
-    width: min(100%, 860px);
-  }
-
-  .pose-side-rail-right {
-    max-height: none;
-  }
-}
-
-/* Pose layout correction: equal-height rails and restored balanced workstation frame */
-.pose-workbench {
-  align-items: stretch;
-}
-
-.pose-side-rail-left,
-.pose-side-rail-right {
-  align-self: stretch;
-  margin-top: 0;
-  height: 100%;
-  max-height: calc(100vh - 190px);
-}
-
-.pose-side-rail-left {
-  justify-content: start;
-}
-
-.pose-side-button-stack {
-  margin-top: 0;
-}
-
-@media (max-width: 1180px) {
-  .pose-side-rail-left,
-  .pose-side-rail-right {
-    height: auto;
-    max-height: none;
-  }
-}
-
-/* Pose editor helper text */
-.pose-editor-tip {
-  width: min(100%, 760px);
-  margin: 0 auto 20px;
-  padding: 0 20px;
+.deleted-bones-title {
   color: var(--muted);
   font-size: 13px;
-  font-weight: 750;
-  line-height: 1.55;
+  font-weight: 900;
   text-align: center;
+  text-transform: lowercase;
+  letter-spacing: .02em;
 }
 
-@media (max-width: 760px) {
-  .pose-editor-tip {
-    margin-bottom: 16px;
-    font-size: 12px;
-  }
+.deleted-bones-list {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
 }
 
-/* Pose helper placement refinement: keep the tip attached to the canvas column */
-.pose-canvas-stack {
-  min-width: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.deleted-bone-chip {
+  width: min(100%, 136px);
+  min-height: 42px;
+}
+
+.deleted-bone-chip[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--bone-color), white 32%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--bone-color), transparent 65%),
+    0 0 22px color-mix(in srgb, var(--bone-color), transparent 72%);
+}
+
+/* ========================================================================== */
+/* Pose pack cards                                                             */
+/* ========================================================================== */
+
+.pose-pack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.pose-pack-card {
+  display: grid;
   gap: 10px;
-  align-self: start;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255,255,255,.03);
 }
 
-.pose-canvas-stack .canvas-frame {
-  width: min(100%, calc(100vh - 190px));
-}
-
-.pose-canvas-stack .pose-editor-tip {
-  width: min(100%, 720px);
-  margin: 0 auto;
-  padding: 16px 22px;
-  border: 1px solid rgba(103, 232, 255, .10);
+.pack-label {
+  display: inline-flex;
+  width: fit-content;
+  border: 1px solid var(--line2);
   border-radius: 999px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.10)),
-    rgba(0,0,0,.14);
-  color: color-mix(in srgb, var(--muted), var(--text) 12%);
-  font-size: 12px;
-  font-weight: 650;
-  line-height: 1.35;
-  letter-spacing: .005em;
-  text-align: left;
-  box-sizing: border-box;
+  padding: 5px 9px;
+  color: var(--accent);
+  background: rgba(103,232,255,.07);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
-@media (max-width: 1180px) {
-  .pose-canvas-stack .canvas-frame {
-    width: min(100%, 860px);
-  }
+.pose-pack-card h3 {
+  margin: 0;
+  font-size: 18px;
 }
 
-@media (max-width: 760px) {
-  .pose-canvas-stack .pose-editor-tip {
-    border-radius: 16px;
-    font-size: 12px;
-  }
+.pose-pack-card p {
+  margin: 0;
+  color: var(--muted);
 }
 
-/* Narrow desktop guard: keep the editor usable when the browser is not full width.
-   This is desktop-friendly fallback behavior, not a mobile-first redesign. */
+/* ========================================================================== */
+/* Responsive layout                                                           */
+/* ========================================================================== */
+
 @media (max-width: 1450px) and (min-width: 1041px) {
   .pose-workbench {
     grid-template-columns: 240px minmax(520px, calc(100vh - 220px));
@@ -1090,8 +912,8 @@
 
   .pose-side-rail-left {
     grid-column: 1;
-    grid-row: 1 / span 2;
-    align-self: stretch;
+    grid-row: 1;
+    align-self: start;
     height: auto;
     max-height: none;
   }
@@ -1126,6 +948,63 @@
   }
 }
 
+@media (max-width: 1180px) {
+  .bone-color-panel-wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pose-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .pose-canvas-stack,
+  .pose-side-rail-left,
+  .pose-side-rail-right {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .pose-side-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: end;
+  }
+
+  .pose-side-button-stack {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pose-side-rail-left,
+  .pose-side-rail-right {
+    height: auto;
+    max-height: none;
+  }
+
+  .pose-side-rail-left .btn,
+  .pose-side-rail-right .btn {
+    width: auto;
+    min-width: 168px;
+  }
+
+  .canvas-frame,
+  .pose-canvas-stack .canvas-frame {
+    width: min(100%, 860px);
+    min-width: 0;
+    justify-self: center;
+  }
+
+  .pose-side-rail-right {
+    overflow: visible;
+  }
+
+  .pose-side-rail-right .bone-color-panel-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1040px) {
   .pose-workbench {
     grid-template-columns: 1fr;
@@ -1150,44 +1029,74 @@
   }
 }
 
-/* Keep two-up sidebar buttons readable by allowing tighter wrapping */
-.pose-sidebar-grid.two-up .btn {
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  padding-inline: 8px;
-  white-space: normal;
-  line-height: 1.15;
-  text-align: center;
+@media (max-width: 940px) {
+  .bone-color-panel-wide,
+  .pose-pack-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bone-color-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pose-action-row {
+    justify-content: center;
+  }
 }
 
-/* Compact left rail spacing */
-.pose-side-rail-left {
-  gap: 14px;
+@media (max-width: 760px) {
+  .pose-editor-tip {
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+
+  .pose-canvas-stack .pose-editor-tip {
+    border-radius: 16px;
+    font-size: 12px;
+  }
 }
 
-/* The thickness box already has internal grouping, so don't add extra lift */
-.pose-side-rail-left .pose-thickness-control {
-  margin-top: 0;
-}
+@media (max-width: 640px) {
+  .bone-color-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-/* Do not let Reset Canvas get shoved to the floor */
-.pose-side-rail-left .pose-reset-group {
-  margin-top: 0;
-}
+  .pose-sidebar-grid.two-up,
+  .export-size-control-sidebar,
+  .pose-side-rail-right .bone-color-panel-rail {
+    grid-template-columns: 1fr;
+  }
 
-/* Slightly tighter action-button stack */
-.pose-side-rail-left .pose-side-button-stack {
-  gap: 10px;
-}
+  .pose-control-actions .btn,
+  .pose-action-row .btn,
+  .pose-side-rail-left .btn,
+  .pose-side-rail-right .btn {
+    width: 100%;
+    justify-content: center;
+  }
 
-/* Keep two-up buttons contained without making them overly tall */
-.pose-sidebar-grid.two-up .btn {
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  padding-inline: 8px;
-  white-space: normal;
-  line-height: 1.15;
-  text-align: center;
+  .export-size-control {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .export-size-control input {
+    width: min(36vw, 140px);
+  }
+
+  .pose-side-rail {
+    padding: 14px;
+  }
+
+  .pose-side-button-stack {
+    width: 100%;
+  }
+
+  .pose-workbench {
+    padding: 12px;
+  }
+
+  .canvas-frame {
+    padding: 10px;
+  }
 }
