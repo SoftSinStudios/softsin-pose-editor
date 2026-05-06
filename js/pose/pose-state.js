@@ -27,6 +27,7 @@ export const BODY25_POINTS = {
   lEye:      { rgb: [170, 0, 255], hex: "#aa00ff" },
   rEar:      { rgb: [255, 0, 255], hex: "#ff00ff" },
   lEar:      { rgb: [85, 0, 255], hex: "#5500ff" },
+  chin: { rgb: [255, 120, 0], hex: "#ff7800" },
   rShoulder: { rgb: [255, 85, 0], hex: "#ff5500" },
   rElbow:    { rgb: [255, 170, 0], hex: "#ffaa00" },
   rWrist:    { rgb: [255, 255, 0], hex: "#ffff00" },
@@ -52,6 +53,7 @@ export function createDefaultKeypoints() {
     // then users can push it into stylized or quadruped shapes as needed.
     nose: { x: 512, y: 250 },
     neck: { x: 512, y: 335 },
+	chin: { x: 512, y: 285 },
 
     // Front-facing default dummy:
     // BODY_25 names stay anatomical, so the subject's right side appears on the viewer's left.
@@ -89,6 +91,7 @@ export function createDefaultKeypoints() {
 // Core bones
 export const BODY25_BONES = {
   "nose-neck": { from: "nose", to: "neck", curve: true },
+  "nose-chin": { from: "nose", to: "chin", curve: true, hiddenByDefault: true },
   "neck-midhip": { from: "neck", to: "midHip", curve: true },
   "midhip-tail": { from: "midHip", to: "tail", curve: true, hiddenByDefault: true },
   "neck-rshoulder": { from: "neck", to: "rShoulder", curve: true },
