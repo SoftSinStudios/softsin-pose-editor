@@ -1,0 +1,507 @@
+/* SoftSin Studios — Music Prompt Builder */
+
+.musicprompt-page .musicprompt-shell {
+  width: min(1840px, calc(100% - 36px));
+}
+
+.musicprompt-page .musicprompt-hero {
+  padding: 34px 0 24px;
+  align-items: start;
+}
+
+.musicprompt-page .musicprompt-hero h1 {
+  font-size: clamp(34px, 5vw, 64px);
+  max-width: 900px;
+}
+
+.musicprompt-page .lead {
+  max-width: 780px;
+}
+
+.musicprompt-visual {
+  min-height: 340px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 62% 22%, rgba(103,232,255,.34), transparent 12rem),
+    radial-gradient(circle at 20% 76%, rgba(255,94,120,.24), transparent 14rem),
+    linear-gradient(145deg, #111824, #070a10);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.musicprompt-visual::after {
+  content: "Music Prompt Builder";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: rgba(5,7,11,.72);
+  color: var(--muted);
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(16px);
+}
+
+.musicprompt-stack {
+  width: min(78%, 390px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+  transform: rotate(-2deg);
+  padding-bottom: 44px;
+}
+
+.musicprompt-stack span {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(5,7,11,.62);
+  backdrop-filter: blur(14px);
+  padding: 14px 15px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 0 18px 50px rgba(0,0,0,.22);
+}
+
+.musicprompt-stack span:nth-child(2n) {
+  color: var(--accent);
+  transform: translateY(12px);
+}
+
+.musicprompt-stack span:nth-child(3n) {
+  color: var(--accent2);
+}
+
+.musicprompt-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 16px;
+}
+
+.musicprompt-info-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.035);
+  padding: 16px;
+}
+
+.musicprompt-info-card strong {
+  display: block;
+  color: var(--text);
+  font-weight: 950;
+  margin-bottom: 5px;
+}
+
+.musicprompt-info-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.musicprompt-app {
+  display: grid;
+  grid-template-columns: minmax(260px, .41fr) minmax(620px, 1.6fr) minmax(420px, .8fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.builder-panel,
+.output-card,
+.diagnostics-card {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), transparent 15rem),
+    var(--panel);
+  backdrop-filter: blur(18px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.controls-panel,
+.middle-panel,
+.output-panel {
+  min-height: 620px;
+}
+
+.controls-panel {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 16px;
+}
+
+.panel-header,
+.output-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.panel-header {
+  display: grid;
+  gap: 4px;
+}
+
+.panel-header h2,
+.output-header h2,
+.diagnostics-card h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -.4px;
+}
+
+.panel-header p {
+  margin: 0;
+  color: var(--soft);
+  font-size: 13px;
+}
+
+.builder-grid {
+  display: grid;
+  gap: 9px;
+}
+
+.control-card {
+  display: grid;
+  gap: 7px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 95% 10%, rgba(103,232,255,.07), transparent 8rem),
+    rgba(255,255,255,.035);
+}
+
+.control-card h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 950;
+  color: var(--text);
+}
+
+.field-note,
+.char-count {
+  margin: 0;
+  color: var(--soft);
+  font-size: 12px;
+}
+
+select,
+textarea,
+.recipe-input,
+.setting-field input {
+  width: 100%;
+  color: var(--text);
+  background: rgba(5,7,11,.78);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color .16s ease, box-shadow .16s ease, background .16s ease;
+}
+
+select {
+  min-height: 38px;
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+  line-height: 1.45;
+}
+
+select:hover,
+textarea:hover,
+.recipe-input:hover,
+.setting-field input:hover {
+  border-color: rgba(103,232,255,.22);
+}
+
+select:focus,
+textarea:focus,
+.recipe-input:focus,
+.setting-field input:focus {
+  border-color: rgba(103,232,255,.52);
+  box-shadow: 0 0 0 3px rgba(103,232,255,.10);
+}
+
+textarea::placeholder,
+.recipe-input::placeholder {
+  color: rgba(174,184,201,.72);
+}
+
+.middle-panel {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  min-width: 0;
+}
+
+.diagnostics-top {
+  padding: 16px;
+}
+
+.health-score {
+  margin: 10px 0;
+  padding: 9px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(93,255,159,.24);
+  background: rgba(93,255,159,.08);
+  color: var(--good);
+  font-size: 14px;
+}
+
+.risk-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.risk-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.035);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.risk-item strong {
+  color: var(--text);
+}
+
+.risk-item.medium {
+  border-color: rgba(255,209,102,.34);
+  color: var(--warn);
+}
+
+.risk-item.high {
+  border-color: rgba(255,94,120,.38);
+  color: var(--accent2);
+}
+
+.diagnostics-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.diagnostic-item {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  background: rgba(255,255,255,.035);
+}
+
+.diagnostic-item.warning {
+  color: var(--warn);
+  border-color: rgba(255,209,102,.3);
+}
+
+.lyrics-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+  padding: 16px;
+}
+
+.lyrics-panel .panel-header,
+.exclusions-card {
+  grid-column: 1 / -1;
+}
+
+.text-card {
+  min-height: 0;
+  grid-template-rows: auto 1fr;
+}
+
+.lyrics-panel textarea,
+.lyrics-panel #custom-notes {
+  height: 100%;
+  min-height: 330px;
+}
+
+.checkbox-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 162px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.checkbox-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-pill:hover {
+  color: var(--text);
+  border-color: var(--line2);
+  background: rgba(103,232,255,.07);
+}
+
+.checkbox-pill input {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+}
+
+.output-panel {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-width: 0;
+}
+
+.output-card {
+  padding: 16px;
+}
+
+.settings-grid,
+.recipe-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.setting-field {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.recipe-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.output-card textarea {
+  font-size: 14px;
+  border-radius: 14px;
+}
+
+#compiled-prompt {
+  min-height: 200px;
+}
+
+#compiled-exclude {
+  min-height: 163px;
+}
+
+.char-count {
+  margin-top: 8px;
+  text-align: right;
+}
+
+@media (max-width: 1300px) {
+  .musicprompt-app {
+    grid-template-columns: minmax(260px, .75fr) minmax(420px, 1.25fr);
+  }
+
+  .output-panel {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .middle-panel {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .controls-panel,
+  .middle-panel,
+  .output-panel {
+    min-height: auto;
+  }
+
+  .lyrics-panel textarea,
+  .lyrics-panel #custom-notes {
+    min-height: 300px;
+    height: 300px;
+  }
+
+  .risk-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 940px) {
+  .musicprompt-info-grid,
+  .musicprompt-app,
+  .lyrics-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .output-panel,
+  .middle-panel {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .lyrics-panel textarea,
+  .lyrics-panel #custom-notes {
+    min-height: 260px;
+    height: 260px;
+  }
+}
+
+@media (max-width: 700px) {
+  .musicprompt-page .musicprompt-shell {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .musicprompt-stack,
+  .risk-list {
+    grid-template-columns: 1fr;
+  }
+
+  .musicprompt-stack span:nth-child(2n) {
+    transform: none;
+  }
+
+  .recipe-button-row {
+    flex-direction: column;
+  }
+
+  .recipe-button-row .btn {
+    width: 100%;
+  }
+
+  .lyrics-panel textarea,
+  .lyrics-panel #custom-notes {
+    min-height: 220px;
+    height: 220px;
+  }
+}

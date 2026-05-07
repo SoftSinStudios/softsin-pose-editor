@@ -1,0 +1,278 @@
+[
+  {
+    "id": "early_doom_anchor",
+    "label": "Early Doom Anchor",
+    "prompt": [
+      "early doom metal traits",
+      "blues-rooted heavy riffs",
+      "slow-mid tempo",
+      "vintage analog amp tone",
+      "roomy 1970s drum sound"
+    ],
+    "exclude": [
+      "artist name references",
+      "soundalike imitation language",
+      "modern arena rock polish"
+    ],
+    "traits": [
+      "doom",
+      "vintage",
+      "analog",
+      "roomy_drums",
+      "blues_rooted"
+    ],
+    "risk": {
+      "butt_rock": -2
+    },
+    "weight": 1,
+    "description": "A neutralized early doom reference anchor.",
+    "category": "doom"
+  },
+  {
+    "id": "epic_doom_anchor",
+    "label": "Epic Doom Anchor",
+    "prompt": [
+      "epic traditional doom traits",
+      "majestic slow riffs",
+      "dramatic clean vocals",
+      "large-room heavy metal atmosphere"
+    ],
+    "exclude": [
+      "artist name references",
+      "modern metalcore production",
+      "post-grunge vocals"
+    ],
+    "traits": [
+      "doom",
+      "epic",
+      "dramatic",
+      "clean_vocals",
+      "large_room"
+    ],
+    "risk": {
+      "butt_rock": 1,
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Epic doom descriptor mapper.",
+    "category": "doom"
+  },
+  {
+    "id": "desert_fuzz_anchor",
+    "label": "Desert Fuzz Anchor",
+    "prompt": [
+      "dusty desert atmosphere",
+      "warm tube amp saturation",
+      "loose hypnotic groove",
+      "fuzz-heavy riffing"
+    ],
+    "exclude": [
+      "cold digital production",
+      "over-compressed radio mix",
+      "artist name references"
+    ],
+    "traits": [
+      "desert",
+      "fuzz",
+      "tube_saturation",
+      "groove",
+      "warm"
+    ],
+    "risk": {
+      "butt_rock": -1
+    },
+    "weight": 1,
+    "description": "Desert/stoner-rock descriptor mapper.",
+    "category": "stoner"
+  },
+  {
+    "id": "ultra_fuzz_doom_anchor",
+    "label": "Ultra-Fuzz Doom Anchor",
+    "prompt": [
+      "ultra-fuzzed doom texture",
+      "buried low-end saturation",
+      "drugged hypnotic pacing",
+      "oppressive analog atmosphere"
+    ],
+    "exclude": [
+      "clean modern rock vocals",
+      "artist name references",
+      "bright polished mix"
+    ],
+    "traits": [
+      "doom",
+      "fuzz",
+      "low_end",
+      "oppressive",
+      "hypnotic"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Extreme fuzz-heavy doom mapper.",
+    "category": "doom"
+  },
+  {
+    "id": "raw_sludge_anchor",
+    "label": "Raw Sludge Anchor",
+    "prompt": [
+      "raw sludge traits",
+      "hostile low-end pressure",
+      "dirty saturated guitars",
+      "strained underground vocal texture"
+    ],
+    "exclude": [
+      "arena rock chorus",
+      "artist name references",
+      "glossy hard rock production"
+    ],
+    "traits": [
+      "sludge",
+      "raw",
+      "hostile",
+      "dirty",
+      "underground"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "vocal_grunts": 1
+    },
+    "weight": 1,
+    "description": "Sludge descriptor mapper.",
+    "category": "sludge"
+  },
+  {
+    "id": "post_metal_anchor",
+    "label": "Post-Metal Atmosphere Anchor",
+    "prompt": [
+      "post-metal atmosphere",
+      "slow layered guitar build",
+      "cinematic heaviness",
+      "wide emotional release"
+    ],
+    "exclude": [
+      "artist name references",
+      "radio rock chorus",
+      "party-rock groove"
+    ],
+    "traits": [
+      "post_metal",
+      "cinematic",
+      "layered",
+      "wide",
+      "build"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Long-form atmospheric heavy mapper.",
+    "category": "post_metal"
+  },
+  {
+    "id": "nordic_folk_anchor",
+    "label": "Nordic Folk Anchor",
+    "prompt": [
+      "northern folk atmosphere",
+      "earthy modal melodies",
+      "deep hand drums",
+      "ancient winter texture"
+    ],
+    "exclude": [
+      "artist name references",
+      "bright tropical pop tone",
+      "EDM club rhythm"
+    ],
+    "traits": [
+      "folk",
+      "nordic",
+      "modal",
+      "earthy",
+      "ancient"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Neutral Nordic folk descriptor mapper.",
+    "category": "folk"
+  },
+  {
+    "id": "dark_80s_synth_anchor",
+    "label": "Dark 80s Synth Anchor",
+    "prompt": [
+      "dark 1980s synth atmosphere",
+      "analog bass pulse",
+      "nocturnal neon texture",
+      "retro cinematic drums"
+    ],
+    "exclude": [
+      "artist name references",
+      "acoustic folk-only arrangement",
+      "bright novelty synth"
+    ],
+    "traits": [
+      "synthwave",
+      "retro",
+      "analog_synth",
+      "dark",
+      "nocturnal"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Dark synthwave descriptor mapper.",
+    "category": "synth"
+  },
+  {
+    "id": "dungeon_ambient_anchor",
+    "label": "Dungeon Ambient Anchor",
+    "prompt": [
+      "ancient dungeon ambience",
+      "simple medieval synth melody",
+      "dark fantasy atmosphere",
+      "slow minimal arrangement"
+    ],
+    "exclude": [
+      "artist name references",
+      "modern EDM drop",
+      "radio-rock vocals"
+    ],
+    "traits": [
+      "dungeon_synth",
+      "ambient",
+      "medieval",
+      "fantasy",
+      "minimal"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Dungeon synth descriptor mapper.",
+    "category": "ambient"
+  },
+  {
+    "id": "southern_gothic_anchor",
+    "label": "Southern Gothic Anchor",
+    "prompt": [
+      "southern gothic atmosphere",
+      "dusty storytelling tone",
+      "slow swampy rhythm",
+      "dark acoustic texture"
+    ],
+    "exclude": [
+      "artist name references",
+      "bright corporate country pop",
+      "EDM drums"
+    ],
+    "traits": [
+      "southern_gothic",
+      "dusty",
+      "storytelling",
+      "swampy",
+      "dark"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Southern gothic descriptor mapper.",
+    "category": "folk"
+  }
+]

@@ -1,0 +1,190 @@
+[
+  {
+    "id": "downtuned_fuzz_stack",
+    "label": "Downtuned Fuzz Stack",
+    "prompt": [
+      "downtuned fuzz guitars",
+      "thick bass guitar",
+      "slow heavy drums"
+    ],
+    "exclude": [
+      "thin guitar tone",
+      "bright pop drums"
+    ],
+    "traits": [
+      "downtuned",
+      "fuzz",
+      "bass_heavy",
+      "heavy"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Core doom/stoner/sludge instrument stack.",
+    "category": "guitar"
+  },
+  {
+    "id": "analog_doom_stack",
+    "label": "Analog Doom Stack",
+    "prompt": [
+      "warm analog guitars",
+      "tube amp saturation",
+      "roomy drums",
+      "heavy bass foundation"
+    ],
+    "exclude": [
+      "djent guitar tone",
+      "sterile digital mix"
+    ],
+    "traits": [
+      "analog",
+      "tube_saturation",
+      "roomy_drums",
+      "bass_heavy"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Vintage heavy stack.",
+    "category": "guitar"
+  },
+  {
+    "id": "sludge_stack",
+    "label": "Sludge Stack",
+    "prompt": [
+      "filthy distorted guitars",
+      "overdriven bass",
+      "raw pounding drums"
+    ],
+    "exclude": [
+      "sparkly clean guitars",
+      "polished pop drums"
+    ],
+    "traits": [
+      "sludge",
+      "distorted",
+      "overdriven_bass",
+      "raw_drums"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Dirty sludge instrumentation.",
+    "category": "guitar"
+  },
+  {
+    "id": "desert_groove_stack",
+    "label": "Desert Groove Stack",
+    "prompt": [
+      "fuzz guitar riffs",
+      "loose desert-rock drums",
+      "warm bass groove"
+    ],
+    "exclude": [
+      "cold synth pads only",
+      "metalcore breakdown guitars"
+    ],
+    "traits": [
+      "fuzz",
+      "desert",
+      "groove",
+      "warm"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Stoner/desert rhythm stack.",
+    "category": "guitar"
+  },
+  {
+    "id": "orchestral_dark_stack",
+    "label": "Dark Orchestral Stack",
+    "prompt": [
+      "low orchestral strings",
+      "cinematic percussion",
+      "dark brass accents"
+    ],
+    "exclude": [
+      "small acoustic demo",
+      "garage punk drums"
+    ],
+    "traits": [
+      "orchestral",
+      "cinematic",
+      "strings",
+      "percussion",
+      "dark"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Cinematic supporting instrumentation.",
+    "category": "orchestral"
+  },
+  {
+    "id": "folk_ancient_stack",
+    "label": "Ancient Folk Stack",
+    "prompt": [
+      "acoustic guitar",
+      "low hand drums",
+      "old-world folk melody",
+      "subtle drone texture"
+    ],
+    "exclude": [
+      "modern EDM drums",
+      "glossy pop synths"
+    ],
+    "traits": [
+      "folk",
+      "acoustic",
+      "hand_drums",
+      "old_world",
+      "drone"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Earthy folk elements.",
+    "category": "folk"
+  },
+  {
+    "id": "synth_dark_stack",
+    "label": "Dark Synth Stack",
+    "prompt": [
+      "analog synth bass",
+      "dark pads",
+      "slow pulsing arpeggios"
+    ],
+    "exclude": [
+      "acoustic-only arrangement",
+      "bright tropical synths"
+    ],
+    "traits": [
+      "analog_synth",
+      "dark",
+      "pads",
+      "pulse"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Dark electronic stack.",
+    "category": "synth"
+  },
+  {
+    "id": "minimal_drone_stack",
+    "label": "Minimal Drone Stack",
+    "prompt": [
+      "sustained drones",
+      "subtle low-frequency movement",
+      "sparse atmospheric texture"
+    ],
+    "exclude": [
+      "busy drum fills",
+      "anthemic chorus arrangement"
+    ],
+    "traits": [
+      "drone",
+      "minimal",
+      "spacious",
+      "low_frequency"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Ambient/dungeon/drone foundation.",
+    "category": "ambient"
+  }
+]

@@ -1,0 +1,150 @@
+[
+  {
+    "id": "slow_build_massive_chorus",
+    "label": "Slow Build to Massive Chorus",
+    "prompt": [
+      "slow atmospheric intro that builds into a massive chorus"
+    ],
+    "exclude": [
+      "abrupt EDM drop",
+      "fast genre hopping"
+    ],
+    "traits": [
+      "slow_build",
+      "massive_chorus",
+      "dynamic"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1,
+    "description": "Useful, but can trigger radio-rock if paired with modern heavy vocals."
+  },
+  {
+    "id": "riff_loop_hypnotic",
+    "label": "Hypnotic Riff Loop",
+    "prompt": [
+      "hypnotic repeated riff structure",
+      "cyclical groove-based arrangement"
+    ],
+    "exclude": [
+      "constant key changes",
+      "busy progressive transitions"
+    ],
+    "traits": [
+      "riff_loop",
+      "hypnotic",
+      "cyclical",
+      "groove"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "verse_chorus_bridge",
+    "label": "Verse / Chorus / Bridge",
+    "prompt": [
+      "clear verse chorus bridge structure",
+      "memorable chorus section"
+    ],
+    "exclude": [
+      "formless ambient drift"
+    ],
+    "traits": [
+      "standard_song",
+      "chorus",
+      "bridge"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "long_form_build",
+    "label": "Long-Form Build",
+    "prompt": [
+      "long-form arrangement",
+      "gradual tension build",
+      "slow release of energy"
+    ],
+    "exclude": [
+      "short pop structure",
+      "instant chorus opening"
+    ],
+    "traits": [
+      "long_form",
+      "build",
+      "atmospheric"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "minimal_repetition",
+    "label": "Minimal Repetition",
+    "prompt": [
+      "minimal repetitive structure",
+      "slow evolving pattern",
+      "subtle variation"
+    ],
+    "exclude": [
+      "fast genre hopping"
+    ],
+    "traits": [
+      "minimal",
+      "repetitive",
+      "slow_evolving"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "quiet_loud_dynamic",
+    "label": "Quiet / Loud Dynamic",
+    "prompt": [
+      "quiet intro into heavy section",
+      "dynamic contrast between restrained verses and heavier payoff"
+    ],
+    "exclude": [
+      "flat constant intensity",
+      "overcompressed wall from start to finish"
+    ],
+    "traits": [
+      "dynamic",
+      "quiet_loud",
+      "build"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "instrumental_jam",
+    "label": "Instrumental Jam",
+    "prompt": [
+      "instrumental jam structure",
+      "riff-led arrangement",
+      "loose live-band energy"
+    ],
+    "exclude": [
+      "strict pop vocal structure",
+      "overly edited arrangement"
+    ],
+    "traits": [
+      "instrumental",
+      "jam",
+      "riff_led",
+      "loose"
+    ],
+    "risk": {
+      "butt_rock": -2
+    },
+    "weight": 1
+  }
+]

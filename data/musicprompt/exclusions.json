@@ -1,0 +1,155 @@
+[
+  {
+    "id": "anti_butt_rock",
+    "label": "Anti-Butt-Rock Filter",
+    "prompt": [],
+    "exclude": [
+      "post-grunge vocals",
+      "butt rock",
+      "macho grunts",
+      "arena rock chorus",
+      "glossy hard rock production",
+      "forced tough-guy vocals"
+    ],
+    "traits": [
+      "anti_butt_rock",
+      "vocal_control"
+    ],
+    "risk": {
+      "butt_rock": -6,
+      "vocal_grunts": -3
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_reverb",
+    "label": "Anti-Reverb Filter",
+    "prompt": [],
+    "exclude": [
+      "huge vocal reverb",
+      "washed-out vocals",
+      "distant vocals",
+      "echoing vocal delay",
+      "ambient vocal wash",
+      "wet vocal mix"
+    ],
+    "traits": [
+      "anti_reverb",
+      "dry",
+      "vocal_space_control"
+    ],
+    "risk": {
+      "reverb": -7
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_grunt",
+    "label": "Anti-Grunt Filter",
+    "prompt": [],
+    "exclude": [
+      "random growls",
+      "harsh barking vocals",
+      "gang shouts",
+      "tough-guy vocal adlibs"
+    ],
+    "traits": [
+      "anti_grunt",
+      "vocal_control"
+    ],
+    "risk": {
+      "vocal_grunts": -6,
+      "butt_rock": -2
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_modern_metalcore",
+    "label": "Anti-Modern Metalcore",
+    "prompt": [],
+    "exclude": [
+      "metalcore breakdowns",
+      "djent guitar tone",
+      "over-edited drums",
+      "modern metalcore production",
+      "screamed breakdown vocals"
+    ],
+    "traits": [
+      "anti_metalcore"
+    ],
+    "risk": {
+      "genre_drift": -3
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_pop",
+    "label": "Anti-Pop Polish",
+    "prompt": [],
+    "exclude": [
+      "bright pop chorus",
+      "EDM drop",
+      "glossy pop vocals",
+      "dance-pop production",
+      "cheerful radio hook"
+    ],
+    "traits": [
+      "anti_pop"
+    ],
+    "risk": {
+      "genre_drift": -2
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_artist_output",
+    "label": "Anti-Artist-Name Output",
+    "prompt": [],
+    "exclude": [
+      "artist name references",
+      "soundalike imitation language",
+      "clone artist vocals"
+    ],
+    "traits": [
+      "legal_safety",
+      "reference_safety"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "anti_orchestral_bloat",
+    "label": "Anti-Orchestral Bloat",
+    "prompt": [],
+    "exclude": [
+      "massive orchestra",
+      "trailer music percussion",
+      "generic epic soundtrack"
+    ],
+    "traits": [
+      "anti_bloat"
+    ],
+    "risk": {
+      "reverb": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_clean_radio_mix",
+    "label": "Anti-Clean Radio Mix",
+    "prompt": [],
+    "exclude": [
+      "clean radio rock mix",
+      "radio-ready vocal polish",
+      "overproduced vocals",
+      "commercial hard rock polish"
+    ],
+    "traits": [
+      "anti_radio"
+    ],
+    "risk": {
+      "butt_rock": -4
+    },
+    "weight": 1
+  }
+]

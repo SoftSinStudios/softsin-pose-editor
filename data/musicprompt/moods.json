@@ -1,0 +1,217 @@
+[
+  {
+    "id": "bleak",
+    "label": "Bleak",
+    "prompt": [
+      "bleak atmosphere",
+      "melancholic harmonic movement"
+    ],
+    "exclude": [
+      "uplifting pop energy",
+      "cheerful radio hook"
+    ],
+    "traits": [
+      "bleak",
+      "melancholic",
+      "minor_key"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "oppressive",
+    "label": "Oppressive",
+    "prompt": [
+      "oppressive atmosphere",
+      "dense low-end weight",
+      "claustrophobic tension"
+    ],
+    "exclude": [
+      "cheerful radio hook"
+    ],
+    "traits": [
+      "oppressive",
+      "heavy",
+      "claustrophobic"
+    ],
+    "risk": {
+      "reverb": 0
+    },
+    "weight": 1
+  },
+  {
+    "id": "melancholic_heroic",
+    "label": "Melancholic Yet Heroic",
+    "prompt": [
+      "melancholic yet heroic tone",
+      "sorrowful melodic lift",
+      "heavy emotional resolve"
+    ],
+    "exclude": [
+      "sarcastic novelty tone",
+      "cheerful party-rock mood"
+    ],
+    "traits": [
+      "melancholic",
+      "heroic",
+      "emotional",
+      "resolve"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "ancient",
+    "label": "Ancient",
+    "prompt": [
+      "ancient atmosphere",
+      "old-world melodic color",
+      "weathered mythic tone"
+    ],
+    "exclude": [
+      "futuristic cyberpunk sheen",
+      "modern pop club energy"
+    ],
+    "traits": [
+      "ancient",
+      "old_world",
+      "mythic"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "ritualistic",
+    "label": "Ritualistic",
+    "prompt": [
+      "ritualistic atmosphere",
+      "repeating hypnotic cadence",
+      "dark ceremonial tone"
+    ],
+    "exclude": [
+      "bright pop hooks",
+      "casual party energy"
+    ],
+    "traits": [
+      "ritual",
+      "hypnotic",
+      "dark"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "cosmic_dread",
+    "label": "Cosmic Dread",
+    "prompt": [
+      "cosmic dread atmosphere",
+      "vast ominous space",
+      "existential heaviness"
+    ],
+    "exclude": [
+      "earthy tavern warmth",
+      "cheerful dance rhythm"
+    ],
+    "traits": [
+      "cosmic",
+      "dread",
+      "vast",
+      "ominous"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "dusty_desert",
+    "label": "Dusty Desert",
+    "prompt": [
+      "dusty desert atmosphere",
+      "sun-baked haze",
+      "wide dry landscape feeling"
+    ],
+    "exclude": [
+      "icy black-metal coldness",
+      "wet cavern reverb"
+    ],
+    "traits": [
+      "desert",
+      "dusty",
+      "dry",
+      "wide"
+    ],
+    "risk": {
+      "reverb": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "mournful",
+    "label": "Mournful",
+    "prompt": [
+      "mournful tone",
+      "slow sorrowful melody",
+      "heavy emotional gravity"
+    ],
+    "exclude": [
+      "playful upbeat tone",
+      "bright dance energy"
+    ],
+    "traits": [
+      "mournful",
+      "slow",
+      "sorrowful",
+      "emotional"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "wrathful",
+    "label": "Wrathful",
+    "prompt": [
+      "wrathful energy",
+      "hostile rhythmic force",
+      "angry heavy atmosphere"
+    ],
+    "exclude": [
+      "soft lullaby tone",
+      "gentle acoustic warmth"
+    ],
+    "traits": [
+      "wrathful",
+      "hostile",
+      "aggressive",
+      "heavy"
+    ],
+    "risk": {
+      "vocal_grunts": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "mystical",
+    "label": "Mystical",
+    "prompt": [
+      "mystical atmosphere",
+      "strange modal melody",
+      "dreamlike ancient texture"
+    ],
+    "exclude": [
+      "dry technical demo tone",
+      "modern corporate jingle feel"
+    ],
+    "traits": [
+      "mystical",
+      "modal",
+      "dreamlike"
+    ],
+    "risk": {},
+    "weight": 1
+  }
+]

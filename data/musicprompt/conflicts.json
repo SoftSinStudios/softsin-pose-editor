@@ -1,0 +1,103 @@
+[
+  {
+    "id": "dry_vs_huge_reverb",
+    "severity": "high",
+    "ifAll": [
+      "dry",
+      "huge_reverb"
+    ],
+    "message": "Dry close-mic direction conflicts with huge reverb. Pick intimacy or cavern space, not both."
+  },
+  {
+    "id": "close_vs_distant",
+    "severity": "medium",
+    "ifAll": [
+      "close_mic",
+      "distant_vocals"
+    ],
+    "message": "Close-mic vocals conflict with distant vocal placement."
+  },
+  {
+    "id": "raw_vs_polished",
+    "severity": "medium",
+    "ifAll": [
+      "raw_demo",
+      "polished"
+    ],
+    "message": "Raw demo production conflicts with polished modern production."
+  },
+  {
+    "id": "minimal_vs_massive_chorus",
+    "severity": "medium",
+    "ifAll": [
+      "minimal",
+      "massive_chorus"
+    ],
+    "message": "Minimal repetition conflicts with massive chorus structure."
+  },
+  {
+    "id": "acoustic_vs_wall_of_sound",
+    "severity": "high",
+    "ifAll": [
+      "acoustic",
+      "guitar_heavy",
+      "crushed"
+    ],
+    "message": "Minimal acoustic direction conflicts with crushed heavy wall-of-sound production."
+  },
+  {
+    "id": "instrumental_vs_vocals",
+    "severity": "high",
+    "ifAll": [
+      "instrumental",
+      "male"
+    ],
+    "message": "Instrumental-only conflicts with selected male vocal traits."
+  },
+  {
+    "id": "instrumental_vs_female_vocals",
+    "severity": "high",
+    "ifAll": [
+      "instrumental",
+      "female"
+    ],
+    "message": "Instrumental-only conflicts with selected female vocal traits."
+  },
+  {
+    "id": "desert_vs_cavern",
+    "severity": "low",
+    "ifAll": [
+      "desert",
+      "cavernous"
+    ],
+    "message": "Dusty dry desert atmosphere may conflict with cavernous wet reverb."
+  },
+  {
+    "id": "cold_vs_warm",
+    "severity": "low",
+    "ifAll": [
+      "cold",
+      "warm"
+    ],
+    "message": "Cold atmosphere and warm analog tone can work together, but the prompt may need a clear priority."
+  },
+  {
+    "id": "cinematic_vs_lofi",
+    "severity": "medium",
+    "ifAll": [
+      "cinematic",
+      "lofi"
+    ],
+    "message": "Cinematic wide production conflicts with lo-fi demo texture unless intentionally hybridized."
+  },
+  {
+    "id": "choir_vs_dry_intimate",
+    "severity": "low",
+    "ifAll": [
+      "choir",
+      "dry",
+      "intimate"
+    ],
+    "message": "Layered choir can fight intimate dry vocal direction. Use backing choir only if needed."
+  }
+]

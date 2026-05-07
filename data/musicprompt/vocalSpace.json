@@ -1,0 +1,134 @@
+[
+  {
+    "id": "dry_close",
+    "label": "Dry Close",
+    "prompt": [
+      "dry close-mic vocal sound",
+      "upfront vocal presence",
+      "minimal room reflection",
+      "dry vocal stem feel"
+    ],
+    "exclude": [
+      "huge vocal reverb",
+      "washed-out vocals",
+      "distant vocals",
+      "echoing vocal delay",
+      "ambient vocal wash",
+      "wet vocal mix",
+      "cinematic vocal reverb"
+    ],
+    "traits": [
+      "dry",
+      "close_mic",
+      "vocal_space_control",
+      "upfront_vocals"
+    ],
+    "risk": {
+      "reverb": -8
+    },
+    "weight": 1,
+    "description": "Most aggressive setting for fighting vocal reverb."
+  },
+  {
+    "id": "small_room",
+    "label": "Small Room",
+    "prompt": [
+      "vocals recorded in a dry small room",
+      "tight vocal space",
+      "short natural room tone"
+    ],
+    "exclude": [
+      "cathedral vocal reverb",
+      "arena vocal reverb",
+      "long vocal tail",
+      "distant vocals",
+      "ambient vocal wash"
+    ],
+    "traits": [
+      "small_room",
+      "dry",
+      "vocal_space_control"
+    ],
+    "risk": {
+      "reverb": -5
+    },
+    "weight": 1,
+    "description": "Dry but less sterile than full close-mic."
+  },
+  {
+    "id": "neutral_studio",
+    "label": "Neutral Studio",
+    "prompt": [
+      "neutral studio vocal mix",
+      "controlled vocal space",
+      "balanced vocal presence"
+    ],
+    "exclude": [
+      "cathedral vocal reverb",
+      "arena vocal reverb",
+      "washed-out vocals",
+      "distant vocals"
+    ],
+    "traits": [
+      "neutral",
+      "studio",
+      "controlled",
+      "vocal_space_control"
+    ],
+    "risk": {
+      "reverb": -2
+    },
+    "weight": 1,
+    "description": "Controlled but not aggressively dry."
+  },
+  {
+    "id": "buried_room",
+    "label": "Buried Room",
+    "prompt": [
+      "vocals slightly buried in the mix",
+      "raw room vocal texture",
+      "underground rehearsal-room vocal placement"
+    ],
+    "exclude": [
+      "glossy vocal polish",
+      "arena vocal reverb",
+      "radio-ready vocal presence"
+    ],
+    "traits": [
+      "buried_vocals",
+      "room",
+      "raw",
+      "underground"
+    ],
+    "risk": {
+      "reverb": 1,
+      "butt_rock": -2
+    },
+    "weight": 1,
+    "description": "Useful for sludge, but less controlled than dry close."
+  },
+  {
+    "id": "distant_cavernous",
+    "label": "Distant / Cavernous",
+    "prompt": [
+      "distant cavernous vocal space",
+      "large reverb-heavy vocal atmosphere",
+      "wide ambient vocal tail"
+    ],
+    "exclude": [
+      "dry close-mic vocals",
+      "small room vocal tone"
+    ],
+    "traits": [
+      "distant_vocals",
+      "huge_reverb",
+      "cavernous",
+      "wide"
+    ],
+    "risk": {
+      "reverb": 6
+    },
+    "weight": 1,
+    "description": "Intentionally wet and distant. Not recommended for dry vocal control."
+  }
+]

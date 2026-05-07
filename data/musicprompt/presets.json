@@ -1,0 +1,157 @@
+[
+  {
+    "id": "underground_doom_dry_vocals",
+    "label": "Underground Doom, Dry Vocals",
+    "description": "Slow doom with dry restrained vocals and no radio-rock polish.",
+    "selections": {
+      "genre": "doom_metal",
+      "reference": "early_doom_anchor",
+      "mood": "bleak",
+      "vocal": "dry_baritone",
+      "instrument": "downtuned_fuzz_stack",
+      "production": "dry_underground",
+      "structure": "riff_loop_hypnotic",
+      "exclusions": [
+        "anti_butt_rock",
+        "anti_reverb",
+        "anti_grunt"
+      ],
+      "vocalSpace": "dry_close"
+    }
+  },
+  {
+    "id": "desert_stoner_groove",
+    "label": "Desert Stoner Groove",
+    "description": "Warm, fuzzy, loose desert stoner metal.",
+    "selections": {
+      "genre": "stoner_metal",
+      "reference": "desert_fuzz_anchor",
+      "mood": "dusty_desert",
+      "vocal": "weary_male_clean",
+      "instrument": "desert_groove_stack",
+      "production": "tube_amp_heavy",
+      "structure": "riff_loop_hypnotic",
+      "exclusions": [
+        "anti_butt_rock",
+        "anti_clean_radio_mix"
+      ],
+      "vocalSpace": "small_room"
+    }
+  },
+  {
+    "id": "raw_sludge_controlled",
+    "label": "Raw Sludge, Controlled Vocals",
+    "description": "Sludge weight without excessive grunts.",
+    "selections": {
+      "genre": "sludge_metal",
+      "reference": "raw_sludge_anchor",
+      "mood": "oppressive",
+      "vocal": "underground_male",
+      "instrument": "sludge_stack",
+      "production": "crushed_sludge",
+      "structure": "minimal_repetition",
+      "exclusions": [
+        "anti_butt_rock",
+        "anti_grunt",
+        "anti_clean_radio_mix"
+      ],
+      "vocalSpace": "dry_close"
+    }
+  },
+  {
+    "id": "funeral_doom_cavern",
+    "label": "Funeral Doom Cavern",
+    "description": "Extremely slow, cavernous, massive doom atmosphere.",
+    "selections": {
+      "genre": "funeral_doom",
+      "reference": "ultra_fuzz_doom_anchor",
+      "mood": "cosmic_dread",
+      "vocal": "buried_sludge_vocals",
+      "instrument": "downtuned_fuzz_stack",
+      "production": "massive_reverb",
+      "structure": "long_form_build",
+      "exclusions": [
+        "anti_butt_rock",
+        "anti_modern_metalcore"
+      ],
+      "vocalSpace": "distant_cavernous"
+    }
+  },
+  {
+    "id": "dark_folk_story",
+    "label": "Dark Folk Story",
+    "description": "Intimate dark acoustic folk with narrative vocals.",
+    "selections": {
+      "genre": "acoustic_dark_folk",
+      "reference": "southern_gothic_anchor",
+      "mood": "mournful",
+      "vocal": "spoken_word",
+      "instrument": "folk_ancient_stack",
+      "production": "minimal_acoustic",
+      "structure": "verse_chorus_bridge",
+      "exclusions": [
+        "anti_pop",
+        "anti_reverb",
+        "anti_butt_rock"
+      ],
+      "vocalSpace": "dry_close"
+    }
+  },
+  {
+    "id": "cinematic_folk_metal",
+    "label": "Cinematic Folk Metal",
+    "description": "Mythic heavy folk-metal with cinematic scale.",
+    "selections": {
+      "genre": "folk_metal",
+      "reference": "nordic_folk_anchor",
+      "mood": "ancient",
+      "vocal": "chant_like_male",
+      "instrument": "folk_ancient_stack",
+      "production": "cinematic_wide",
+      "structure": "slow_build_massive_chorus",
+      "exclusions": [
+        "anti_butt_rock",
+        "anti_artist_output"
+      ],
+      "vocalSpace": "neutral_studio"
+    }
+  },
+  {
+    "id": "dark_synth_noir",
+    "label": "Dark Synth Noir",
+    "description": "Retro dark synthwave with night-drive mood.",
+    "selections": {
+      "genre": "dark_synthwave",
+      "reference": "dark_80s_synth_anchor",
+      "mood": "mystical",
+      "vocal": "instrumental_only",
+      "instrument": "synth_dark_stack",
+      "production": "analog_tape",
+      "structure": "minimal_repetition",
+      "exclusions": [
+        "anti_artist_output",
+        "anti_pop"
+      ],
+      "vocalSpace": "neutral_studio"
+    }
+  },
+  {
+    "id": "dungeon_ambient",
+    "label": "Dungeon Ambient",
+    "description": "Minimal dark fantasy ambient/dungeon synth.",
+    "selections": {
+      "genre": "dungeon_synth",
+      "reference": "dungeon_ambient_anchor",
+      "mood": "ancient",
+      "vocal": "instrumental_only",
+      "instrument": "minimal_drone_stack",
+      "production": "lofi_demo",
+      "structure": "minimal_repetition",
+      "exclusions": [
+        "anti_pop",
+        "anti_artist_output"
+      ],
+      "vocalSpace": ""
+    }
+  }
+]

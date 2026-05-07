@@ -1,0 +1,241 @@
+[
+  {
+    "id": "dry_underground",
+    "label": "Dry Underground",
+    "prompt": [
+      "raw underground production",
+      "dry vocal mix",
+      "small room ambience",
+      "natural drum room"
+    ],
+    "exclude": [
+      "huge vocal reverb",
+      "glossy radio mix",
+      "arena rock production"
+    ],
+    "traits": [
+      "raw_demo",
+      "dry",
+      "small_room",
+      "underground"
+    ],
+    "risk": {
+      "reverb": -4,
+      "butt_rock": -2
+    },
+    "weight": 1,
+    "description": "Dry, raw, non-commercial mix.",
+    "category": "dry"
+  },
+  {
+    "id": "analog_tape",
+    "label": "Analog Tape Warmth",
+    "prompt": [
+      "analog tape warmth",
+      "soft saturation",
+      "rounded transients",
+      "vintage studio texture"
+    ],
+    "exclude": [
+      "sterile digital production",
+      "hyper-clean modern sheen"
+    ],
+    "traits": [
+      "analog",
+      "warm",
+      "tape",
+      "saturation",
+      "vintage"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Vintage warmth and mild saturation.",
+    "category": "analog"
+  },
+  {
+    "id": "tube_amp_heavy",
+    "label": "Tube Amp Heavy",
+    "prompt": [
+      "tube amp saturation",
+      "thick midrange guitars",
+      "warm overloaded low-end"
+    ],
+    "exclude": [
+      "thin guitar tone",
+      "cold digital amp simulation"
+    ],
+    "traits": [
+      "tube_saturation",
+      "warm",
+      "guitar_heavy",
+      "midrange"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Guitar-first analog heaviness.",
+    "category": "analog"
+  },
+  {
+    "id": "massive_reverb",
+    "label": "Massive Reverb",
+    "prompt": [
+      "huge reverb-heavy atmosphere",
+      "distant cavernous mix",
+      "wide spatial tail"
+    ],
+    "exclude": [
+      "dry close-mic intimacy",
+      "small room ambience"
+    ],
+    "traits": [
+      "huge_reverb",
+      "distant_vocals",
+      "cavernous",
+      "wide"
+    ],
+    "risk": {
+      "reverb": 4
+    },
+    "weight": 1,
+    "description": "Big space, dangerous for vocal control.",
+    "category": "space"
+  },
+  {
+    "id": "cinematic_wide",
+    "label": "Cinematic Wide",
+    "prompt": [
+      "wide cinematic production",
+      "large spatial depth",
+      "dramatic dynamic build"
+    ],
+    "exclude": [
+      "lo-fi mono demo",
+      "flat dry rehearsal sound"
+    ],
+    "traits": [
+      "cinematic",
+      "wide",
+      "dramatic",
+      "large_room"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Broad filmic production.",
+    "category": "cinematic"
+  },
+  {
+    "id": "lofi_demo",
+    "label": "Lo-Fi Demo",
+    "prompt": [
+      "lo-fi demo recording",
+      "rough edges",
+      "imperfect performance texture",
+      "minimal polish"
+    ],
+    "exclude": [
+      "glossy modern production",
+      "overproduced radio mix"
+    ],
+    "traits": [
+      "lofi",
+      "raw_demo",
+      "unpolished",
+      "minimal"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "reverb": -1
+    },
+    "weight": 1,
+    "description": "Rough demo sound.",
+    "category": "raw"
+  },
+  {
+    "id": "polished_modern",
+    "label": "Polished Modern",
+    "prompt": [
+      "polished modern production",
+      "clean balanced mix",
+      "tight low-end control"
+    ],
+    "exclude": [
+      "raw demo noise",
+      "muddy rehearsal-room sound"
+    ],
+    "traits": [
+      "polished",
+      "modern",
+      "clean",
+      "tight"
+    ],
+    "risk": {
+      "butt_rock": 2,
+      "genre_drift": 1
+    },
+    "weight": 1,
+    "description": "Clean, commercial production.",
+    "category": "modern"
+  },
+  {
+    "id": "crushed_sludge",
+    "label": "Crushed Sludge Mix",
+    "prompt": [
+      "crushed sludge production",
+      "muddy low-end pressure",
+      "dirty saturated guitars",
+      "raw drum room"
+    ],
+    "exclude": [
+      "glossy pop vocals",
+      "glossy hard rock production"
+    ],
+    "traits": [
+      "sludge",
+      "crushed",
+      "muddy",
+      "saturated",
+      "raw"
+    ],
+    "risk": {
+      "vocal_grunts": 1,
+      "butt_rock": -2
+    },
+    "weight": 1,
+    "description": "Dense, filthy heavy production.",
+    "category": "raw"
+  },
+  {
+    "id": "minimal_acoustic",
+    "label": "Minimal Acoustic",
+    "prompt": [
+      "minimal acoustic production",
+      "close natural room sound",
+      "quiet intimate mix"
+    ],
+    "exclude": [
+      "massive wall of sound",
+      "huge arena drums",
+      "distorted metal guitars"
+    ],
+    "traits": [
+      "minimal",
+      "acoustic",
+      "intimate",
+      "close_mic",
+      "dry"
+    ],
+    "risk": {
+      "reverb": -2,
+      "butt_rock": -3
+    },
+    "weight": 1,
+    "description": "Small and intimate acoustic production.",
+    "category": "acoustic"
+  }
+]

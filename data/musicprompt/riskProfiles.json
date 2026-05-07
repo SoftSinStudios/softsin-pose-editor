@@ -1,0 +1,54 @@
+{
+  "butt_rock": {
+    "label": "Butt-Rock Risk",
+    "description": "Likelihood of drifting into post-grunge, radio hard rock, macho chorus delivery, or overproduced hard-rock vocals.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_butt_rock",
+      "dry_baritone",
+      "underground_male",
+      "dry_underground"
+    ]
+  },
+  "reverb": {
+    "label": "Reverb Risk",
+    "description": "Likelihood of huge, washed-out, distant, or cavernous vocal/production space.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_reverb",
+      "dry_underground",
+      "dry_baritone",
+      "minimal_acoustic"
+    ]
+  },
+  "vocal_grunts": {
+    "label": "Grunt Risk",
+    "description": "Likelihood of random growls, macho adlibs, barking vocals, or aggressive vocal artifacts.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_grunt",
+      "dry_baritone",
+      "weary_male_clean",
+      "spoken_word"
+    ]
+  },
+  "genre_drift": {
+    "label": "Genre Drift Risk",
+    "description": "Likelihood that the generated song drifts away from the selected genre identity.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "downtuned_fuzz_stack",
+      "tube_amp_heavy",
+      "analog_doom_stack",
+      "riff_loop_hypnotic"
+    ]
+  }
+}

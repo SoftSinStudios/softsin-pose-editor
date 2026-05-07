@@ -1,0 +1,280 @@
+[
+  {
+    "id": "dry_baritone",
+    "label": "Dry Close-Mic Baritone",
+    "prompt": [
+      "dry close-mic baritone vocals",
+      "restrained low-register delivery",
+      "minimal vibrato",
+      "plainspoken melodic phrasing"
+    ],
+    "exclude": [
+      "huge vocal reverb",
+      "arena rock vocals",
+      "macho grunts",
+      "post-grunge vocals"
+    ],
+    "traits": [
+      "dry",
+      "close_mic",
+      "baritone",
+      "restrained",
+      "low_register",
+      "melodic"
+    ],
+    "risk": {
+      "butt_rock": -4,
+      "reverb": -4,
+      "vocal_grunts": -3
+    },
+    "weight": 1,
+    "description": "Best anti-radio-rock male vocal default.",
+    "category": "male"
+  },
+  {
+    "id": "weary_male_clean",
+    "label": "Weary Clean Male",
+    "prompt": [
+      "weary clean male vocals",
+      "low emotional delivery",
+      "understated phrasing",
+      "natural human tone"
+    ],
+    "exclude": [
+      "macho grunts",
+      "forced grit",
+      "arena rock belting",
+      "huge vocal reverb"
+    ],
+    "traits": [
+      "male",
+      "clean",
+      "weary",
+      "restrained",
+      "emotional"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "vocal_grunts": -3
+    },
+    "weight": 1,
+    "description": "Clean but not radio-rock polished.",
+    "category": "male"
+  },
+  {
+    "id": "underground_male",
+    "label": "Underground Male Vocal",
+    "prompt": [
+      "raw underground male vocals",
+      "unpolished human delivery",
+      "dry rehearsal-room vocal tone"
+    ],
+    "exclude": [
+      "radio-ready vocal polish",
+      "post-grunge vocals",
+      "macho grunts"
+    ],
+    "traits": [
+      "male",
+      "raw",
+      "underground",
+      "dry",
+      "unpolished"
+    ],
+    "risk": {
+      "butt_rock": -4,
+      "reverb": -3
+    },
+    "weight": 1,
+    "description": "Garage/rehearsal room vocal cue.",
+    "category": "male"
+  },
+  {
+    "id": "buried_sludge_vocals",
+    "label": "Buried Sludge Vocals",
+    "prompt": [
+      "buried raw sludge vocals",
+      "distant aggressive vocal texture",
+      "strained underground delivery"
+    ],
+    "exclude": [
+      "clean pop vocals",
+      "arena rock chorus",
+      "glossy vocal production"
+    ],
+    "traits": [
+      "buried_vocals",
+      "raw",
+      "aggressive",
+      "distant_vocals",
+      "sludge"
+    ],
+    "risk": {
+      "vocal_grunts": 2,
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Dirty sludge vocal placement.",
+    "category": "male"
+  },
+  {
+    "id": "chant_like_male",
+    "label": "Chant-Like Male",
+    "prompt": [
+      "chant-like male vocals",
+      "ritual low-register phrasing",
+      "steady repeated vocal cadence"
+    ],
+    "exclude": [
+      "gang shouts",
+      "stadium chant",
+      "modern radio-rock vocals"
+    ],
+    "traits": [
+      "male",
+      "chant",
+      "ritual",
+      "low_register"
+    ],
+    "risk": {
+      "butt_rock": -1,
+      "vocal_grunts": 0
+    },
+    "weight": 1,
+    "description": "Useful for ancient/ritual moods.",
+    "category": "male"
+  },
+  {
+    "id": "haunting_female",
+    "label": "Haunting Female",
+    "prompt": [
+      "haunting female vocals",
+      "soft sustained phrasing",
+      "ethereal melodic tone"
+    ],
+    "exclude": [
+      "bright pop diva vocals",
+      "EDM topline",
+      "overly theatrical belting"
+    ],
+    "traits": [
+      "female",
+      "haunting",
+      "ethereal",
+      "sustained",
+      "melodic"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Atmospheric female vocal cue.",
+    "category": "female"
+  },
+  {
+    "id": "low_female_alto",
+    "label": "Low Female Alto",
+    "prompt": [
+      "low female alto vocals",
+      "warm intimate delivery",
+      "restrained melodic phrasing"
+    ],
+    "exclude": [
+      "high pop belting",
+      "glossy radio vocal runs",
+      "arena rock delivery"
+    ],
+    "traits": [
+      "female",
+      "alto",
+      "low_register",
+      "restrained",
+      "intimate"
+    ],
+    "risk": {
+      "butt_rock": -2,
+      "reverb": -1
+    },
+    "weight": 1,
+    "description": "Controlled low female voice.",
+    "category": "female"
+  },
+  {
+    "id": "choir_layered",
+    "label": "Layered Choir",
+    "prompt": [
+      "layered choir vocals",
+      "wide harmonic backing vocals",
+      "dramatic ensemble texture"
+    ],
+    "exclude": [
+      "solo dry vocal only",
+      "spoken word only",
+      "thin vocal arrangement"
+    ],
+    "traits": [
+      "choir",
+      "layered",
+      "wide",
+      "dramatic"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Choir support for cinematic or epic styles.",
+    "category": "choir"
+  },
+  {
+    "id": "spoken_word",
+    "label": "Spoken Word",
+    "prompt": [
+      "spoken word vocals",
+      "dry narrative delivery",
+      "close-mic storytelling voice"
+    ],
+    "exclude": [
+      "sung pop chorus",
+      "operatic belting",
+      "macho grunts"
+    ],
+    "traits": [
+      "spoken",
+      "dry",
+      "close_mic",
+      "narrative"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "reverb": -3
+    },
+    "weight": 1,
+    "description": "Narrative vocal style.",
+    "category": "spoken"
+  },
+  {
+    "id": "instrumental_only",
+    "label": "Instrumental Only",
+    "prompt": [
+      "instrumental track",
+      "no lead vocals"
+    ],
+    "exclude": [
+      "lead vocals",
+      "sung chorus",
+      "spoken vocals",
+      "choir vocals"
+    ],
+    "traits": [
+      "instrumental",
+      "no_vocals"
+    ],
+    "risk": {
+      "butt_rock": -5,
+      "vocal_grunts": -5
+    },
+    "weight": 1,
+    "description": "No vocal generation.",
+    "category": "instrumental"
+  }
+]
