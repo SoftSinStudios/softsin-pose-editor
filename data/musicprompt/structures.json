@@ -1,9 +1,9 @@
 [
   {
-    "id": "slow_build_massive_chorus",
+    "id": "gradual_build_massive_chorus",
     "label": "Gradual Build to Massive Chorus",
     "prompt": [
-      "atmospheric intro that builds into a massive chorus"
+      "atmospheric intro that grows into a massive chorus"
     ],
     "exclude": [
       "abrupt EDM drop",
@@ -97,7 +97,7 @@
     "traits": [
       "minimal",
       "repetitive",
-      "slow_evolving"
+      "evolving"
     ],
     "risk": {
       "genre_drift": -1
@@ -145,5 +145,235 @@
       "butt_rock": -2
     },
     "weight": 1
+  },
+  {
+    "id": "radio_single",
+    "label": "Radio Single",
+    "prompt": [
+      "compact verse and chorus arrangement",
+      "clear hook return",
+      "strong final chorus payoff"
+    ],
+    "exclude": [
+      "formless ambient drift",
+      "jam-only structure"
+    ],
+    "traits": [
+      "standard_song",
+      "chorus",
+      "hook",
+      "radio"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1,
+    "description": "Accessible song format."
+  },
+  {
+    "id": "verse_prechorus_chorus",
+    "label": "Verse / Pre-Chorus / Chorus",
+    "prompt": [
+      "verse pre-chorus chorus structure",
+      "pre-chorus lift into hook",
+      "clear chorus resolution"
+    ],
+    "exclude": [
+      "single-loop arrangement only"
+    ],
+    "traits": [
+      "standard_song",
+      "prechorus",
+      "chorus",
+      "hook"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1,
+    "description": "Pop and rock friendly structure."
+  },
+  {
+    "id": "club_extended_mix",
+    "label": "Club Extended Mix",
+    "prompt": [
+      "extended club arrangement",
+      "intro groove for mixing",
+      "central hook section",
+      "outro groove for mixing"
+    ],
+    "exclude": [
+      "short acoustic sketch",
+      "single-take folk ballad only"
+    ],
+    "traits": [
+      "club",
+      "extended",
+      "groove",
+      "hook"
+    ],
+    "risk": {
+      "club_drift": -1
+    },
+    "weight": 1,
+    "description": "Club/DJ-friendly arrangement."
+  },
+  {
+    "id": "build_release_arc",
+    "label": "Build / Release Arc",
+    "prompt": [
+      "gradual build and release arc",
+      "tension rising into payoff section",
+      "controlled dynamic expansion"
+    ],
+    "exclude": [
+      "flat constant intensity",
+      "abrupt genre hopping"
+    ],
+    "traits": [
+      "build",
+      "dynamic",
+      "release",
+      "payoff"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "EDM, cinematic, post-rock, and metal structure."
+  },
+  {
+    "id": "drop_hook_cycle",
+    "label": "Drop / Hook Cycle",
+    "prompt": [
+      "hook section followed by drop section",
+      "recurring drop and vocal-hook cycle",
+      "clear transition into main impact section"
+    ],
+    "exclude": [
+      "acoustic campfire-only structure",
+      "formless drone-only arrangement"
+    ],
+    "traits": [
+      "drop",
+      "hook",
+      "club",
+      "dynamic"
+    ],
+    "risk": {
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "Electronic and club-pop arrangement pattern."
+  },
+  {
+    "id": "breakdown_return",
+    "label": "Breakdown and Return",
+    "prompt": [
+      "breakdown section with reduced layers",
+      "return to full arrangement",
+      "contrast between sparse and full sections"
+    ],
+    "exclude": [
+      "no dynamic changes",
+      "single texture from start to finish"
+    ],
+    "traits": [
+      "breakdown",
+      "dynamic",
+      "contrast",
+      "return"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Useful for pop, EDM, metal, and rock."
+  },
+  {
+    "id": "instrumental_hook_feature",
+    "label": "Instrumental Hook Feature",
+    "prompt": [
+      "instrumental hook as a recurring motif",
+      "lead instrument feature section",
+      "memorable non-vocal melodic phrase"
+    ],
+    "exclude": [
+      "vocal-only arrangement",
+      "no lead motif"
+    ],
+    "traits": [
+      "instrumental",
+      "hook",
+      "lead_motif",
+      "melodic"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "For instrumental, EDM, jazz, and rock hooks."
+  },
+  {
+    "id": "call_response",
+    "label": "Call and Response",
+    "prompt": [
+      "call-and-response phrasing",
+      "lead phrase answered by backing part",
+      "interactive vocal or instrumental exchange"
+    ],
+    "exclude": [
+      "flat unison-only arrangement"
+    ],
+    "traits": [
+      "call_response",
+      "interactive",
+      "vocal_focus"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Useful for blues, soul, funk, gospel, and hip-hop."
+  },
+  {
+    "id": "through_composed",
+    "label": "Through-Composed",
+    "prompt": [
+      "through-composed arrangement",
+      "sectional development without repeated chorus dependency",
+      "evolving narrative structure"
+    ],
+    "exclude": [
+      "simple loop-only chorus cycle"
+    ],
+    "traits": [
+      "through_composed",
+      "evolving",
+      "narrative",
+      "complex"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Progressive, cinematic, and art-song structure."
+  },
+  {
+    "id": "riff_breakdown_cycle",
+    "label": "Riff / Breakdown Cycle",
+    "prompt": [
+      "riff-centered arrangement",
+      "breakdown section for contrast",
+      "return to main riff identity"
+    ],
+    "exclude": [
+      "soft acoustic strum-only form"
+    ],
+    "traits": [
+      "riff_loop",
+      "breakdown",
+      "heavy",
+      "guitar"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Metal, hardcore, and heavy rock structure."
   }
 ]

@@ -82,7 +82,7 @@
     "label": "Dark Folk Story",
     "description": "Intimate dark acoustic folk with narrative vocals.",
     "selections": {
-      "genre": "acoustic_dark_folk",
+      "genre": "dark_acoustic_folk",
       "reference": "southern_gothic_anchor",
       "mood": "mournful",
       "vocal": "spoken_word",
@@ -108,7 +108,7 @@
       "vocal": "chant_like_male",
       "instrument": "folk_ancient_stack",
       "production": "cinematic_wide",
-      "structure": "slow_build_massive_chorus",
+      "structure": "gradual_build_massive_chorus",
       "exclusions": [
         "anti_butt_rock",
         "anti_artist_output"
@@ -152,6 +152,786 @@
         "anti_artist_output"
       ],
       "vocalSpace": ""
+    }
+  },
+  {
+    "id": "intimate_acoustic_songwriter",
+    "label": "Intimate Acoustic Songwriter",
+    "description": "Lyric-forward acoustic track with close vocal detail.",
+    "selections": {
+      "genre": "singer_songwriter",
+      "reference": "acoustic_songwriter_anchor",
+      "mood": "introspective",
+      "vocal": "weary_male_clean",
+      "instrument": "acoustic_songwriter_stack",
+      "production": "minimal_acoustic",
+      "structure": "verse_chorus_bridge",
+      "exclusions": [
+        "anti_club",
+        "anti_extreme_metal"
+      ],
+      "vocalSpace": "intimate_room",
+      "sectionDetail": "verse with close acoustic guitar and restrained vocal, chorus with warm harmony lift"
+    }
+  },
+  {
+    "id": "polished_acoustic_pop",
+    "label": "Polished Acoustic Pop",
+    "description": "Accessible acoustic pop with a strong hook and clean vocals.",
+    "selections": {
+      "genre": "acoustic_pop",
+      "reference": "radio_pop_anchor",
+      "mood": "bright",
+      "vocal": "pop_female",
+      "instrument": "acoustic_songwriter_stack",
+      "production": "radio_polished",
+      "structure": "verse_prechorus_chorus",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_lofi"
+      ],
+      "vocalSpace": "glossy_front",
+      "sectionDetail": "verse with acoustic guitar and clean vocal, chorus with stacked harmonies and a clear hook"
+    }
+  },
+  {
+    "id": "americana_story_band",
+    "label": "Americana Story Band",
+    "description": "Warm roots arrangement with storyteller vocals.",
+    "selections": {
+      "genre": "americana",
+      "reference": "acoustic_songwriter_anchor",
+      "mood": "bittersweet",
+      "vocal": "country_storyteller",
+      "instrument": "country_roots_stack",
+      "production": "warm_live_band",
+      "structure": "verse_chorus_bridge",
+      "exclusions": [
+        "anti_club",
+        "anti_synthetic"
+      ],
+      "vocalSpace": "live_room",
+      "sectionDetail": "verse centered on narrative vocal, chorus opens with pedal steel color and group harmony"
+    }
+  },
+  {
+    "id": "outlaw_country_barroom",
+    "label": "Outlaw Country Barroom",
+    "description": "Gritty country with weathered vocal character.",
+    "selections": {
+      "genre": "outlaw_country",
+      "reference": "southern_gothic_anchor",
+      "mood": "rebellious",
+      "vocal": "country_storyteller",
+      "instrument": "country_roots_stack",
+      "production": "warm_live_band",
+      "structure": "verse_chorus_bridge",
+      "exclusions": [
+        "anti_club",
+        "anti_extreme_metal"
+      ],
+      "vocalSpace": "small_room",
+      "sectionDetail": "verse with gritty guitar and vocal story, chorus with barroom band lift"
+    }
+  },
+  {
+    "id": "smoky_jazz_blues",
+    "label": "Smoky Jazz Blues",
+    "description": "Jazz-blues with expressive lead phrases and close vocal tone.",
+    "selections": {
+      "genre": "jazz_blues",
+      "reference": "jazz_anchor",
+      "mood": "nocturnal",
+      "vocal": "jazz_crooner",
+      "instrument": "blues_jazz_stack",
+      "production": "vintage_soul",
+      "structure": "call_response",
+      "exclusions": [
+        "anti_club",
+        "anti_extreme_metal"
+      ],
+      "vocalSpace": "dry_close",
+      "sectionDetail": "verse uses call-and-response guitar phrases, chorus leans into smoky vocal refrain"
+    }
+  },
+  {
+    "id": "neo_soul_late_night",
+    "label": "Neo-Soul Late Night",
+    "description": "Smooth neo-soul with expressive vocals and warm harmony.",
+    "selections": {
+      "genre": "neo_soul",
+      "reference": "soul_rnb_anchor",
+      "mood": "seductive",
+      "vocal": "rnb_lead",
+      "instrument": "soul_funk_stack",
+      "production": "vintage_soul",
+      "structure": "verse_prechorus_chorus",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_country"
+      ],
+      "vocalSpace": "glossy_front",
+      "sectionDetail": "verse with electric piano and intimate vocal runs, chorus with warm harmony stack"
+    }
+  },
+  {
+    "id": "classic_soul_live_band",
+    "label": "Classic Soul Live Band",
+    "description": "Vintage soul with horns, live groove, and powerful vocal focus.",
+    "selections": {
+      "genre": "classic_soul",
+      "reference": "soul_rnb_anchor",
+      "mood": "celebratory",
+      "vocal": "soulful_female",
+      "instrument": "soul_funk_stack",
+      "production": "vintage_soul",
+      "structure": "call_response",
+      "exclusions": [
+        "anti_club",
+        "anti_extreme_metal"
+      ],
+      "vocalSpace": "live_room",
+      "sectionDetail": "verse with live rhythm section and horn answers, chorus with group backing vocals"
+    }
+  },
+  {
+    "id": "radio_pop_clean_hook",
+    "label": "Radio Pop Clean Hook",
+    "description": "Clean mainstream pop with polished vocals and a direct hook.",
+    "selections": {
+      "genre": "radio_pop",
+      "reference": "radio_pop_anchor",
+      "mood": "bright",
+      "vocal": "pop_female",
+      "instrument": "pop_radio_stack",
+      "production": "glossy_pop",
+      "structure": "radio_single",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_lofi"
+      ],
+      "vocalSpace": "wide_pop_layered",
+      "sectionDetail": "verse with tight vocal focus, chorus with wide stacked hook and clean synth lift"
+    }
+  },
+  {
+    "id": "club_pop_gloss",
+    "label": "Club Pop Gloss",
+    "description": "Club-ready pop with synthetic bass and processed vocals.",
+    "selections": {
+      "genre": "club_pop",
+      "reference": "club_pop_anchor",
+      "mood": "confident",
+      "vocal": "edm_topline",
+      "instrument": "club_synth_stack",
+      "production": "club_mastered",
+      "structure": "drop_hook_cycle",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_country"
+      ],
+      "vocalSpace": "club_processed",
+      "sectionDetail": "verse with processed topline vocal, chorus hook opens into a clean drop section"
+    }
+  },
+  {
+    "id": "dream_pop_haze",
+    "label": "Dream Pop Haze",
+    "description": "Soft-focus dream pop with atmospheric vocal layers.",
+    "selections": {
+      "genre": "dream_pop",
+      "reference": "synth_electro_anchor",
+      "mood": "dreamy",
+      "vocal": "haunting_female",
+      "instrument": "pop_radio_stack",
+      "production": "ambient_spacious",
+      "structure": "build_release_arc",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_trap"
+      ],
+      "vocalSpace": "atmospheric_wash",
+      "sectionDetail": "verse with hazy guitar layers, chorus with soft vocal wash and shimmering synth color"
+    }
+  },
+  {
+    "id": "boom_bap_story_loop",
+    "label": "Boom Bap Story Loop",
+    "description": "Dusty sample-based hip-hop with clear lyrical delivery.",
+    "selections": {
+      "genre": "boom_bap",
+      "reference": "hiphop_anchor",
+      "mood": "introspective",
+      "vocal": "rap_lead",
+      "instrument": "boom_bap_stack",
+      "production": "modern_trap",
+      "structure": "verse_chorus_bridge",
+      "exclusions": [
+        "anti_club",
+        "anti_extreme_metal"
+      ],
+      "vocalSpace": "dry_close",
+      "sectionDetail": "verse with clear rap over dusty loop, hook with short sampled vocal phrase"
+    }
+  },
+  {
+    "id": "trap_dark_hook",
+    "label": "Dark Trap Hook",
+    "description": "Modern trap with 808 weight and melodic hook delivery.",
+    "selections": {
+      "genre": "trap",
+      "reference": "hiphop_anchor",
+      "mood": "nocturnal",
+      "vocal": "melodic_rap",
+      "instrument": "hiphop_808_stack",
+      "production": "modern_trap",
+      "structure": "drop_hook_cycle",
+      "exclusions": [
+        "anti_country",
+        "anti_acoustic"
+      ],
+      "vocalSpace": "glossy_front",
+      "sectionDetail": "verse with dark synth motif and rap cadence, hook with melodic vocal refrain over 808 bass"
+    }
+  },
+  {
+    "id": "lofi_hiphop_chill",
+    "label": "Lo-Fi Hip-Hop Chill",
+    "description": "Dusty instrumental beat with soft keys and relaxed texture.",
+    "selections": {
+      "genre": "lofi_hip_hop",
+      "reference": "hiphop_anchor",
+      "mood": "chilled",
+      "vocal": "instrumental_only",
+      "instrument": "boom_bap_stack",
+      "production": "lofi_demo",
+      "structure": "minimal_repetition",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_club"
+      ],
+      "vocalSpace": "",
+      "sectionDetail": "main loop with dusty keys and bass sample, subtle B-section variation with filtered texture"
+    }
+  },
+  {
+    "id": "garage_rock_raw",
+    "label": "Garage Rock Raw",
+    "description": "Unpolished garage rock with direct band energy.",
+    "selections": {
+      "genre": "garage_rock",
+      "reference": "punk_anchor",
+      "mood": "rebellious",
+      "vocal": "underground_male",
+      "instrument": "punk_stack",
+      "production": "punk_raw",
+      "structure": "verse_chorus_bridge",
+      "exclusions": [
+        "anti_club",
+        "anti_lofi"
+      ],
+      "vocalSpace": "buried_room",
+      "sectionDetail": "verse with raw guitar and direct vocal bite, chorus with loose band push"
+    }
+  },
+  {
+    "id": "post_punk_nocturne",
+    "label": "Post-Punk Nocturne",
+    "description": "Cold bass-driven post-punk with detached vocal presence.",
+    "selections": {
+      "genre": "post_punk",
+      "reference": "punk_anchor",
+      "mood": "nocturnal",
+      "vocal": "dry_baritone",
+      "instrument": "punk_stack",
+      "production": "dry_underground",
+      "structure": "minimal_repetition",
+      "exclusions": [
+        "anti_pop",
+        "anti_club"
+      ],
+      "vocalSpace": "dry_close",
+      "sectionDetail": "verse with cold bassline and angular guitar, chorus stays restrained with detached vocal hook"
+    }
+  },
+  {
+    "id": "pop_punk_hook",
+    "label": "Pop Punk Hook",
+    "description": "Guitar-driven pop punk with catchy chorus focus.",
+    "selections": {
+      "genre": "pop_punk",
+      "reference": "punk_anchor",
+      "mood": "bright",
+      "vocal": "pop_male",
+      "instrument": "punk_stack",
+      "production": "radio_polished",
+      "structure": "verse_prechorus_chorus",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_grunt"
+      ],
+      "vocalSpace": "glossy_front",
+      "sectionDetail": "verse with palm-muted guitars, pre-chorus lift into a wide catchy chorus"
+    }
+  },
+  {
+    "id": "progressive_rock_arc",
+    "label": "Progressive Rock Arc",
+    "description": "Progressive rock with complex sections and instrumental development.",
+    "selections": {
+      "genre": "progressive_rock",
+      "reference": "jazz_anchor",
+      "mood": "cinematic_heroic",
+      "vocal": "metal_clean",
+      "instrument": "prog_stack",
+      "production": "warm_live_band",
+      "structure": "through_composed",
+      "exclusions": [
+        "anti_club",
+        "anti_trap"
+      ],
+      "vocalSpace": "live_room",
+      "sectionDetail": "opening motif develops across sections, instrumental bridge expands before final vocal return"
+    }
+  },
+  {
+    "id": "symphonic_metal_clean",
+    "label": "Symphonic Metal Clean",
+    "description": "Cinematic symphonic metal with clean dramatic vocals.",
+    "selections": {
+      "genre": "symphonic_metal",
+      "reference": "cinematic_trailer_anchor",
+      "mood": "cinematic_heroic",
+      "vocal": "metal_clean",
+      "instrument": "orchestral_dark_stack",
+      "production": "cinematic_wide",
+      "structure": "gradual_build_massive_chorus",
+      "exclusions": [
+        "anti_butt_rock",
+        "anti_modern_metalcore"
+      ],
+      "vocalSpace": "neutral_studio",
+      "sectionDetail": "verse with strings and restrained guitars, chorus with orchestral lift and clean metal vocal power"
+    }
+  },
+  {
+    "id": "death_metal_dense",
+    "label": "Dense Death Metal",
+    "description": "Extreme metal with dense guitars and harsh vocals.",
+    "selections": {
+      "genre": "death_metal",
+      "reference": "extreme_metal_anchor",
+      "mood": "aggressive",
+      "vocal": "extreme_harsh",
+      "instrument": "extreme_metal_stack",
+      "production": "extreme_metal_dense",
+      "structure": "riff_breakdown_cycle",
+      "exclusions": [
+        "anti_pop",
+        "anti_clean_radio_mix"
+      ],
+      "vocalSpace": "buried_room",
+      "sectionDetail": "verse with dense riff changes and harsh vocal attack, breakdown returns to main riff identity"
+    }
+  },
+  {
+    "id": "atmospheric_black_metal_wash",
+    "label": "Atmospheric Black Metal Wash",
+    "description": "Cold atmospheric black metal with layered guitars and distant vocals.",
+    "selections": {
+      "genre": "atmospheric_black_metal",
+      "reference": "extreme_metal_anchor",
+      "mood": "cosmic_dread",
+      "vocal": "extreme_harsh",
+      "instrument": "extreme_metal_stack",
+      "production": "ambient_spacious",
+      "structure": "long_form_build",
+      "exclusions": [
+        "anti_pop",
+        "anti_clean_radio_mix"
+      ],
+      "vocalSpace": "atmospheric_wash",
+      "sectionDetail": "long guitar-layer passage builds tension, vocal appears as distant texture before full-band payoff"
+    }
+  },
+  {
+    "id": "industrial_metal_machine",
+    "label": "Industrial Metal Machine",
+    "description": "Cold mechanical industrial metal with synthetic edge.",
+    "selections": {
+      "genre": "industrial_metal",
+      "reference": "synth_electro_anchor",
+      "mood": "futuristic",
+      "vocal": "underground_male",
+      "instrument": "techno_stack",
+      "production": "underground_club",
+      "structure": "riff_breakdown_cycle",
+      "exclusions": [
+        "anti_pop",
+        "anti_country"
+      ],
+      "vocalSpace": "neutral_studio",
+      "sectionDetail": "verse with machine percussion and distorted guitar pulses, chorus with cold synthetic hook"
+    }
+  },
+  {
+    "id": "house_piano_club",
+    "label": "Piano House Club",
+    "description": "House track with piano stabs, vocal cuts, and club mix clarity.",
+    "selections": {
+      "genre": "house",
+      "reference": "house_club_anchor",
+      "mood": "celebratory",
+      "vocal": "vocal_chops",
+      "instrument": "house_stack",
+      "production": "club_mastered",
+      "structure": "club_extended_mix",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_country"
+      ],
+      "vocalSpace": "club_processed",
+      "sectionDetail": "intro groove for mixing, main section with piano stabs and chopped vocal hook"
+    }
+  },
+  {
+    "id": "deep_house_nocturnal",
+    "label": "Deep House Nocturnal",
+    "description": "Deep house with smooth late-night club atmosphere.",
+    "selections": {
+      "genre": "deep_house",
+      "reference": "house_club_anchor",
+      "mood": "nocturnal",
+      "vocal": "edm_topline",
+      "instrument": "house_stack",
+      "production": "underground_club",
+      "structure": "club_extended_mix",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_acoustic"
+      ],
+      "vocalSpace": "club_processed",
+      "sectionDetail": "main groove with deep bass and subdued vocal cuts, breakdown with warm pad texture"
+    }
+  },
+  {
+    "id": "uplifting_trance_peak",
+    "label": "Uplifting Trance Peak",
+    "description": "Euphoric trance with arpeggiated synths and wide emotional lift.",
+    "selections": {
+      "genre": "uplifting_trance",
+      "reference": "trance_anchor",
+      "mood": "euphoric",
+      "vocal": "edm_topline",
+      "instrument": "trance_stack",
+      "production": "edm_clean",
+      "structure": "build_release_arc",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_country"
+      ],
+      "vocalSpace": "wide_pop_layered",
+      "sectionDetail": "breakdown with vocal topline and pads, payoff section with arpeggiated lead and wide chord lift"
+    }
+  },
+  {
+    "id": "psytrance_neon",
+    "label": "Psytrance Neon",
+    "description": "Futuristic psytrance with synthetic texture and hypnotic motif.",
+    "selections": {
+      "genre": "psytrance",
+      "reference": "trance_anchor",
+      "mood": "futuristic",
+      "vocal": "vocal_chops",
+      "instrument": "trance_stack",
+      "production": "edm_clean",
+      "structure": "minimal_repetition",
+      "exclusions": [
+        "anti_acoustic",
+        "anti_country"
+      ],
+      "vocalSpace": "club_processed",
+      "sectionDetail": "repeating synth motif mutates across sections, vocal chops appear as rhythmic texture"
+    }
+  },
+  {
+    "id": "warehouse_techno_dark",
+    "label": "Warehouse Techno Dark",
+    "description": "Dark warehouse techno with machine drums and modular pulses.",
+    "selections": {
+      "genre": "techno",
+      "reference": "techno_anchor",
+      "mood": "nocturnal",
+      "vocal": "instrumental_only",
+      "instrument": "techno_stack",
+      "production": "underground_club",
+      "structure": "club_extended_mix",
+      "exclusions": [
+        "anti_pop",
+        "anti_acoustic"
+      ],
+      "vocalSpace": "",
+      "sectionDetail": "intro groove establishes machine drums, central section adds modular pulse and industrial percussion accents"
+    }
+  },
+  {
+    "id": "dubstep_bass_design",
+    "label": "Dubstep Bass Design",
+    "description": "Bass music with sub pressure and aggressive sound design.",
+    "selections": {
+      "genre": "dubstep",
+      "reference": "bass_music_anchor",
+      "mood": "aggressive",
+      "vocal": "vocal_chops",
+      "instrument": "bass_music_stack",
+      "production": "edm_clean",
+      "structure": "drop_hook_cycle",
+      "exclusions": [
+        "anti_country",
+        "anti_acoustic"
+      ],
+      "vocalSpace": "club_processed",
+      "sectionDetail": "hook section uses chopped vocal phrase, drop section centers on sub-bass design and glitch accents"
+    }
+  },
+  {
+    "id": "liquid_dnb_atmosphere",
+    "label": "Liquid DnB Atmosphere",
+    "description": "Atmospheric liquid DnB with pads and vocal texture.",
+    "selections": {
+      "genre": "liquid_dnb",
+      "reference": "bass_music_anchor",
+      "mood": "dreamy",
+      "vocal": "haunting_female",
+      "instrument": "bass_music_stack",
+      "production": "ambient_spacious",
+      "structure": "build_release_arc",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_country"
+      ],
+      "vocalSpace": "atmospheric_wash",
+      "sectionDetail": "verse-like section with pads and soft vocal layer, main section adds flowing bass movement and bright texture"
+    }
+  },
+  {
+    "id": "synthwave_night_drive",
+    "label": "Synthwave Night Drive",
+    "description": "Nocturnal synthwave with retro electronic texture.",
+    "selections": {
+      "genre": "synthwave",
+      "reference": "dark_80s_synth_anchor",
+      "mood": "nocturnal",
+      "vocal": "instrumental_only",
+      "instrument": "synth_dark_stack",
+      "production": "analog_tape",
+      "structure": "instrumental_hook_feature",
+      "exclusions": [
+        "anti_country",
+        "anti_extreme_metal"
+      ],
+      "vocalSpace": "",
+      "sectionDetail": "main synth motif carries the hook, bridge strips to bass pulse before final motif return"
+    }
+  },
+  {
+    "id": "cyberpunk_electronic_neon",
+    "label": "Cyberpunk Electronic Neon",
+    "description": "Futuristic cyberpunk electronics with synthetic grit.",
+    "selections": {
+      "genre": "cyberpunk_electronic",
+      "reference": "synth_electro_anchor",
+      "mood": "futuristic",
+      "vocal": "vocal_chops",
+      "instrument": "techno_stack",
+      "production": "underground_club",
+      "structure": "build_release_arc",
+      "exclusions": [
+        "anti_acoustic",
+        "anti_country"
+      ],
+      "vocalSpace": "club_processed",
+      "sectionDetail": "verse-like section with dark bass sequence, payoff section adds processed vocal chops and digital synth lead"
+    }
+  },
+  {
+    "id": "ambient_new_age_space",
+    "label": "Ambient New Age Texture",
+    "description": "Wide ambient/new-age texture with evolving pads.",
+    "selections": {
+      "genre": "new_age",
+      "reference": "dungeon_ambient_anchor",
+      "mood": "mystical",
+      "vocal": "instrumental_only",
+      "instrument": "ambient_pad_stack",
+      "production": "ambient_spacious",
+      "structure": "long_form_build",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_club"
+      ],
+      "vocalSpace": "",
+      "sectionDetail": "evolving pad bed introduces soft melodic fragments, later section adds subtle field texture and drone depth"
+    }
+  },
+  {
+    "id": "epic_trailer_hybrid",
+    "label": "Epic Trailer Hybrid",
+    "description": "Cinematic trailer cue with hybrid percussion and dramatic payoff.",
+    "selections": {
+      "genre": "epic_trailer",
+      "reference": "cinematic_trailer_anchor",
+      "mood": "cinematic_heroic",
+      "vocal": "choir_layered",
+      "instrument": "orchestral_dark_stack",
+      "production": "cinematic_wide",
+      "structure": "build_release_arc",
+      "exclusions": [
+        "anti_lofi",
+        "anti_clean_radio_mix"
+      ],
+      "vocalSpace": "distant_cavernous",
+      "sectionDetail": "intro with low strings and percussion, final section with choir layers and orchestral impact accents"
+    }
+  },
+  {
+    "id": "reggae_roots_sun",
+    "label": "Roots Reggae Warmth",
+    "description": "Reggae-inspired global rhythm with warm vocal hook.",
+    "selections": {
+      "genre": "reggae",
+      "reference": "global_pop_anchor",
+      "mood": "chilled",
+      "vocal": "group_harmony",
+      "instrument": "global_rhythm_stack",
+      "production": "warm_live_band",
+      "structure": "verse_chorus_bridge",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_trap"
+      ],
+      "vocalSpace": "live_room",
+      "sectionDetail": "verse with offbeat guitar and warm bass, chorus with relaxed group harmony hook"
+    }
+  },
+  {
+    "id": "latin_pop_romantic",
+    "label": "Latin Pop Romantic",
+    "description": "Latin pop with rhythmic percussion and romantic vocal focus.",
+    "selections": {
+      "genre": "latin_pop",
+      "reference": "global_pop_anchor",
+      "mood": "romantic",
+      "vocal": "latin_pop_vocal",
+      "instrument": "global_rhythm_stack",
+      "production": "glossy_pop",
+      "structure": "verse_prechorus_chorus",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_country"
+      ],
+      "vocalSpace": "glossy_front",
+      "sectionDetail": "verse with rhythmic percussion and intimate vocal, chorus with bright melodic hook and layered backing vocals"
+    }
+  },
+  {
+    "id": "reggaeton_club_hook",
+    "label": "Reggaeton Club Hook",
+    "description": "Reggaeton-flavored club pop with rhythmic vocal hook.",
+    "selections": {
+      "genre": "reggaeton",
+      "reference": "global_pop_anchor",
+      "mood": "confident",
+      "vocal": "latin_pop_vocal",
+      "instrument": "global_rhythm_stack",
+      "production": "club_mastered",
+      "structure": "drop_hook_cycle",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_country"
+      ],
+      "vocalSpace": "club_processed",
+      "sectionDetail": "verse with rhythmic vocal cadence, hook section locks to percussion and synthetic bass"
+    }
+  },
+  {
+    "id": "afrobeats_bright_pop",
+    "label": "Afrobeats Bright Pop",
+    "description": "Bright global pop with layered percussion and melodic hook.",
+    "selections": {
+      "genre": "afrobeats",
+      "reference": "global_pop_anchor",
+      "mood": "bright",
+      "vocal": "group_harmony",
+      "instrument": "global_rhythm_stack",
+      "production": "glossy_pop",
+      "structure": "radio_single",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_country"
+      ],
+      "vocalSpace": "wide_pop_layered",
+      "sectionDetail": "verse with layered percussion and melodic vocal phrase, chorus with group hook and bright rhythmic accents"
+    }
+  },
+  {
+    "id": "kpop_gloss_chorus",
+    "label": "K-Pop Gloss Chorus",
+    "description": "Glossy K-pop with alternating lead lines and wide chorus stack.",
+    "selections": {
+      "genre": "k_pop",
+      "reference": "global_pop_anchor",
+      "mood": "celebratory",
+      "vocal": "jpop_kpop_group",
+      "instrument": "jpop_kpop_stack",
+      "production": "glossy_pop",
+      "structure": "verse_prechorus_chorus",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_lofi"
+      ],
+      "vocalSpace": "wide_pop_layered",
+      "sectionDetail": "verse alternates lead lines, pre-chorus rises into a wide group harmony hook"
+    }
+  },
+  {
+    "id": "jpop_anime_rock",
+    "label": "J-Pop Anime Rock",
+    "description": "Bright anime-rock energy with glossy hooks and guitar/synth support.",
+    "selections": {
+      "genre": "anime_rock",
+      "reference": "global_pop_anchor",
+      "mood": "euphoric",
+      "vocal": "jpop_kpop_group",
+      "instrument": "jpop_kpop_stack",
+      "production": "radio_polished",
+      "structure": "verse_prechorus_chorus",
+      "exclusions": [
+        "anti_extreme_metal",
+        "anti_lofi"
+      ],
+      "vocalSpace": "wide_pop_layered",
+      "sectionDetail": "verse with guitar and synth accents, chorus opens into stacked group hook and melodic lead line"
+    }
+  },
+  {
+    "id": "chiptune_retro_hook",
+    "label": "Chiptune Retro Hook",
+    "description": "Retro game-inspired electronic cue with memorable chip melody.",
+    "selections": {
+      "genre": "chiptune",
+      "reference": "synth_electro_anchor",
+      "mood": "playful",
+      "vocal": "instrumental_only",
+      "instrument": "chiptune_stack",
+      "production": "video_game_retro",
+      "structure": "instrumental_hook_feature",
+      "exclusions": [
+        "anti_acoustic",
+        "anti_extreme_metal"
+      ],
+      "vocalSpace": "",
+      "sectionDetail": "main section uses 8-bit lead hook, B-section shifts to square-wave bass and arpeggio motif"
     }
   }
 ]

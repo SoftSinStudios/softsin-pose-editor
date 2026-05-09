@@ -151,5 +151,199 @@
       "butt_rock": -4
     },
     "weight": 1
+  },
+  {
+    "id": "anti_extreme_metal",
+    "label": "Anti-Extreme-Metal Filter",
+    "prompt": [],
+    "exclude": [
+      "black metal shrieks",
+      "death metal growls",
+      "extreme metal vocals",
+      "metal guitar wall",
+      "extreme metal drumming"
+    ],
+    "traits": [
+      "anti_extreme_metal",
+      "vocal_control"
+    ],
+    "risk": {
+      "harsh_vocals": -6,
+      "vocal_grunts": -4,
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_club",
+    "label": "Anti-Club Filter",
+    "prompt": [],
+    "exclude": [
+      "club synth lead",
+      "festival drop",
+      "dancefloor mix",
+      "four-on-the-floor club drums",
+      "EDM riser effects"
+    ],
+    "traits": [
+      "anti_club",
+      "organic_control"
+    ],
+    "risk": {
+      "club_drift": -6,
+      "synthetic_overload": -2
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_trap",
+    "label": "Anti-Trap Filter",
+    "prompt": [],
+    "exclude": [
+      "trap hi-hats",
+      "808 trap bass",
+      "mumble rap adlibs",
+      "trap drum grid"
+    ],
+    "traits": [
+      "anti_trap"
+    ],
+    "risk": {
+      "genre_drift": -2
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_country",
+    "label": "Anti-Country Filter",
+    "prompt": [],
+    "exclude": [
+      "country twang",
+      "pedal steel lead",
+      "honky-tonk piano",
+      "country fiddle solo"
+    ],
+    "traits": [
+      "anti_country"
+    ],
+    "risk": {
+      "genre_drift": -2
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_acoustic",
+    "label": "Anti-Acoustic Filter",
+    "prompt": [],
+    "exclude": [
+      "acoustic campfire arrangement",
+      "solo acoustic guitar demo",
+      "folk strumming focus",
+      "bluegrass string-band texture"
+    ],
+    "traits": [
+      "anti_acoustic"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_lofi",
+    "label": "Anti-Lo-Fi Filter",
+    "prompt": [],
+    "exclude": [
+      "lo-fi tape noise",
+      "bedroom demo mix",
+      "muddy rehearsal recording",
+      "raw phone recording texture"
+    ],
+    "traits": [
+      "anti_lofi",
+      "polish_control"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_harsh_vocals",
+    "label": "Anti-Harsh-Vocals Filter",
+    "prompt": [],
+    "exclude": [
+      "screamed vocals",
+      "death growls",
+      "black metal shrieks",
+      "harsh barking vocals",
+      "inhuman vocal texture"
+    ],
+    "traits": [
+      "anti_harsh_vocals",
+      "vocal_control"
+    ],
+    "risk": {
+      "harsh_vocals": -7,
+      "vocal_grunts": -4
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_rap",
+    "label": "Anti-Rap Filter",
+    "prompt": [],
+    "exclude": [
+      "rapped verses",
+      "trap adlibs",
+      "hip-hop vocal cadence",
+      "spoken rap flow"
+    ],
+    "traits": [
+      "anti_rap"
+    ],
+    "risk": {
+      "genre_drift": -2
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_jazz_lounge",
+    "label": "Anti-Jazz-Lounge Filter",
+    "prompt": [],
+    "exclude": [
+      "smooth jazz sax lead",
+      "lounge piano chords",
+      "cocktail jazz rhythm",
+      "crooner vocal tone"
+    ],
+    "traits": [
+      "anti_jazz_lounge"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_synthetic",
+    "label": "Anti-Synthetic Filter",
+    "prompt": [],
+    "exclude": [
+      "synthetic club drums",
+      "digital synth lead",
+      "EDM risers",
+      "processed vocal chops",
+      "robotic vocal effects"
+    ],
+    "traits": [
+      "anti_synthetic",
+      "organic_control"
+    ],
+    "risk": {
+      "synthetic_overload": -6,
+      "club_drift": -2
+    },
+    "weight": 1
   }
 ]

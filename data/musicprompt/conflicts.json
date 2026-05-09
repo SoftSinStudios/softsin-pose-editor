@@ -99,5 +99,101 @@
       "intimate"
     ],
     "message": "Layered choir can fight intimate dry vocal direction. Use backing choir only if needed."
+  },
+  {
+    "id": "acoustic_vs_club_synth",
+    "severity": "medium",
+    "ifAll": [
+      "acoustic",
+      "club",
+      "synthetic"
+    ],
+    "message": "Acoustic organic direction can conflict with club-synthetic direction unless the hybrid is intentional."
+  },
+  {
+    "id": "organic_vs_synthetic_overload",
+    "severity": "low",
+    "ifAll": [
+      "organic",
+      "synthetic"
+    ],
+    "message": "Organic and synthetic cues can work together, but the prompt should make the priority clear."
+  },
+  {
+    "id": "intimate_vs_atmospheric_wash",
+    "severity": "medium",
+    "ifAll": [
+      "intimate",
+      "distant_vocals"
+    ],
+    "message": "Intimate vocal placement conflicts with distant atmospheric vocal wash."
+  },
+  {
+    "id": "pop_polish_vs_raw_punk",
+    "severity": "medium",
+    "ifAll": [
+      "polished",
+      "punk",
+      "raw"
+    ],
+    "message": "Polished pop production and raw punk production pull in opposite directions unless framed as pop-punk deliberately."
+  },
+  {
+    "id": "club_vs_minimal_acoustic",
+    "severity": "high",
+    "ifAll": [
+      "club",
+      "acoustic",
+      "minimal"
+    ],
+    "message": "Club production conflicts with minimal acoustic direction. Pick dance production or acoustic intimacy."
+  },
+  {
+    "id": "harsh_vs_smooth_vocals",
+    "severity": "medium",
+    "ifAll": [
+      "harsh",
+      "smooth"
+    ],
+    "message": "Harsh vocal direction conflicts with smooth vocal direction. Choose one lead vocal identity."
+  },
+  {
+    "id": "trap_vs_jazz_standard",
+    "severity": "low",
+    "ifAll": [
+      "trap",
+      "jazz",
+      "standard"
+    ],
+    "message": "Trap and jazz-standard cues can hybridize, but may need clearer instrumentation priority."
+  },
+  {
+    "id": "extreme_metal_vs_radio_pop",
+    "severity": "high",
+    "ifAll": [
+      "extreme_metal",
+      "radio",
+      "pop"
+    ],
+    "message": "Extreme metal identity conflicts with radio pop identity unless the goal is a deliberate crossover."
+  },
+  {
+    "id": "instrumental_vs_rap_lead",
+    "severity": "high",
+    "ifAll": [
+      "instrumental",
+      "rap"
+    ],
+    "message": "Instrumental-only conflicts with rap lead vocal direction."
+  },
+  {
+    "id": "country_vs_futuristic_synth",
+    "severity": "low",
+    "ifAll": [
+      "country",
+      "futuristic",
+      "synthetic"
+    ],
+    "message": "Country roots and futuristic synthetic production can clash unless framed as a hybrid."
   }
 ]
