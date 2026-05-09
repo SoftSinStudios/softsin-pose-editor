@@ -198,6 +198,7 @@
             <button class="editor-tool" type="button" data-editor-action="divider">Divider</button>
             <button class="editor-tool" type="button" data-editor-action="link">Link</button>
             <button class="editor-tool" type="button" data-editor-action="image">Image</button>
+            <button class="editor-tool editor-template-toggle" id="editorTemplatePicker" type="button" hidden>Templates</button>
             <button class="editor-tool editor-preview-toggle" id="editorPreviewToggle" type="button">Preview</button>
             <span class="editor-count" id="editorCharCount">0 / 20000</span>
           </div>
@@ -210,6 +211,38 @@
             <button class="btn primary" id="postMessage" type="button" disabled>Create Thread</button>
           </div>
         </form>
+
+        <div class="board-modal template-modal" id="templateModal" hidden aria-labelledby="templateModalTitle" role="dialog" aria-modal="true">
+          <div class="board-modal-card template-modal-card" role="document">
+            <div class="template-modal-head">
+              <div>
+                <span class="side-title">Post templates</span>
+                <h3 id="templateModalTitle">Choose a template</h3>
+                <p>Pick a saved format, preview it, then drop it into the composer.</p>
+              </div>
+              <button class="editor-tool template-close-button" id="closeTemplateModal" type="button" aria-label="Close template picker">Close</button>
+            </div>
+
+            <div class="template-modal-grid">
+              <div class="template-list" id="templateList" aria-label="Available post templates">
+                <div class="template-empty">Loading templates...</div>
+              </div>
+
+              <div class="template-preview-panel">
+                <label for="templatePreviewTitle">Title</label>
+                <input id="templatePreviewTitle" type="text" readonly value="Select a template" />
+
+                <label for="templatePreviewBody">Body</label>
+                <textarea id="templatePreviewBody" readonly>Select a template to preview its post body.</textarea>
+              </div>
+            </div>
+
+            <div class="board-modal-actions">
+              <button class="btn" id="cancelTemplateInsert" type="button">Cancel</button>
+              <button class="btn primary" id="insertTemplate" type="button" disabled>Insert Template</button>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
     <footer class="footer">

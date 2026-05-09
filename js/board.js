@@ -31,6 +31,14 @@ const editorButtons = Array.from(document.querySelectorAll("[data-editor-action]
 const editorPreviewToggle = document.getElementById("editorPreviewToggle");
 const editorPreview = document.getElementById("editorPreview");
 const editorCharCount = document.getElementById("editorCharCount");
+const editorTemplatePicker = document.getElementById("editorTemplatePicker");
+const templateModal = document.getElementById("templateModal");
+const closeTemplateModal = document.getElementById("closeTemplateModal");
+const cancelTemplateInsert = document.getElementById("cancelTemplateInsert");
+const insertTemplate = document.getElementById("insertTemplate");
+const templateList = document.getElementById("templateList");
+const templatePreviewTitle = document.getElementById("templatePreviewTitle");
+const templatePreviewBody = document.getElementById("templatePreviewBody");
 const onlineNowCount = document.getElementById("onlineNowCount");
 const newestMemberName = document.getElementById("newestMemberName");
 const threadTotalCount = document.getElementById("threadTotalCount");
@@ -54,6 +62,9 @@ let editingThreadId = null;
 let editingReplyId = null;
 let boardPresenceChannel = null;
 let boardPresenceUserKey = null;
+let postTemplates = [];
+let selectedPostTemplate = null;
+let postTemplatesLoaded = false;
 
 const fallbackCategories = [
   { id: null, name: "General", slug: "general", description: "Public discussion for the SoftSin Studios ecosystem." },
@@ -382,11 +393,179 @@ function updateToolbarForRole() {
     button.hidden = !allowMedia;
     button.disabled = !allowMedia;
   });
+
+  updateTemplatePickerState();
 }
 
 function updateCharCount() {
   if (!editorCharCount || !composerText) return;
   editorCharCount.textContent = `${composerText.value.length} / 20000`;
+}
+
+
+function normalizePostTemplate(template, index = 0) {
+  if (!template || typeof template !== "object") return null;
+
+  const id = String(template.id || template.key || `template_${index + 1}`);
+  const label = String(template.label || template.name || id).trim();
+  const description = String(template.description || "").trim();
+  const title = String(template.title || template.titlePrefix || "").trim();
+  const body = String(template.body || "").replace(/\r\n/g, "\n");
+
+  if (!label || (!title && !body)) return null;
+
+  return { id, label, description, title, body };
+}
+
+function normalizePostTemplatePayload(payload) {
+  const rawTemplates = Array.isArray(payload?.templates)
+    ? payload.templates
+    : Array.isArray(payload)
+      ? payload
+      : Object.entries(payload || {}).map(([key, value]) => ({ key, ...value }));
+
+  return rawTemplates
+    .map((template, index) => normalizePostTemplate(template, index))
+    .filter(Boolean);
+}
+
+function renderTemplateList() {
+  if (!templateList) return;
+
+  if (!postTemplates.length) {
+    templateList.innerHTML = `<div class="template-empty">No templates found. Check data/post_templates.json.</div>`;
+    return;
+  }
+
+  templateList.innerHTML = postTemplates.map((template) => `
+    <button class="template-option${selectedPostTemplate?.id === template.id ? " active" : ""}" type="button" data-template-id="${escapeHtml(template.id)}">
+      <strong>${escapeHtml(template.label)}</strong>
+      <span>${escapeHtml(template.description || template.title || "Saved post format")}</span>
+    </button>
+  `).join("");
+
+  templateList.querySelectorAll("[data-template-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectPostTemplate(button.dataset.templateId);
+    });
+  });
+}
+
+function selectPostTemplate(templateId) {
+  selectedPostTemplate = postTemplates.find((template) => template.id === templateId) || null;
+
+  if (templatePreviewTitle) {
+    templatePreviewTitle.value = selectedPostTemplate?.title || "";
+  }
+
+  if (templatePreviewBody) {
+    templatePreviewBody.value = selectedPostTemplate?.body || "";
+  }
+
+  if (insertTemplate) {
+    insertTemplate.disabled = !selectedPostTemplate;
+  }
+
+  renderTemplateList();
+}
+
+async function loadPostTemplates() {
+  if (postTemplatesLoaded) return postTemplates;
+
+  postTemplatesLoaded = true;
+
+  try {
+    const response = await fetch("data/post_templates.json", { cache: "no-store" });
+
+    if (!response.ok) {
+      throw new Error(`Template file returned ${response.status}`);
+    }
+
+    const payload = await response.json();
+    postTemplates = normalizePostTemplatePayload(payload);
+  } catch (error) {
+    console.warn("Post template load failed:", error);
+    postTemplates = [];
+  }
+
+  if (!selectedPostTemplate && postTemplates.length) {
+    selectedPostTemplate = postTemplates[0];
+  }
+
+  renderTemplateList();
+
+  if (selectedPostTemplate) {
+    selectPostTemplate(selectedPostTemplate.id);
+  }
+
+  return postTemplates;
+}
+
+function updateTemplatePickerState() {
+  if (!editorTemplatePicker) return;
+
+  const enabled = userIsAdmin() && !composerText?.disabled;
+  editorTemplatePicker.hidden = !userIsAdmin();
+  editorTemplatePicker.disabled = !enabled;
+}
+
+async function openTemplatePicker() {
+  if (!templateModal || !userIsAdmin() || composerText?.disabled) return;
+
+  await loadPostTemplates();
+
+  if (selectedPostTemplate) {
+    selectPostTemplate(selectedPostTemplate.id);
+  } else {
+    if (templatePreviewTitle) templatePreviewTitle.value = "No templates found";
+    if (templatePreviewBody) templatePreviewBody.value = "Check data/post_templates.json.";
+    if (insertTemplate) insertTemplate.disabled = true;
+  }
+
+  templateModal.hidden = false;
+  templateModal.setAttribute("aria-hidden", "false");
+
+  const firstTemplateButton = templateList?.querySelector(".template-option");
+  firstTemplateButton?.focus();
+}
+
+function closeTemplatePicker() {
+  if (!templateModal) return;
+
+  templateModal.hidden = true;
+  templateModal.setAttribute("aria-hidden", "true");
+  editorTemplatePicker?.focus();
+}
+
+function insertSelectedPostTemplate() {
+  if (!selectedPostTemplate || composerText?.disabled) return;
+
+  const hasExistingTitle = composerTitle && !composerTitle.hidden && composerTitle.value.trim();
+  const hasExistingBody = composerText.value.trim();
+
+  if ((hasExistingTitle || hasExistingBody) && !window.confirm("Replace the current composer content with this template?")) {
+    return;
+  }
+
+  setEditorPreviewMode(false);
+
+  if (composerTitle && !composerTitle.hidden && selectedPostTemplate.title) {
+    composerTitle.value = selectedPostTemplate.title;
+  }
+
+  if (selectedPostTemplate.body) {
+    composerText.value = selectedPostTemplate.body;
+  }
+
+  updateCharCount();
+
+  if (editorPreviewMode) {
+    syncEditorPreview();
+  }
+
+  composerStatus.textContent = `Inserted template: ${selectedPostTemplate.label}`;
+  closeTemplatePicker();
+  composerText.focus();
 }
 
 function setEditorDisabled(disabled) {
@@ -405,6 +584,8 @@ function setEditorDisabled(disabled) {
   if (disabled) {
     setEditorPreviewMode(false);
   }
+
+  updateTemplatePickerState();
 }
 
 function syncEditorPreview() {
@@ -2653,6 +2834,36 @@ if (editorPreviewToggle) {
   });
 }
 
+if (editorTemplatePicker) {
+  editorTemplatePicker.addEventListener("click", openTemplatePicker);
+}
+
+if (closeTemplateModal) {
+  closeTemplateModal.addEventListener("click", closeTemplatePicker);
+}
+
+if (cancelTemplateInsert) {
+  cancelTemplateInsert.addEventListener("click", closeTemplatePicker);
+}
+
+if (insertTemplate) {
+  insertTemplate.addEventListener("click", insertSelectedPostTemplate);
+}
+
+if (templateModal) {
+  templateModal.addEventListener("click", (event) => {
+    if (event.target === templateModal) {
+      closeTemplatePicker();
+    }
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && templateModal && !templateModal.hidden) {
+    closeTemplatePicker();
+  }
+});
+
 if (composerText) {
   composerText.addEventListener("input", () => {
     updateCharCount();
@@ -2706,5 +2917,6 @@ supabase.auth.onAuthStateChange(() => {
 
 updateCharCount();
 setEditorDisabled(true);
+updateTemplatePickerState();
 loadCategories();
 refreshSession();

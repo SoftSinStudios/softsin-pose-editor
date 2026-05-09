@@ -1,0 +1,46 @@
+{
+  "templates": [
+    {
+      "id": "update_post",
+      "label": "Update Post",
+      "description": "General project or tool update with status, changes, fixes, issues, and next steps.",
+      "title": "Update: [Project / Tool Name]",
+      "body": "## Update: [Project / Tool Name]\n\n**Status:** Active / Released / In Progress / Maintenance\n\n### What changed\n- \n\n### Fixes\n- \n\n### Notes\n- \n\n### Known issues\n- \n\n### What is next\n- "
+    },
+    {
+      "id": "release_notes",
+      "label": "Release Notes",
+      "description": "Structured release post for a new version or public tool update.",
+      "title": "[Tool Name] Release [Version]",
+      "body": "## [Tool Name] Release [Version]\n\n### Added\n- \n\n### Changed\n- \n\n### Fixed\n- \n\n### Notes\n- \n\n### Download / Access\n- "
+    },
+    {
+      "id": "patch_notes",
+      "label": "Patch Notes",
+      "description": "Smaller maintenance update focused on fixes and cleanup.",
+      "title": "Patch Notes: [Tool Name] [Version]",
+      "body": "## Patch Notes: [Tool Name] [Version]\n\n### Fixed\n- \n\n### Improved\n- \n\n### Changed\n- \n\n### Still being watched\n- "
+    },
+    {
+      "id": "dev_log",
+      "label": "Dev Log",
+      "description": "Behind the scenes development note for progress, direction, and current blockers.",
+      "title": "Dev Log: [Project / Tool Name]",
+      "body": "## Dev Log: [Project / Tool Name]\n\n### Current focus\n- \n\n### Progress made\n- \n\n### Decisions made\n- \n\n### Problems found\n- \n\n### Next pass\n- "
+    },
+    {
+      "id": "known_issue",
+      "label": "Known Issue",
+      "description": "Clear issue report for confirmed bugs, temporary problems, and workarounds.",
+      "title": "Known Issue: [Short Issue Name]",
+      "body": "## Known Issue: [Short Issue Name]\n\n**Affected tool/page:** [Tool or page name]\n**Status:** Confirmed / Investigating / Fixed / Watching\n\n### What is happening\n- \n\n### Who is affected\n- \n\n### Workaround\n- \n\n### Current plan\n- "
+    },
+    {
+      "id": "tool_announcement",
+      "label": "Tool Announcement",
+      "description": "Announcement format for launching or previewing a SoftSin tool.",
+      "title": "Tool Announcement: [Tool Name]",
+      "body": "## Tool Announcement: [Tool Name]\n\n### What it is\n- \n\n### What it does\n- \n\n### Who it is for\n- \n\n### Current status\n- \n\n### Access\n- "
+    }
+  ]
+}
