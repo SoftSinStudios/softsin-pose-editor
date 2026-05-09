@@ -4,7 +4,7 @@
     "label": "Doom Metal",
     "prompt": [
       "doom metal",
-      "slow crushing tempo",
+      "crushing doom weight",
       "heavy low-register riffs",
       "dark minor-key atmosphere"
     ],
@@ -16,7 +16,6 @@
     "traits": [
       "doom",
       "metal",
-      "slow",
       "heavy",
       "minor_key",
       "low_register"
@@ -27,7 +26,7 @@
       "genre_drift": -1
     },
     "weight": 1,
-    "description": "Slow, heavy, riff-centered metal with dark atmosphere.",
+    "description": "Heavy, riff-centered metal with dark atmosphere.",
     "category": "metal"
   },
   {
@@ -36,7 +35,7 @@
     "prompt": [
       "traditional doom metal",
       "vintage heavy metal structure",
-      "slow-mid tempo",
+      "grounded heavy feel",
       "blues-rooted riffs"
     ],
     "exclude": [
@@ -48,8 +47,7 @@
       "doom",
       "traditional",
       "vintage",
-      "blues_rooted",
-      "mid_tempo"
+      "blues_rooted"
     ],
     "risk": {
       "butt_rock": -1,
@@ -64,7 +62,7 @@
     "label": "Epic Doom",
     "prompt": [
       "epic doom metal",
-      "majestic slow riffs",
+      "majestic heavy riffs",
       "dramatic melodic vocal phrasing",
       "cathedral-like atmosphere"
     ],
@@ -93,12 +91,12 @@
     "label": "Funeral Doom",
     "prompt": [
       "funeral doom metal",
-      "extremely slow tempo",
+      "extreme doom weight",
       "massive sustained chords",
       "bleak cavernous atmosphere"
     ],
     "exclude": [
-      "fast punk energy",
+      "punk aggression",
       "uplifting chorus",
       "radio rock polish"
     ],
@@ -115,7 +113,7 @@
       "genre_drift": -2
     },
     "weight": 1,
-    "description": "Very slow and oppressive doom.",
+    "description": "Oppressive doom.",
     "category": "metal"
   },
   {
@@ -184,7 +182,7 @@
       "sludge metal",
       "filthy low-end distortion",
       "raw oppressive atmosphere",
-      "slow hostile riffs"
+      "hostile heavy riffs"
     ],
     "exclude": [
       "clean radio rock mix",
@@ -212,7 +210,7 @@
     "label": "Post-Metal",
     "prompt": [
       "post-metal",
-      "slow evolving heavy atmosphere",
+      "evolving heavy atmosphere",
       "layered guitars",
       "cinematic build-and-release structure"
     ],
@@ -243,7 +241,7 @@
       "black metal",
       "tremolo-picked guitars",
       "cold atmosphere",
-      "blast-driven intensity"
+      "extreme metal intensity"
     ],
     "exclude": [
       "post-grunge vocals",
@@ -254,7 +252,6 @@
       "black_metal",
       "cold",
       "tremolo",
-      "blast",
       "harsh"
     ],
     "risk": {
@@ -300,7 +297,7 @@
     "prompt": [
       "folk metal",
       "traditional melody influence",
-      "driving guitars",
+      "forward-leaning guitars",
       "earthy rhythmic energy"
     ],
     "exclude": [
@@ -414,20 +411,19 @@
     "prompt": [
       "dark synthwave",
       "analog synth bass",
-      "night-driving pulse",
+      "nocturnal synth momentum",
       "retro cinematic atmosphere"
     ],
     "exclude": [
       "acoustic folk arrangement",
-      "blast beats",
+      "extreme metal drumming",
       "country twang"
     ],
     "traits": [
       "synthwave",
       "dark",
       "retro",
-      "analog_synth",
-      "driving"
+      "analog_synth"
     ],
     "risk": {
       "genre_drift": -1
@@ -470,13 +466,13 @@
     "label": "Dark Ambient",
     "prompt": [
       "dark ambient",
-      "slow evolving drones",
+      "evolving drones",
       "subtle textures",
       "ominous spacious atmosphere"
     ],
     "exclude": [
       "anthemic chorus",
-      "fast dance beat",
+      "dance beat",
       "bright pop melody"
     ],
     "traits": [
@@ -558,7 +554,7 @@
       "southern gothic",
       "dusty acoustic textures",
       "dark storytelling atmosphere",
-      "slow swampy rhythm"
+      "swampy rhythm"
     ],
     "exclude": [
       "bright pop sheen",

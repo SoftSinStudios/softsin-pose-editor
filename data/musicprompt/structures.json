@@ -1,16 +1,15 @@
 [
   {
     "id": "slow_build_massive_chorus",
-    "label": "Slow Build to Massive Chorus",
+    "label": "Gradual Build to Massive Chorus",
     "prompt": [
-      "slow atmospheric intro that builds into a massive chorus"
+      "atmospheric intro that builds into a massive chorus"
     ],
     "exclude": [
       "abrupt EDM drop",
-      "fast genre hopping"
+      "abrupt genre hopping"
     ],
     "traits": [
-      "slow_build",
       "massive_chorus",
       "dynamic"
     ],
@@ -68,7 +67,7 @@
     "prompt": [
       "long-form arrangement",
       "gradual tension build",
-      "slow release of energy"
+      "gradual release of energy"
     ],
     "exclude": [
       "short pop structure",
@@ -89,11 +88,11 @@
     "label": "Minimal Repetition",
     "prompt": [
       "minimal repetitive structure",
-      "slow evolving pattern",
+      "evolving pattern",
       "subtle variation"
     ],
     "exclude": [
-      "fast genre hopping"
+      "abrupt genre hopping"
     ],
     "traits": [
       "minimal",

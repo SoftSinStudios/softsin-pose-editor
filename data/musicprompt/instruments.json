@@ -5,7 +5,7 @@
     "prompt": [
       "downtuned fuzz guitars",
       "thick bass guitar",
-      "slow heavy drums"
+      "heavy drums"
     ],
     "exclude": [
       "thin guitar tone",
@@ -147,7 +147,7 @@
     "prompt": [
       "analog synth bass",
       "dark pads",
-      "slow pulsing arpeggios"
+      "arpeggiated synth texture"
     ],
     "exclude": [
       "acoustic-only arrangement",
@@ -156,8 +156,7 @@
     "traits": [
       "analog_synth",
       "dark",
-      "pads",
-      "pulse"
+      "pads"
     ],
     "risk": {},
     "weight": 1,

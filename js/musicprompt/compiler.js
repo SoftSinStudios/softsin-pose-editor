@@ -58,9 +58,39 @@ function fitToLimit(parts, limit = DEFAULT_EXCLUDE_LIMIT) {
   return result;
 }
 
-export function compilePrompt({ selectedItems, lyrics, customNotes, excludeLimit = DEFAULT_EXCLUDE_LIMIT }) {
-  const promptParts = selectedItems.flatMap(item => item.prompt || []);
-  const excludeParts = selectedItems.flatMap(item => item.exclude || []);
+function normalizeBpm(value) {
+  const clean = String(value || "").trim();
+  if (!clean) return "";
+
+  return /bpm/i.test(clean) ? clean.replace(/\s+/g, " ") : `${clean} BPM`;
+}
+
+export function compilePrompt({
+  selectedItems,
+  lyrics,
+  sectionDetail,
+  customNotes,
+  bpm,
+  excludeLimit = DEFAULT_EXCLUDE_LIMIT
+}) {
+  const promptParts = [];
+  const tempo = normalizeBpm(bpm);
+
+  selectedItems.forEach(item => {
+    if (item.prompt?.length) {
+      promptParts.push(...item.prompt);
+    }
+  });
+
+  if (tempo) {
+    const genreIndex = selectedItems.findIndex(item => item.category === "metal" || item.id?.includes("metal"));
+    const insertAt = genreIndex >= 0 ? 1 : Math.min(1, promptParts.length);
+    promptParts.splice(insertAt, 0, tempo);
+  }
+
+  if (sectionDetail.trim()) {
+    promptParts.push(sectionDetail.trim());
+  }
 
   if (customNotes.trim()) {
     promptParts.push(customNotes.trim());
@@ -70,6 +100,7 @@ export function compilePrompt({ selectedItems, lyrics, customNotes, excludeLimit
     promptParts.push("lyrics or vocal direction provided by user");
   }
 
+  const excludeParts = selectedItems.flatMap(item => item.exclude || []);
   const compactExcludes = fitToLimit(sortExcludes(uniqueClean(excludeParts)), Number(excludeLimit) || DEFAULT_EXCLUDE_LIMIT);
 
   return {

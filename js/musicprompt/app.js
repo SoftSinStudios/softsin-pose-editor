@@ -18,6 +18,7 @@ const state = {
     instrument: "",
     production: "",
     structure: "",
+    bpm: "",
     exclusions: [],
     suno: {
       weirdness: 25,
@@ -37,8 +38,10 @@ const dom = {
   instrument: document.querySelector("#instrument-select"),
   production: document.querySelector("#production-select"),
   structure: document.querySelector("#structure-select"),
+  bpm: document.querySelector("#bpm-input"),
   exclusionList: document.querySelector("#exclusion-list"),
   lyrics: document.querySelector("#lyrics-input"),
+  sectionDetail: document.querySelector("#section-detail"),
   customNotes: document.querySelector("#custom-notes"),
   compiledPrompt: document.querySelector("#compiled-prompt"),
   compiledExclude: document.querySelector("#compiled-exclude"),
@@ -58,6 +61,7 @@ function getRecipePayload() {
   return {
     selections: structuredClone(state.selected),
     lyrics: dom.lyrics.value,
+    sectionDetail: dom.sectionDetail.value,
     customNotes: dom.customNotes.value,
     suno: structuredClone(state.selected.suno)
   };
@@ -94,6 +98,7 @@ function applyRecipe(recipe) {
   state.selected = structuredClone(recipe.selections || state.selected);
 
   dom.lyrics.value = recipe.lyrics || "";
+  dom.sectionDetail.value = recipe.sectionDetail || "";
   dom.customNotes.value = recipe.customNotes || "";
   state.selected.suno = recipe.suno || state.selected.suno;
 
@@ -208,6 +213,7 @@ function syncControlsFromState() {
   dom.instrument.value = state.selected.instrument || "";
   dom.production.value = state.selected.production || "";
   dom.structure.value = state.selected.structure || "";
+  dom.bpm.value = state.selected.bpm || "";
 
   renderExclusionCheckboxes(dom.exclusionList, state.data.exclusions || [], state.selected.exclusions);
   bindExclusionCheckboxes();
@@ -223,13 +229,25 @@ function updateOutput() {
   const compiled = compilePrompt({
     selectedItems,
     lyrics: dom.lyrics.value,
+    sectionDetail: dom.sectionDetail.value,
     customNotes: dom.customNotes.value,
+    bpm: state.selected.bpm,
     excludeLimit: state.selected.suno?.excludeLimit ?? 950,
     suno: structuredClone(state.selected.suno)
   });
 
   const diagnostics = analyzeSelection({
     selectedItems,
+    required: {
+      genre: state.selected.genre,
+      mood: state.selected.mood,
+      instrument: state.selected.instrument,
+      vocal: state.selected.vocal,
+      bpm: state.selected.bpm,
+      structure: state.selected.structure,
+      production: state.selected.production,
+      sectionDetail: dom.sectionDetail.value
+    },
     conflicts: state.data.conflicts || [],
     helpers: state.data.helpers || [],
     riskProfiles: state.data.riskProfiles || {}
@@ -284,6 +302,7 @@ function applyPreset(presetId) {
     instrument: selections.instrument || "",
     production: selections.production || "",
     structure: selections.structure || "",
+    bpm: selections.bpm || "",
     exclusions: selections.exclusions || []
   });
 
@@ -322,7 +341,13 @@ async function init() {
 
   dom.preset.addEventListener("change", () => applyPreset(dom.preset.value));
 
+  dom.bpm.addEventListener("input", () => {
+    state.selected.bpm = dom.bpm.value.trim();
+    updateOutput();
+  });
+
   dom.lyrics.addEventListener("input", updateOutput);
+  dom.sectionDetail.addEventListener("input", updateOutput);
   dom.customNotes.addEventListener("input", updateOutput);
 
   [dom.sunoWeirdness, dom.sunoStyleInfluence, dom.excludeLimit].forEach(input => {

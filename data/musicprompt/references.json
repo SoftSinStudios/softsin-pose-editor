@@ -5,7 +5,7 @@
     "prompt": [
       "early doom metal traits",
       "blues-rooted heavy riffs",
-      "slow-mid tempo",
+      "grounded heavy feel",
       "vintage analog amp tone",
       "roomy 1970s drum sound"
     ],
@@ -33,7 +33,7 @@
     "label": "Epic Doom Anchor",
     "prompt": [
       "epic traditional doom traits",
-      "majestic slow riffs",
+      "majestic heavy riffs",
       "dramatic clean vocals",
       "large-room heavy metal atmosphere"
     ],
@@ -148,7 +148,7 @@
     "label": "Post-Metal Atmosphere Anchor",
     "prompt": [
       "post-metal atmosphere",
-      "slow layered guitar build",
+      "layered guitar build",
       "cinematic heaviness",
       "wide emotional release"
     ],
@@ -202,7 +202,7 @@
     "label": "Dark 80s Synth Anchor",
     "prompt": [
       "dark 1980s synth atmosphere",
-      "analog bass pulse",
+      "analog bass movement",
       "nocturnal neon texture",
       "retro cinematic drums"
     ],
@@ -230,7 +230,7 @@
       "ancient dungeon ambience",
       "simple medieval synth melody",
       "dark fantasy atmosphere",
-      "slow minimal arrangement"
+      "minimal arrangement"
     ],
     "exclude": [
       "artist name references",
@@ -255,7 +255,7 @@
     "prompt": [
       "southern gothic atmosphere",
       "dusty storytelling tone",
-      "slow swampy rhythm",
+      "swampy rhythm",
       "dark acoustic texture"
     ],
     "exclude": [

@@ -201,6 +201,7 @@
 select,
 textarea,
 .recipe-input,
+#bpm-input,
 .setting-field input {
   width: 100%;
   color: var(--text);
@@ -224,6 +225,7 @@ textarea {
 
 select:hover,
 textarea:hover,
+#bpm-input:hover,
 .recipe-input:hover,
 .setting-field input:hover {
   border-color: rgba(103,232,255,.22);
@@ -231,6 +233,7 @@ textarea:hover,
 
 select:focus,
 textarea:focus,
+#bpm-input:focus,
 .recipe-input:focus,
 .setting-field input:focus {
   border-color: rgba(103,232,255,.52);

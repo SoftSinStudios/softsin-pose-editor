@@ -155,7 +155,7 @@
     "label": "Mournful",
     "prompt": [
       "mournful tone",
-      "slow sorrowful melody",
+      "sorrowful melody",
       "heavy emotional gravity"
     ],
     "exclude": [
@@ -164,7 +164,6 @@
     ],
     "traits": [
       "mournful",
-      "slow",
       "sorrowful",
       "emotional"
     ],

@@ -2,7 +2,7 @@
   {
     "id": "underground_doom_dry_vocals",
     "label": "Underground Doom, Dry Vocals",
-    "description": "Slow doom with dry restrained vocals and no radio-rock polish.",
+    "description": "Doom with dry restrained vocals and no radio-rock polish.",
     "selections": {
       "genre": "doom_metal",
       "reference": "early_doom_anchor",
@@ -61,7 +61,7 @@
   {
     "id": "funeral_doom_cavern",
     "label": "Funeral Doom Cavern",
-    "description": "Extremely slow, cavernous, massive doom atmosphere.",
+    "description": "Cavernous, massive doom atmosphere.",
     "selections": {
       "genre": "funeral_doom",
       "reference": "ultra_fuzz_doom_anchor",
