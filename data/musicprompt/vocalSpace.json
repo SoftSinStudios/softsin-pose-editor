@@ -1,5 +1,106 @@
 [
   {
+    "id": "atmospheric_wash",
+    "label": "Atmospheric Wash",
+    "prompt": [
+      "atmospheric vocal wash",
+      "soft distant vocal texture",
+      "wide ambient vocal layer",
+      "dreamlike spatial tail"
+    ],
+    "exclude": [
+      "dry close-mic vocal control",
+      "upfront spoken-word dryness"
+    ],
+    "traits": [
+      "atmospheric",
+      "wide",
+      "distant_vocals",
+      "dreamy"
+    ],
+    "risk": {
+      "reverb": 4
+    },
+    "weight": 1,
+    "description": "Dream pop, ambient, shoegaze, and cinematic vocal space."
+  },
+  {
+    "id": "buried_room",
+    "label": "Buried Room",
+    "prompt": [
+      "vocals slightly buried in the mix",
+      "raw room vocal texture",
+      "underground rehearsal-room vocal placement"
+    ],
+    "exclude": [
+      "glossy vocal polish",
+      "arena vocal reverb",
+      "radio-ready vocal presence"
+    ],
+    "traits": [
+      "buried_vocals",
+      "room",
+      "raw",
+      "underground"
+    ],
+    "risk": {
+      "reverb": 1,
+      "butt_rock": -2
+    },
+    "weight": 1,
+    "description": "Useful for sludge, but less controlled than dry close."
+  },
+  {
+    "id": "club_processed",
+    "label": "Club Processed",
+    "prompt": [
+      "processed club vocal mix",
+      "tight vocal effects",
+      "clean vocal delay throws",
+      "synthetic vocal polish"
+    ],
+    "exclude": [
+      "raw room-only vocal",
+      "unprocessed folk vocal realism"
+    ],
+    "traits": [
+      "club",
+      "processed",
+      "synthetic",
+      "vocal_space_control"
+    ],
+    "risk": {
+      "reverb": 1,
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "EDM and club-pop vocal treatment."
+  },
+  {
+    "id": "distant_cavernous",
+    "label": "Distant / Cavernous",
+    "prompt": [
+      "distant cavernous vocal space",
+      "large reverb-heavy vocal atmosphere",
+      "wide ambient vocal tail"
+    ],
+    "exclude": [
+      "dry close-mic vocals",
+      "small room vocal tone"
+    ],
+    "traits": [
+      "distant_vocals",
+      "huge_reverb",
+      "cavernous",
+      "wide"
+    ],
+    "risk": {
+      "reverb": 6
+    },
+    "weight": 1,
+    "description": "Intentionally wet and distant. Not recommended for dry vocal control."
+  },
+  {
     "id": "dry_close",
     "label": "Dry Close",
     "prompt": [
@@ -30,108 +131,6 @@
     "description": "Most aggressive setting for fighting vocal reverb."
   },
   {
-    "id": "small_room",
-    "label": "Small Room",
-    "prompt": [
-      "vocals recorded in a dry small room",
-      "tight vocal space",
-      "short natural room tone"
-    ],
-    "exclude": [
-      "cathedral vocal reverb",
-      "arena vocal reverb",
-      "long vocal tail",
-      "distant vocals",
-      "ambient vocal wash"
-    ],
-    "traits": [
-      "small_room",
-      "dry",
-      "vocal_space_control"
-    ],
-    "risk": {
-      "reverb": -5
-    },
-    "weight": 1,
-    "description": "Dry but less sterile than full close-mic."
-  },
-  {
-    "id": "neutral_studio",
-    "label": "Neutral Studio",
-    "prompt": [
-      "neutral studio vocal mix",
-      "controlled vocal space",
-      "balanced vocal presence"
-    ],
-    "exclude": [
-      "cathedral vocal reverb",
-      "arena vocal reverb",
-      "washed-out vocals",
-      "distant vocals"
-    ],
-    "traits": [
-      "neutral",
-      "studio",
-      "controlled",
-      "vocal_space_control"
-    ],
-    "risk": {
-      "reverb": -2
-    },
-    "weight": 1,
-    "description": "Controlled but not aggressively dry."
-  },
-  {
-    "id": "buried_room",
-    "label": "Buried Room",
-    "prompt": [
-      "vocals slightly buried in the mix",
-      "raw room vocal texture",
-      "underground rehearsal-room vocal placement"
-    ],
-    "exclude": [
-      "glossy vocal polish",
-      "arena vocal reverb",
-      "radio-ready vocal presence"
-    ],
-    "traits": [
-      "buried_vocals",
-      "room",
-      "raw",
-      "underground"
-    ],
-    "risk": {
-      "reverb": 1,
-      "butt_rock": -2
-    },
-    "weight": 1,
-    "description": "Useful for sludge, but less controlled than dry close."
-  },
-  {
-    "id": "distant_cavernous",
-    "label": "Distant / Cavernous",
-    "prompt": [
-      "distant cavernous vocal space",
-      "large reverb-heavy vocal atmosphere",
-      "wide ambient vocal tail"
-    ],
-    "exclude": [
-      "dry close-mic vocals",
-      "small room vocal tone"
-    ],
-    "traits": [
-      "distant_vocals",
-      "huge_reverb",
-      "cavernous",
-      "wide"
-    ],
-    "risk": {
-      "reverb": 6
-    },
-    "weight": 1,
-    "description": "Intentionally wet and distant. Not recommended for dry vocal control."
-  },
-  {
     "id": "glossy_front",
     "label": "Glossy Front",
     "prompt": [
@@ -155,57 +154,6 @@
     },
     "weight": 1,
     "description": "Pop and R&B lead vocal placement."
-  },
-  {
-    "id": "wide_pop_layered",
-    "label": "Wide Pop Layered",
-    "prompt": [
-      "wide layered vocal stack",
-      "doubled chorus vocals",
-      "supporting harmony spread",
-      "polished backing-vocal width"
-    ],
-    "exclude": [
-      "dry single-take vocal only",
-      "mono rehearsal vocal"
-    ],
-    "traits": [
-      "wide",
-      "layered",
-      "harmony",
-      "polished"
-    ],
-    "risk": {
-      "reverb": 1
-    },
-    "weight": 1,
-    "description": "Wide chorus vocal layering."
-  },
-  {
-    "id": "club_processed",
-    "label": "Club Processed",
-    "prompt": [
-      "processed club vocal mix",
-      "tight vocal effects",
-      "clean vocal delay throws",
-      "synthetic vocal polish"
-    ],
-    "exclude": [
-      "raw room-only vocal",
-      "unprocessed folk vocal realism"
-    ],
-    "traits": [
-      "club",
-      "processed",
-      "synthetic",
-      "vocal_space_control"
-    ],
-    "risk": {
-      "reverb": 1,
-      "synthetic_overload": 1
-    },
-    "weight": 1,
-    "description": "EDM and club-pop vocal treatment."
   },
   {
     "id": "intimate_room",
@@ -258,28 +206,80 @@
     "description": "Live band vocal placement."
   },
   {
-    "id": "atmospheric_wash",
-    "label": "Atmospheric Wash",
+    "id": "neutral_studio",
+    "label": "Neutral Studio",
     "prompt": [
-      "atmospheric vocal wash",
-      "soft distant vocal texture",
-      "wide ambient vocal layer",
-      "dreamlike spatial tail"
+      "neutral studio vocal mix",
+      "controlled vocal space",
+      "balanced vocal presence"
     ],
     "exclude": [
-      "dry close-mic vocal control",
-      "upfront spoken-word dryness"
+      "cathedral vocal reverb",
+      "arena vocal reverb",
+      "washed-out vocals",
+      "distant vocals"
     ],
     "traits": [
-      "atmospheric",
-      "wide",
-      "distant_vocals",
-      "dreamy"
+      "neutral",
+      "studio",
+      "controlled",
+      "vocal_space_control"
     ],
     "risk": {
-      "reverb": 4
+      "reverb": -2
     },
     "weight": 1,
-    "description": "Dream pop, ambient, shoegaze, and cinematic vocal space."
+    "description": "Controlled but not aggressively dry."
+  },
+  {
+    "id": "small_room",
+    "label": "Small Room",
+    "prompt": [
+      "vocals recorded in a dry small room",
+      "tight vocal space",
+      "short natural room tone"
+    ],
+    "exclude": [
+      "cathedral vocal reverb",
+      "arena vocal reverb",
+      "long vocal tail",
+      "distant vocals",
+      "ambient vocal wash"
+    ],
+    "traits": [
+      "small_room",
+      "dry",
+      "vocal_space_control"
+    ],
+    "risk": {
+      "reverb": -5
+    },
+    "weight": 1,
+    "description": "Dry but less sterile than full close-mic."
+  },
+  {
+    "id": "wide_pop_layered",
+    "label": "Wide Pop Layered",
+    "prompt": [
+      "wide layered vocal stack",
+      "doubled chorus vocals",
+      "supporting harmony spread",
+      "polished backing-vocal width"
+    ],
+    "exclude": [
+      "dry single-take vocal only",
+      "mono rehearsal vocal"
+    ],
+    "traits": [
+      "wide",
+      "layered",
+      "harmony",
+      "polished"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Wide chorus vocal layering."
   }
 ]

@@ -12,30 +12,17 @@
       "dry_underground"
     ]
   },
-  "reverb": {
-    "label": "Reverb Risk",
-    "description": "Likelihood of huge, washed-out, distant, or cavernous vocal/production space.",
+  "club_drift": {
+    "label": "Club Drift Risk",
+    "description": "Likelihood of drifting into club, EDM, dance-pop, or festival-style production when that is not intended.",
     "lowMax": 2,
     "mediumMax": 5,
     "highMin": 6,
     "fixes": [
-      "anti_reverb",
-      "dry_underground",
-      "dry_baritone",
-      "minimal_acoustic"
-    ]
-  },
-  "vocal_grunts": {
-    "label": "Grunt Risk",
-    "description": "Likelihood of random growls, macho adlibs, barking vocals, or aggressive vocal artifacts.",
-    "lowMax": 2,
-    "mediumMax": 5,
-    "highMin": 6,
-    "fixes": [
-      "anti_grunt",
-      "dry_baritone",
-      "weary_male_clean",
-      "spoken_word"
+      "anti_club",
+      "anti_synthetic",
+      "minimal_acoustic",
+      "warm_live_band"
     ]
   },
   "genre_drift": {
@@ -49,19 +36,6 @@
       "tube_amp_heavy",
       "analog_doom_stack",
       "riff_loop_hypnotic"
-    ]
-  },
-  "club_drift": {
-    "label": "Club Drift Risk",
-    "description": "Likelihood of drifting into club, EDM, dance-pop, or festival-style production when that is not intended.",
-    "lowMax": 2,
-    "mediumMax": 5,
-    "highMin": 6,
-    "fixes": [
-      "anti_club",
-      "anti_synthetic",
-      "minimal_acoustic",
-      "warm_live_band"
     ]
   },
   "harsh_vocals": {
@@ -78,6 +52,19 @@
       "neutral_studio"
     ]
   },
+  "reverb": {
+    "label": "Reverb Risk",
+    "description": "Likelihood of huge, washed-out, distant, or cavernous vocal/production space.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_reverb",
+      "dry_underground",
+      "dry_baritone",
+      "minimal_acoustic"
+    ]
+  },
   "synthetic_overload": {
     "label": "Synthetic Overload Risk",
     "description": "Likelihood of excessive synth processing, robotic texture, EDM effects, or over-digital production.",
@@ -89,6 +76,19 @@
       "warm_live_band",
       "minimal_acoustic",
       "acoustic_songwriter_stack"
+    ]
+  },
+  "vocal_grunts": {
+    "label": "Grunt Risk",
+    "description": "Likelihood of random growls, macho adlibs, barking vocals, or aggressive vocal artifacts.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_grunt",
+      "dry_baritone",
+      "weary_male_clean",
+      "spoken_word"
     ]
   }
 }

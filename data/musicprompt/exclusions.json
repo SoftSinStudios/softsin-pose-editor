@@ -1,5 +1,39 @@
 [
   {
+    "id": "anti_acoustic",
+    "label": "Anti-Acoustic Filter",
+    "prompt": [],
+    "exclude": [
+      "acoustic campfire arrangement",
+      "solo acoustic guitar demo",
+      "folk strumming focus",
+      "bluegrass string-band texture"
+    ],
+    "traits": [
+      "anti_acoustic"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_artist_output",
+    "label": "Anti-Artist-Name Output",
+    "prompt": [],
+    "exclude": [
+      "artist name references",
+      "soundalike imitation language",
+      "clone artist vocals"
+    ],
+    "traits": [
+      "legal_safety",
+      "reference_safety"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
     "id": "anti_butt_rock",
     "label": "Anti-Butt-Rock Filter",
     "prompt": [],
@@ -22,119 +56,6 @@
     "weight": 1
   },
   {
-    "id": "anti_reverb",
-    "label": "Anti-Reverb Filter",
-    "prompt": [],
-    "exclude": [
-      "huge vocal reverb",
-      "washed-out vocals",
-      "distant vocals",
-      "echoing vocal delay",
-      "ambient vocal wash",
-      "wet vocal mix"
-    ],
-    "traits": [
-      "anti_reverb",
-      "dry",
-      "vocal_space_control"
-    ],
-    "risk": {
-      "reverb": -7
-    },
-    "weight": 1
-  },
-  {
-    "id": "anti_grunt",
-    "label": "Anti-Grunt Filter",
-    "prompt": [],
-    "exclude": [
-      "random growls",
-      "harsh barking vocals",
-      "gang shouts",
-      "tough-guy vocal adlibs"
-    ],
-    "traits": [
-      "anti_grunt",
-      "vocal_control"
-    ],
-    "risk": {
-      "vocal_grunts": -6,
-      "butt_rock": -2
-    },
-    "weight": 1
-  },
-  {
-    "id": "anti_modern_metalcore",
-    "label": "Anti-Modern Metalcore",
-    "prompt": [],
-    "exclude": [
-      "metalcore breakdowns",
-      "djent guitar tone",
-      "over-edited drums",
-      "modern metalcore production",
-      "screamed breakdown vocals"
-    ],
-    "traits": [
-      "anti_metalcore"
-    ],
-    "risk": {
-      "genre_drift": -3
-    },
-    "weight": 1
-  },
-  {
-    "id": "anti_pop",
-    "label": "Anti-Pop Polish",
-    "prompt": [],
-    "exclude": [
-      "bright pop chorus",
-      "EDM drop",
-      "glossy pop vocals",
-      "dance-pop production",
-      "cheerful radio hook"
-    ],
-    "traits": [
-      "anti_pop"
-    ],
-    "risk": {
-      "genre_drift": -2
-    },
-    "weight": 1
-  },
-  {
-    "id": "anti_artist_output",
-    "label": "Anti-Artist-Name Output",
-    "prompt": [],
-    "exclude": [
-      "artist name references",
-      "soundalike imitation language",
-      "clone artist vocals"
-    ],
-    "traits": [
-      "legal_safety",
-      "reference_safety"
-    ],
-    "risk": {},
-    "weight": 1
-  },
-  {
-    "id": "anti_orchestral_bloat",
-    "label": "Anti-Orchestral Bloat",
-    "prompt": [],
-    "exclude": [
-      "massive orchestra",
-      "trailer music percussion",
-      "generic epic soundtrack"
-    ],
-    "traits": [
-      "anti_bloat"
-    ],
-    "risk": {
-      "reverb": -1
-    },
-    "weight": 1
-  },
-  {
     "id": "anti_clean_radio_mix",
     "label": "Anti-Clean Radio Mix",
     "prompt": [],
@@ -149,6 +70,45 @@
     ],
     "risk": {
       "butt_rock": -4
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_club",
+    "label": "Anti-Club Filter",
+    "prompt": [],
+    "exclude": [
+      "club synth lead",
+      "festival drop",
+      "dancefloor mix",
+      "four-on-the-floor club drums",
+      "EDM riser effects"
+    ],
+    "traits": [
+      "anti_club",
+      "organic_control"
+    ],
+    "risk": {
+      "club_drift": -6,
+      "synthetic_overload": -2
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_country",
+    "label": "Anti-Country Filter",
+    "prompt": [],
+    "exclude": [
+      "country twang",
+      "pedal steel lead",
+      "honky-tonk piano",
+      "country fiddle solo"
+    ],
+    "traits": [
+      "anti_country"
+    ],
+    "risk": {
+      "genre_drift": -2
     },
     "weight": 1
   },
@@ -175,74 +135,58 @@
     "weight": 1
   },
   {
-    "id": "anti_club",
-    "label": "Anti-Club Filter",
+    "id": "anti_grunt",
+    "label": "Anti-Grunt Filter",
     "prompt": [],
     "exclude": [
-      "club synth lead",
-      "festival drop",
-      "dancefloor mix",
-      "four-on-the-floor club drums",
-      "EDM riser effects"
+      "random growls",
+      "harsh barking vocals",
+      "gang shouts",
+      "tough-guy vocal adlibs"
     ],
     "traits": [
-      "anti_club",
-      "organic_control"
+      "anti_grunt",
+      "vocal_control"
     ],
     "risk": {
-      "club_drift": -6,
-      "synthetic_overload": -2
+      "vocal_grunts": -6,
+      "butt_rock": -2
     },
     "weight": 1
   },
   {
-    "id": "anti_trap",
-    "label": "Anti-Trap Filter",
+    "id": "anti_harsh_vocals",
+    "label": "Anti-Harsh-Vocals Filter",
     "prompt": [],
     "exclude": [
-      "trap hi-hats",
-      "808 trap bass",
-      "mumble rap adlibs",
-      "trap drum grid"
+      "screamed vocals",
+      "death growls",
+      "black metal shrieks",
+      "harsh barking vocals",
+      "inhuman vocal texture"
     ],
     "traits": [
-      "anti_trap"
+      "anti_harsh_vocals",
+      "vocal_control"
     ],
     "risk": {
-      "genre_drift": -2
+      "harsh_vocals": -7,
+      "vocal_grunts": -4
     },
     "weight": 1
   },
   {
-    "id": "anti_country",
-    "label": "Anti-Country Filter",
+    "id": "anti_jazz_lounge",
+    "label": "Anti-Jazz-Lounge Filter",
     "prompt": [],
     "exclude": [
-      "country twang",
-      "pedal steel lead",
-      "honky-tonk piano",
-      "country fiddle solo"
+      "smooth jazz sax lead",
+      "lounge piano chords",
+      "cocktail jazz rhythm",
+      "crooner vocal tone"
     ],
     "traits": [
-      "anti_country"
-    ],
-    "risk": {
-      "genre_drift": -2
-    },
-    "weight": 1
-  },
-  {
-    "id": "anti_acoustic",
-    "label": "Anti-Acoustic Filter",
-    "prompt": [],
-    "exclude": [
-      "acoustic campfire arrangement",
-      "solo acoustic guitar demo",
-      "folk strumming focus",
-      "bluegrass string-band texture"
-    ],
-    "traits": [
-      "anti_acoustic"
+      "anti_jazz_lounge"
     ],
     "risk": {
       "genre_drift": -1
@@ -269,23 +213,57 @@
     "weight": 1
   },
   {
-    "id": "anti_harsh_vocals",
-    "label": "Anti-Harsh-Vocals Filter",
+    "id": "anti_modern_metalcore",
+    "label": "Anti-Modern Metalcore",
     "prompt": [],
     "exclude": [
-      "screamed vocals",
-      "death growls",
-      "black metal shrieks",
-      "harsh barking vocals",
-      "inhuman vocal texture"
+      "metalcore breakdowns",
+      "djent guitar tone",
+      "over-edited drums",
+      "modern metalcore production",
+      "screamed breakdown vocals"
     ],
     "traits": [
-      "anti_harsh_vocals",
-      "vocal_control"
+      "anti_metalcore"
     ],
     "risk": {
-      "harsh_vocals": -7,
-      "vocal_grunts": -4
+      "genre_drift": -3
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_orchestral_bloat",
+    "label": "Anti-Orchestral Bloat",
+    "prompt": [],
+    "exclude": [
+      "massive orchestra",
+      "trailer music percussion",
+      "generic epic soundtrack"
+    ],
+    "traits": [
+      "anti_bloat"
+    ],
+    "risk": {
+      "reverb": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_pop",
+    "label": "Anti-Pop Polish",
+    "prompt": [],
+    "exclude": [
+      "bright pop chorus",
+      "EDM drop",
+      "glossy pop vocals",
+      "dance-pop production",
+      "cheerful radio hook"
+    ],
+    "traits": [
+      "anti_pop"
+    ],
+    "risk": {
+      "genre_drift": -2
     },
     "weight": 1
   },
@@ -308,20 +286,24 @@
     "weight": 1
   },
   {
-    "id": "anti_jazz_lounge",
-    "label": "Anti-Jazz-Lounge Filter",
+    "id": "anti_reverb",
+    "label": "Anti-Reverb Filter",
     "prompt": [],
     "exclude": [
-      "smooth jazz sax lead",
-      "lounge piano chords",
-      "cocktail jazz rhythm",
-      "crooner vocal tone"
+      "huge vocal reverb",
+      "washed-out vocals",
+      "distant vocals",
+      "echoing vocal delay",
+      "ambient vocal wash",
+      "wet vocal mix"
     ],
     "traits": [
-      "anti_jazz_lounge"
+      "anti_reverb",
+      "dry",
+      "vocal_space_control"
     ],
     "risk": {
-      "genre_drift": -1
+      "reverb": -7
     },
     "weight": 1
   },
@@ -343,6 +325,24 @@
     "risk": {
       "synthetic_overload": -6,
       "club_drift": -2
+    },
+    "weight": 1
+  },
+  {
+    "id": "anti_trap",
+    "label": "Anti-Trap Filter",
+    "prompt": [],
+    "exclude": [
+      "trap hi-hats",
+      "808 trap bass",
+      "mumble rap adlibs",
+      "trap drum grid"
+    ],
+    "traits": [
+      "anti_trap"
+    ],
+    "risk": {
+      "genre_drift": -2
     },
     "weight": 1
   }

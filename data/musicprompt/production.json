@@ -1,31 +1,30 @@
 [
   {
-    "id": "dry_underground",
-    "label": "Dry Underground",
+    "id": "ambient_spacious",
+    "label": "Ambient Spacious",
     "prompt": [
-      "raw underground production",
-      "dry vocal mix",
-      "small room ambience",
-      "natural drum room"
+      "spacious ambient production",
+      "wide textural depth",
+      "soft evolving layers",
+      "immersive background detail"
     ],
     "exclude": [
-      "huge vocal reverb",
-      "glossy radio mix",
-      "arena rock production"
+      "dry close-mic pop vocal focus",
+      "punk basement grit"
     ],
     "traits": [
-      "raw_demo",
-      "dry",
-      "small_room",
-      "underground"
+      "ambient",
+      "spacious",
+      "wide",
+      "texture",
+      "evolving"
     ],
     "risk": {
-      "reverb": -4,
-      "butt_rock": -2
+      "reverb": 2
     },
     "weight": 1,
-    "description": "Dry, raw, non-commercial mix.",
-    "category": "dry"
+    "description": "Wide ambient and atmospheric production.",
+    "category": "ambient"
   },
   {
     "id": "analog_tape",
@@ -55,56 +54,6 @@
     "category": "analog"
   },
   {
-    "id": "tube_amp_heavy",
-    "label": "Tube Amp Heavy",
-    "prompt": [
-      "tube amp saturation",
-      "thick midrange guitars",
-      "warm overloaded low-end"
-    ],
-    "exclude": [
-      "thin guitar tone",
-      "cold digital amp simulation"
-    ],
-    "traits": [
-      "tube_saturation",
-      "warm",
-      "guitar_heavy",
-      "midrange"
-    ],
-    "risk": {
-      "genre_drift": -1
-    },
-    "weight": 1,
-    "description": "Guitar-first analog heaviness.",
-    "category": "analog"
-  },
-  {
-    "id": "massive_reverb",
-    "label": "Massive Reverb",
-    "prompt": [
-      "huge reverb-heavy atmosphere",
-      "distant cavernous mix",
-      "wide spatial tail"
-    ],
-    "exclude": [
-      "dry close-mic intimacy",
-      "small room ambience"
-    ],
-    "traits": [
-      "huge_reverb",
-      "distant_vocals",
-      "cavernous",
-      "wide"
-    ],
-    "risk": {
-      "reverb": 4
-    },
-    "weight": 1,
-    "description": "Big space, dangerous for vocal control.",
-    "category": "space"
-  },
-  {
     "id": "cinematic_wide",
     "label": "Cinematic Wide",
     "prompt": [
@@ -130,57 +79,58 @@
     "category": "cinematic"
   },
   {
-    "id": "lofi_demo",
-    "label": "Lo-Fi Demo",
+    "id": "edm_clean",
+    "label": "Clean EDM",
     "prompt": [
-      "lo-fi demo recording",
-      "rough edges",
-      "imperfect performance texture",
-      "minimal polish"
+      "clean EDM production",
+      "precise synth layering",
+      "impactful drop section",
+      "tight electronic mix"
     ],
     "exclude": [
-      "glossy modern production",
-      "overproduced radio mix"
+      "raw garage band bleed",
+      "muddy rehearsal recording"
     ],
     "traits": [
-      "lofi",
-      "raw_demo",
-      "unpolished",
-      "minimal"
+      "edm",
+      "electronic",
+      "clean",
+      "drop",
+      "synth"
     ],
     "risk": {
-      "butt_rock": -3,
-      "reverb": -1
+      "synthetic_overload": 1
     },
     "weight": 1,
-    "description": "Rough demo sound.",
-    "category": "raw"
+    "description": "Clean electronic festival/club production.",
+    "category": "electronic"
   },
   {
-    "id": "polished_modern",
-    "label": "Polished Modern",
+    "id": "club_mastered",
+    "label": "Club Mastered",
     "prompt": [
-      "polished modern production",
-      "clean balanced mix",
-      "tight low-end control"
+      "club-mastered production",
+      "powerful low-end mix",
+      "crisp electronic drums",
+      "dancefloor-focused clarity"
     ],
     "exclude": [
-      "raw demo noise",
-      "muddy rehearsal-room sound"
+      "small acoustic demo",
+      "thin low-end mix"
     ],
     "traits": [
-      "polished",
-      "modern",
-      "clean",
-      "tight"
+      "club",
+      "dance",
+      "bass_heavy",
+      "electronic",
+      "polished"
     ],
     "risk": {
-      "butt_rock": 2,
-      "genre_drift": 1
+      "club_drift": -1
     },
     "weight": 1,
-    "description": "Clean, commercial production.",
-    "category": "modern"
+    "description": "Club and EDM production polish.",
+    "category": "club"
   },
   {
     "id": "crushed_sludge",
@@ -211,6 +161,140 @@
     "category": "raw"
   },
   {
+    "id": "extreme_metal_dense",
+    "label": "Dense Extreme Metal",
+    "prompt": [
+      "dense extreme metal production",
+      "compressed guitar wall",
+      "drum detail under heavy distortion",
+      "abrasive low-end focus"
+    ],
+    "exclude": [
+      "soft acoustic demo",
+      "glossy pop chorus sheen"
+    ],
+    "traits": [
+      "extreme_metal",
+      "dense",
+      "distorted",
+      "guitar_heavy",
+      "heavy"
+    ],
+    "risk": {
+      "vocal_grunts": 1,
+      "harsh_vocals": 1
+    },
+    "weight": 1,
+    "description": "Dense production for extreme metal styles.",
+    "category": "metal"
+  },
+  {
+    "id": "dry_underground",
+    "label": "Dry Underground",
+    "prompt": [
+      "raw underground production",
+      "dry vocal mix",
+      "small room ambience",
+      "natural drum room"
+    ],
+    "exclude": [
+      "huge vocal reverb",
+      "glossy radio mix",
+      "arena rock production"
+    ],
+    "traits": [
+      "raw_demo",
+      "dry",
+      "small_room",
+      "underground"
+    ],
+    "risk": {
+      "reverb": -4,
+      "butt_rock": -2
+    },
+    "weight": 1,
+    "description": "Dry, raw, non-commercial mix.",
+    "category": "dry"
+  },
+  {
+    "id": "glossy_pop",
+    "label": "Glossy Pop",
+    "prompt": [
+      "glossy pop production",
+      "shiny vocal layers",
+      "clean synthetic polish",
+      "bright chorus impact"
+    ],
+    "exclude": [
+      "raw punk basement mix",
+      "black metal rawness"
+    ],
+    "traits": [
+      "glossy",
+      "pop",
+      "polished",
+      "synthetic"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "High-sheen pop production.",
+    "category": "pop"
+  },
+  {
+    "id": "lofi_demo",
+    "label": "Lo-Fi Demo",
+    "prompt": [
+      "lo-fi demo recording",
+      "rough edges",
+      "imperfect performance texture",
+      "minimal polish"
+    ],
+    "exclude": [
+      "glossy modern production",
+      "overproduced radio mix"
+    ],
+    "traits": [
+      "lofi",
+      "raw_demo",
+      "unpolished",
+      "minimal"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "reverb": -1
+    },
+    "weight": 1,
+    "description": "Rough demo sound.",
+    "category": "raw"
+  },
+  {
+    "id": "massive_reverb",
+    "label": "Massive Reverb",
+    "prompt": [
+      "huge reverb-heavy atmosphere",
+      "distant cavernous mix",
+      "wide spatial tail"
+    ],
+    "exclude": [
+      "dry close-mic intimacy",
+      "small room ambience"
+    ],
+    "traits": [
+      "huge_reverb",
+      "distant_vocals",
+      "cavernous",
+      "wide"
+    ],
+    "risk": {
+      "reverb": 4
+    },
+    "weight": 1,
+    "description": "Big space, dangerous for vocal control.",
+    "category": "space"
+  },
+  {
     "id": "minimal_acoustic",
     "label": "Minimal Acoustic",
     "prompt": [
@@ -237,6 +321,57 @@
     "weight": 1,
     "description": "Small and intimate acoustic production.",
     "category": "acoustic"
+  },
+  {
+    "id": "modern_trap",
+    "label": "Modern Trap Mix",
+    "prompt": [
+      "modern trap mix",
+      "deep 808 low end",
+      "clean vocal-forward balance",
+      "sharp drum detail"
+    ],
+    "exclude": [
+      "bluegrass acoustic realism",
+      "jazz lounge ambience"
+    ],
+    "traits": [
+      "trap",
+      "808",
+      "modern",
+      "bass_heavy",
+      "drums"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Modern hip-hop production.",
+    "category": "hip-hop"
+  },
+  {
+    "id": "polished_modern",
+    "label": "Polished Modern",
+    "prompt": [
+      "polished modern production",
+      "clean balanced mix",
+      "tight low-end control"
+    ],
+    "exclude": [
+      "raw demo noise",
+      "muddy rehearsal-room sound"
+    ],
+    "traits": [
+      "polished",
+      "modern",
+      "clean",
+      "tight"
+    ],
+    "risk": {
+      "butt_rock": 2,
+      "genre_drift": 1
+    },
+    "weight": 1,
+    "description": "Clean, commercial production.",
+    "category": "modern"
   },
   {
     "id": "radio_polished",
@@ -266,84 +401,82 @@
     "category": "polished"
   },
   {
-    "id": "glossy_pop",
-    "label": "Glossy Pop",
+    "id": "punk_raw",
+    "label": "Raw Punk",
     "prompt": [
-      "glossy pop production",
-      "shiny vocal layers",
-      "clean synthetic polish",
-      "bright chorus impact"
+      "raw punk production",
+      "garage-room grit",
+      "unpolished band balance",
+      "direct vocal bite"
     ],
     "exclude": [
-      "raw punk basement mix",
-      "black metal rawness"
+      "glossy radio polish",
+      "orchestral cinematic depth"
     ],
     "traits": [
-      "glossy",
-      "pop",
-      "polished",
-      "synthetic"
+      "punk",
+      "raw",
+      "garage",
+      "unpolished",
+      "direct"
     ],
     "risk": {
-      "genre_drift": 0
+      "genre_drift": -1
     },
     "weight": 1,
-    "description": "High-sheen pop production.",
-    "category": "pop"
+    "description": "Raw punk and garage production.",
+    "category": "punk"
   },
   {
-    "id": "club_mastered",
-    "label": "Club Mastered",
+    "id": "video_game_retro",
+    "label": "Retro Game Mix",
     "prompt": [
-      "club-mastered production",
-      "powerful low-end mix",
-      "crisp electronic drums",
-      "dancefloor-focused clarity"
+      "retro game production",
+      "crisp chip-synth tone",
+      "digital arcade texture",
+      "clean loopable arrangement feel"
     ],
     "exclude": [
-      "small acoustic demo",
-      "thin low-end mix"
+      "acoustic realism",
+      "orchestral realism only"
     ],
     "traits": [
-      "club",
-      "dance",
-      "bass_heavy",
-      "electronic",
-      "polished"
-    ],
-    "risk": {
-      "club_drift": -1
-    },
-    "weight": 1,
-    "description": "Club and EDM production polish.",
-    "category": "club"
-  },
-  {
-    "id": "edm_clean",
-    "label": "Clean EDM",
-    "prompt": [
-      "clean EDM production",
-      "precise synth layering",
-      "impactful drop section",
-      "tight electronic mix"
-    ],
-    "exclude": [
-      "raw garage band bleed",
-      "muddy rehearsal recording"
-    ],
-    "traits": [
-      "edm",
-      "electronic",
-      "clean",
-      "drop",
+      "chiptune",
+      "retro",
+      "digital",
       "synth"
     ],
     "risk": {
       "synthetic_overload": 1
     },
     "weight": 1,
-    "description": "Clean electronic festival/club production.",
+    "description": "Chiptune and game-inspired production.",
     "category": "electronic"
+  },
+  {
+    "id": "tube_amp_heavy",
+    "label": "Tube Amp Heavy",
+    "prompt": [
+      "tube amp saturation",
+      "thick midrange guitars",
+      "warm overloaded low-end"
+    ],
+    "exclude": [
+      "thin guitar tone",
+      "cold digital amp simulation"
+    ],
+    "traits": [
+      "tube_saturation",
+      "warm",
+      "guitar_heavy",
+      "midrange"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Guitar-first analog heaviness.",
+    "category": "analog"
   },
   {
     "id": "underground_club",
@@ -373,32 +506,6 @@
     "category": "club"
   },
   {
-    "id": "warm_live_band",
-    "label": "Warm Live Band",
-    "prompt": [
-      "warm live-band production",
-      "natural room bleed",
-      "human performance texture",
-      "organic instrument balance"
-    ],
-    "exclude": [
-      "sterile grid-locked electronic mix",
-      "hyper-clean synthetic sheen"
-    ],
-    "traits": [
-      "live_band",
-      "warm",
-      "organic",
-      "room"
-    ],
-    "risk": {
-      "reverb": 0
-    },
-    "weight": 1,
-    "description": "Organic live-band recording feel.",
-    "category": "live"
-  },
-  {
     "id": "vintage_soul",
     "label": "Vintage Soul",
     "prompt": [
@@ -424,136 +531,29 @@
     "category": "analog"
   },
   {
-    "id": "modern_trap",
-    "label": "Modern Trap Mix",
+    "id": "warm_live_band",
+    "label": "Warm Live Band",
     "prompt": [
-      "modern trap mix",
-      "deep 808 low end",
-      "clean vocal-forward balance",
-      "sharp drum detail"
+      "warm live-band production",
+      "natural room bleed",
+      "human performance texture",
+      "organic instrument balance"
     ],
     "exclude": [
-      "bluegrass acoustic realism",
-      "jazz lounge ambience"
+      "sterile grid-locked electronic mix",
+      "hyper-clean synthetic sheen"
     ],
     "traits": [
-      "trap",
-      "808",
-      "modern",
-      "bass_heavy",
-      "drums"
-    ],
-    "risk": {},
-    "weight": 1,
-    "description": "Modern hip-hop production.",
-    "category": "hip-hop"
-  },
-  {
-    "id": "extreme_metal_dense",
-    "label": "Dense Extreme Metal",
-    "prompt": [
-      "dense extreme metal production",
-      "compressed guitar wall",
-      "drum detail under heavy distortion",
-      "abrasive low-end focus"
-    ],
-    "exclude": [
-      "soft acoustic demo",
-      "glossy pop chorus sheen"
-    ],
-    "traits": [
-      "extreme_metal",
-      "dense",
-      "distorted",
-      "guitar_heavy",
-      "heavy"
+      "live_band",
+      "warm",
+      "organic",
+      "room"
     ],
     "risk": {
-      "vocal_grunts": 1,
-      "harsh_vocals": 1
+      "reverb": 0
     },
     "weight": 1,
-    "description": "Dense production for extreme metal styles.",
-    "category": "metal"
-  },
-  {
-    "id": "punk_raw",
-    "label": "Raw Punk",
-    "prompt": [
-      "raw punk production",
-      "garage-room grit",
-      "unpolished band balance",
-      "direct vocal bite"
-    ],
-    "exclude": [
-      "glossy radio polish",
-      "orchestral cinematic depth"
-    ],
-    "traits": [
-      "punk",
-      "raw",
-      "garage",
-      "unpolished",
-      "direct"
-    ],
-    "risk": {
-      "genre_drift": -1
-    },
-    "weight": 1,
-    "description": "Raw punk and garage production.",
-    "category": "punk"
-  },
-  {
-    "id": "ambient_spacious",
-    "label": "Ambient Spacious",
-    "prompt": [
-      "spacious ambient production",
-      "wide textural depth",
-      "soft evolving layers",
-      "immersive background detail"
-    ],
-    "exclude": [
-      "dry close-mic pop vocal focus",
-      "punk basement grit"
-    ],
-    "traits": [
-      "ambient",
-      "spacious",
-      "wide",
-      "texture",
-      "evolving"
-    ],
-    "risk": {
-      "reverb": 2
-    },
-    "weight": 1,
-    "description": "Wide ambient and atmospheric production.",
-    "category": "ambient"
-  },
-  {
-    "id": "video_game_retro",
-    "label": "Retro Game Mix",
-    "prompt": [
-      "retro game production",
-      "crisp chip-synth tone",
-      "digital arcade texture",
-      "clean loopable arrangement feel"
-    ],
-    "exclude": [
-      "acoustic realism",
-      "orchestral realism only"
-    ],
-    "traits": [
-      "chiptune",
-      "retro",
-      "digital",
-      "synth"
-    ],
-    "risk": {
-      "synthetic_overload": 1
-    },
-    "weight": 1,
-    "description": "Chiptune and game-inspired production.",
-    "category": "electronic"
+    "description": "Organic live-band recording feel.",
+    "category": "live"
   }
 ]

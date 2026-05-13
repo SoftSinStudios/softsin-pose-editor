@@ -1,5 +1,195 @@
 [
   {
+    "id": "acoustic_songwriter_anchor",
+    "label": "Acoustic Songwriter Anchor",
+    "prompt": [
+      "lyric-forward acoustic songwriting",
+      "organic guitar-centered arrangement",
+      "personal vocal focus",
+      "natural performance texture"
+    ],
+    "exclude": [
+      "club synth lead",
+      "metal guitar wall",
+      "festival drop production"
+    ],
+    "traits": [
+      "acoustic",
+      "songwriter",
+      "organic",
+      "lyric_forward"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Neutral acoustic and singer-songwriter mapper.",
+    "category": "acoustic"
+  },
+  {
+    "id": "bass_music_anchor",
+    "label": "Bass Music Anchor",
+    "prompt": [
+      "bass music production",
+      "sub-bass pressure",
+      "syncopated electronic drums",
+      "aggressive sound design accents"
+    ],
+    "exclude": [
+      "soft acoustic ballad",
+      "jazz brush drums",
+      "country pedal steel lead"
+    ],
+    "traits": [
+      "bass_music",
+      "sub_bass",
+      "sound_design",
+      "electronic"
+    ],
+    "risk": {
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "Dubstep, future bass, DnB, and bass-music mapper.",
+    "category": "electronic"
+  },
+  {
+    "id": "cinematic_trailer_anchor",
+    "label": "Cinematic Trailer Anchor",
+    "prompt": [
+      "cinematic trailer arrangement",
+      "orchestral impact accents",
+      "hybrid percussion layers",
+      "large dramatic payoff"
+    ],
+    "exclude": [
+      "lo-fi punk rehearsal mix",
+      "small acoustic demo",
+      "minimal club loop only"
+    ],
+    "traits": [
+      "cinematic",
+      "orchestral",
+      "hybrid",
+      "dramatic",
+      "large_room"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Trailer and cinematic production mapper.",
+    "category": "cinematic"
+  },
+  {
+    "id": "club_pop_anchor",
+    "label": "Club Pop Anchor",
+    "prompt": [
+      "club-influenced pop production",
+      "dancefloor hook focus",
+      "synthetic bass support",
+      "glossy vocal layering"
+    ],
+    "exclude": [
+      "acoustic-only demo",
+      "raw black metal mix",
+      "country fiddle lead"
+    ],
+    "traits": [
+      "club",
+      "dance",
+      "pop",
+      "synth",
+      "glossy"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Pop with club production identity.",
+    "category": "dance"
+  },
+  {
+    "id": "dark_80s_synth_anchor",
+    "label": "Dark 80s Synth Anchor",
+    "prompt": [
+      "dark 1980s synth atmosphere",
+      "analog bass movement",
+      "nocturnal neon texture",
+      "retro cinematic drums"
+    ],
+    "exclude": [
+      "artist name references",
+      "acoustic folk-only arrangement",
+      "bright novelty synth"
+    ],
+    "traits": [
+      "synthwave",
+      "retro",
+      "analog_synth",
+      "dark",
+      "nocturnal"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Dark synthwave descriptor mapper.",
+    "category": "synth"
+  },
+  {
+    "id": "desert_fuzz_anchor",
+    "label": "Desert Fuzz Anchor",
+    "prompt": [
+      "dusty desert atmosphere",
+      "warm tube amp saturation",
+      "loose hypnotic groove",
+      "fuzz-heavy riffing"
+    ],
+    "exclude": [
+      "cold digital production",
+      "over-compressed radio mix",
+      "artist name references"
+    ],
+    "traits": [
+      "desert",
+      "fuzz",
+      "tube_saturation",
+      "groove",
+      "warm"
+    ],
+    "risk": {
+      "butt_rock": -1
+    },
+    "weight": 1,
+    "description": "Desert/stoner-rock descriptor mapper.",
+    "category": "stoner"
+  },
+  {
+    "id": "dungeon_ambient_anchor",
+    "label": "Dungeon Ambient Anchor",
+    "prompt": [
+      "ancient dungeon ambience",
+      "simple medieval synth melody",
+      "dark fantasy atmosphere",
+      "minimal arrangement"
+    ],
+    "exclude": [
+      "artist name references",
+      "modern EDM drop",
+      "radio-rock vocals"
+    ],
+    "traits": [
+      "dungeon_synth",
+      "ambient",
+      "medieval",
+      "fantasy",
+      "minimal"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Dungeon synth descriptor mapper.",
+    "category": "ambient"
+  },
+  {
     "id": "early_doom_anchor",
     "label": "Early Doom Anchor",
     "prompt": [
@@ -58,61 +248,253 @@
     "category": "doom"
   },
   {
-    "id": "desert_fuzz_anchor",
-    "label": "Desert Fuzz Anchor",
+    "id": "extreme_metal_anchor",
+    "label": "Extreme Metal Anchor",
     "prompt": [
-      "dusty desert atmosphere",
-      "warm tube amp saturation",
-      "loose hypnotic groove",
-      "fuzz-heavy riffing"
+      "extreme metal identity",
+      "dense distorted guitar work",
+      "harsh vocal intensity",
+      "punishing drum performance"
     ],
     "exclude": [
-      "cold digital production",
-      "over-compressed radio mix",
-      "artist name references"
+      "radio pop chorus",
+      "country twang",
+      "soft acoustic intimacy"
     ],
     "traits": [
-      "desert",
-      "fuzz",
-      "tube_saturation",
-      "groove",
-      "warm"
+      "extreme_metal",
+      "distorted",
+      "harsh",
+      "heavy",
+      "dense"
     ],
     "risk": {
-      "butt_rock": -1
+      "vocal_grunts": 2,
+      "harsh_vocals": 3,
+      "genre_drift": -1
     },
     "weight": 1,
-    "description": "Desert/stoner-rock descriptor mapper.",
-    "category": "stoner"
+    "description": "Death, black, grind, and other extreme metal mapper.",
+    "category": "metal"
   },
   {
-    "id": "ultra_fuzz_doom_anchor",
-    "label": "Ultra-Fuzz Doom Anchor",
+    "id": "global_pop_anchor",
+    "label": "Global Pop Anchor",
     "prompt": [
-      "ultra-fuzzed doom texture",
-      "buried low-end saturation",
-      "drugged hypnotic pacing",
-      "oppressive analog atmosphere"
+      "global pop production",
+      "rhythmic percussion color",
+      "melodic vocal hook",
+      "bright cross-cultural arrangement texture"
     ],
     "exclude": [
-      "clean modern rock vocals",
-      "artist name references",
-      "bright polished mix"
+      "extreme metal vocal wall",
+      "dungeon ambient minimalism",
+      "raw noise-rock mix"
     ],
     "traits": [
-      "doom",
-      "fuzz",
-      "low_end",
-      "oppressive",
-      "hypnotic"
+      "global",
+      "pop",
+      "rhythmic",
+      "melodic",
+      "percussion"
     ],
     "risk": {
-      "butt_rock": -3,
-      "reverb": 1
+      "genre_drift": 0
     },
     "weight": 1,
-    "description": "Extreme fuzz-heavy doom mapper.",
-    "category": "doom"
+    "description": "Latin, Afrobeats, K-pop, J-pop, and global-pop mapper.",
+    "category": "world"
+  },
+  {
+    "id": "hiphop_anchor",
+    "label": "Hip-Hop Anchor",
+    "prompt": [
+      "hip-hop production identity",
+      "strong drum pocket",
+      "bass-centered beat",
+      "rhythmic vocal focus"
+    ],
+    "exclude": [
+      "orchestral trailer swell",
+      "metal guitar solo focus",
+      "bluegrass banjo lead"
+    ],
+    "traits": [
+      "hip_hop",
+      "drums",
+      "bass_heavy",
+      "rhythmic"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "General hip-hop descriptor mapper.",
+    "category": "hip-hop"
+  },
+  {
+    "id": "house_club_anchor",
+    "label": "House Club Anchor",
+    "prompt": [
+      "house music foundation",
+      "four-on-the-floor kick pattern",
+      "syncopated bass groove",
+      "repeating synth and vocal motifs"
+    ],
+    "exclude": [
+      "metal breakdowns",
+      "folk campfire arrangement",
+      "extreme metal drumming"
+    ],
+    "traits": [
+      "house",
+      "club",
+      "four_on_floor",
+      "groove",
+      "synth"
+    ],
+    "risk": {
+      "club_drift": -1
+    },
+    "weight": 1,
+    "description": "House and club descriptor mapper.",
+    "category": "house"
+  },
+  {
+    "id": "jazz_anchor",
+    "label": "Jazz Anchor",
+    "prompt": [
+      "jazz harmonic language",
+      "extended chord color",
+      "responsive rhythm section",
+      "improvisational melodic phrasing"
+    ],
+    "exclude": [
+      "EDM festival drop",
+      "metalcore breakdown",
+      "trap hi-hat grid"
+    ],
+    "traits": [
+      "jazz",
+      "harmony",
+      "improvisational",
+      "live_band"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Jazz descriptor mapper.",
+    "category": "jazz"
+  },
+  {
+    "id": "nordic_folk_anchor",
+    "label": "Nordic Folk Anchor",
+    "prompt": [
+      "northern folk atmosphere",
+      "earthy modal melodies",
+      "deep hand drums",
+      "ancient winter texture"
+    ],
+    "exclude": [
+      "artist name references",
+      "bright tropical pop tone",
+      "EDM club rhythm"
+    ],
+    "traits": [
+      "folk",
+      "nordic",
+      "modal",
+      "earthy",
+      "ancient"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Neutral Nordic folk descriptor mapper.",
+    "category": "folk"
+  },
+  {
+    "id": "post_metal_anchor",
+    "label": "Post-Metal Atmosphere Anchor",
+    "prompt": [
+      "post-metal atmosphere",
+      "layered guitar build",
+      "cinematic heaviness",
+      "wide emotional release"
+    ],
+    "exclude": [
+      "artist name references",
+      "radio rock chorus",
+      "party-rock groove"
+    ],
+    "traits": [
+      "post_metal",
+      "cinematic",
+      "layered",
+      "wide",
+      "build"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Long-form atmospheric heavy mapper.",
+    "category": "post_metal"
+  },
+  {
+    "id": "punk_anchor",
+    "label": "Punk Anchor",
+    "prompt": [
+      "punk rock directness",
+      "raw guitar attack",
+      "unpolished band energy",
+      "shouted vocal attitude"
+    ],
+    "exclude": [
+      "glossy adult contemporary sheen",
+      "orchestral film-score arrangement",
+      "smooth lounge polish"
+    ],
+    "traits": [
+      "punk",
+      "raw",
+      "guitar",
+      "shouted"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Punk descriptor mapper.",
+    "category": "punk"
+  },
+  {
+    "id": "radio_pop_anchor",
+    "label": "Radio Pop Anchor",
+    "prompt": [
+      "mainstream pop songcraft",
+      "hook-centered arrangement",
+      "polished lead vocal",
+      "clean modern chorus lift"
+    ],
+    "exclude": [
+      "artist name references",
+      "extreme metal vocals",
+      "lo-fi dungeon texture"
+    ],
+    "traits": [
+      "pop",
+      "radio",
+      "hook",
+      "polished",
+      "chorus"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1,
+    "description": "Broad radio-pop descriptor mapper.",
+    "category": "pop"
   },
   {
     "id": "raw_sludge_anchor",
@@ -144,110 +526,32 @@
     "category": "sludge"
   },
   {
-    "id": "post_metal_anchor",
-    "label": "Post-Metal Atmosphere Anchor",
+    "id": "soul_rnb_anchor",
+    "label": "Soul / R&B Anchor",
     "prompt": [
-      "post-metal atmosphere",
-      "layered guitar build",
-      "cinematic heaviness",
-      "wide emotional release"
+      "soul and R&B vocabulary",
+      "expressive lead vocal",
+      "warm harmonic color",
+      "deep bass support"
     ],
     "exclude": [
-      "artist name references",
-      "radio rock chorus",
-      "party-rock groove"
+      "black metal vocals",
+      "punk gang chants",
+      "country fiddle lead"
     ],
     "traits": [
-      "post_metal",
-      "cinematic",
-      "layered",
-      "wide",
-      "build"
+      "soul",
+      "rnb",
+      "expressive",
+      "warm",
+      "vocal_focus"
     ],
     "risk": {
-      "reverb": 2
+      "genre_drift": 0
     },
     "weight": 1,
-    "description": "Long-form atmospheric heavy mapper.",
-    "category": "post_metal"
-  },
-  {
-    "id": "nordic_folk_anchor",
-    "label": "Nordic Folk Anchor",
-    "prompt": [
-      "northern folk atmosphere",
-      "earthy modal melodies",
-      "deep hand drums",
-      "ancient winter texture"
-    ],
-    "exclude": [
-      "artist name references",
-      "bright tropical pop tone",
-      "EDM club rhythm"
-    ],
-    "traits": [
-      "folk",
-      "nordic",
-      "modal",
-      "earthy",
-      "ancient"
-    ],
-    "risk": {},
-    "weight": 1,
-    "description": "Neutral Nordic folk descriptor mapper.",
-    "category": "folk"
-  },
-  {
-    "id": "dark_80s_synth_anchor",
-    "label": "Dark 80s Synth Anchor",
-    "prompt": [
-      "dark 1980s synth atmosphere",
-      "analog bass movement",
-      "nocturnal neon texture",
-      "retro cinematic drums"
-    ],
-    "exclude": [
-      "artist name references",
-      "acoustic folk-only arrangement",
-      "bright novelty synth"
-    ],
-    "traits": [
-      "synthwave",
-      "retro",
-      "analog_synth",
-      "dark",
-      "nocturnal"
-    ],
-    "risk": {},
-    "weight": 1,
-    "description": "Dark synthwave descriptor mapper.",
-    "category": "synth"
-  },
-  {
-    "id": "dungeon_ambient_anchor",
-    "label": "Dungeon Ambient Anchor",
-    "prompt": [
-      "ancient dungeon ambience",
-      "simple medieval synth melody",
-      "dark fantasy atmosphere",
-      "minimal arrangement"
-    ],
-    "exclude": [
-      "artist name references",
-      "modern EDM drop",
-      "radio-rock vocals"
-    ],
-    "traits": [
-      "dungeon_synth",
-      "ambient",
-      "medieval",
-      "fantasy",
-      "minimal"
-    ],
-    "risk": {},
-    "weight": 1,
-    "description": "Dungeon synth descriptor mapper.",
-    "category": "ambient"
+    "description": "Soul/R&B descriptor mapper.",
+    "category": "rnb"
   },
   {
     "id": "southern_gothic_anchor",
@@ -276,143 +580,31 @@
     "category": "folk"
   },
   {
-    "id": "acoustic_songwriter_anchor",
-    "label": "Acoustic Songwriter Anchor",
+    "id": "synth_electro_anchor",
+    "label": "Synth / Electro Anchor",
     "prompt": [
-      "lyric-forward acoustic songwriting",
-      "organic guitar-centered arrangement",
-      "personal vocal focus",
-      "natural performance texture"
+      "synth-forward electronic identity",
+      "sequenced melodic motifs",
+      "electronic drum programming",
+      "digital texture and synth color"
     ],
     "exclude": [
-      "club synth lead",
-      "metal guitar wall",
-      "festival drop production"
+      "acoustic-only folk arrangement",
+      "bluegrass string-band lead",
+      "raw country barroom mix"
     ],
     "traits": [
-      "acoustic",
-      "songwriter",
-      "organic",
-      "lyric_forward"
-    ],
-    "risk": {
-      "genre_drift": -1
-    },
-    "weight": 1,
-    "description": "Neutral acoustic and singer-songwriter mapper.",
-    "category": "acoustic"
-  },
-  {
-    "id": "radio_pop_anchor",
-    "label": "Radio Pop Anchor",
-    "prompt": [
-      "mainstream pop songcraft",
-      "hook-centered arrangement",
-      "polished lead vocal",
-      "clean modern chorus lift"
-    ],
-    "exclude": [
-      "artist name references",
-      "extreme metal vocals",
-      "lo-fi dungeon texture"
-    ],
-    "traits": [
-      "pop",
-      "radio",
-      "hook",
-      "polished",
-      "chorus"
-    ],
-    "risk": {
-      "butt_rock": 1
-    },
-    "weight": 1,
-    "description": "Broad radio-pop descriptor mapper.",
-    "category": "pop"
-  },
-  {
-    "id": "club_pop_anchor",
-    "label": "Club Pop Anchor",
-    "prompt": [
-      "club-influenced pop production",
-      "dancefloor hook focus",
-      "synthetic bass support",
-      "glossy vocal layering"
-    ],
-    "exclude": [
-      "acoustic-only demo",
-      "raw black metal mix",
-      "country fiddle lead"
-    ],
-    "traits": [
-      "club",
-      "dance",
-      "pop",
       "synth",
-      "glossy"
+      "electronic",
+      "sequenced",
+      "digital"
     ],
     "risk": {
-      "genre_drift": 0
+      "synthetic_overload": 1
     },
     "weight": 1,
-    "description": "Pop with club production identity.",
-    "category": "dance"
-  },
-  {
-    "id": "house_club_anchor",
-    "label": "House Club Anchor",
-    "prompt": [
-      "house music foundation",
-      "four-on-the-floor kick pattern",
-      "syncopated bass groove",
-      "repeating synth and vocal motifs"
-    ],
-    "exclude": [
-      "metal breakdowns",
-      "folk campfire arrangement",
-      "extreme metal drumming"
-    ],
-    "traits": [
-      "house",
-      "club",
-      "four_on_floor",
-      "groove",
-      "synth"
-    ],
-    "risk": {
-      "club_drift": -1
-    },
-    "weight": 1,
-    "description": "House and club descriptor mapper.",
-    "category": "house"
-  },
-  {
-    "id": "trance_anchor",
-    "label": "Trance Anchor",
-    "prompt": [
-      "trance music identity",
-      "arpeggiated synth lead",
-      "euphoric harmonic lift",
-      "wide electronic atmosphere"
-    ],
-    "exclude": [
-      "garage rock guitars",
-      "country twang",
-      "doom metal guitar wall"
-    ],
-    "traits": [
-      "trance",
-      "arpeggio",
-      "euphoric",
-      "synth",
-      "wide"
-    ],
-    "risk": {
-      "reverb": 1
-    },
-    "weight": 1,
-    "description": "Trance descriptor mapper.",
-    "category": "trance"
+    "description": "Synthpop, electro, cyberpunk, and chiptune mapper.",
+    "category": "electronic"
   },
   {
     "id": "techno_anchor",
@@ -443,252 +635,60 @@
     "category": "techno"
   },
   {
-    "id": "bass_music_anchor",
-    "label": "Bass Music Anchor",
+    "id": "trance_anchor",
+    "label": "Trance Anchor",
     "prompt": [
-      "bass music production",
-      "sub-bass pressure",
-      "syncopated electronic drums",
-      "aggressive sound design accents"
+      "trance music identity",
+      "arpeggiated synth lead",
+      "euphoric harmonic lift",
+      "wide electronic atmosphere"
     ],
     "exclude": [
-      "soft acoustic ballad",
-      "jazz brush drums",
-      "country pedal steel lead"
-    ],
-    "traits": [
-      "bass_music",
-      "sub_bass",
-      "sound_design",
-      "electronic"
-    ],
-    "risk": {
-      "synthetic_overload": 1
-    },
-    "weight": 1,
-    "description": "Dubstep, future bass, DnB, and bass-music mapper.",
-    "category": "electronic"
-  },
-  {
-    "id": "hiphop_anchor",
-    "label": "Hip-Hop Anchor",
-    "prompt": [
-      "hip-hop production identity",
-      "strong drum pocket",
-      "bass-centered beat",
-      "rhythmic vocal focus"
-    ],
-    "exclude": [
-      "orchestral trailer swell",
-      "metal guitar solo focus",
-      "bluegrass banjo lead"
-    ],
-    "traits": [
-      "hip_hop",
-      "drums",
-      "bass_heavy",
-      "rhythmic"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "General hip-hop descriptor mapper.",
-    "category": "hip-hop"
-  },
-  {
-    "id": "soul_rnb_anchor",
-    "label": "Soul / R&B Anchor",
-    "prompt": [
-      "soul and R&B vocabulary",
-      "expressive lead vocal",
-      "warm harmonic color",
-      "deep bass support"
-    ],
-    "exclude": [
-      "black metal vocals",
-      "punk gang chants",
-      "country fiddle lead"
-    ],
-    "traits": [
-      "soul",
-      "rnb",
-      "expressive",
-      "warm",
-      "vocal_focus"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Soul/R&B descriptor mapper.",
-    "category": "rnb"
-  },
-  {
-    "id": "jazz_anchor",
-    "label": "Jazz Anchor",
-    "prompt": [
-      "jazz harmonic language",
-      "extended chord color",
-      "responsive rhythm section",
-      "improvisational melodic phrasing"
-    ],
-    "exclude": [
-      "EDM festival drop",
-      "metalcore breakdown",
-      "trap hi-hat grid"
-    ],
-    "traits": [
-      "jazz",
-      "harmony",
-      "improvisational",
-      "live_band"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Jazz descriptor mapper.",
-    "category": "jazz"
-  },
-  {
-    "id": "punk_anchor",
-    "label": "Punk Anchor",
-    "prompt": [
-      "punk rock directness",
-      "raw guitar attack",
-      "unpolished band energy",
-      "shouted vocal attitude"
-    ],
-    "exclude": [
-      "glossy adult contemporary sheen",
-      "orchestral film-score arrangement",
-      "smooth lounge polish"
-    ],
-    "traits": [
-      "punk",
-      "raw",
-      "guitar",
-      "shouted"
-    ],
-    "risk": {
-      "genre_drift": -1
-    },
-    "weight": 1,
-    "description": "Punk descriptor mapper.",
-    "category": "punk"
-  },
-  {
-    "id": "extreme_metal_anchor",
-    "label": "Extreme Metal Anchor",
-    "prompt": [
-      "extreme metal identity",
-      "dense distorted guitar work",
-      "harsh vocal intensity",
-      "punishing drum performance"
-    ],
-    "exclude": [
-      "radio pop chorus",
+      "garage rock guitars",
       "country twang",
-      "soft acoustic intimacy"
+      "doom metal guitar wall"
     ],
     "traits": [
-      "extreme_metal",
-      "distorted",
-      "harsh",
-      "heavy",
-      "dense"
-    ],
-    "risk": {
-      "vocal_grunts": 2,
-      "harsh_vocals": 3,
-      "genre_drift": -1
-    },
-    "weight": 1,
-    "description": "Death, black, grind, and other extreme metal mapper.",
-    "category": "metal"
-  },
-  {
-    "id": "cinematic_trailer_anchor",
-    "label": "Cinematic Trailer Anchor",
-    "prompt": [
-      "cinematic trailer arrangement",
-      "orchestral impact accents",
-      "hybrid percussion layers",
-      "large dramatic payoff"
-    ],
-    "exclude": [
-      "lo-fi punk rehearsal mix",
-      "small acoustic demo",
-      "minimal club loop only"
-    ],
-    "traits": [
-      "cinematic",
-      "orchestral",
-      "hybrid",
-      "dramatic",
-      "large_room"
-    ],
-    "risk": {
-      "reverb": 2
-    },
-    "weight": 1,
-    "description": "Trailer and cinematic production mapper.",
-    "category": "cinematic"
-  },
-  {
-    "id": "global_pop_anchor",
-    "label": "Global Pop Anchor",
-    "prompt": [
-      "global pop production",
-      "rhythmic percussion color",
-      "melodic vocal hook",
-      "bright cross-cultural arrangement texture"
-    ],
-    "exclude": [
-      "extreme metal vocal wall",
-      "dungeon ambient minimalism",
-      "raw noise-rock mix"
-    ],
-    "traits": [
-      "global",
-      "pop",
-      "rhythmic",
-      "melodic",
-      "percussion"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Latin, Afrobeats, K-pop, J-pop, and global-pop mapper.",
-    "category": "world"
-  },
-  {
-    "id": "synth_electro_anchor",
-    "label": "Synth / Electro Anchor",
-    "prompt": [
-      "synth-forward electronic identity",
-      "sequenced melodic motifs",
-      "electronic drum programming",
-      "digital texture and synth color"
-    ],
-    "exclude": [
-      "acoustic-only folk arrangement",
-      "bluegrass string-band lead",
-      "raw country barroom mix"
-    ],
-    "traits": [
+      "trance",
+      "arpeggio",
+      "euphoric",
       "synth",
-      "electronic",
-      "sequenced",
-      "digital"
+      "wide"
     ],
     "risk": {
-      "synthetic_overload": 1
+      "reverb": 1
     },
     "weight": 1,
-    "description": "Synthpop, electro, cyberpunk, and chiptune mapper.",
-    "category": "electronic"
+    "description": "Trance descriptor mapper.",
+    "category": "trance"
+  },
+  {
+    "id": "ultra_fuzz_doom_anchor",
+    "label": "Ultra-Fuzz Doom Anchor",
+    "prompt": [
+      "ultra-fuzzed doom texture",
+      "buried low-end saturation",
+      "drugged hypnotic pacing",
+      "oppressive analog atmosphere"
+    ],
+    "exclude": [
+      "clean modern rock vocals",
+      "artist name references",
+      "bright polished mix"
+    ],
+    "traits": [
+      "doom",
+      "fuzz",
+      "low_end",
+      "oppressive",
+      "hypnotic"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Extreme fuzz-heavy doom mapper.",
+    "category": "doom"
   }
 ]

@@ -1,80 +1,17 @@
 [
   {
-    "id": "doom_needs_texture",
+    "id": "ambient_needs_texture",
     "ifAny": [
-      "doom",
-      "stoner",
-      "sludge"
+      "ambient",
+      "drone"
     ],
     "missingAny": [
-      "fuzz",
-      "tube_saturation",
-      "downtuned"
+      "texture",
+      "pads",
+      "drone",
+      "spacious"
     ],
-    "suggestion": "Add fuzz, tube saturation, or downtuned guitars to strengthen doom/stoner/sludge identity."
-  },
-  {
-    "id": "dry_vocals_need_room",
-    "ifAny": [
-      "dry"
-    ],
-    "missingAny": [
-      "small_room",
-      "close_mic"
-    ],
-    "suggestion": "Add close-mic or small room ambience to reinforce dry vocal control."
-  },
-  {
-    "id": "stoner_needs_groove",
-    "ifAny": [
-      "stoner",
-      "desert"
-    ],
-    "missingAny": [
-      "groove",
-      "fuzz",
-      "warm"
-    ],
-    "suggestion": "Add groove, fuzz, or warm tube saturation to avoid generic hard rock drift."
-  },
-  {
-    "id": "sludge_needs_rawness",
-    "ifAny": [
-      "sludge"
-    ],
-    "missingAny": [
-      "raw",
-      "dirty",
-      "muddy",
-      "saturated"
-    ],
-    "suggestion": "Add raw, dirty, muddy, or saturated production cues to keep sludge from becoming generic metal."
-  },
-  {
-    "id": "cinematic_needs_scale",
-    "ifAny": [
-      "cinematic"
-    ],
-    "missingAny": [
-      "orchestral",
-      "wide",
-      "dramatic",
-      "large_room"
-    ],
-    "suggestion": "Add wide, orchestral, dramatic, or large-room descriptors to support cinematic intent."
-  },
-  {
-    "id": "folk_needs_earth",
-    "ifAny": [
-      "folk"
-    ],
-    "missingAny": [
-      "acoustic",
-      "old_world",
-      "hand_drums",
-      "earthy"
-    ],
-    "suggestion": "Add acoustic, old-world, hand-drum, or earthy texture cues to reinforce folk identity."
+    "suggestion": "Add pads, drones, evolving textures, or spacious production to strengthen ambient identity."
   },
   {
     "id": "black_metal_needs_cold",
@@ -104,44 +41,17 @@
     "suggestion": "Consider adding the Anti-Butt-Rock filter or restrained dry vocals to avoid radio hard-rock drift."
   },
   {
-    "id": "reverb_risk_filter",
+    "id": "cinematic_needs_scale",
     "ifAny": [
-      "huge_reverb",
-      "cavernous",
-      "wide"
+      "cinematic"
     ],
     "missingAny": [
-      "anti_reverb",
-      "dry",
-      "small_room"
+      "orchestral",
+      "wide",
+      "dramatic",
+      "large_room"
     ],
-    "suggestion": "If vocals matter, add dry or small-room cues to prevent washed-out reverb."
-  },
-  {
-    "id": "reference_safety",
-    "ifAny": [
-      "vintage",
-      "desert",
-      "doom",
-      "sludge"
-    ],
-    "missingAny": [
-      "legal_safety"
-    ],
-    "suggestion": "Use reference anchors internally only. Do not output artist names or soundalike phrasing."
-  },
-  {
-    "id": "pop_needs_hook",
-    "ifAny": [
-      "pop",
-      "radio"
-    ],
-    "missingAny": [
-      "hook",
-      "chorus",
-      "polished"
-    ],
-    "suggestion": "Add a hook, chorus, or polished vocal direction to strengthen pop/radio identity."
+    "suggestion": "Add wide, orchestral, dramatic, or large-room descriptors to support cinematic intent."
   },
   {
     "id": "club_needs_low_end",
@@ -159,72 +69,6 @@
     "suggestion": "Add bassline, sub-bass, club drums, or a drop/hook cycle to reinforce club identity."
   },
   {
-    "id": "house_needs_groove",
-    "ifAny": [
-      "house"
-    ],
-    "missingAny": [
-      "four_on_floor",
-      "groove",
-      "piano",
-      "vocal_cuts"
-    ],
-    "suggestion": "Add four-on-the-floor drums, piano stabs, vocal cuts, or bass groove to strengthen house identity."
-  },
-  {
-    "id": "trance_needs_synth_lift",
-    "ifAny": [
-      "trance"
-    ],
-    "missingAny": [
-      "arpeggio",
-      "supersaw",
-      "euphoric",
-      "pads"
-    ],
-    "suggestion": "Add arpeggiated synth, supersaw chords, euphoric mood, or pad layers to clarify trance."
-  },
-  {
-    "id": "techno_needs_machine_texture",
-    "ifAny": [
-      "techno"
-    ],
-    "missingAny": [
-      "machine",
-      "modular",
-      "warehouse",
-      "industrial"
-    ],
-    "suggestion": "Add machine drums, modular synth pulses, warehouse texture, or industrial percussion for techno clarity."
-  },
-  {
-    "id": "hiphop_needs_beat_focus",
-    "ifAny": [
-      "hip_hop",
-      "rap"
-    ],
-    "missingAny": [
-      "drums",
-      "808",
-      "samples",
-      "bass_heavy"
-    ],
-    "suggestion": "Add drum pocket, 808, sample loop, or bass-centered beat cues to strengthen hip-hop identity."
-  },
-  {
-    "id": "jazz_needs_harmony",
-    "ifAny": [
-      "jazz"
-    ],
-    "missingAny": [
-      "harmony",
-      "extended_chords",
-      "piano",
-      "improvisational"
-    ],
-    "suggestion": "Add extended chord color, piano, improvisational phrasing, or live rhythm-section cues for jazz clarity."
-  },
-  {
     "id": "country_needs_roots_story",
     "ifAny": [
       "country"
@@ -238,17 +82,29 @@
     "suggestion": "Add twang, storyteller vocals, roots instrumentation, or live-band warmth to reinforce country identity."
   },
   {
-    "id": "punk_needs_raw_directness",
+    "id": "doom_needs_texture",
     "ifAny": [
-      "punk"
+      "doom",
+      "stoner",
+      "sludge"
     ],
     "missingAny": [
-      "raw",
-      "power_chords",
-      "shouted",
-      "garage"
+      "fuzz",
+      "tube_saturation",
+      "downtuned"
     ],
-    "suggestion": "Add raw guitars, power chords, shouted vocals, or garage production to keep punk direct."
+    "suggestion": "Add fuzz, tube saturation, or downtuned guitars to strengthen doom/stoner/sludge identity."
+  },
+  {
+    "id": "dry_vocals_need_room",
+    "ifAny": [
+      "dry"
+    ],
+    "missingAny": [
+      "small_room",
+      "close_mic"
+    ],
+    "suggestion": "Add close-mic or small room ambience to reinforce dry vocal control."
   },
   {
     "id": "extreme_metal_needs_density",
@@ -266,18 +122,110 @@
     "suggestion": "Add dense distorted guitars, harsh vocals, double-kick drum work, or abrasive production for extreme metal clarity."
   },
   {
-    "id": "ambient_needs_texture",
+    "id": "folk_needs_earth",
     "ifAny": [
-      "ambient",
-      "drone"
+      "folk"
     ],
     "missingAny": [
-      "texture",
-      "pads",
-      "drone",
-      "spacious"
+      "acoustic",
+      "old_world",
+      "hand_drums",
+      "earthy"
     ],
-    "suggestion": "Add pads, drones, evolving textures, or spacious production to strengthen ambient identity."
+    "suggestion": "Add acoustic, old-world, hand-drum, or earthy texture cues to reinforce folk identity."
+  },
+  {
+    "id": "hiphop_needs_beat_focus",
+    "ifAny": [
+      "hip_hop",
+      "rap"
+    ],
+    "missingAny": [
+      "drums",
+      "808",
+      "samples",
+      "bass_heavy"
+    ],
+    "suggestion": "Add drum pocket, 808, sample loop, or bass-centered beat cues to strengthen hip-hop identity."
+  },
+  {
+    "id": "house_needs_groove",
+    "ifAny": [
+      "house"
+    ],
+    "missingAny": [
+      "four_on_floor",
+      "groove",
+      "piano",
+      "vocal_cuts"
+    ],
+    "suggestion": "Add four-on-the-floor drums, piano stabs, vocal cuts, or bass groove to strengthen house identity."
+  },
+  {
+    "id": "jazz_needs_harmony",
+    "ifAny": [
+      "jazz"
+    ],
+    "missingAny": [
+      "harmony",
+      "extended_chords",
+      "piano",
+      "improvisational"
+    ],
+    "suggestion": "Add extended chord color, piano, improvisational phrasing, or live rhythm-section cues for jazz clarity."
+  },
+  {
+    "id": "pop_needs_hook",
+    "ifAny": [
+      "pop",
+      "radio"
+    ],
+    "missingAny": [
+      "hook",
+      "chorus",
+      "polished"
+    ],
+    "suggestion": "Add a hook, chorus, or polished vocal direction to strengthen pop/radio identity."
+  },
+  {
+    "id": "punk_needs_raw_directness",
+    "ifAny": [
+      "punk"
+    ],
+    "missingAny": [
+      "raw",
+      "power_chords",
+      "shouted",
+      "garage"
+    ],
+    "suggestion": "Add raw guitars, power chords, shouted vocals, or garage production to keep punk direct."
+  },
+  {
+    "id": "reference_safety",
+    "ifAny": [
+      "vintage",
+      "desert",
+      "doom",
+      "sludge"
+    ],
+    "missingAny": [
+      "legal_safety"
+    ],
+    "suggestion": "Use reference anchors internally only. Do not output artist names or soundalike phrasing."
+  },
+  {
+    "id": "reverb_risk_filter",
+    "ifAny": [
+      "huge_reverb",
+      "cavernous",
+      "wide"
+    ],
+    "missingAny": [
+      "anti_reverb",
+      "dry",
+      "small_room"
+    ],
+    "suggestion": "If vocals matter, add dry or small-room cues to prevent washed-out reverb."
   },
   {
     "id": "rnb_needs_vocal_expression",
@@ -292,5 +240,57 @@
       "smooth"
     ],
     "suggestion": "Add expressive vocals, warm harmony, smooth delivery, or vocal runs to reinforce R&B/soul."
+  },
+  {
+    "id": "sludge_needs_rawness",
+    "ifAny": [
+      "sludge"
+    ],
+    "missingAny": [
+      "raw",
+      "dirty",
+      "muddy",
+      "saturated"
+    ],
+    "suggestion": "Add raw, dirty, muddy, or saturated production cues to keep sludge from becoming generic metal."
+  },
+  {
+    "id": "stoner_needs_groove",
+    "ifAny": [
+      "stoner",
+      "desert"
+    ],
+    "missingAny": [
+      "groove",
+      "fuzz",
+      "warm"
+    ],
+    "suggestion": "Add groove, fuzz, or warm tube saturation to avoid generic hard rock drift."
+  },
+  {
+    "id": "techno_needs_machine_texture",
+    "ifAny": [
+      "techno"
+    ],
+    "missingAny": [
+      "machine",
+      "modular",
+      "warehouse",
+      "industrial"
+    ],
+    "suggestion": "Add machine drums, modular synth pulses, warehouse texture, or industrial percussion for techno clarity."
+  },
+  {
+    "id": "trance_needs_synth_lift",
+    "ifAny": [
+      "trance"
+    ],
+    "missingAny": [
+      "arpeggio",
+      "supersaw",
+      "euphoric",
+      "pads"
+    ],
+    "suggestion": "Add arpeggiated synth, supersaw chords, euphoric mood, or pad layers to clarify trance."
   }
 ]
