@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SoftSin Studios — Music Prompt Builder</title>
-  <meta name="description" content="SoftSin Studios Music Prompt Builder creates structured AI music prompts, compact exclusion lists, vocal-space controls, and reusable song prompt recipes." />
+  <title>SoftSin Studios — Suno Prompt Builder</title>
+  <meta name="description" content="Build Suno-ready song prompts with a visual song-structure node graph." />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -15,32 +14,20 @@
   <link rel="canonical" href="https://softsinstudios.com/musicprompt.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SoftSin Studios" />
-  <meta property="og:title" content="SoftSin Studios — Music Prompt Builder" />
-  <meta property="og:description" content="Build structured AI music prompts with genre controls, vocal-space controls, exclusions, diagnostics, and saved recipes." />
+  <meta property="og:title" content="SoftSin Studios — Suno Prompt Builder" />
+  <meta property="og:description" content="Build Suno-ready song prompts with a visual song-structure node graph." />
   <meta property="og:url" content="https://softsinstudios.com/musicprompt.html" />
   <meta property="og:image" content="https://softsinstudios.com/images/softsin-og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SoftSin Studios — Music Prompt Builder" />
-  <meta name="twitter:description" content="Build structured AI music prompts with genre controls, vocal-space controls, exclusions, diagnostics, and saved recipes." />
+  <meta name="twitter:title" content="SoftSin Studios — Suno Prompt Builder" />
+  <meta name="twitter:description" content="Build Suno-ready song prompts with a visual song-structure node graph." />
   <meta name="twitter:image" content="https://softsinstudios.com/images/softsin-og.png" />
-
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/musicprompt.css" />
-  <style>
-    .brand .mark {
-      display: inline-block;
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      object-fit: cover;
-      flex: 0 0 auto;
-      background: transparent;
-    }
-  </style>
 </head>
-<body class="musicprompt-page">
-  <div class="shell musicprompt-shell">
-    <header class="topbar">
+<body class="musicnode-page">
+  <div class="shell node-shell">
+    <header class="topbar node-site-header">
       <a class="brand" href="index.html">
         <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
         <span>
@@ -57,237 +44,32 @@
       </nav>
     </header>
 
-    <section class="hero musicprompt-hero">
-      <div>
-        <span class="eyebrow">AI Music Tool</span>
-        <h1>Build AI music prompts with actual control.</h1>
-        <p class="lead">
-          Compile genre, vocal, production, reference, and exclusion logic into clean prompts for AI music generators. Built for prompt control, reduced drift, compact exclusions, and repeatable song recipes.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#musicPromptTool">Open Builder</a>
-          <a class="btn" href="toolhub.html">Tool Hub</a>
-          <a class="btn" href="board.html">Support Board</a>
-        </div>
+    <main class="node-workspace" id="musicNodeApp">
+    <div class="node-top-strip">
+      <div class="tool-copy">
+        <span class="eyebrow">SoftSin Music Prompt Composer</span>
+        <strong>Music Prompt Builder - add nodes, lyrics, style, and export..</strong>
+       </div>
+      <div class="canvas-hint" aria-hidden="true">Right-click the canvas to add nodes. Drag from the round sockets to connect sections and modifiers. Hold Shift + mouse wheel to zoom.</div>
+      <div class="toolbar-actions">
+        <button id="btn-settings" class="btn" type="button">Project Settings</button>
+        <button id="btn-seed-demo" class="btn" type="button">Load Example</button>
+        <button id="btn-clear-graph" class="btn red" type="button">Reset Graph</button>
+        <button id="btn-save-project" class="btn" type="button">Save Project</button>
+        <button id="btn-load-project" class="btn" type="button">Load Project</button>
+        <button id="btn-export-txt" class="btn primary" type="button">Download TXT</button>
       </div>
+    </div>
 
-      <aside class="visual-card musicprompt-visual-card">
-        <div class="musicprompt-visual" aria-label="Music prompt builder visual preview">
-          <div class="musicprompt-stack">
-            <span>GENRE</span>
-            <span>VOCALS</span>
-            <span>TEXTURE</span>
-            <span>EXCLUDES</span>
-            <span>DIAGNOSTICS</span>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="panel section musicprompt-intro">
-      <div class="panel-head">
-        <h2>Structured music direction</h2>
-        <p>Turn musical intent into compact prompt language, controlled vocal-space cues, and shorter high-impact exclusion lists.</p>
-      </div>
-      <div class="musicprompt-info-grid">
-        <article class="musicprompt-info-card">
-          <strong>Prompt compiler</strong>
-          <span>Selections are converted into clean prompt text instead of random tag piles.</span>
-        </article>
-        <article class="musicprompt-info-card">
-          <strong>Vocal-space control</strong>
-          <span>Dedicated dry/room/cavern controls help reduce unwanted vocal reverb and drift.</span>
-        </article>
-        <article class="musicprompt-info-card">
-          <strong>Recipe workflow</strong>
-          <span>Save, load, export, and import repeatable prompt recipes locally.</span>
-        </article>
+    <section id="node-canvas" class="node-canvas" aria-label="Song node graph canvas">
+      <div id="node-world" class="node-world">
+        <svg id="edge-layer" class="edge-layer" aria-hidden="true"></svg>
+        <div id="connection-preview" class="connection-preview" aria-hidden="true"></div>
       </div>
     </section>
-
-    <main class="musicprompt-app section" id="musicPromptTool">
-      <section class="builder-panel controls-panel">
-        <div class="panel-header">
-          <h2>Prompt Builder</h2>
-          <p>Select musical traits.</p>
-        </div>
-
-        <div class="builder-grid compact-controls">
-          <article class="control-card">
-            <h3>Preset</h3>
-            <select id="preset-select">
-              <option value="">Choose preset...</option>
-            </select>
-          </article>
-
-          <article class="control-card">
-            <h3>Core Genre</h3>
-            <select id="genre-select">
-              <option value="">Choose genre...</option>
-            </select>
-          </article>
-
-          <article class="control-card">
-            <h3>Reference Anchor</h3>
-            <select id="reference-select">
-              <option value="">Choose reference...</option>
-            </select>
-            <p class="field-note">Internal sound-trait loader.</p>
-          </article>
-
-          <article class="control-card">
-            <h3>Mood</h3>
-            <select id="mood-select">
-              <option value="">Choose mood...</option>
-            </select>
-          </article>
-
-          <article class="control-card">
-            <h3>Vocal Style</h3>
-            <select id="vocal-select">
-              <option value="">Choose vocal style...</option>
-            </select>
-          </article>
-
-          <article class="control-card">
-            <h3>Vocal Space</h3>
-            <select id="vocal-space-select">
-              <option value="">Choose vocal space...</option>
-            </select>
-          </article>
-
-          <article class="control-card">
-            <h3>Instrumentation</h3>
-            <select id="instrument-select">
-              <option value="">Choose stack...</option>
-            </select>
-          </article>
-
-          <article class="control-card">
-            <h3>Production</h3>
-            <select id="production-select">
-              <option value="">Choose production...</option>
-            </select>
-          </article>
-
-          <article class="control-card">
-            <h3>Song Structure</h3>
-            <select id="structure-select">
-              <option value="">Choose structure...</option>
-            </select>
-          </article>
-
-          <article class="control-card">
-            <h3>Tempo / BPM</h3>
-            <input type="text" id="bpm-input" placeholder="92 BPM, 110 BPM, 75-85 BPM..." />
-            <p class="field-note">This is the only tempo authority.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="middle-panel">
-        <section class="diagnostics-card diagnostics-top">
-          <h2>Prompt Diagnostics</h2>
-          <div id="prompt-health" class="health-score">Health: 100%</div>
-          <div id="risk-list" class="risk-list"></div>
-          <div id="warnings-list" class="diagnostics-list"></div>
-          <div id="helpers-list" class="diagnostics-list"></div>
-        </section>
-
-        <section class="builder-panel lyrics-panel">
-          <div class="panel-header">
-            <h2>Lyrics &amp; Notes</h2>
-            <p>Optional cradle-to-production direction.</p>
-          </div>
-
-          <article class="control-card text-card">
-            <h3>Lyrics / Vocal Direction</h3>
-            <textarea id="lyrics-input" placeholder="Paste lyrics, theme notes, or vocal direction here..."></textarea>
-          </article>
-
-          <article class="control-card text-card">
-            <h3>Section Detail</h3>
-            <textarea id="section-detail" placeholder="Verse with sparse guitar and close vocals, chorus with layered hook..."></textarea>
-          </article>
-
-          <article class="control-card text-card">
-            <h3>Custom Notes</h3>
-            <textarea id="custom-notes" placeholder="Tuning feel, atmosphere, mix notes, performance direction..."></textarea>
-          </article>
-
-          <article class="control-card exclusions-card">
-            <h3>Exclusion Filters</h3>
-            <div id="exclusion-list" class="checkbox-list"></div>
-          </article>
-        </section>
-      </section>
-
-      <aside class="output-panel">
-        <section class="output-card settings-card">
-          <div class="output-header">
-            <h2>Generation Settings</h2>
-          </div>
-
-          <div class="settings-grid">
-            <label class="setting-field">
-              <span>Weirdness %</span>
-              <input type="number" id="suno-weirdness" min="0" max="100" value="25" />
-            </label>
-
-            <label class="setting-field">
-              <span>Style Influence %</span>
-              <input type="number" id="suno-style-influence" min="0" max="100" value="85" />
-            </label>
-
-            <label class="setting-field">
-              <span>Exclude Limit</span>
-              <input type="number" id="exclude-limit" min="100" max="2000" value="950" />
-            </label>
-          </div>
-        </section>
-
-        <section class="output-card">
-          <div class="output-header">
-            <h2>Recipe Manager</h2>
-          </div>
-
-          <div class="recipe-actions">
-            <input type="text" id="recipe-name" placeholder="Recipe name..." class="recipe-input" />
-
-            <div class="recipe-button-row">
-              <button id="btn-save-recipe" class="btn primary" type="button">Save Recipe</button>
-              <button id="btn-export-recipe" class="btn" type="button">Export JSON</button>
-              <button id="btn-import-recipe" class="btn" type="button">Import JSON</button>
-            </div>
-
-            <select id="saved-recipes">
-              <option value="">Load saved recipe...</option>
-            </select>
-
-            <button id="btn-delete-recipe" class="btn red" type="button">Delete Selected Recipe</button>
-          </div>
-        </section>
-
-        <section class="output-card">
-          <div class="output-header">
-            <h2>Compiled Prompt</h2>
-            <button id="btn-copy-main" class="btn" type="button">Copy</button>
-          </div>
-          <textarea id="compiled-prompt" readonly></textarea>
-        </section>
-
-        <section class="output-card">
-          <div class="output-header">
-            <h2>Exclude List</h2>
-            <button id="btn-copy-exclude" class="btn" type="button">Copy</button>
-          </div>
-          <textarea id="compiled-exclude" readonly></textarea>
-          <p id="exclude-count" class="char-count">0 characters</p>
-        </section>
-      </aside>
     </main>
 
-    <footer class="footer">
+    <footer class="footer node-site-footer">
       © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
       <div class="footer-links">
         <a href="index.html">Home</a>
@@ -300,6 +82,74 @@
       </div>
     </footer>
   </div>
+
+  <div id="context-menu" class="context-menu" hidden></div>
+
+  <dialog id="project-dialog" class="node-dialog">
+    <form method="dialog">
+      <div class="dialog-head">
+        <div>
+          <strong>Project Settings</strong>
+          <span>Set the optional title, global style, and targeted negative exclusions.</span>
+        </div>
+        <button class="btn" value="cancel" type="submit">Close</button>
+      </div>
+      <label class="node-field">
+        <span>Title</span>
+        <input id="song-title" type="text" placeholder="Enter song title..." />
+      </label>
+      <label class="node-field">
+        <span>Style Preset</span>
+        <select id="style-preset">
+          <option value="">No preset selected</option>
+        </select>
+      </label>
+      <label class="node-field">
+        <span>Custom Style Text</span>
+        <input id="style-text" type="text" placeholder="Type a custom global style, or choose a preset above..." />
+      </label>
+      <label class="node-field">
+        <span>Targeted Negative</span>
+        <textarea id="negative-text" placeholder="Optional. Only add exclusions after renderer drift, e.g. no trap hi-hats"></textarea>
+      </label>
+      <div class="dialog-actions">
+        <button id="btn-save-project-settings" class="btn primary" value="default" type="button">Apply Settings</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="lyrics-dialog" class="node-dialog lyrics-dialog">
+    <form method="dialog">
+      <div class="dialog-head">
+        <div>
+          <strong id="dialog-title">Edit Lyrics</strong>
+          <span id="dialog-meta">0 lines</span>
+        </div>
+        <button class="btn" value="cancel" type="submit">Close</button>
+      </div>
+      <textarea id="lyrics-editor" placeholder="Write this section's lyrics here..."></textarea>
+      <div class="dialog-actions">
+        <button id="btn-save-lyrics" class="btn primary" value="default" type="button">Save Lyrics</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="output-dialog" class="node-dialog output-dialog">
+    <form method="dialog">
+      <div class="dialog-head">
+        <div>
+          <strong>Compiled Suno TXT</strong>
+          <span>Copy or download the final prompt for Suno.</span>
+        </div>
+        <button class="btn" value="cancel" type="submit">Close</button>
+      </div>
+      <textarea id="compiled-output" readonly></textarea>
+      <div class="dialog-actions">
+        <button id="btn-copy-output" class="btn" type="button">Copy</button>
+        <button id="btn-download-output-modal" class="btn primary" type="button">Download TXT</button>
+      </div>
+    </form>
+  </dialog>
 
   <script type="module" src="js/musicprompt/app.js"></script>
 </body>

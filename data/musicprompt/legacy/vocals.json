@@ -1,0 +1,713 @@
+[
+  {
+    "id": "dry_baritone",
+    "label": "Dry Close-Mic Baritone",
+    "prompt": [
+      "dry close-mic baritone vocals",
+      "restrained low-register delivery",
+      "minimal vibrato",
+      "plainspoken melodic phrasing"
+    ],
+    "exclude": [
+      "huge vocal reverb",
+      "arena rock vocals",
+      "macho grunts",
+      "post-grunge vocals"
+    ],
+    "traits": [
+      "dry",
+      "close_mic",
+      "baritone",
+      "restrained",
+      "low_register",
+      "melodic"
+    ],
+    "risk": {
+      "butt_rock": -4,
+      "reverb": -4,
+      "vocal_grunts": -3
+    },
+    "weight": 1,
+    "description": "Best anti-radio-rock male vocal default.",
+    "category": "male"
+  },
+  {
+    "id": "weary_male_clean",
+    "label": "Weary Clean Male",
+    "prompt": [
+      "weary clean male vocals",
+      "low emotional delivery",
+      "understated phrasing",
+      "natural human tone"
+    ],
+    "exclude": [
+      "macho grunts",
+      "forced grit",
+      "arena rock belting",
+      "huge vocal reverb"
+    ],
+    "traits": [
+      "male",
+      "clean",
+      "weary",
+      "restrained",
+      "emotional"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "vocal_grunts": -3
+    },
+    "weight": 1,
+    "description": "Clean but not radio-rock polished.",
+    "category": "male"
+  },
+  {
+    "id": "underground_male",
+    "label": "Underground Male Vocal",
+    "prompt": [
+      "raw underground male vocals",
+      "unpolished human delivery",
+      "dry rehearsal-room vocal tone"
+    ],
+    "exclude": [
+      "radio-ready vocal polish",
+      "post-grunge vocals",
+      "macho grunts"
+    ],
+    "traits": [
+      "male",
+      "raw",
+      "underground",
+      "dry",
+      "unpolished"
+    ],
+    "risk": {
+      "butt_rock": -4,
+      "reverb": -3
+    },
+    "weight": 1,
+    "description": "Garage/rehearsal room vocal cue.",
+    "category": "male"
+  },
+  {
+    "id": "buried_sludge_vocals",
+    "label": "Buried Sludge Vocals",
+    "prompt": [
+      "buried raw sludge vocals",
+      "distant aggressive vocal texture",
+      "strained underground delivery"
+    ],
+    "exclude": [
+      "clean pop vocals",
+      "arena rock chorus",
+      "glossy vocal production"
+    ],
+    "traits": [
+      "buried_vocals",
+      "raw",
+      "aggressive",
+      "distant_vocals",
+      "sludge"
+    ],
+    "risk": {
+      "vocal_grunts": 2,
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Dirty sludge vocal placement.",
+    "category": "male"
+  },
+  {
+    "id": "chant_like_male",
+    "label": "Chant-Like Male",
+    "prompt": [
+      "chant-like male vocals",
+      "ritual low-register phrasing",
+      "steady repeated vocal cadence"
+    ],
+    "exclude": [
+      "gang shouts",
+      "stadium chant",
+      "modern radio-rock vocals"
+    ],
+    "traits": [
+      "male",
+      "chant",
+      "ritual",
+      "low_register"
+    ],
+    "risk": {
+      "butt_rock": -1,
+      "vocal_grunts": 0
+    },
+    "weight": 1,
+    "description": "Useful for ancient/ritual moods.",
+    "category": "male"
+  },
+  {
+    "id": "haunting_female",
+    "label": "Haunting Female",
+    "prompt": [
+      "haunting female vocals",
+      "soft sustained phrasing",
+      "ethereal melodic tone"
+    ],
+    "exclude": [
+      "bright pop diva vocals",
+      "EDM topline",
+      "overly theatrical belting"
+    ],
+    "traits": [
+      "female",
+      "haunting",
+      "ethereal",
+      "sustained",
+      "melodic"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Atmospheric female vocal cue.",
+    "category": "female"
+  },
+  {
+    "id": "low_female_alto",
+    "label": "Low Female Alto",
+    "prompt": [
+      "low female alto vocals",
+      "warm intimate delivery",
+      "restrained melodic phrasing"
+    ],
+    "exclude": [
+      "high pop belting",
+      "glossy radio vocal runs",
+      "arena rock delivery"
+    ],
+    "traits": [
+      "female",
+      "alto",
+      "low_register",
+      "restrained",
+      "intimate"
+    ],
+    "risk": {
+      "butt_rock": -2,
+      "reverb": -1
+    },
+    "weight": 1,
+    "description": "Controlled low female voice.",
+    "category": "female"
+  },
+  {
+    "id": "choir_layered",
+    "label": "Layered Choir",
+    "prompt": [
+      "layered choir vocals",
+      "wide harmonic backing vocals",
+      "dramatic ensemble texture"
+    ],
+    "exclude": [
+      "solo dry vocal only",
+      "spoken word only",
+      "thin vocal arrangement"
+    ],
+    "traits": [
+      "choir",
+      "layered",
+      "wide",
+      "dramatic"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Choir support for cinematic or epic styles.",
+    "category": "choir"
+  },
+  {
+    "id": "spoken_word",
+    "label": "Spoken Word",
+    "prompt": [
+      "spoken word vocals",
+      "dry narrative delivery",
+      "close-mic storytelling voice"
+    ],
+    "exclude": [
+      "sung pop chorus",
+      "operatic belting",
+      "macho grunts"
+    ],
+    "traits": [
+      "spoken",
+      "dry",
+      "close_mic",
+      "narrative"
+    ],
+    "risk": {
+      "butt_rock": -3,
+      "reverb": -3
+    },
+    "weight": 1,
+    "description": "Narrative vocal style.",
+    "category": "spoken"
+  },
+  {
+    "id": "instrumental_only",
+    "label": "Instrumental Only",
+    "prompt": [
+      "instrumental track",
+      "no lead vocals"
+    ],
+    "exclude": [
+      "lead vocals",
+      "sung chorus",
+      "spoken vocals",
+      "choir vocals"
+    ],
+    "traits": [
+      "instrumental",
+      "no_vocals"
+    ],
+    "risk": {
+      "butt_rock": -5,
+      "vocal_grunts": -5
+    },
+    "weight": 1,
+    "description": "No vocal generation.",
+    "category": "instrumental"
+  },
+  {
+    "id": "pop_female",
+    "label": "Polished Female Pop Vocal",
+    "prompt": [
+      "polished female lead vocals",
+      "clean melodic phrasing",
+      "stacked chorus harmonies",
+      "clear emotional delivery"
+    ],
+    "exclude": [
+      "black metal shrieks",
+      "macho grunts",
+      "buried sludge vocals"
+    ],
+    "traits": [
+      "female",
+      "pop",
+      "polished",
+      "melodic",
+      "harmony"
+    ],
+    "risk": {
+      "reverb": 0
+    },
+    "weight": 1,
+    "description": "Mainstream female pop vocal direction.",
+    "category": "female"
+  },
+  {
+    "id": "pop_male",
+    "label": "Polished Male Pop Vocal",
+    "prompt": [
+      "polished male lead vocals",
+      "clean melodic delivery",
+      "controlled chorus lift",
+      "radio-friendly vocal focus"
+    ],
+    "exclude": [
+      "macho grunts",
+      "extreme metal growls",
+      "raw punk shouting"
+    ],
+    "traits": [
+      "male",
+      "pop",
+      "polished",
+      "melodic",
+      "radio"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1,
+    "description": "Mainstream male pop vocal direction.",
+    "category": "male"
+  },
+  {
+    "id": "rnb_lead",
+    "label": "Expressive R&B Lead",
+    "prompt": [
+      "expressive R&B lead vocal",
+      "smooth vocal runs",
+      "intimate layered adlibs",
+      "emotional melodic phrasing"
+    ],
+    "exclude": [
+      "punk shouting",
+      "black metal vocals",
+      "country nasal twang"
+    ],
+    "traits": [
+      "rnb",
+      "smooth",
+      "vocal_runs",
+      "expressive",
+      "intimate"
+    ],
+    "risk": {
+      "reverb": 0
+    },
+    "weight": 1,
+    "description": "R&B and soul lead direction.",
+    "category": "rnb"
+  },
+  {
+    "id": "rap_lead",
+    "label": "Rap Lead",
+    "prompt": [
+      "clear rap lead vocal",
+      "rhythmic lyrical delivery",
+      "confident vocal pocket",
+      "direct verse focus"
+    ],
+    "exclude": [
+      "operatic belting",
+      "black metal shrieks",
+      "choir-only arrangement"
+    ],
+    "traits": [
+      "rap",
+      "hip_hop",
+      "rhythmic",
+      "lyrical",
+      "confident"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "General rap vocal direction.",
+    "category": "rap"
+  },
+  {
+    "id": "melodic_rap",
+    "label": "Melodic Rap Vocal",
+    "prompt": [
+      "melodic rap vocal",
+      "sung-rap hook delivery",
+      "smooth verse cadence",
+      "catchy vocal refrain"
+    ],
+    "exclude": [
+      "extreme metal growls",
+      "opera choir lead"
+    ],
+    "traits": [
+      "rap",
+      "melodic",
+      "hook",
+      "smooth"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Melodic rap/pop-rap direction.",
+    "category": "rap"
+  },
+  {
+    "id": "soulful_female",
+    "label": "Soulful Female Vocal",
+    "prompt": [
+      "soulful female lead vocal",
+      "warm expressive phrasing",
+      "powerful emotional lift",
+      "tasteful vocal runs"
+    ],
+    "exclude": [
+      "cold robotic monotone",
+      "black metal shrieks"
+    ],
+    "traits": [
+      "female",
+      "soul",
+      "expressive",
+      "warm",
+      "vocal_runs"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Soul, R&B, pop, and gospel-compatible female vocal.",
+    "category": "female"
+  },
+  {
+    "id": "jazz_crooner",
+    "label": "Jazz Crooner",
+    "prompt": [
+      "smooth jazz crooner vocal",
+      "relaxed phrasing",
+      "subtle vibrato",
+      "close conversational tone"
+    ],
+    "exclude": [
+      "punk shouting",
+      "metal growls",
+      "EDM chopped-vocal lead only"
+    ],
+    "traits": [
+      "male",
+      "jazz",
+      "smooth",
+      "close_mic",
+      "vibrato"
+    ],
+    "risk": {
+      "reverb": -1
+    },
+    "weight": 1,
+    "description": "Jazz and lounge vocal direction.",
+    "category": "male"
+  },
+  {
+    "id": "country_storyteller",
+    "label": "Country Storyteller Vocal",
+    "prompt": [
+      "country storyteller vocal",
+      "clear lyric-first delivery",
+      "weathered emotional character",
+      "natural twang color"
+    ],
+    "exclude": [
+      "EDM topline processing",
+      "black metal vocals",
+      "trap adlibs"
+    ],
+    "traits": [
+      "country",
+      "storytelling",
+      "natural",
+      "twang",
+      "lyric_forward"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Country and Americana vocal direction.",
+    "category": "country"
+  },
+  {
+    "id": "punk_shout",
+    "label": "Punk Shout Vocal",
+    "prompt": [
+      "punk shouted vocals",
+      "raw gang-free attitude",
+      "direct confrontational delivery",
+      "unpolished vocal bite"
+    ],
+    "exclude": [
+      "arena rock gang chants",
+      "glossy pop belting",
+      "operatic vibrato"
+    ],
+    "traits": [
+      "punk",
+      "shouted",
+      "raw",
+      "direct"
+    ],
+    "risk": {
+      "vocal_grunts": 1
+    },
+    "weight": 1,
+    "description": "Punk vocal energy without arena-rock drift.",
+    "category": "punk"
+  },
+  {
+    "id": "metal_clean",
+    "label": "Clean Metal Vocal",
+    "prompt": [
+      "clean metal vocals",
+      "dramatic melodic delivery",
+      "powerful sustained phrases",
+      "controlled grit"
+    ],
+    "exclude": [
+      "post-grunge vocals",
+      "macho adlibs",
+      "random growls"
+    ],
+    "traits": [
+      "metal",
+      "clean_vocals",
+      "dramatic",
+      "melodic",
+      "controlled"
+    ],
+    "risk": {
+      "butt_rock": 1,
+      "vocal_grunts": -1
+    },
+    "weight": 1,
+    "description": "Clean metal vocal direction.",
+    "category": "metal"
+  },
+  {
+    "id": "extreme_harsh",
+    "label": "Extreme Harsh Vocal",
+    "prompt": [
+      "extreme harsh vocals",
+      "abrasive vocal texture",
+      "controlled growl and scream technique",
+      "inhuman intensity"
+    ],
+    "exclude": [
+      "pop diva vocals",
+      "smooth crooner delivery",
+      "gentle whisper lead"
+    ],
+    "traits": [
+      "extreme_metal",
+      "harsh",
+      "aggressive",
+      "controlled"
+    ],
+    "risk": {
+      "vocal_grunts": 4,
+      "harsh_vocals": 5
+    },
+    "weight": 1,
+    "description": "Extreme metal vocal direction; use deliberately.",
+    "category": "metal"
+  },
+  {
+    "id": "edm_topline",
+    "label": "EDM Topline Vocal",
+    "prompt": [
+      "EDM topline vocal",
+      "clean hook-focused melody",
+      "processed vocal layers",
+      "anthemic electronic phrasing"
+    ],
+    "exclude": [
+      "raw punk shouting",
+      "buried sludge vocals",
+      "country twang lead"
+    ],
+    "traits": [
+      "edm",
+      "topline",
+      "hook",
+      "processed",
+      "melodic"
+    ],
+    "risk": {
+      "reverb": 1,
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "EDM and club-pop vocal direction.",
+    "category": "electronic"
+  },
+  {
+    "id": "vocal_chops",
+    "label": "Vocal Chops",
+    "prompt": [
+      "chopped vocal hook",
+      "processed vocal fragments",
+      "sampled syllable melody",
+      "non-lyrical vocal texture"
+    ],
+    "exclude": [
+      "full choir lead",
+      "dry spoken-word monologue only"
+    ],
+    "traits": [
+      "vocal_chops",
+      "processed",
+      "sampled",
+      "hook",
+      "electronic"
+    ],
+    "risk": {
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "Electronic vocal-chop texture.",
+    "category": "electronic"
+  },
+  {
+    "id": "group_harmony",
+    "label": "Group Harmony",
+    "prompt": [
+      "stacked group harmonies",
+      "layered backing vocals",
+      "wide chorus support",
+      "tight ensemble blend"
+    ],
+    "exclude": [
+      "solo spoken-word only",
+      "harsh growl lead only"
+    ],
+    "traits": [
+      "harmony",
+      "group",
+      "layered",
+      "chorus"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Pop, soul, country, folk, K-pop, and gospel harmony direction.",
+    "category": "group"
+  },
+  {
+    "id": "latin_pop_vocal",
+    "label": "Latin Pop Vocal",
+    "prompt": [
+      "Latin pop vocal delivery",
+      "rhythmic melodic phrasing",
+      "bright hook presence",
+      "expressive romantic tone"
+    ],
+    "exclude": [
+      "black metal vocals",
+      "punk shouting",
+      "doom monotone"
+    ],
+    "traits": [
+      "latin",
+      "pop",
+      "rhythmic",
+      "romantic",
+      "melodic"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Latin pop and reggaeton-compatible vocal.",
+    "category": "latin"
+  },
+  {
+    "id": "jpop_kpop_group",
+    "label": "J-Pop / K-Pop Group Vocal",
+    "prompt": [
+      "J-pop or K-pop group vocals",
+      "stacked harmony hooks",
+      "alternating lead lines",
+      "glossy chorus layering"
+    ],
+    "exclude": [
+      "raw sludge vocals",
+      "country barroom lead",
+      "black metal shrieks"
+    ],
+    "traits": [
+      "k_pop",
+      "j_pop",
+      "group",
+      "harmony",
+      "glossy"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Modern J-pop/K-pop group vocal direction.",
+    "category": "group"
+  }
+]

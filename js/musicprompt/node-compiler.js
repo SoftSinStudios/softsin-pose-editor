@@ -79,37 +79,16 @@ function compileHeader(section, modifiers) {
 
 export function compileNodeProject(project) {
   const lines = [];
-  const titleNode = project.nodes.find(node => node.kind === "title");
-  const title = clean(titleNode?.value) || clean(project.meta?.title);
-  const globalStyle = clean(project.global?.style);
-  const styleNodes = project.nodes
-    .filter(node => node.kind === "style")
-    .map(node => clean(node.value))
-    .filter(Boolean);
-  const style = [...new Set([globalStyle, ...styleNodes].filter(Boolean))].join(", ");
+  const title = clean(project.meta?.title) || "Untitled Song";
+  const style = clean(project.global?.style);
   const globalNegative = clean(project.global?.negative);
-  const hasLyrics = project.nodes.some(node => node.kind === "structure" && clean(node.lyrics));
-  const hasModifiers = project.nodes.some(node => node.kind === "modifier" && clean(node.value));
-  const hasMeaningfulPrompt = Boolean(title || style || globalNegative || hasLyrics || hasModifiers);
 
-  if (!hasMeaningfulPrompt) {
-    return {
-      filename: `${titleCaseId(title || "song")}_suno_prompt.txt`,
-      text: ""
-    };
-  }
-
-  if (title) {
-    lines.push("TITLE:");
-    lines.push(title);
-    lines.push("");
-  }
-
-  if (style) {
-    lines.push("STYLE:");
-    lines.push(style);
-    lines.push("");
-  }
+  lines.push("TITLE:");
+  lines.push(title);
+  lines.push("");
+  lines.push("STYLE:");
+  lines.push(style || "Add style direction here.");
+  lines.push("");
 
   const sectionNegatives = project.edges
     .filter(edge => (edge.type || "modifier") === "modifier")
@@ -119,13 +98,7 @@ export function compileNodeProject(project) {
     })
     .filter(Boolean);
 
-  const looseNegatives = project.nodes
-    .filter(node => node.kind === "modifier" && node.type === "negative")
-    .filter(node => !project.edges.some(edge => edge.from === node.id))
-    .map(node => clean(node.value))
-    .filter(Boolean);
-
-  const negatives = [...new Set([globalNegative, ...sectionNegatives, ...looseNegatives].filter(Boolean))];
+  const negatives = [...new Set([globalNegative, ...sectionNegatives].filter(Boolean))];
   if (negatives.length) {
     lines.push("NEGATIVE:");
     lines.push(negatives.join(", "));
@@ -144,7 +117,7 @@ export function compileNodeProject(project) {
   });
 
   return {
-    filename: `${titleCaseId(title || "song")}_suno_prompt.txt`,
+    filename: `${titleCaseId(title)}_suno_prompt.txt`,
     text: lines.join("\n").replace(/\n{4,}/g, "\n\n\n").trim() + "\n"
   };
 }

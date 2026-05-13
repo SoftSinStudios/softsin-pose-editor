@@ -1,0 +1,94 @@
+{
+  "butt_rock": {
+    "label": "Butt-Rock Risk",
+    "description": "Likelihood of drifting into post-grunge, radio hard rock, macho chorus delivery, or overproduced hard-rock vocals.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_butt_rock",
+      "dry_baritone",
+      "underground_male",
+      "dry_underground"
+    ]
+  },
+  "reverb": {
+    "label": "Reverb Risk",
+    "description": "Likelihood of huge, washed-out, distant, or cavernous vocal/production space.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_reverb",
+      "dry_underground",
+      "dry_baritone",
+      "minimal_acoustic"
+    ]
+  },
+  "vocal_grunts": {
+    "label": "Grunt Risk",
+    "description": "Likelihood of random growls, macho adlibs, barking vocals, or aggressive vocal artifacts.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_grunt",
+      "dry_baritone",
+      "weary_male_clean",
+      "spoken_word"
+    ]
+  },
+  "genre_drift": {
+    "label": "Genre Drift Risk",
+    "description": "Likelihood that the generated song drifts away from the selected genre identity.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "downtuned_fuzz_stack",
+      "tube_amp_heavy",
+      "analog_doom_stack",
+      "riff_loop_hypnotic"
+    ]
+  },
+  "club_drift": {
+    "label": "Club Drift Risk",
+    "description": "Likelihood of drifting into club, EDM, dance-pop, or festival-style production when that is not intended.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_club",
+      "anti_synthetic",
+      "minimal_acoustic",
+      "warm_live_band"
+    ]
+  },
+  "harsh_vocals": {
+    "label": "Harsh Vocal Risk",
+    "description": "Likelihood of screamed, growled, shrieked, or abrasive vocal output.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_harsh_vocals",
+      "weary_male_clean",
+      "pop_female",
+      "rnb_lead",
+      "neutral_studio"
+    ]
+  },
+  "synthetic_overload": {
+    "label": "Synthetic Overload Risk",
+    "description": "Likelihood of excessive synth processing, robotic texture, EDM effects, or over-digital production.",
+    "lowMax": 2,
+    "mediumMax": 5,
+    "highMin": 6,
+    "fixes": [
+      "anti_synthetic",
+      "warm_live_band",
+      "minimal_acoustic",
+      "acoustic_songwriter_stack"
+    ]
+  }
+}

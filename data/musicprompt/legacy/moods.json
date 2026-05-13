@@ -1,0 +1,574 @@
+[
+  {
+    "id": "bleak",
+    "label": "Bleak",
+    "prompt": [
+      "bleak atmosphere",
+      "melancholic harmonic movement"
+    ],
+    "exclude": [
+      "uplifting pop energy",
+      "cheerful radio hook"
+    ],
+    "traits": [
+      "bleak",
+      "melancholic",
+      "minor_key"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "oppressive",
+    "label": "Oppressive",
+    "prompt": [
+      "oppressive atmosphere",
+      "dense low-end weight",
+      "claustrophobic tension"
+    ],
+    "exclude": [
+      "cheerful radio hook"
+    ],
+    "traits": [
+      "oppressive",
+      "heavy",
+      "claustrophobic"
+    ],
+    "risk": {
+      "reverb": 0
+    },
+    "weight": 1
+  },
+  {
+    "id": "melancholic_heroic",
+    "label": "Melancholic Yet Heroic",
+    "prompt": [
+      "melancholic yet heroic tone",
+      "sorrowful melodic lift",
+      "heavy emotional resolve"
+    ],
+    "exclude": [
+      "sarcastic novelty tone",
+      "cheerful party-rock mood"
+    ],
+    "traits": [
+      "melancholic",
+      "heroic",
+      "emotional",
+      "resolve"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "ancient",
+    "label": "Ancient",
+    "prompt": [
+      "ancient atmosphere",
+      "old-world melodic color",
+      "weathered mythic tone"
+    ],
+    "exclude": [
+      "futuristic cyberpunk sheen",
+      "modern pop club energy"
+    ],
+    "traits": [
+      "ancient",
+      "old_world",
+      "mythic"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "ritualistic",
+    "label": "Ritualistic",
+    "prompt": [
+      "ritualistic atmosphere",
+      "repeating hypnotic cadence",
+      "dark ceremonial tone"
+    ],
+    "exclude": [
+      "bright pop hooks",
+      "casual party energy"
+    ],
+    "traits": [
+      "ritual",
+      "hypnotic",
+      "dark"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "cosmic_dread",
+    "label": "Cosmic Dread",
+    "prompt": [
+      "cosmic dread atmosphere",
+      "vast ominous space",
+      "existential heaviness"
+    ],
+    "exclude": [
+      "earthy tavern warmth",
+      "cheerful dance rhythm"
+    ],
+    "traits": [
+      "cosmic",
+      "dread",
+      "vast",
+      "ominous"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "dusty_desert",
+    "label": "Dusty Desert",
+    "prompt": [
+      "dusty desert atmosphere",
+      "sun-baked haze",
+      "wide dry landscape feeling"
+    ],
+    "exclude": [
+      "icy black-metal coldness",
+      "wet cavern reverb"
+    ],
+    "traits": [
+      "desert",
+      "dusty",
+      "dry",
+      "wide"
+    ],
+    "risk": {
+      "reverb": -1
+    },
+    "weight": 1
+  },
+  {
+    "id": "mournful",
+    "label": "Mournful",
+    "prompt": [
+      "mournful tone",
+      "sorrowful melody",
+      "heavy emotional gravity"
+    ],
+    "exclude": [
+      "playful upbeat tone",
+      "bright dance energy"
+    ],
+    "traits": [
+      "mournful",
+      "sorrowful",
+      "emotional"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "wrathful",
+    "label": "Wrathful",
+    "prompt": [
+      "wrathful energy",
+      "hostile rhythmic force",
+      "angry heavy atmosphere"
+    ],
+    "exclude": [
+      "soft lullaby tone",
+      "gentle acoustic warmth"
+    ],
+    "traits": [
+      "wrathful",
+      "hostile",
+      "aggressive",
+      "heavy"
+    ],
+    "risk": {
+      "vocal_grunts": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "mystical",
+    "label": "Mystical",
+    "prompt": [
+      "mystical atmosphere",
+      "strange modal melody",
+      "dreamlike ancient texture"
+    ],
+    "exclude": [
+      "dry technical demo tone",
+      "modern corporate jingle feel"
+    ],
+    "traits": [
+      "mystical",
+      "modal",
+      "dreamlike"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "bright",
+    "label": "Bright",
+    "prompt": [
+      "bright emotional color",
+      "clean optimistic lift"
+    ],
+    "exclude": [
+      "bleak doom atmosphere",
+      "nihilistic dread tone"
+    ],
+    "traits": [
+      "bright",
+      "optimistic",
+      "clean"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "euphoric",
+    "label": "Euphoric",
+    "prompt": [
+      "euphoric emotional lift",
+      "wide uplifting feeling",
+      "hands-in-the-air release"
+    ],
+    "exclude": [
+      "claustrophobic dread",
+      "deadpan spoken-only delivery"
+    ],
+    "traits": [
+      "euphoric",
+      "uplifting",
+      "wide"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "bittersweet",
+    "label": "Bittersweet",
+    "prompt": [
+      "bittersweet emotional tone",
+      "melancholy with melodic warmth"
+    ],
+    "exclude": [
+      "novelty party mood",
+      "pure aggression only"
+    ],
+    "traits": [
+      "bittersweet",
+      "melancholic",
+      "warm"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "romantic",
+    "label": "Romantic",
+    "prompt": [
+      "romantic atmosphere",
+      "intimate emotional pull",
+      "soft melodic warmth"
+    ],
+    "exclude": [
+      "hostile extreme metal tone",
+      "cold industrial brutality"
+    ],
+    "traits": [
+      "romantic",
+      "intimate",
+      "warm",
+      "emotional"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "confident",
+    "label": "Confident",
+    "prompt": [
+      "confident performance energy",
+      "bold melodic presence",
+      "self-assured attitude"
+    ],
+    "exclude": [
+      "fragile whisper-only tone",
+      "formless ambient drift"
+    ],
+    "traits": [
+      "confident",
+      "bold",
+      "attitude"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "aggressive",
+    "label": "Aggressive",
+    "prompt": [
+      "aggressive emotional force",
+      "hostile edge",
+      "high-tension delivery"
+    ],
+    "exclude": [
+      "gentle lullaby softness",
+      "smooth lounge restraint"
+    ],
+    "traits": [
+      "aggressive",
+      "hostile",
+      "tension"
+    ],
+    "risk": {
+      "vocal_grunts": 1,
+      "harsh_vocals": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "rebellious",
+    "label": "Rebellious",
+    "prompt": [
+      "rebellious attitude",
+      "defiant lyrical stance",
+      "raw confrontational edge"
+    ],
+    "exclude": [
+      "corporate jingle tone",
+      "gentle spa ambience"
+    ],
+    "traits": [
+      "rebellious",
+      "defiant",
+      "raw"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "dreamy",
+    "label": "Dreamy",
+    "prompt": [
+      "dreamy atmosphere",
+      "soft-focus emotional haze",
+      "shimmering melodic color"
+    ],
+    "exclude": [
+      "dry punk shouting",
+      "machine-like industrial brutality"
+    ],
+    "traits": [
+      "dreamy",
+      "hazy",
+      "atmospheric"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "nocturnal",
+    "label": "Nocturnal",
+    "prompt": [
+      "nocturnal atmosphere",
+      "late-night color",
+      "shadowed urban mood"
+    ],
+    "exclude": [
+      "sunny campfire warmth",
+      "cheerful children’s-song tone"
+    ],
+    "traits": [
+      "nocturnal",
+      "dark",
+      "urban"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "futuristic",
+    "label": "Futuristic",
+    "prompt": [
+      "futuristic tone",
+      "sleek synthetic color",
+      "digital neon atmosphere"
+    ],
+    "exclude": [
+      "old-world acoustic tavern mood",
+      "dusty roots authenticity"
+    ],
+    "traits": [
+      "futuristic",
+      "synthetic",
+      "digital",
+      "neon"
+    ],
+    "risk": {
+      "synthetic_overload": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "celebratory",
+    "label": "Celebratory",
+    "prompt": [
+      "celebratory mood",
+      "joyful communal lift",
+      "big hook excitement"
+    ],
+    "exclude": [
+      "funeral atmosphere",
+      "bleak isolation"
+    ],
+    "traits": [
+      "celebratory",
+      "joyful",
+      "communal",
+      "hook"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "seductive",
+    "label": "Seductive",
+    "prompt": [
+      "seductive mood",
+      "smooth intimate tension",
+      "controlled sensual delivery"
+    ],
+    "exclude": [
+      "punk shouting",
+      "extreme metal chaos"
+    ],
+    "traits": [
+      "seductive",
+      "smooth",
+      "intimate",
+      "controlled"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "introspective",
+    "label": "Introspective",
+    "prompt": [
+      "introspective mood",
+      "thoughtful emotional restraint",
+      "inward lyrical focus"
+    ],
+    "exclude": [
+      "party chant energy",
+      "comic novelty tone"
+    ],
+    "traits": [
+      "introspective",
+      "restrained",
+      "lyric_forward"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "cinematic_heroic",
+    "label": "Cinematic Heroic",
+    "prompt": [
+      "cinematic heroic tone",
+      "dramatic emotional ascent",
+      "large-scale resolve"
+    ],
+    "exclude": [
+      "lo-fi bedroom demo mood",
+      "sarcastic novelty tone"
+    ],
+    "traits": [
+      "cinematic",
+      "heroic",
+      "dramatic",
+      "resolve"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1
+  },
+  {
+    "id": "chilled",
+    "label": "Chilled",
+    "prompt": [
+      "chilled atmosphere",
+      "relaxed emotional surface",
+      "soft groove comfort"
+    ],
+    "exclude": [
+      "hostile metal intensity",
+      "panic-driven tension"
+    ],
+    "traits": [
+      "chilled",
+      "relaxed",
+      "soft"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "playful",
+    "label": "Playful",
+    "prompt": [
+      "playful melodic color",
+      "quirky rhythmic bounce",
+      "light characterful energy"
+    ],
+    "exclude": [
+      "grim funeral tone",
+      "oppressive dread"
+    ],
+    "traits": [
+      "playful",
+      "quirky",
+      "light"
+    ],
+    "risk": {},
+    "weight": 1
+  },
+  {
+    "id": "anxious",
+    "label": "Anxious",
+    "prompt": [
+      "anxious tension",
+      "nervous harmonic color",
+      "uneasy forward motion"
+    ],
+    "exclude": [
+      "spa-like calm",
+      "carefree summer tone"
+    ],
+    "traits": [
+      "anxious",
+      "tense",
+      "uneasy"
+    ],
+    "risk": {},
+    "weight": 1
+  }
+]

@@ -1,0 +1,685 @@
+[
+  {
+    "id": "downtuned_fuzz_stack",
+    "label": "Downtuned Fuzz Stack",
+    "prompt": [
+      "downtuned fuzz guitars",
+      "thick bass guitar",
+      "heavy drums"
+    ],
+    "exclude": [
+      "thin guitar tone",
+      "bright pop drums"
+    ],
+    "traits": [
+      "downtuned",
+      "fuzz",
+      "bass_heavy",
+      "heavy"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Core doom/stoner/sludge instrument stack.",
+    "category": "guitar"
+  },
+  {
+    "id": "analog_doom_stack",
+    "label": "Analog Doom Stack",
+    "prompt": [
+      "warm analog guitars",
+      "tube amp saturation",
+      "roomy drums",
+      "heavy bass foundation"
+    ],
+    "exclude": [
+      "djent guitar tone",
+      "sterile digital mix"
+    ],
+    "traits": [
+      "analog",
+      "tube_saturation",
+      "roomy_drums",
+      "bass_heavy"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Vintage heavy stack.",
+    "category": "guitar"
+  },
+  {
+    "id": "sludge_stack",
+    "label": "Sludge Stack",
+    "prompt": [
+      "filthy distorted guitars",
+      "overdriven bass",
+      "raw pounding drums"
+    ],
+    "exclude": [
+      "sparkly clean guitars",
+      "polished pop drums"
+    ],
+    "traits": [
+      "sludge",
+      "distorted",
+      "overdriven_bass",
+      "raw_drums"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Dirty sludge instrumentation.",
+    "category": "guitar"
+  },
+  {
+    "id": "desert_groove_stack",
+    "label": "Desert Groove Stack",
+    "prompt": [
+      "fuzz guitar riffs",
+      "loose desert-rock drums",
+      "warm bass groove"
+    ],
+    "exclude": [
+      "cold synth pads only",
+      "metalcore breakdown guitars"
+    ],
+    "traits": [
+      "fuzz",
+      "desert",
+      "groove",
+      "warm"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Stoner/desert rhythm stack.",
+    "category": "guitar"
+  },
+  {
+    "id": "orchestral_dark_stack",
+    "label": "Dark Orchestral Stack",
+    "prompt": [
+      "low orchestral strings",
+      "cinematic percussion",
+      "dark brass accents"
+    ],
+    "exclude": [
+      "small acoustic demo",
+      "garage punk drums"
+    ],
+    "traits": [
+      "orchestral",
+      "cinematic",
+      "strings",
+      "percussion",
+      "dark"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Cinematic supporting instrumentation.",
+    "category": "orchestral"
+  },
+  {
+    "id": "folk_ancient_stack",
+    "label": "Ancient Folk Stack",
+    "prompt": [
+      "acoustic guitar",
+      "low hand drums",
+      "old-world folk melody",
+      "subtle drone texture"
+    ],
+    "exclude": [
+      "modern EDM drums",
+      "glossy pop synths"
+    ],
+    "traits": [
+      "folk",
+      "acoustic",
+      "hand_drums",
+      "old_world",
+      "drone"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Earthy folk elements.",
+    "category": "folk"
+  },
+  {
+    "id": "synth_dark_stack",
+    "label": "Dark Synth Stack",
+    "prompt": [
+      "analog synth bass",
+      "dark pads",
+      "arpeggiated synth texture"
+    ],
+    "exclude": [
+      "acoustic-only arrangement",
+      "bright tropical synths"
+    ],
+    "traits": [
+      "analog_synth",
+      "dark",
+      "pads"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Dark electronic stack.",
+    "category": "synth"
+  },
+  {
+    "id": "minimal_drone_stack",
+    "label": "Minimal Drone Stack",
+    "prompt": [
+      "sustained drones",
+      "subtle low-frequency movement",
+      "sparse atmospheric texture"
+    ],
+    "exclude": [
+      "busy drum fills",
+      "anthemic chorus arrangement"
+    ],
+    "traits": [
+      "drone",
+      "minimal",
+      "spacious",
+      "low_frequency"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Ambient/dungeon/drone foundation.",
+    "category": "ambient"
+  },
+  {
+    "id": "acoustic_songwriter_stack",
+    "label": "Acoustic Songwriter Stack",
+    "prompt": [
+      "steel-string acoustic guitar",
+      "subtle piano support",
+      "light percussion",
+      "warm bass foundation"
+    ],
+    "exclude": [
+      "club synth bass",
+      "extreme metal guitar wall"
+    ],
+    "traits": [
+      "acoustic",
+      "guitar",
+      "piano",
+      "organic",
+      "songwriter"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Clean acoustic songwriter instrumentation.",
+    "category": "acoustic"
+  },
+  {
+    "id": "country_roots_stack",
+    "label": "Country / Roots Stack",
+    "prompt": [
+      "twangy electric guitar",
+      "acoustic guitar strums",
+      "pedal steel color",
+      "warm live drums"
+    ],
+    "exclude": [
+      "industrial synth lead",
+      "black metal guitar texture"
+    ],
+    "traits": [
+      "country",
+      "roots",
+      "twang",
+      "live_band"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Country and roots arrangement palette.",
+    "category": "roots"
+  },
+  {
+    "id": "blues_jazz_stack",
+    "label": "Blues / Jazz Stack",
+    "prompt": [
+      "expressive electric guitar",
+      "upright or electric bass",
+      "piano chord color",
+      "brushed or live drums"
+    ],
+    "exclude": [
+      "EDM drop synths",
+      "metal breakdown guitars"
+    ],
+    "traits": [
+      "blues",
+      "jazz",
+      "piano",
+      "live_band",
+      "expressive"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Blues and jazz rhythm-section palette.",
+    "category": "jazz"
+  },
+  {
+    "id": "soul_funk_stack",
+    "label": "Soul / Funk Stack",
+    "prompt": [
+      "syncopated bass guitar",
+      "tight rhythm guitar",
+      "electric piano chords",
+      "horn section accents"
+    ],
+    "exclude": [
+      "doom guitar wall",
+      "ambient drone-only bed"
+    ],
+    "traits": [
+      "soul",
+      "funk",
+      "bassline",
+      "horns",
+      "groove"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Soul, funk, disco, and R&B band palette.",
+    "category": "soul"
+  },
+  {
+    "id": "pop_radio_stack",
+    "label": "Pop Radio Stack",
+    "prompt": [
+      "clean synth layers",
+      "polished drums",
+      "supporting piano or guitar hook",
+      "tight bass line"
+    ],
+    "exclude": [
+      "raw black metal mix",
+      "lo-fi dungeon synth bed"
+    ],
+    "traits": [
+      "pop",
+      "radio",
+      "polished",
+      "synth",
+      "hook"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Mainstream pop instrumentation.",
+    "category": "pop"
+  },
+  {
+    "id": "club_synth_stack",
+    "label": "Club Synth Stack",
+    "prompt": [
+      "club kick drum",
+      "synthetic bass line",
+      "bright synth hook",
+      "layered electronic percussion"
+    ],
+    "exclude": [
+      "acoustic-only folk band",
+      "bluegrass mandolin lead"
+    ],
+    "traits": [
+      "club",
+      "dance",
+      "synth",
+      "electronic",
+      "bassline"
+    ],
+    "risk": {
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "Club and dance-pop instrumentation.",
+    "category": "dance"
+  },
+  {
+    "id": "house_stack",
+    "label": "House Stack",
+    "prompt": [
+      "four-on-the-floor kick",
+      "house piano stabs",
+      "rubbery bass groove",
+      "looped vocal cuts"
+    ],
+    "exclude": [
+      "extreme metal drums",
+      "acoustic campfire arrangement"
+    ],
+    "traits": [
+      "house",
+      "four_on_floor",
+      "piano",
+      "groove",
+      "vocal_cuts"
+    ],
+    "risk": {
+      "club_drift": -1
+    },
+    "weight": 1,
+    "description": "House-oriented rhythm and synth palette.",
+    "category": "house"
+  },
+  {
+    "id": "trance_stack",
+    "label": "Trance Stack",
+    "prompt": [
+      "arpeggiated synth lead",
+      "wide supersaw chords",
+      "rolling electronic bass",
+      "uplifting pad layers"
+    ],
+    "exclude": [
+      "garage rock guitar lead",
+      "country fiddle solo"
+    ],
+    "traits": [
+      "trance",
+      "arpeggio",
+      "supersaw",
+      "pads",
+      "synth"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Trance synth palette.",
+    "category": "trance"
+  },
+  {
+    "id": "techno_stack",
+    "label": "Techno Stack",
+    "prompt": [
+      "machine drum kit",
+      "modular synth pulses",
+      "dark bass sequence",
+      "industrial percussion accents"
+    ],
+    "exclude": [
+      "acoustic folk strings",
+      "smooth jazz sax lead"
+    ],
+    "traits": [
+      "techno",
+      "machine",
+      "modular",
+      "industrial",
+      "synthetic"
+    ],
+    "risk": {
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "Techno and warehouse electronic palette.",
+    "category": "techno"
+  },
+  {
+    "id": "bass_music_stack",
+    "label": "Bass Music Stack",
+    "prompt": [
+      "heavy sub-bass design",
+      "syncopated electronic drums",
+      "wobble bass movement",
+      "glitch effects"
+    ],
+    "exclude": [
+      "soft acoustic guitar only",
+      "jazz brush drums"
+    ],
+    "traits": [
+      "bass_music",
+      "sub_bass",
+      "wobble",
+      "glitch",
+      "electronic"
+    ],
+    "risk": {
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "Bass music and dubstep-oriented sound design.",
+    "category": "electronic"
+  },
+  {
+    "id": "hiphop_808_stack",
+    "label": "Hip-Hop / 808 Stack",
+    "prompt": [
+      "808 bass",
+      "sharp hi-hat patterns",
+      "dark synth motif",
+      "hard drum pocket"
+    ],
+    "exclude": [
+      "bluegrass banjo lead",
+      "orchestral strings as main rhythm"
+    ],
+    "traits": [
+      "hip_hop",
+      "808",
+      "hi_hats",
+      "drums",
+      "bass_heavy"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Trap and modern hip-hop instrumentation.",
+    "category": "hip-hop"
+  },
+  {
+    "id": "boom_bap_stack",
+    "label": "Boom Bap Stack",
+    "prompt": [
+      "sample-based drum break",
+      "dusty loop texture",
+      "vinyl keys",
+      "thick bass sample"
+    ],
+    "exclude": [
+      "festival EDM synth lead",
+      "metal guitar wall"
+    ],
+    "traits": [
+      "hip_hop",
+      "boom_bap",
+      "samples",
+      "vinyl",
+      "drums"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Classic sample-based hip-hop palette.",
+    "category": "hip-hop"
+  },
+  {
+    "id": "punk_stack",
+    "label": "Punk Band Stack",
+    "prompt": [
+      "raw power-chord guitars",
+      "punchy bass guitar",
+      "unpolished live drums",
+      "garage-band grit"
+    ],
+    "exclude": [
+      "orchestral film score",
+      "smooth lounge piano"
+    ],
+    "traits": [
+      "punk",
+      "raw",
+      "power_chords",
+      "live_band"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Punk and garage instrumentation.",
+    "category": "punk"
+  },
+  {
+    "id": "extreme_metal_stack",
+    "label": "Extreme Metal Stack",
+    "prompt": [
+      "dense distorted guitars",
+      "double-kick drum work",
+      "abrasive bass tone",
+      "extreme riff changes"
+    ],
+    "exclude": [
+      "bright pop drums",
+      "country pedal steel"
+    ],
+    "traits": [
+      "extreme_metal",
+      "distorted",
+      "heavy",
+      "double_kick",
+      "dense"
+    ],
+    "risk": {
+      "vocal_grunts": 1,
+      "harsh_vocals": 1
+    },
+    "weight": 1,
+    "description": "Extreme metal instrumentation palette.",
+    "category": "metal"
+  },
+  {
+    "id": "prog_stack",
+    "label": "Progressive Stack",
+    "prompt": [
+      "complex guitar and keyboard interplay",
+      "extended instrumental sections",
+      "rich bass movement",
+      "dynamic drum arrangement"
+    ],
+    "exclude": [
+      "simple loop-only backing",
+      "three-chord stomp only"
+    ],
+    "traits": [
+      "progressive",
+      "complex",
+      "keyboard",
+      "instrumental"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Progressive rock and metal instrumentation.",
+    "category": "progressive"
+  },
+  {
+    "id": "ambient_pad_stack",
+    "label": "Ambient Pad Stack",
+    "prompt": [
+      "evolving synth pads",
+      "soft drone layers",
+      "subtle field texture",
+      "gentle melodic fragments"
+    ],
+    "exclude": [
+      "anthemic chorus lead",
+      "metal drum assault"
+    ],
+    "traits": [
+      "ambient",
+      "pads",
+      "drone",
+      "texture",
+      "minimal"
+    ],
+    "risk": {
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Ambient and new-age texture palette.",
+    "category": "ambient"
+  },
+  {
+    "id": "global_rhythm_stack",
+    "label": "Global Rhythm Stack",
+    "prompt": [
+      "layered hand percussion",
+      "melodic plucked instruments",
+      "deep rhythmic bass",
+      "bright rhythmic accents"
+    ],
+    "exclude": [
+      "black metal guitar wall",
+      "dungeon drone-only texture"
+    ],
+    "traits": [
+      "global",
+      "percussion",
+      "rhythmic",
+      "melodic"
+    ],
+    "risk": {},
+    "weight": 1,
+    "description": "Latin, reggae, Afrobeats, and global-pop rhythm palette.",
+    "category": "world"
+  },
+  {
+    "id": "jpop_kpop_stack",
+    "label": "J-Pop / K-Pop Stack",
+    "prompt": [
+      "glossy synth layers",
+      "tight programmed drums",
+      "stacked harmony hooks",
+      "bright guitar or keyboard accents"
+    ],
+    "exclude": [
+      "raw doom metal wall",
+      "lo-fi field recording only"
+    ],
+    "traits": [
+      "pop",
+      "k_pop",
+      "j_pop",
+      "glossy",
+      "harmony"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Modern East Asian pop arrangement palette.",
+    "category": "pop"
+  },
+  {
+    "id": "chiptune_stack",
+    "label": "Chiptune Stack",
+    "prompt": [
+      "8-bit lead synth",
+      "square-wave bass",
+      "retro game arpeggios",
+      "crisp electronic percussion"
+    ],
+    "exclude": [
+      "acoustic-only folk arrangement",
+      "orchestral realism only"
+    ],
+    "traits": [
+      "chiptune",
+      "retro",
+      "synth",
+      "arpeggio",
+      "digital"
+    ],
+    "risk": {
+      "synthetic_overload": 1
+    },
+    "weight": 1,
+    "description": "Chiptune and retro game instrumentation.",
+    "category": "electronic"
+  }
+]

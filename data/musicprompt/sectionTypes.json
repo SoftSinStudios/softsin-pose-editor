@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "sections": [
+    {
+      "id": "intro",
+      "label": "Intro",
+      "tag": "Intro"
+    },
+    {
+      "id": "verse",
+      "label": "Verse",
+      "tag": "Verse",
+      "numbered": true
+    },
+    {
+      "id": "pre_chorus",
+      "label": "Pre-Chorus",
+      "tag": "Pre-Chorus"
+    },
+    {
+      "id": "chorus",
+      "label": "Chorus",
+      "tag": "Chorus",
+      "numbered": true
+    },
+    {
+      "id": "post_chorus",
+      "label": "Post-Chorus",
+      "tag": "Post-Chorus"
+    },
+    {
+      "id": "bridge",
+      "label": "Bridge",
+      "tag": "Bridge"
+    },
+    {
+      "id": "breakdown",
+      "label": "Breakdown",
+      "tag": "Breakdown"
+    },
+    {
+      "id": "interlude",
+      "label": "Interlude",
+      "tag": "Interlude"
+    },
+    {
+      "id": "solo",
+      "label": "Solo",
+      "tag": "Solo"
+    },
+    {
+      "id": "instrumental",
+      "label": "Instrumental",
+      "tag": "Instrumental"
+    },
+    {
+      "id": "final_chorus",
+      "label": "Final Chorus",
+      "tag": "Final Chorus"
+    },
+    {
+      "id": "outro",
+      "label": "Outro",
+      "tag": "Outro"
+    },
+    {
+      "id": "end",
+      "label": "End",
+      "tag": "End"
+    }
+  ]
+}

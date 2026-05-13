@@ -1,0 +1,4027 @@
+{
+  "version": "2.0.0",
+  "purpose": "Slim node library generated from legacy musicprompt data. Legacy risk/exclude/conflict data remains separate.",
+  "nodes": [
+    {
+      "id": "style_singer_songwriter",
+      "label": "Singer-Songwriter",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "singer-songwriter, intimate lyric-forward arrangement",
+      "tags": [
+        "acoustic",
+        "lyric_forward",
+        "intimate",
+        "songwriter"
+      ]
+    },
+    {
+      "id": "style_acoustic_pop",
+      "label": "Acoustic Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "acoustic pop, clean melodic hooks",
+      "tags": [
+        "acoustic",
+        "pop",
+        "melodic",
+        "polished"
+      ]
+    },
+    {
+      "id": "style_indie_folk",
+      "label": "Indie Folk",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "indie folk, organic acoustic textures",
+      "tags": [
+        "folk",
+        "indie",
+        "organic",
+        "harmony"
+      ]
+    },
+    {
+      "id": "style_dark_acoustic_folk",
+      "label": "Acoustic Dark Folk",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "dark acoustic folk, fingerpicked guitar",
+      "tags": [
+        "folk",
+        "acoustic",
+        "dark",
+        "intimate",
+        "melancholic"
+      ]
+    },
+    {
+      "id": "style_americana",
+      "label": "Americana",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "americana, roots-influenced songwriting",
+      "tags": [
+        "americana",
+        "roots",
+        "acoustic",
+        "storytelling"
+      ]
+    },
+    {
+      "id": "style_southern_gothic",
+      "label": "Southern Gothic",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "southern gothic, dusty acoustic textures",
+      "tags": [
+        "southern_gothic",
+        "dusty",
+        "storytelling",
+        "dark",
+        "swampy"
+      ]
+    },
+    {
+      "id": "style_bluegrass",
+      "label": "Bluegrass",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "bluegrass, banjo and mandolin interplay",
+      "tags": [
+        "bluegrass",
+        "banjo",
+        "mandolin",
+        "harmony",
+        "roots"
+      ]
+    },
+    {
+      "id": "style_country",
+      "label": "Country",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "country, twangy guitars",
+      "tags": [
+        "country",
+        "twang",
+        "storytelling",
+        "roots"
+      ]
+    },
+    {
+      "id": "style_outlaw_country",
+      "label": "Outlaw Country",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "outlaw country, gritty barroom guitars",
+      "tags": [
+        "country",
+        "outlaw",
+        "gritty",
+        "storytelling"
+      ]
+    },
+    {
+      "id": "style_blues",
+      "label": "Blues",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "blues, expressive guitar licks",
+      "tags": [
+        "blues",
+        "guitar",
+        "expressive",
+        "smoky"
+      ]
+    },
+    {
+      "id": "style_delta_blues",
+      "label": "Delta Blues",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "delta blues, raw acoustic guitar",
+      "tags": [
+        "blues",
+        "delta",
+        "raw",
+        "slide_guitar"
+      ]
+    },
+    {
+      "id": "style_jazz_blues",
+      "label": "Jazz Blues",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "jazz blues, swing-informed rhythm section",
+      "tags": [
+        "jazz",
+        "blues",
+        "swing",
+        "extended_chords"
+      ]
+    },
+    {
+      "id": "style_jazz_standard",
+      "label": "Jazz Standard",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "jazz standard, walking bass",
+      "tags": [
+        "jazz",
+        "standard",
+        "walking_bass",
+        "harmony"
+      ]
+    },
+    {
+      "id": "style_smooth_jazz",
+      "label": "Smooth Jazz",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "smooth jazz, polished saxophone lead",
+      "tags": [
+        "jazz",
+        "smooth",
+        "saxophone",
+        "polished"
+      ]
+    },
+    {
+      "id": "style_neo_soul",
+      "label": "Neo-Soul",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "neo-soul, warm electric piano chords",
+      "tags": [
+        "soul",
+        "rnb",
+        "warm",
+        "expressive"
+      ]
+    },
+    {
+      "id": "style_classic_soul",
+      "label": "Classic Soul",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "classic soul, live band groove",
+      "tags": [
+        "soul",
+        "horns",
+        "live_band",
+        "vocal_focus"
+      ]
+    },
+    {
+      "id": "style_rnb",
+      "label": "R&B",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "R&B, smooth vocal runs",
+      "tags": [
+        "rnb",
+        "smooth",
+        "vocal_runs",
+        "polished"
+      ]
+    },
+    {
+      "id": "style_alt_rnb",
+      "label": "Alternative R&B",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "alternative R&B, moody synth textures",
+      "tags": [
+        "rnb",
+        "alternative",
+        "moody",
+        "minimal"
+      ]
+    },
+    {
+      "id": "style_funk",
+      "label": "Funk",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "funk, syncopated bassline",
+      "tags": [
+        "funk",
+        "syncopated",
+        "bassline",
+        "horns"
+      ]
+    },
+    {
+      "id": "style_disco",
+      "label": "Disco",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "disco, four-on-the-floor drums",
+      "tags": [
+        "disco",
+        "dance",
+        "strings",
+        "rhythm_guitar"
+      ]
+    },
+    {
+      "id": "style_radio_pop",
+      "label": "Radio Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "radio pop, bright hook-centered songwriting",
+      "tags": [
+        "pop",
+        "radio",
+        "hook",
+        "polished"
+      ]
+    },
+    {
+      "id": "style_dance_pop",
+      "label": "Dance Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "dance pop, club-influenced pop production",
+      "tags": [
+        "pop",
+        "dance",
+        "club",
+        "synth"
+      ]
+    },
+    {
+      "id": "style_synth_pop",
+      "label": "Synth Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "synth pop, melodic synth hooks",
+      "tags": [
+        "pop",
+        "synth",
+        "electronic",
+        "melodic"
+      ]
+    },
+    {
+      "id": "style_indie_pop",
+      "label": "Indie Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "indie pop, quirky melodic hooks",
+      "tags": [
+        "pop",
+        "indie",
+        "melodic",
+        "quirky"
+      ]
+    },
+    {
+      "id": "style_dream_pop",
+      "label": "Dream Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "dream pop, hazy guitar layers",
+      "tags": [
+        "pop",
+        "dreamy",
+        "hazy",
+        "atmospheric"
+      ]
+    },
+    {
+      "id": "style_power_pop",
+      "label": "Power Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "power pop, guitar-driven pop hooks",
+      "tags": [
+        "pop",
+        "rock",
+        "hooks",
+        "harmony"
+      ]
+    },
+    {
+      "id": "style_adult_contemporary",
+      "label": "Adult Contemporary",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "adult contemporary, smooth radio-friendly arrangement",
+      "tags": [
+        "radio",
+        "polished",
+        "melodic",
+        "soft_rock"
+      ]
+    },
+    {
+      "id": "style_club_pop",
+      "label": "Club Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "club pop, dancefloor-ready pop hooks",
+      "tags": [
+        "pop",
+        "club",
+        "dance",
+        "glossy"
+      ]
+    },
+    {
+      "id": "style_boom_bap",
+      "label": "Boom Bap",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "boom bap hip-hop, sample-based drums",
+      "tags": [
+        "hip_hop",
+        "boom_bap",
+        "samples",
+        "rhythmic"
+      ]
+    },
+    {
+      "id": "style_trap",
+      "label": "Trap",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "trap, 808 bass",
+      "tags": [
+        "trap",
+        "808",
+        "hi_hats",
+        "minimal"
+      ]
+    },
+    {
+      "id": "style_conscious_hip_hop",
+      "label": "Conscious Hip-Hop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "conscious hip-hop, lyric-forward rap delivery",
+      "tags": [
+        "hip_hop",
+        "lyrical",
+        "soulful",
+        "narrative"
+      ]
+    },
+    {
+      "id": "style_pop_rap",
+      "label": "Pop Rap",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "pop rap, melodic rap hooks",
+      "tags": [
+        "hip_hop",
+        "pop",
+        "melodic",
+        "radio"
+      ]
+    },
+    {
+      "id": "style_lofi_hip_hop",
+      "label": "Lo-Fi Hip-Hop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "lo-fi hip-hop, dusty vinyl texture",
+      "tags": [
+        "hip_hop",
+        "lofi",
+        "vinyl",
+        "soft_keys"
+      ]
+    },
+    {
+      "id": "style_phonk",
+      "label": "Phonk",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "phonk, memphis rap influence",
+      "tags": [
+        "phonk",
+        "808",
+        "memphis",
+        "distorted"
+      ]
+    },
+    {
+      "id": "style_classic_rock",
+      "label": "Classic Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "classic rock, electric guitar riffs",
+      "tags": [
+        "rock",
+        "guitar",
+        "live_band",
+        "classic"
+      ]
+    },
+    {
+      "id": "style_hard_rock",
+      "label": "Hard Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "hard rock, thick electric guitars",
+      "tags": [
+        "rock",
+        "hard_rock",
+        "guitar",
+        "anthemic"
+      ]
+    },
+    {
+      "id": "style_garage_rock",
+      "label": "Garage Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "garage rock, raw electric guitars",
+      "tags": [
+        "rock",
+        "garage",
+        "raw",
+        "band"
+      ]
+    },
+    {
+      "id": "style_indie_rock",
+      "label": "Indie Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "indie rock, textured guitars",
+      "tags": [
+        "rock",
+        "indie",
+        "alternative",
+        "guitar"
+      ]
+    },
+    {
+      "id": "style_alternative_rock",
+      "label": "Alternative Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "alternative rock, guitar-driven arrangement",
+      "tags": [
+        "rock",
+        "alternative",
+        "guitar",
+        "dynamic"
+      ]
+    },
+    {
+      "id": "style_post_rock",
+      "label": "Post-Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "post-rock, layered guitars",
+      "tags": [
+        "post_rock",
+        "cinematic",
+        "layered",
+        "atmospheric"
+      ]
+    },
+    {
+      "id": "style_progressive_rock",
+      "label": "Progressive Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "progressive rock, complex song architecture",
+      "tags": [
+        "rock",
+        "progressive",
+        "complex",
+        "harmonic"
+      ]
+    },
+    {
+      "id": "style_psychedelic_rock",
+      "label": "Psychedelic Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "psychedelic rock, swirling guitar effects",
+      "tags": [
+        "rock",
+        "psychedelic",
+        "effects",
+        "surreal"
+      ]
+    },
+    {
+      "id": "style_desert_rock",
+      "label": "Desert Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "desert rock, dusty hypnotic groove",
+      "tags": [
+        "desert",
+        "rock",
+        "groove",
+        "analog",
+        "warm"
+      ]
+    },
+    {
+      "id": "style_grunge",
+      "label": "Grunge",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "grunge, dirty guitar distortion",
+      "tags": [
+        "rock",
+        "grunge",
+        "dirty",
+        "angsty"
+      ]
+    },
+    {
+      "id": "style_shoegaze",
+      "label": "Shoegaze",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "shoegaze, wall of guitar effects",
+      "tags": [
+        "rock",
+        "shoegaze",
+        "effects",
+        "lush_noise"
+      ]
+    },
+    {
+      "id": "style_punk_rock",
+      "label": "Punk Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "punk rock, raw power chords",
+      "tags": [
+        "punk",
+        "rock",
+        "raw",
+        "power_chords"
+      ]
+    },
+    {
+      "id": "style_pop_punk",
+      "label": "Pop Punk",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "pop punk, bright guitar hooks",
+      "tags": [
+        "punk",
+        "pop",
+        "hooks",
+        "guitar"
+      ]
+    },
+    {
+      "id": "style_post_punk",
+      "label": "Post-Punk",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "post-punk, angular guitars",
+      "tags": [
+        "post_punk",
+        "angular",
+        "cold",
+        "bassline"
+      ]
+    },
+    {
+      "id": "style_hardcore_punk",
+      "label": "Hardcore Punk",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "hardcore punk, aggressive power chords",
+      "tags": [
+        "punk",
+        "hardcore",
+        "aggressive",
+        "raw"
+      ]
+    },
+    {
+      "id": "style_post_hardcore",
+      "label": "Post-Hardcore",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "post-hardcore, angular guitar tension",
+      "tags": [
+        "post_hardcore",
+        "emotional",
+        "angular",
+        "dynamic"
+      ]
+    },
+    {
+      "id": "style_metalcore",
+      "label": "Metalcore",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "metalcore, chugging guitar riffs",
+      "tags": [
+        "metal",
+        "core",
+        "breakdown",
+        "vocal_contrast"
+      ]
+    },
+    {
+      "id": "style_deathcore",
+      "label": "Deathcore",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "deathcore, extreme low-tuned guitar weight",
+      "tags": [
+        "metal",
+        "core",
+        "extreme",
+        "guttural"
+      ]
+    },
+    {
+      "id": "style_heavy_metal",
+      "label": "Heavy Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "heavy metal, classic riff-driven guitars",
+      "tags": [
+        "metal",
+        "classic",
+        "riffs",
+        "lead_vocals"
+      ]
+    },
+    {
+      "id": "style_traditional_doom",
+      "label": "Traditional Doom",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "traditional doom metal, vintage heavy metal structure",
+      "tags": [
+        "doom",
+        "traditional",
+        "vintage",
+        "blues_rooted"
+      ]
+    },
+    {
+      "id": "style_doom_metal",
+      "label": "Doom Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "doom metal, crushing doom weight",
+      "tags": [
+        "doom",
+        "metal",
+        "heavy",
+        "minor_key",
+        "low_register"
+      ]
+    },
+    {
+      "id": "style_epic_doom",
+      "label": "Epic Doom",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "epic doom metal, majestic heavy riffs",
+      "tags": [
+        "doom",
+        "epic",
+        "dramatic",
+        "melodic",
+        "large_room"
+      ]
+    },
+    {
+      "id": "style_funeral_doom",
+      "label": "Funeral Doom",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "funeral doom metal, extreme doom weight",
+      "tags": [
+        "doom",
+        "funeral",
+        "bleak",
+        "sustained",
+        "cavernous"
+      ]
+    },
+    {
+      "id": "style_stoner_metal",
+      "label": "Stoner Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "stoner metal, fuzz-heavy riffs",
+      "tags": [
+        "stoner",
+        "metal",
+        "fuzz",
+        "groove",
+        "desert",
+        "tube_saturation"
+      ]
+    },
+    {
+      "id": "style_sludge_metal",
+      "label": "Sludge Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "sludge metal, filthy low-end distortion",
+      "tags": [
+        "sludge",
+        "metal",
+        "raw",
+        "heavy",
+        "distorted",
+        "oppressive"
+      ]
+    },
+    {
+      "id": "style_post_metal",
+      "label": "Post-Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "post-metal, evolving heavy atmosphere",
+      "tags": [
+        "post_metal",
+        "cinematic",
+        "layered",
+        "build",
+        "atmospheric"
+      ]
+    },
+    {
+      "id": "style_progressive_metal",
+      "label": "Progressive Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "progressive metal, complex riff architecture",
+      "tags": [
+        "metal",
+        "progressive",
+        "technical",
+        "complex"
+      ]
+    },
+    {
+      "id": "style_power_metal",
+      "label": "Power Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "power metal, soaring melodic vocals",
+      "tags": [
+        "metal",
+        "power_metal",
+        "melodic",
+        "heroic"
+      ]
+    },
+    {
+      "id": "style_symphonic_metal",
+      "label": "Symphonic Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "symphonic metal, orchestral strings",
+      "tags": [
+        "symphonic",
+        "metal",
+        "orchestral",
+        "cinematic",
+        "dramatic"
+      ]
+    },
+    {
+      "id": "style_gothic_metal",
+      "label": "Gothic Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "gothic metal, dark romantic atmosphere",
+      "tags": [
+        "gothic",
+        "metal",
+        "melancholic",
+        "dark_romantic",
+        "dramatic"
+      ]
+    },
+    {
+      "id": "style_folk_metal",
+      "label": "Folk Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "folk metal, traditional melody influence",
+      "tags": [
+        "folk",
+        "metal",
+        "traditional",
+        "earthy",
+        "melodic"
+      ]
+    },
+    {
+      "id": "style_industrial_metal",
+      "label": "Industrial Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "industrial metal, mechanical rhythm",
+      "tags": [
+        "industrial",
+        "metal",
+        "mechanical",
+        "cold",
+        "synthetic"
+      ]
+    },
+    {
+      "id": "style_nu_metal",
+      "label": "Nu Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "nu metal, low-tuned guitar riffs",
+      "tags": [
+        "metal",
+        "nu_metal",
+        "low_tuned",
+        "rhythmic"
+      ]
+    },
+    {
+      "id": "style_thrash_metal",
+      "label": "Thrash Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "thrash metal, palm-muted riff attack",
+      "tags": [
+        "metal",
+        "thrash",
+        "riff_attack",
+        "aggressive"
+      ]
+    },
+    {
+      "id": "style_death_metal",
+      "label": "Death Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "death metal, guttural vocals",
+      "tags": [
+        "metal",
+        "death_metal",
+        "guttural",
+        "brutal"
+      ]
+    },
+    {
+      "id": "style_melodic_death_metal",
+      "label": "Melodic Death Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "melodic death metal, harmonized guitar leads",
+      "tags": [
+        "metal",
+        "death_metal",
+        "melodic",
+        "harsh"
+      ]
+    },
+    {
+      "id": "style_technical_death_metal",
+      "label": "Technical Death Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "technical death metal, complex riff patterns",
+      "tags": [
+        "metal",
+        "death_metal",
+        "technical",
+        "precision"
+      ]
+    },
+    {
+      "id": "style_black_metal",
+      "label": "Black Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "black metal, tremolo-picked guitars",
+      "tags": [
+        "black_metal",
+        "cold",
+        "tremolo",
+        "harsh"
+      ]
+    },
+    {
+      "id": "style_atmospheric_black_metal",
+      "label": "Atmospheric Black Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "atmospheric black metal, icy layered guitars",
+      "tags": [
+        "black_metal",
+        "atmospheric",
+        "cold",
+        "layered",
+        "melancholic"
+      ]
+    },
+    {
+      "id": "style_blackened_death_metal",
+      "label": "Blackened Death Metal",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "blackened death metal, cold tremolo guitars",
+      "tags": [
+        "metal",
+        "black_metal",
+        "death_metal",
+        "bleak"
+      ]
+    },
+    {
+      "id": "style_grindcore",
+      "label": "Grindcore",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "grindcore, chaotic extreme-metal attack",
+      "tags": [
+        "metal",
+        "grindcore",
+        "chaotic",
+        "abrasive"
+      ]
+    },
+    {
+      "id": "style_djent",
+      "label": "Djent",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "djent, polyrhythmic low-tuned guitars",
+      "tags": [
+        "metal",
+        "djent",
+        "polyrhythm",
+        "technical"
+      ]
+    },
+    {
+      "id": "style_edm",
+      "label": "EDM",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "EDM, big synth lead",
+      "tags": [
+        "edm",
+        "synth",
+        "drop",
+        "festival"
+      ]
+    },
+    {
+      "id": "style_club_edm",
+      "label": "Club EDM",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "club EDM, floor-focused electronic drums",
+      "tags": [
+        "edm",
+        "club",
+        "dance",
+        "synth_bass"
+      ]
+    },
+    {
+      "id": "style_progressive_edm",
+      "label": "Progressive EDM",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "progressive EDM, emotional synth chords",
+      "tags": [
+        "edm",
+        "progressive",
+        "anthemic",
+        "synth"
+      ]
+    },
+    {
+      "id": "style_big_room_house",
+      "label": "Big Room House",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "big room house, festival synth lead",
+      "tags": [
+        "house",
+        "big_room",
+        "festival",
+        "drop"
+      ]
+    },
+    {
+      "id": "style_house",
+      "label": "House",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "house, four-on-the-floor drums",
+      "tags": [
+        "house",
+        "dance",
+        "four_on_floor",
+        "synth_bass"
+      ]
+    },
+    {
+      "id": "style_deep_house",
+      "label": "Deep House",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "deep house, warm chord stabs",
+      "tags": [
+        "house",
+        "deep",
+        "warm",
+        "vocal_chops"
+      ]
+    },
+    {
+      "id": "style_tech_house",
+      "label": "Tech House",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "tech house, minimal club groove",
+      "tags": [
+        "house",
+        "tech_house",
+        "minimal",
+        "percussion"
+      ]
+    },
+    {
+      "id": "style_future_house",
+      "label": "Future House",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "future house, bouncy synth bass",
+      "tags": [
+        "house",
+        "future_house",
+        "synth_bass",
+        "club"
+      ]
+    },
+    {
+      "id": "style_electro_house",
+      "label": "Electro House",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "electro house, aggressive synth bass",
+      "tags": [
+        "house",
+        "electro",
+        "synth_bass",
+        "bold"
+      ]
+    },
+    {
+      "id": "style_progressive_house",
+      "label": "Progressive House",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "progressive house, layered synth chords",
+      "tags": [
+        "house",
+        "progressive",
+        "melodic",
+        "club"
+      ]
+    },
+    {
+      "id": "style_acid_house",
+      "label": "Acid House",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "acid house, squelching acid bassline",
+      "tags": [
+        "house",
+        "acid",
+        "303",
+        "club"
+      ]
+    },
+    {
+      "id": "style_trance",
+      "label": "Trance",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "trance, arpeggiated synth patterns",
+      "tags": [
+        "trance",
+        "arpeggio",
+        "euphoric",
+        "synth"
+      ]
+    },
+    {
+      "id": "style_uplifting_trance",
+      "label": "Uplifting Trance",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "uplifting trance, emotional supersaw lead",
+      "tags": [
+        "trance",
+        "uplifting",
+        "supersaw",
+        "emotional"
+      ]
+    },
+    {
+      "id": "style_progressive_trance",
+      "label": "Progressive Trance",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "progressive trance, layered synth progression",
+      "tags": [
+        "trance",
+        "progressive",
+        "layered",
+        "club"
+      ]
+    },
+    {
+      "id": "style_psytrance",
+      "label": "Psytrance",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "psytrance, psychedelic synth sequences",
+      "tags": [
+        "trance",
+        "psytrance",
+        "psychedelic",
+        "bassline"
+      ]
+    },
+    {
+      "id": "style_techno",
+      "label": "Techno",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "techno, machine-driven drum programming",
+      "tags": [
+        "techno",
+        "warehouse",
+        "machine",
+        "repetitive"
+      ]
+    },
+    {
+      "id": "style_melodic_techno",
+      "label": "Melodic Techno",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "melodic techno, dark synth arpeggios",
+      "tags": [
+        "techno",
+        "melodic",
+        "dark",
+        "club"
+      ]
+    },
+    {
+      "id": "style_industrial_techno",
+      "label": "Industrial Techno",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "industrial techno, metallic percussion",
+      "tags": [
+        "techno",
+        "industrial",
+        "metallic",
+        "cold"
+      ]
+    },
+    {
+      "id": "style_minimal_techno",
+      "label": "Minimal Techno",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "minimal techno, stripped electronic drums",
+      "tags": [
+        "techno",
+        "minimal",
+        "dry",
+        "club"
+      ]
+    },
+    {
+      "id": "style_dubstep",
+      "label": "Dubstep",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "dubstep, wobble bass design",
+      "tags": [
+        "dubstep",
+        "bass",
+        "drop",
+        "weighted_feel"
+      ]
+    },
+    {
+      "id": "style_brostep",
+      "label": "Brostep",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "brostep, aggressive bass growls",
+      "tags": [
+        "dubstep",
+        "brostep",
+        "bass_growl",
+        "maximal"
+      ]
+    },
+    {
+      "id": "style_future_bass",
+      "label": "Future Bass",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "future bass, wide detuned synth chords",
+      "tags": [
+        "future_bass",
+        "vocal_chops",
+        "glossy",
+        "synth"
+      ]
+    },
+    {
+      "id": "style_drum_and_bass",
+      "label": "Drum and Bass",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "drum and bass, breakbeat drum programming",
+      "tags": [
+        "drum_and_bass",
+        "breakbeat",
+        "sub_bass",
+        "percussion"
+      ]
+    },
+    {
+      "id": "style_liquid_dnb",
+      "label": "Liquid Drum and Bass",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "liquid drum and bass, smooth pads",
+      "tags": [
+        "drum_and_bass",
+        "liquid",
+        "smooth",
+        "pads"
+      ]
+    },
+    {
+      "id": "style_breakbeat",
+      "label": "Breakbeat",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "breakbeat, syncopated drum breaks",
+      "tags": [
+        "breakbeat",
+        "samples",
+        "club",
+        "bassline"
+      ]
+    },
+    {
+      "id": "style_garage_uk",
+      "label": "UK Garage",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "UK garage, shuffled drum programming",
+      "tags": [
+        "garage",
+        "uk_garage",
+        "shuffle",
+        "vocal_chops"
+      ]
+    },
+    {
+      "id": "style_electro",
+      "label": "Electro",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "electro, robotic drum machine pattern",
+      "tags": [
+        "electro",
+        "robotic",
+        "synth_bass",
+        "vocoder"
+      ]
+    },
+    {
+      "id": "style_idm",
+      "label": "IDM",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "IDM, glitchy percussion edits",
+      "tags": [
+        "idm",
+        "glitch",
+        "experimental",
+        "abstract"
+      ]
+    },
+    {
+      "id": "style_glitch_hop",
+      "label": "Glitch Hop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "glitch hop, chopped digital percussion",
+      "tags": [
+        "glitch",
+        "hip_hop",
+        "samples",
+        "bass"
+      ]
+    },
+    {
+      "id": "style_hyperpop",
+      "label": "Hyperpop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "hyperpop, pitched vocal processing",
+      "tags": [
+        "pop",
+        "hyperpop",
+        "maximal",
+        "vocal_processing"
+      ]
+    },
+    {
+      "id": "style_synthwave",
+      "label": "Synthwave",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "synthwave, retro analog synths",
+      "tags": [
+        "synthwave",
+        "retro",
+        "analog_synth",
+        "neon"
+      ]
+    },
+    {
+      "id": "style_dark_synthwave",
+      "label": "Dark Synthwave",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "dark synthwave, analog synth bass",
+      "tags": [
+        "synthwave",
+        "dark",
+        "retro",
+        "analog_synth"
+      ]
+    },
+    {
+      "id": "style_outrun",
+      "label": "Outrun",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "outrun, neon synth leads",
+      "tags": [
+        "synthwave",
+        "outrun",
+        "neon",
+        "retro"
+      ]
+    },
+    {
+      "id": "style_cyberpunk_electronic",
+      "label": "Cyberpunk Electronic",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "cyberpunk electronic, gritty synth bass",
+      "tags": [
+        "cyberpunk",
+        "electronic",
+        "dystopian",
+        "synth_bass"
+      ]
+    },
+    {
+      "id": "style_ambient",
+      "label": "Ambient",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "ambient, evolving pads",
+      "tags": [
+        "ambient",
+        "pads",
+        "spacious",
+        "minimal"
+      ]
+    },
+    {
+      "id": "style_dark_ambient",
+      "label": "Dark Ambient",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "dark ambient, evolving drones",
+      "tags": [
+        "dark_ambient",
+        "drone",
+        "spacious",
+        "ominous",
+        "minimal"
+      ]
+    },
+    {
+      "id": "style_dungeon_synth",
+      "label": "Dungeon Synth",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "dungeon synth, medieval dark ambient atmosphere",
+      "tags": [
+        "dungeon_synth",
+        "ambient",
+        "medieval",
+        "fantasy",
+        "minimal"
+      ]
+    },
+    {
+      "id": "style_new_age",
+      "label": "New Age",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "new age, gentle pads",
+      "tags": [
+        "new_age",
+        "pads",
+        "peaceful",
+        "spacious"
+      ]
+    },
+    {
+      "id": "style_cinematic_orchestral",
+      "label": "Cinematic Orchestral",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "cinematic orchestral, large string sections",
+      "tags": [
+        "cinematic",
+        "orchestral",
+        "wide",
+        "dramatic",
+        "large_room"
+      ]
+    },
+    {
+      "id": "style_epic_trailer",
+      "label": "Epic Trailer",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "epic trailer music, massive percussion hits",
+      "tags": [
+        "cinematic",
+        "trailer",
+        "hybrid",
+        "impact"
+      ]
+    },
+    {
+      "id": "style_chiptune",
+      "label": "Chiptune",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "chiptune, 8-bit synth leads",
+      "tags": [
+        "chiptune",
+        "8bit",
+        "retro",
+        "game"
+      ]
+    },
+    {
+      "id": "style_reggae",
+      "label": "Reggae",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "reggae, offbeat guitar chops",
+      "tags": [
+        "reggae",
+        "offbeat",
+        "bassline",
+        "warm"
+      ]
+    },
+    {
+      "id": "style_ska",
+      "label": "Ska",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "ska, offbeat guitar skank",
+      "tags": [
+        "ska",
+        "horns",
+        "offbeat",
+        "band"
+      ]
+    },
+    {
+      "id": "style_latin_pop",
+      "label": "Latin Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "latin pop, romantic vocal focus",
+      "tags": [
+        "latin",
+        "pop",
+        "romantic",
+        "polished"
+      ]
+    },
+    {
+      "id": "style_reggaeton",
+      "label": "Reggaeton",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "reggaeton, dembow rhythm foundation",
+      "tags": [
+        "latin",
+        "reggaeton",
+        "dembow",
+        "bass"
+      ]
+    },
+    {
+      "id": "style_afrobeats",
+      "label": "Afrobeats",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "afrobeats, syncopated percussion",
+      "tags": [
+        "afrobeats",
+        "percussion",
+        "guitar",
+        "melodic"
+      ]
+    },
+    {
+      "id": "style_k_pop",
+      "label": "K-Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "K-pop, polished group vocals",
+      "tags": [
+        "pop",
+        "kpop",
+        "polished",
+        "group_vocals"
+      ]
+    },
+    {
+      "id": "style_j_pop",
+      "label": "J-Pop",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "J-pop, bright melodic writing",
+      "tags": [
+        "pop",
+        "jpop",
+        "melodic",
+        "colorful"
+      ]
+    },
+    {
+      "id": "style_anime_rock",
+      "label": "Anime Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "output": "anime rock, dramatic guitar hooks",
+      "tags": [
+        "rock",
+        "anime",
+        "melodic",
+        "dramatic"
+      ]
+    },
+    {
+      "id": "style_early_doom_anchor",
+      "label": "Early Doom Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "early doom metal traits, blues-rooted heavy riffs",
+      "tags": [
+        "doom",
+        "vintage",
+        "analog",
+        "roomy_drums",
+        "blues_rooted"
+      ]
+    },
+    {
+      "id": "style_epic_doom_anchor",
+      "label": "Epic Doom Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "epic traditional doom traits, majestic heavy riffs",
+      "tags": [
+        "doom",
+        "epic",
+        "dramatic",
+        "clean_vocals",
+        "large_room"
+      ]
+    },
+    {
+      "id": "style_desert_fuzz_anchor",
+      "label": "Desert Fuzz Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "dusty desert atmosphere, warm tube amp saturation",
+      "tags": [
+        "desert",
+        "fuzz",
+        "tube_saturation",
+        "groove",
+        "warm"
+      ]
+    },
+    {
+      "id": "style_ultra_fuzz_doom_anchor",
+      "label": "Ultra-Fuzz Doom Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "ultra-fuzzed doom texture, buried low-end saturation",
+      "tags": [
+        "doom",
+        "fuzz",
+        "low_end",
+        "oppressive",
+        "hypnotic"
+      ]
+    },
+    {
+      "id": "style_raw_sludge_anchor",
+      "label": "Raw Sludge Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "raw sludge traits, hostile low-end pressure",
+      "tags": [
+        "sludge",
+        "raw",
+        "hostile",
+        "dirty",
+        "underground"
+      ]
+    },
+    {
+      "id": "style_post_metal_anchor",
+      "label": "Post-Metal Atmosphere Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "post-metal atmosphere, layered guitar build",
+      "tags": [
+        "post_metal",
+        "cinematic",
+        "layered",
+        "wide",
+        "build"
+      ]
+    },
+    {
+      "id": "style_nordic_folk_anchor",
+      "label": "Nordic Folk Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "northern folk atmosphere, earthy modal melodies",
+      "tags": [
+        "folk",
+        "nordic",
+        "modal",
+        "earthy",
+        "ancient"
+      ]
+    },
+    {
+      "id": "style_dark_80s_synth_anchor",
+      "label": "Dark 80s Synth Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "dark 1980s synth atmosphere, analog bass movement",
+      "tags": [
+        "synthwave",
+        "retro",
+        "analog_synth",
+        "dark",
+        "nocturnal"
+      ]
+    },
+    {
+      "id": "style_dungeon_ambient_anchor",
+      "label": "Dungeon Ambient Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "ancient dungeon ambience, simple medieval synth melody",
+      "tags": [
+        "dungeon_synth",
+        "ambient",
+        "medieval",
+        "fantasy",
+        "minimal"
+      ]
+    },
+    {
+      "id": "style_southern_gothic_anchor",
+      "label": "Southern Gothic Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "southern gothic atmosphere, dusty storytelling tone",
+      "tags": [
+        "southern_gothic",
+        "dusty",
+        "storytelling",
+        "swampy",
+        "dark"
+      ]
+    },
+    {
+      "id": "style_acoustic_songwriter_anchor",
+      "label": "Acoustic Songwriter Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "lyric-forward acoustic songwriting, organic guitar-centered arrangement",
+      "tags": [
+        "acoustic",
+        "songwriter",
+        "organic",
+        "lyric_forward"
+      ]
+    },
+    {
+      "id": "style_radio_pop_anchor",
+      "label": "Radio Pop Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "mainstream pop songcraft, hook-centered arrangement",
+      "tags": [
+        "pop",
+        "radio",
+        "hook",
+        "polished",
+        "chorus"
+      ]
+    },
+    {
+      "id": "style_club_pop_anchor",
+      "label": "Club Pop Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "club-influenced pop production, dancefloor hook focus",
+      "tags": [
+        "club",
+        "dance",
+        "pop",
+        "synth",
+        "glossy"
+      ]
+    },
+    {
+      "id": "style_house_club_anchor",
+      "label": "House Club Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "house music foundation, four-on-the-floor kick pattern",
+      "tags": [
+        "house",
+        "club",
+        "four_on_floor",
+        "groove",
+        "synth"
+      ]
+    },
+    {
+      "id": "style_trance_anchor",
+      "label": "Trance Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "trance music identity, arpeggiated synth lead",
+      "tags": [
+        "trance",
+        "arpeggio",
+        "euphoric",
+        "synth",
+        "wide"
+      ]
+    },
+    {
+      "id": "style_techno_anchor",
+      "label": "Techno Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "techno production identity, machine-like drum programming",
+      "tags": [
+        "techno",
+        "machine",
+        "minimal",
+        "warehouse",
+        "synthetic"
+      ]
+    },
+    {
+      "id": "style_bass_music_anchor",
+      "label": "Bass Music Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "bass music production, sub-bass pressure",
+      "tags": [
+        "bass_music",
+        "sub_bass",
+        "sound_design",
+        "electronic"
+      ]
+    },
+    {
+      "id": "style_hiphop_anchor",
+      "label": "Hip-Hop Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "hip-hop production identity, strong drum pocket",
+      "tags": [
+        "hip_hop",
+        "drums",
+        "bass_heavy",
+        "rhythmic"
+      ]
+    },
+    {
+      "id": "style_soul_rnb_anchor",
+      "label": "Soul / R&B Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "soul and R&B vocabulary, expressive lead vocal",
+      "tags": [
+        "soul",
+        "rnb",
+        "expressive",
+        "warm",
+        "vocal_focus"
+      ]
+    },
+    {
+      "id": "style_jazz_anchor",
+      "label": "Jazz Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "jazz harmonic language, extended chord color",
+      "tags": [
+        "jazz",
+        "harmony",
+        "improvisational",
+        "live_band"
+      ]
+    },
+    {
+      "id": "style_punk_anchor",
+      "label": "Punk Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "punk rock directness, raw guitar attack",
+      "tags": [
+        "punk",
+        "raw",
+        "guitar",
+        "shouted"
+      ]
+    },
+    {
+      "id": "style_extreme_metal_anchor",
+      "label": "Extreme Metal Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "extreme metal identity, dense distorted guitar work",
+      "tags": [
+        "extreme_metal",
+        "distorted",
+        "harsh",
+        "heavy",
+        "dense"
+      ]
+    },
+    {
+      "id": "style_cinematic_trailer_anchor",
+      "label": "Cinematic Trailer Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "cinematic trailer arrangement, orchestral impact accents",
+      "tags": [
+        "cinematic",
+        "orchestral",
+        "hybrid",
+        "dramatic",
+        "large_room"
+      ]
+    },
+    {
+      "id": "style_global_pop_anchor",
+      "label": "Global Pop Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "global pop production, rhythmic percussion color",
+      "tags": [
+        "global",
+        "pop",
+        "rhythmic",
+        "melodic",
+        "percussion"
+      ]
+    },
+    {
+      "id": "style_synth_electro_anchor",
+      "label": "Synth / Electro Anchor",
+      "nodeKind": "style",
+      "category": "reference",
+      "output": "synth-forward electronic identity, sequenced melodic motifs",
+      "tags": [
+        "synth",
+        "electronic",
+        "sequenced",
+        "digital"
+      ]
+    },
+    {
+      "id": "vocal_dry_baritone",
+      "label": "Dry Close-Mic Baritone",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "male",
+      "output": "dry close-mic baritone vocals, restrained low-register delivery",
+      "tags": [
+        "dry",
+        "close_mic",
+        "baritone",
+        "restrained",
+        "low_register",
+        "melodic"
+      ]
+    },
+    {
+      "id": "vocal_weary_male_clean",
+      "label": "Weary Clean Male",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "male",
+      "output": "weary clean male vocals, low emotional delivery",
+      "tags": [
+        "male",
+        "clean",
+        "weary",
+        "restrained",
+        "emotional"
+      ]
+    },
+    {
+      "id": "vocal_underground_male",
+      "label": "Underground Male Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "male",
+      "output": "raw underground male vocals, unpolished human delivery",
+      "tags": [
+        "male",
+        "raw",
+        "underground",
+        "dry",
+        "unpolished"
+      ]
+    },
+    {
+      "id": "vocal_buried_sludge_vocals",
+      "label": "Buried Sludge Vocals",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "male",
+      "output": "buried raw sludge vocals, distant aggressive vocal texture",
+      "tags": [
+        "buried_vocals",
+        "raw",
+        "aggressive",
+        "distant_vocals",
+        "sludge"
+      ]
+    },
+    {
+      "id": "vocal_chant_like_male",
+      "label": "Chant-Like Male",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "male",
+      "output": "chant-like male vocals, ritual low-register phrasing",
+      "tags": [
+        "male",
+        "chant",
+        "ritual",
+        "low_register"
+      ]
+    },
+    {
+      "id": "vocal_haunting_female",
+      "label": "Haunting Female",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "female",
+      "output": "haunting female vocals, soft sustained phrasing",
+      "tags": [
+        "female",
+        "haunting",
+        "ethereal",
+        "sustained",
+        "melodic"
+      ]
+    },
+    {
+      "id": "vocal_low_female_alto",
+      "label": "Low Female Alto",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "female",
+      "output": "low female alto vocals, warm intimate delivery",
+      "tags": [
+        "female",
+        "alto",
+        "low_register",
+        "restrained",
+        "intimate"
+      ]
+    },
+    {
+      "id": "vocal_choir_layered",
+      "label": "Layered Choir",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "choir",
+      "output": "layered choir vocals, wide harmonic backing vocals",
+      "tags": [
+        "choir",
+        "layered",
+        "wide",
+        "dramatic"
+      ]
+    },
+    {
+      "id": "vocal_spoken_word",
+      "label": "Spoken Word",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "spoken",
+      "output": "spoken word vocals, dry narrative delivery",
+      "tags": [
+        "spoken",
+        "dry",
+        "close_mic",
+        "narrative"
+      ]
+    },
+    {
+      "id": "vocal_instrumental_only",
+      "label": "Instrumental Only",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "instrumental",
+      "output": "instrumental track, no lead vocals",
+      "tags": [
+        "instrumental",
+        "no_vocals"
+      ]
+    },
+    {
+      "id": "vocal_pop_female",
+      "label": "Polished Female Pop Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "female",
+      "output": "polished female lead vocals, clean melodic phrasing",
+      "tags": [
+        "female",
+        "pop",
+        "polished",
+        "melodic",
+        "harmony"
+      ]
+    },
+    {
+      "id": "vocal_pop_male",
+      "label": "Polished Male Pop Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "male",
+      "output": "polished male lead vocals, clean melodic delivery",
+      "tags": [
+        "male",
+        "pop",
+        "polished",
+        "melodic",
+        "radio"
+      ]
+    },
+    {
+      "id": "vocal_rnb_lead",
+      "label": "Expressive R&B Lead",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "rnb",
+      "output": "expressive R&B lead vocal, smooth vocal runs",
+      "tags": [
+        "rnb",
+        "smooth",
+        "vocal_runs",
+        "expressive",
+        "intimate"
+      ]
+    },
+    {
+      "id": "vocal_rap_lead",
+      "label": "Rap Lead",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "rap",
+      "output": "clear rap lead vocal, rhythmic lyrical delivery",
+      "tags": [
+        "rap",
+        "hip_hop",
+        "rhythmic",
+        "lyrical",
+        "confident"
+      ]
+    },
+    {
+      "id": "vocal_melodic_rap",
+      "label": "Melodic Rap Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "rap",
+      "output": "melodic rap vocal, sung-rap hook delivery",
+      "tags": [
+        "rap",
+        "melodic",
+        "hook",
+        "smooth"
+      ]
+    },
+    {
+      "id": "vocal_soulful_female",
+      "label": "Soulful Female Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "female",
+      "output": "soulful female lead vocal, warm expressive phrasing",
+      "tags": [
+        "female",
+        "soul",
+        "expressive",
+        "warm",
+        "vocal_runs"
+      ]
+    },
+    {
+      "id": "vocal_jazz_crooner",
+      "label": "Jazz Crooner",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "male",
+      "output": "smooth jazz crooner vocal, relaxed phrasing",
+      "tags": [
+        "male",
+        "jazz",
+        "smooth",
+        "close_mic",
+        "vibrato"
+      ]
+    },
+    {
+      "id": "vocal_country_storyteller",
+      "label": "Country Storyteller Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "country",
+      "output": "country storyteller vocal, clear lyric-first delivery",
+      "tags": [
+        "country",
+        "storytelling",
+        "natural",
+        "twang",
+        "lyric_forward"
+      ]
+    },
+    {
+      "id": "vocal_punk_shout",
+      "label": "Punk Shout Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "punk",
+      "output": "punk shouted vocals, raw gang-free attitude",
+      "tags": [
+        "punk",
+        "shouted",
+        "raw",
+        "direct"
+      ]
+    },
+    {
+      "id": "vocal_metal_clean",
+      "label": "Clean Metal Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "metal",
+      "output": "clean metal vocals, dramatic melodic delivery",
+      "tags": [
+        "metal",
+        "clean_vocals",
+        "dramatic",
+        "melodic",
+        "controlled"
+      ]
+    },
+    {
+      "id": "vocal_extreme_harsh",
+      "label": "Extreme Harsh Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "metal",
+      "output": "extreme harsh vocals, abrasive vocal texture",
+      "tags": [
+        "extreme_metal",
+        "harsh",
+        "aggressive",
+        "controlled"
+      ]
+    },
+    {
+      "id": "vocal_edm_topline",
+      "label": "EDM Topline Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "electronic",
+      "output": "EDM topline vocal, clean hook-focused melody",
+      "tags": [
+        "edm",
+        "topline",
+        "hook",
+        "processed",
+        "melodic"
+      ]
+    },
+    {
+      "id": "vocal_vocal_chops",
+      "label": "Vocal Chops",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "electronic",
+      "output": "chopped vocal hook, processed vocal fragments",
+      "tags": [
+        "vocal_chops",
+        "processed",
+        "sampled",
+        "hook",
+        "electronic"
+      ]
+    },
+    {
+      "id": "vocal_group_harmony",
+      "label": "Group Harmony",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "group",
+      "output": "stacked group harmonies, layered backing vocals",
+      "tags": [
+        "harmony",
+        "group",
+        "layered",
+        "chorus"
+      ]
+    },
+    {
+      "id": "vocal_latin_pop_vocal",
+      "label": "Latin Pop Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "latin",
+      "output": "Latin pop vocal delivery, rhythmic melodic phrasing",
+      "tags": [
+        "latin",
+        "pop",
+        "rhythmic",
+        "romantic",
+        "melodic"
+      ]
+    },
+    {
+      "id": "vocal_jpop_kpop_group",
+      "label": "J-Pop / K-Pop Group Vocal",
+      "nodeKind": "modifier",
+      "modifierType": "vocal",
+      "category": "group",
+      "output": "J-pop or K-pop group vocals, stacked harmony hooks",
+      "tags": [
+        "k_pop",
+        "j_pop",
+        "group",
+        "harmony",
+        "glossy"
+      ]
+    },
+    {
+      "id": "vocal_space_dry_close",
+      "label": "Dry Close",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "dry close-mic vocal sound, upfront vocal presence",
+      "tags": [
+        "dry",
+        "close_mic",
+        "vocal_space_control",
+        "upfront_vocals"
+      ]
+    },
+    {
+      "id": "vocal_space_small_room",
+      "label": "Small Room",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "vocals recorded in a dry small room, tight vocal space",
+      "tags": [
+        "small_room",
+        "dry",
+        "vocal_space_control"
+      ]
+    },
+    {
+      "id": "vocal_space_neutral_studio",
+      "label": "Neutral Studio",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "neutral studio vocal mix, controlled vocal space",
+      "tags": [
+        "neutral",
+        "studio",
+        "controlled",
+        "vocal_space_control"
+      ]
+    },
+    {
+      "id": "vocal_space_buried_room",
+      "label": "Buried Room",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "vocals slightly buried in the mix, raw room vocal texture",
+      "tags": [
+        "buried_vocals",
+        "room",
+        "raw",
+        "underground"
+      ]
+    },
+    {
+      "id": "vocal_space_distant_cavernous",
+      "label": "Distant / Cavernous",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "distant cavernous vocal space, large reverb-heavy vocal atmosphere",
+      "tags": [
+        "distant_vocals",
+        "huge_reverb",
+        "cavernous",
+        "wide"
+      ]
+    },
+    {
+      "id": "vocal_space_glossy_front",
+      "label": "Glossy Front",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "front-and-center polished vocal mix, clear lead vocal presence",
+      "tags": [
+        "polished",
+        "upfront_vocals",
+        "studio",
+        "vocal_space_control"
+      ]
+    },
+    {
+      "id": "vocal_space_wide_pop_layered",
+      "label": "Wide Pop Layered",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "wide layered vocal stack, doubled chorus vocals",
+      "tags": [
+        "wide",
+        "layered",
+        "harmony",
+        "polished"
+      ]
+    },
+    {
+      "id": "vocal_space_club_processed",
+      "label": "Club Processed",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "processed club vocal mix, tight vocal effects",
+      "tags": [
+        "club",
+        "processed",
+        "synthetic",
+        "vocal_space_control"
+      ]
+    },
+    {
+      "id": "vocal_space_intimate_room",
+      "label": "Intimate Room",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "intimate close vocal room, natural breath detail",
+      "tags": [
+        "intimate",
+        "close_mic",
+        "lyric_forward",
+        "dry"
+      ]
+    },
+    {
+      "id": "vocal_space_live_room",
+      "label": "Live Room",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "natural live-room vocal placement, band-in-room vocal blend",
+      "tags": [
+        "live_band",
+        "room",
+        "organic",
+        "natural"
+      ]
+    },
+    {
+      "id": "vocal_space_atmospheric_wash",
+      "label": "Atmospheric Wash",
+      "nodeKind": "modifier",
+      "modifierType": "vocal_space",
+      "category": "vocal_space",
+      "output": "atmospheric vocal wash, soft distant vocal texture",
+      "tags": [
+        "atmospheric",
+        "wide",
+        "distant_vocals",
+        "dreamy"
+      ]
+    },
+    {
+      "id": "production_dry_underground",
+      "label": "Dry Underground",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "dry",
+      "output": "raw underground production, dry vocal mix",
+      "tags": [
+        "raw_demo",
+        "dry",
+        "small_room",
+        "underground"
+      ]
+    },
+    {
+      "id": "production_analog_tape",
+      "label": "Analog Tape Warmth",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "analog",
+      "output": "analog tape warmth, soft saturation",
+      "tags": [
+        "analog",
+        "warm",
+        "tape",
+        "saturation",
+        "vintage"
+      ]
+    },
+    {
+      "id": "production_tube_amp_heavy",
+      "label": "Tube Amp Heavy",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "analog",
+      "output": "tube amp saturation, thick midrange guitars",
+      "tags": [
+        "tube_saturation",
+        "warm",
+        "guitar_heavy",
+        "midrange"
+      ]
+    },
+    {
+      "id": "production_massive_reverb",
+      "label": "Massive Reverb",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "space",
+      "output": "huge reverb-heavy atmosphere, distant cavernous mix",
+      "tags": [
+        "huge_reverb",
+        "distant_vocals",
+        "cavernous",
+        "wide"
+      ]
+    },
+    {
+      "id": "production_cinematic_wide",
+      "label": "Cinematic Wide",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "cinematic",
+      "output": "wide cinematic production, large spatial depth",
+      "tags": [
+        "cinematic",
+        "wide",
+        "dramatic",
+        "large_room"
+      ]
+    },
+    {
+      "id": "production_lofi_demo",
+      "label": "Lo-Fi Demo",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "raw",
+      "output": "lo-fi demo recording, rough edges",
+      "tags": [
+        "lofi",
+        "raw_demo",
+        "unpolished",
+        "minimal"
+      ]
+    },
+    {
+      "id": "production_polished_modern",
+      "label": "Polished Modern",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "modern",
+      "output": "polished modern production, clean balanced mix",
+      "tags": [
+        "polished",
+        "modern",
+        "clean",
+        "tight"
+      ]
+    },
+    {
+      "id": "production_crushed_sludge",
+      "label": "Crushed Sludge Mix",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "raw",
+      "output": "crushed sludge production, muddy low-end pressure",
+      "tags": [
+        "sludge",
+        "crushed",
+        "muddy",
+        "saturated",
+        "raw"
+      ]
+    },
+    {
+      "id": "production_minimal_acoustic",
+      "label": "Minimal Acoustic",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "acoustic",
+      "output": "minimal acoustic production, close natural room sound",
+      "tags": [
+        "minimal",
+        "acoustic",
+        "intimate",
+        "close_mic",
+        "dry"
+      ]
+    },
+    {
+      "id": "production_radio_polished",
+      "label": "Radio Polished",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "polished",
+      "output": "polished radio-ready production, clean vocal editing",
+      "tags": [
+        "polished",
+        "radio",
+        "wide",
+        "hook"
+      ]
+    },
+    {
+      "id": "production_glossy_pop",
+      "label": "Glossy Pop",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "pop",
+      "output": "glossy pop production, shiny vocal layers",
+      "tags": [
+        "glossy",
+        "pop",
+        "polished",
+        "synthetic"
+      ]
+    },
+    {
+      "id": "production_club_mastered",
+      "label": "Club Mastered",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "club",
+      "output": "club-mastered production, powerful low-end mix",
+      "tags": [
+        "club",
+        "dance",
+        "bass_heavy",
+        "electronic",
+        "polished"
+      ]
+    },
+    {
+      "id": "production_edm_clean",
+      "label": "Clean EDM",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "electronic",
+      "output": "clean EDM production, precise synth layering",
+      "tags": [
+        "edm",
+        "electronic",
+        "clean",
+        "drop",
+        "synth"
+      ]
+    },
+    {
+      "id": "production_underground_club",
+      "label": "Underground Club",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "club",
+      "output": "underground club mix, dark warehouse texture",
+      "tags": [
+        "club",
+        "underground",
+        "warehouse",
+        "gritty",
+        "sub_bass"
+      ]
+    },
+    {
+      "id": "production_warm_live_band",
+      "label": "Warm Live Band",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "live",
+      "output": "warm live-band production, natural room bleed",
+      "tags": [
+        "live_band",
+        "warm",
+        "organic",
+        "room"
+      ]
+    },
+    {
+      "id": "production_vintage_soul",
+      "label": "Vintage Soul",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "analog",
+      "output": "vintage soul production, tape-colored warmth",
+      "tags": [
+        "vintage",
+        "soul",
+        "analog",
+        "warm",
+        "live_band"
+      ]
+    },
+    {
+      "id": "production_modern_trap",
+      "label": "Modern Trap Mix",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "hip-hop",
+      "output": "modern trap mix, deep 808 low end",
+      "tags": [
+        "trap",
+        "808",
+        "modern",
+        "bass_heavy",
+        "drums"
+      ]
+    },
+    {
+      "id": "production_extreme_metal_dense",
+      "label": "Dense Extreme Metal",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "metal",
+      "output": "dense extreme metal production, compressed guitar wall",
+      "tags": [
+        "extreme_metal",
+        "dense",
+        "distorted",
+        "guitar_heavy",
+        "heavy"
+      ]
+    },
+    {
+      "id": "production_punk_raw",
+      "label": "Raw Punk",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "punk",
+      "output": "raw punk production, garage-room grit",
+      "tags": [
+        "punk",
+        "raw",
+        "garage",
+        "unpolished",
+        "direct"
+      ]
+    },
+    {
+      "id": "production_ambient_spacious",
+      "label": "Ambient Spacious",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "ambient",
+      "output": "spacious ambient production, wide textural depth",
+      "tags": [
+        "ambient",
+        "spacious",
+        "wide",
+        "texture",
+        "evolving"
+      ]
+    },
+    {
+      "id": "production_video_game_retro",
+      "label": "Retro Game Mix",
+      "nodeKind": "modifier",
+      "modifierType": "production",
+      "category": "electronic",
+      "output": "retro game production, crisp chip-synth tone",
+      "tags": [
+        "chiptune",
+        "retro",
+        "digital",
+        "synth"
+      ]
+    },
+    {
+      "id": "instrument_downtuned_fuzz_stack",
+      "label": "Downtuned Fuzz Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "guitar",
+      "output": "downtuned fuzz guitars, thick bass guitar",
+      "tags": [
+        "downtuned",
+        "fuzz",
+        "bass_heavy",
+        "heavy"
+      ]
+    },
+    {
+      "id": "instrument_analog_doom_stack",
+      "label": "Analog Doom Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "guitar",
+      "output": "warm analog guitars, tube amp saturation",
+      "tags": [
+        "analog",
+        "tube_saturation",
+        "roomy_drums",
+        "bass_heavy"
+      ]
+    },
+    {
+      "id": "instrument_sludge_stack",
+      "label": "Sludge Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "guitar",
+      "output": "filthy distorted guitars, overdriven bass",
+      "tags": [
+        "sludge",
+        "distorted",
+        "overdriven_bass",
+        "raw_drums"
+      ]
+    },
+    {
+      "id": "instrument_desert_groove_stack",
+      "label": "Desert Groove Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "guitar",
+      "output": "fuzz guitar riffs, loose desert-rock drums",
+      "tags": [
+        "fuzz",
+        "desert",
+        "groove",
+        "warm"
+      ]
+    },
+    {
+      "id": "instrument_orchestral_dark_stack",
+      "label": "Dark Orchestral Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "orchestral",
+      "output": "low orchestral strings, cinematic percussion",
+      "tags": [
+        "orchestral",
+        "cinematic",
+        "strings",
+        "percussion",
+        "dark"
+      ]
+    },
+    {
+      "id": "instrument_folk_ancient_stack",
+      "label": "Ancient Folk Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "folk",
+      "output": "acoustic guitar, low hand drums",
+      "tags": [
+        "folk",
+        "acoustic",
+        "hand_drums",
+        "old_world",
+        "drone"
+      ]
+    },
+    {
+      "id": "instrument_synth_dark_stack",
+      "label": "Dark Synth Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "synth",
+      "output": "analog synth bass, dark pads",
+      "tags": [
+        "analog_synth",
+        "dark",
+        "pads"
+      ]
+    },
+    {
+      "id": "instrument_minimal_drone_stack",
+      "label": "Minimal Drone Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "ambient",
+      "output": "sustained drones, subtle low-frequency movement",
+      "tags": [
+        "drone",
+        "minimal",
+        "spacious",
+        "low_frequency"
+      ]
+    },
+    {
+      "id": "instrument_acoustic_songwriter_stack",
+      "label": "Acoustic Songwriter Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "acoustic",
+      "output": "steel-string acoustic guitar, subtle piano support",
+      "tags": [
+        "acoustic",
+        "guitar",
+        "piano",
+        "organic",
+        "songwriter"
+      ]
+    },
+    {
+      "id": "instrument_country_roots_stack",
+      "label": "Country / Roots Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "roots",
+      "output": "twangy electric guitar, acoustic guitar strums",
+      "tags": [
+        "country",
+        "roots",
+        "twang",
+        "live_band"
+      ]
+    },
+    {
+      "id": "instrument_blues_jazz_stack",
+      "label": "Blues / Jazz Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "jazz",
+      "output": "expressive electric guitar, upright or electric bass",
+      "tags": [
+        "blues",
+        "jazz",
+        "piano",
+        "live_band",
+        "expressive"
+      ]
+    },
+    {
+      "id": "instrument_soul_funk_stack",
+      "label": "Soul / Funk Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "soul",
+      "output": "syncopated bass guitar, tight rhythm guitar",
+      "tags": [
+        "soul",
+        "funk",
+        "bassline",
+        "horns",
+        "groove"
+      ]
+    },
+    {
+      "id": "instrument_pop_radio_stack",
+      "label": "Pop Radio Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "pop",
+      "output": "clean synth layers, polished drums",
+      "tags": [
+        "pop",
+        "radio",
+        "polished",
+        "synth",
+        "hook"
+      ]
+    },
+    {
+      "id": "instrument_club_synth_stack",
+      "label": "Club Synth Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "dance",
+      "output": "club kick drum, synthetic bass line",
+      "tags": [
+        "club",
+        "dance",
+        "synth",
+        "electronic",
+        "bassline"
+      ]
+    },
+    {
+      "id": "instrument_house_stack",
+      "label": "House Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "house",
+      "output": "four-on-the-floor kick, house piano stabs",
+      "tags": [
+        "house",
+        "four_on_floor",
+        "piano",
+        "groove",
+        "vocal_cuts"
+      ]
+    },
+    {
+      "id": "instrument_trance_stack",
+      "label": "Trance Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "trance",
+      "output": "arpeggiated synth lead, wide supersaw chords",
+      "tags": [
+        "trance",
+        "arpeggio",
+        "supersaw",
+        "pads",
+        "synth"
+      ]
+    },
+    {
+      "id": "instrument_techno_stack",
+      "label": "Techno Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "techno",
+      "output": "machine drum kit, modular synth pulses",
+      "tags": [
+        "techno",
+        "machine",
+        "modular",
+        "industrial",
+        "synthetic"
+      ]
+    },
+    {
+      "id": "instrument_bass_music_stack",
+      "label": "Bass Music Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "electronic",
+      "output": "heavy sub-bass design, syncopated electronic drums",
+      "tags": [
+        "bass_music",
+        "sub_bass",
+        "wobble",
+        "glitch",
+        "electronic"
+      ]
+    },
+    {
+      "id": "instrument_hiphop_808_stack",
+      "label": "Hip-Hop / 808 Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "hip-hop",
+      "output": "808 bass, sharp hi-hat patterns",
+      "tags": [
+        "hip_hop",
+        "808",
+        "hi_hats",
+        "drums",
+        "bass_heavy"
+      ]
+    },
+    {
+      "id": "instrument_boom_bap_stack",
+      "label": "Boom Bap Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "hip-hop",
+      "output": "sample-based drum break, dusty loop texture",
+      "tags": [
+        "hip_hop",
+        "boom_bap",
+        "samples",
+        "vinyl",
+        "drums"
+      ]
+    },
+    {
+      "id": "instrument_punk_stack",
+      "label": "Punk Band Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "punk",
+      "output": "raw power-chord guitars, punchy bass guitar",
+      "tags": [
+        "punk",
+        "raw",
+        "power_chords",
+        "live_band"
+      ]
+    },
+    {
+      "id": "instrument_extreme_metal_stack",
+      "label": "Extreme Metal Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "metal",
+      "output": "dense distorted guitars, double-kick drum work",
+      "tags": [
+        "extreme_metal",
+        "distorted",
+        "heavy",
+        "double_kick",
+        "dense"
+      ]
+    },
+    {
+      "id": "instrument_prog_stack",
+      "label": "Progressive Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "progressive",
+      "output": "complex guitar and keyboard interplay, extended instrumental sections",
+      "tags": [
+        "progressive",
+        "complex",
+        "keyboard",
+        "instrumental"
+      ]
+    },
+    {
+      "id": "instrument_ambient_pad_stack",
+      "label": "Ambient Pad Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "ambient",
+      "output": "evolving synth pads, soft drone layers",
+      "tags": [
+        "ambient",
+        "pads",
+        "drone",
+        "texture",
+        "minimal"
+      ]
+    },
+    {
+      "id": "instrument_global_rhythm_stack",
+      "label": "Global Rhythm Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "world",
+      "output": "layered hand percussion, melodic plucked instruments",
+      "tags": [
+        "global",
+        "percussion",
+        "rhythmic",
+        "melodic"
+      ]
+    },
+    {
+      "id": "instrument_jpop_kpop_stack",
+      "label": "J-Pop / K-Pop Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "pop",
+      "output": "glossy synth layers, tight programmed drums",
+      "tags": [
+        "pop",
+        "k_pop",
+        "j_pop",
+        "glossy",
+        "harmony"
+      ]
+    },
+    {
+      "id": "instrument_chiptune_stack",
+      "label": "Chiptune Stack",
+      "nodeKind": "modifier",
+      "modifierType": "instrument",
+      "category": "electronic",
+      "output": "8-bit lead synth, square-wave bass",
+      "tags": [
+        "chiptune",
+        "retro",
+        "synth",
+        "arpeggio",
+        "digital"
+      ]
+    },
+    {
+      "id": "mood_bleak",
+      "label": "Bleak",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "bleak atmosphere, melancholic harmonic movement",
+      "tags": [
+        "bleak",
+        "melancholic",
+        "minor_key"
+      ]
+    },
+    {
+      "id": "mood_oppressive",
+      "label": "Oppressive",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "oppressive atmosphere, dense low-end weight",
+      "tags": [
+        "oppressive",
+        "heavy",
+        "claustrophobic"
+      ]
+    },
+    {
+      "id": "mood_melancholic_heroic",
+      "label": "Melancholic Yet Heroic",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "melancholic yet heroic tone, sorrowful melodic lift",
+      "tags": [
+        "melancholic",
+        "heroic",
+        "emotional",
+        "resolve"
+      ]
+    },
+    {
+      "id": "mood_ancient",
+      "label": "Ancient",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "ancient atmosphere, old-world melodic color",
+      "tags": [
+        "ancient",
+        "old_world",
+        "mythic"
+      ]
+    },
+    {
+      "id": "mood_ritualistic",
+      "label": "Ritualistic",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "ritualistic atmosphere, repeating hypnotic cadence",
+      "tags": [
+        "ritual",
+        "hypnotic",
+        "dark"
+      ]
+    },
+    {
+      "id": "mood_cosmic_dread",
+      "label": "Cosmic Dread",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "cosmic dread atmosphere, vast ominous space",
+      "tags": [
+        "cosmic",
+        "dread",
+        "vast",
+        "ominous"
+      ]
+    },
+    {
+      "id": "mood_dusty_desert",
+      "label": "Dusty Desert",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "dusty desert atmosphere, sun-baked haze",
+      "tags": [
+        "desert",
+        "dusty",
+        "dry",
+        "wide"
+      ]
+    },
+    {
+      "id": "mood_mournful",
+      "label": "Mournful",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "mournful tone, sorrowful melody",
+      "tags": [
+        "mournful",
+        "sorrowful",
+        "emotional"
+      ]
+    },
+    {
+      "id": "mood_wrathful",
+      "label": "Wrathful",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "wrathful energy, hostile rhythmic force",
+      "tags": [
+        "wrathful",
+        "hostile",
+        "aggressive",
+        "heavy"
+      ]
+    },
+    {
+      "id": "mood_mystical",
+      "label": "Mystical",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "mystical atmosphere, strange modal melody",
+      "tags": [
+        "mystical",
+        "modal",
+        "dreamlike"
+      ]
+    },
+    {
+      "id": "mood_bright",
+      "label": "Bright",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "bright emotional color, clean optimistic lift",
+      "tags": [
+        "bright",
+        "optimistic",
+        "clean"
+      ]
+    },
+    {
+      "id": "mood_euphoric",
+      "label": "Euphoric",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "euphoric emotional lift, wide uplifting feeling",
+      "tags": [
+        "euphoric",
+        "uplifting",
+        "wide"
+      ]
+    },
+    {
+      "id": "mood_bittersweet",
+      "label": "Bittersweet",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "bittersweet emotional tone, melancholy with melodic warmth",
+      "tags": [
+        "bittersweet",
+        "melancholic",
+        "warm"
+      ]
+    },
+    {
+      "id": "mood_romantic",
+      "label": "Romantic",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "romantic atmosphere, intimate emotional pull",
+      "tags": [
+        "romantic",
+        "intimate",
+        "warm",
+        "emotional"
+      ]
+    },
+    {
+      "id": "mood_confident",
+      "label": "Confident",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "confident performance energy, bold melodic presence",
+      "tags": [
+        "confident",
+        "bold",
+        "attitude"
+      ]
+    },
+    {
+      "id": "mood_aggressive",
+      "label": "Aggressive",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "aggressive emotional force, hostile edge",
+      "tags": [
+        "aggressive",
+        "hostile",
+        "tension"
+      ]
+    },
+    {
+      "id": "mood_rebellious",
+      "label": "Rebellious",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "rebellious attitude, defiant lyrical stance",
+      "tags": [
+        "rebellious",
+        "defiant",
+        "raw"
+      ]
+    },
+    {
+      "id": "mood_dreamy",
+      "label": "Dreamy",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "dreamy atmosphere, soft-focus emotional haze",
+      "tags": [
+        "dreamy",
+        "hazy",
+        "atmospheric"
+      ]
+    },
+    {
+      "id": "mood_nocturnal",
+      "label": "Nocturnal",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "nocturnal atmosphere, late-night color",
+      "tags": [
+        "nocturnal",
+        "dark",
+        "urban"
+      ]
+    },
+    {
+      "id": "mood_futuristic",
+      "label": "Futuristic",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "futuristic tone, sleek synthetic color",
+      "tags": [
+        "futuristic",
+        "synthetic",
+        "digital",
+        "neon"
+      ]
+    },
+    {
+      "id": "mood_celebratory",
+      "label": "Celebratory",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "celebratory mood, joyful communal lift",
+      "tags": [
+        "celebratory",
+        "joyful",
+        "communal",
+        "hook"
+      ]
+    },
+    {
+      "id": "mood_seductive",
+      "label": "Seductive",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "seductive mood, smooth intimate tension",
+      "tags": [
+        "seductive",
+        "smooth",
+        "intimate",
+        "controlled"
+      ]
+    },
+    {
+      "id": "mood_introspective",
+      "label": "Introspective",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "introspective mood, thoughtful emotional restraint",
+      "tags": [
+        "introspective",
+        "restrained",
+        "lyric_forward"
+      ]
+    },
+    {
+      "id": "mood_cinematic_heroic",
+      "label": "Cinematic Heroic",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "cinematic heroic tone, dramatic emotional ascent",
+      "tags": [
+        "cinematic",
+        "heroic",
+        "dramatic",
+        "resolve"
+      ]
+    },
+    {
+      "id": "mood_chilled",
+      "label": "Chilled",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "chilled atmosphere, relaxed emotional surface",
+      "tags": [
+        "chilled",
+        "relaxed",
+        "soft"
+      ]
+    },
+    {
+      "id": "mood_playful",
+      "label": "Playful",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "playful melodic color, quirky rhythmic bounce",
+      "tags": [
+        "playful",
+        "quirky",
+        "light"
+      ]
+    },
+    {
+      "id": "mood_anxious",
+      "label": "Anxious",
+      "nodeKind": "modifier",
+      "modifierType": "mood",
+      "category": "mood",
+      "output": "anxious tension, nervous harmonic color",
+      "tags": [
+        "anxious",
+        "tense",
+        "uneasy"
+      ]
+    },
+    {
+      "id": "arrangement_gradual_build_massive_chorus",
+      "label": "Gradual Build to Massive Chorus",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "atmospheric intro that grows into a massive chorus",
+      "tags": [
+        "massive_chorus",
+        "dynamic"
+      ]
+    },
+    {
+      "id": "arrangement_riff_loop_hypnotic",
+      "label": "Hypnotic Riff Loop",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "hypnotic repeated riff structure, cyclical groove-based arrangement",
+      "tags": [
+        "riff_loop",
+        "hypnotic",
+        "cyclical",
+        "groove"
+      ]
+    },
+    {
+      "id": "arrangement_verse_chorus_bridge",
+      "label": "Verse / Chorus / Bridge",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "clear verse chorus bridge structure, memorable chorus section",
+      "tags": [
+        "standard_song",
+        "chorus",
+        "bridge"
+      ]
+    },
+    {
+      "id": "arrangement_long_form_build",
+      "label": "Long-Form Build",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "long-form arrangement, gradual tension build",
+      "tags": [
+        "long_form",
+        "build",
+        "atmospheric"
+      ]
+    },
+    {
+      "id": "arrangement_minimal_repetition",
+      "label": "Minimal Repetition",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "minimal repetitive structure, evolving pattern",
+      "tags": [
+        "minimal",
+        "repetitive",
+        "evolving"
+      ]
+    },
+    {
+      "id": "arrangement_quiet_loud_dynamic",
+      "label": "Quiet / Loud Dynamic",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "quiet intro into heavy section, dynamic contrast between restrained verses and heavier payoff",
+      "tags": [
+        "dynamic",
+        "quiet_loud",
+        "build"
+      ]
+    },
+    {
+      "id": "arrangement_instrumental_jam",
+      "label": "Instrumental Jam",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "instrumental jam structure, riff-led arrangement",
+      "tags": [
+        "instrumental",
+        "jam",
+        "riff_led",
+        "loose"
+      ]
+    },
+    {
+      "id": "arrangement_radio_single",
+      "label": "Radio Single",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "compact verse and chorus arrangement, clear hook return",
+      "tags": [
+        "standard_song",
+        "chorus",
+        "hook",
+        "radio"
+      ]
+    },
+    {
+      "id": "arrangement_verse_prechorus_chorus",
+      "label": "Verse / Pre-Chorus / Chorus",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "verse pre-chorus chorus structure, pre-chorus lift into hook",
+      "tags": [
+        "standard_song",
+        "prechorus",
+        "chorus",
+        "hook"
+      ]
+    },
+    {
+      "id": "arrangement_club_extended_mix",
+      "label": "Club Extended Mix",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "extended club arrangement, intro groove for mixing",
+      "tags": [
+        "club",
+        "extended",
+        "groove",
+        "hook"
+      ]
+    },
+    {
+      "id": "arrangement_build_release_arc",
+      "label": "Build / Release Arc",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "gradual build and release arc, tension rising into payoff section",
+      "tags": [
+        "build",
+        "dynamic",
+        "release",
+        "payoff"
+      ]
+    },
+    {
+      "id": "arrangement_drop_hook_cycle",
+      "label": "Drop / Hook Cycle",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "hook section followed by drop section, recurring drop and vocal-hook cycle",
+      "tags": [
+        "drop",
+        "hook",
+        "club",
+        "dynamic"
+      ]
+    },
+    {
+      "id": "arrangement_breakdown_return",
+      "label": "Breakdown and Return",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "breakdown section with reduced layers, return to full arrangement",
+      "tags": [
+        "breakdown",
+        "dynamic",
+        "contrast",
+        "return"
+      ]
+    },
+    {
+      "id": "arrangement_instrumental_hook_feature",
+      "label": "Instrumental Hook Feature",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "instrumental hook as a recurring motif, lead instrument feature section",
+      "tags": [
+        "instrumental",
+        "hook",
+        "lead_motif",
+        "melodic"
+      ]
+    },
+    {
+      "id": "arrangement_call_response",
+      "label": "Call and Response",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "call-and-response phrasing, lead phrase answered by backing part",
+      "tags": [
+        "call_response",
+        "interactive",
+        "vocal_focus"
+      ]
+    },
+    {
+      "id": "arrangement_through_composed",
+      "label": "Through-Composed",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "through-composed arrangement, sectional development without repeated chorus dependency",
+      "tags": [
+        "through_composed",
+        "evolving",
+        "narrative",
+        "complex"
+      ]
+    },
+    {
+      "id": "arrangement_riff_breakdown_cycle",
+      "label": "Riff / Breakdown Cycle",
+      "nodeKind": "modifier",
+      "modifierType": "arrangement",
+      "category": "arrangement",
+      "output": "riff-centered arrangement, breakdown section for contrast",
+      "tags": [
+        "riff_loop",
+        "breakdown",
+        "heavy",
+        "guitar"
+      ]
+    },
+    {
+      "id": "negative_anti_butt_rock",
+      "label": "Anti-Butt-Rock Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no post-grunge vocals, no butt rock",
+      "tags": [
+        "anti_butt_rock",
+        "vocal_control"
+      ]
+    },
+    {
+      "id": "negative_anti_reverb",
+      "label": "Anti-Reverb Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no huge vocal reverb, no washed-out vocals",
+      "tags": [
+        "anti_reverb",
+        "dry",
+        "vocal_space_control"
+      ]
+    },
+    {
+      "id": "negative_anti_grunt",
+      "label": "Anti-Grunt Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no random growls, no harsh barking vocals",
+      "tags": [
+        "anti_grunt",
+        "vocal_control"
+      ]
+    },
+    {
+      "id": "negative_anti_modern_metalcore",
+      "label": "Anti-Modern Metalcore",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no metalcore breakdowns, no djent guitar tone",
+      "tags": [
+        "anti_metalcore"
+      ]
+    },
+    {
+      "id": "negative_anti_pop",
+      "label": "Anti-Pop Polish",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no bright pop chorus, no EDM drop",
+      "tags": [
+        "anti_pop"
+      ]
+    },
+    {
+      "id": "negative_anti_artist_output",
+      "label": "Anti-Artist-Name Output",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no artist name references, no soundalike imitation language",
+      "tags": [
+        "legal_safety",
+        "reference_safety"
+      ]
+    },
+    {
+      "id": "negative_anti_orchestral_bloat",
+      "label": "Anti-Orchestral Bloat",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no massive orchestra, no trailer music percussion",
+      "tags": [
+        "anti_bloat"
+      ]
+    },
+    {
+      "id": "negative_anti_clean_radio_mix",
+      "label": "Anti-Clean Radio Mix",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no clean radio rock mix, no radio-ready vocal polish",
+      "tags": [
+        "anti_radio"
+      ]
+    },
+    {
+      "id": "negative_anti_extreme_metal",
+      "label": "Anti-Extreme-Metal Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no black metal shrieks, no death metal growls",
+      "tags": [
+        "anti_extreme_metal",
+        "vocal_control"
+      ]
+    },
+    {
+      "id": "negative_anti_club",
+      "label": "Anti-Club Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no club synth lead, no festival drop",
+      "tags": [
+        "anti_club",
+        "organic_control"
+      ]
+    },
+    {
+      "id": "negative_anti_trap",
+      "label": "Anti-Trap Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no trap hi-hats, no 808 trap bass",
+      "tags": [
+        "anti_trap"
+      ]
+    },
+    {
+      "id": "negative_anti_country",
+      "label": "Anti-Country Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no country twang, no pedal steel lead",
+      "tags": [
+        "anti_country"
+      ]
+    },
+    {
+      "id": "negative_anti_acoustic",
+      "label": "Anti-Acoustic Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no acoustic campfire arrangement, no solo acoustic guitar demo",
+      "tags": [
+        "anti_acoustic"
+      ]
+    },
+    {
+      "id": "negative_anti_lofi",
+      "label": "Anti-Lo-Fi Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no lo-fi tape noise, no bedroom demo mix",
+      "tags": [
+        "anti_lofi",
+        "polish_control"
+      ]
+    },
+    {
+      "id": "negative_anti_harsh_vocals",
+      "label": "Anti-Harsh-Vocals Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no screamed vocals, no death growls",
+      "tags": [
+        "anti_harsh_vocals",
+        "vocal_control"
+      ]
+    },
+    {
+      "id": "negative_anti_rap",
+      "label": "Anti-Rap Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no rapped verses, no trap adlibs",
+      "tags": [
+        "anti_rap"
+      ]
+    },
+    {
+      "id": "negative_anti_jazz_lounge",
+      "label": "Anti-Jazz-Lounge Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no smooth jazz sax lead, no lounge piano chords",
+      "tags": [
+        "anti_jazz_lounge"
+      ]
+    },
+    {
+      "id": "negative_anti_synthetic",
+      "label": "Anti-Synthetic Filter",
+      "nodeKind": "modifier",
+      "modifierType": "negative",
+      "category": "negative",
+      "output": "no synthetic club drums, no digital synth lead",
+      "tags": [
+        "anti_synthetic",
+        "organic_control"
+      ]
+    }
+  ]
+}

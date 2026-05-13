@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "purpose": "Static JSON knowledge layer for AI music prompt builder.",
+  "itemShape": {
+    "id": "stable machine-readable string",
+    "label": "user-facing label",
+    "prompt": "array of prompt phrases",
+    "exclude": "array of exclusion phrases",
+    "traits": "array of semantic traits used by checker/helper rules",
+    "risk": "object of risk score deltas",
+    "weight": "optional phrase weighting for future compiler use"
+  },
+  "compilerOrder": [
+    "genre",
+    "reference",
+    "mood",
+    "vocal",
+    "instrument",
+    "production",
+    "structure",
+    "exclusions",
+    "customNotes"
+  ],
+  "safetyNote": "Reference anchors are internal lookup keys only. Do not output artist names or soundalike imitation phrasing."
+}
