@@ -1,0 +1,16 @@
+{
+  "version": "canonical-genre-cleanup-1",
+  "summary": "Genre/style selections inject only their canonical genre term by default.",
+  "rules": [
+    "Genre JSON defines identity and grouping only.",
+    "Genre prompt arrays contain one canonical prompt term only.",
+    "Genre excludes are empty to avoid hidden genre-specific negative prompt pollution.",
+    "Tempo is user-driven and is not owned by genre nodes.",
+    "Vocal delivery belongs in vocals.json, not genres.json.",
+    "Instrumentation, production, mood, lyrical details, and weird specifics are user-selected or handled by their own JSONs."
+  ],
+  "updated_files": [
+    "genres.json",
+    "nodeLibrary.json"
+  ]
+}

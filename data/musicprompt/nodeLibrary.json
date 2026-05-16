@@ -1,761 +1,875 @@
 {
   "version": "2.0.0",
-  "purpose": "Slim node library generated from legacy musicprompt data. Legacy risk/exclude/conflict data remains separate.",
+  "purpose": "Slim node library generated from musicprompt data. Genre style nodes output canonical genre terms only; vocals, instruments, production, mood, lyrics, and custom text provide detail.",
   "nodes": [
     {
       "id": "style_singer_songwriter",
       "label": "Singer-Songwriter",
       "nodeKind": "style",
       "category": "genre",
-      "output": "singer-songwriter, intimate lyric-forward arrangement",
+      "output": "singer-songwriter",
       "tags": [
         "acoustic",
         "lyric_forward",
         "intimate",
         "songwriter"
-      ]
+      ],
+      "family": "folk_traditional",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_acoustic_pop",
       "label": "Acoustic Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "acoustic pop, clean melodic hooks",
+      "output": "acoustic pop",
       "tags": [
         "acoustic",
         "pop",
         "melodic",
         "polished"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_indie_folk",
       "label": "Indie Folk",
       "nodeKind": "style",
       "category": "genre",
-      "output": "indie folk, organic acoustic textures",
+      "output": "indie folk",
       "tags": [
         "folk",
         "indie",
         "organic",
         "harmony"
-      ]
+      ],
+      "family": "folk_traditional",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_dark_acoustic_folk",
       "label": "Acoustic Dark Folk",
       "nodeKind": "style",
       "category": "genre",
-      "output": "dark acoustic folk, fingerpicked guitar",
+      "output": "acoustic dark folk",
       "tags": [
         "folk",
         "acoustic",
         "dark",
         "intimate",
         "melancholic"
-      ]
+      ],
+      "family": "folk_traditional",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_americana",
       "label": "Americana",
       "nodeKind": "style",
       "category": "genre",
-      "output": "americana, roots-influenced songwriting",
+      "output": "americana",
       "tags": [
         "americana",
         "roots",
         "acoustic",
         "storytelling"
-      ]
+      ],
+      "family": "country",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_southern_gothic",
       "label": "Southern Gothic",
       "nodeKind": "style",
       "category": "genre",
-      "output": "southern gothic, dusty acoustic textures",
+      "output": "southern gothic",
       "tags": [
         "southern_gothic",
         "dusty",
         "storytelling",
         "dark",
         "swampy"
-      ]
+      ],
+      "family": "folk_traditional",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_bluegrass",
       "label": "Bluegrass",
       "nodeKind": "style",
       "category": "genre",
-      "output": "bluegrass, banjo and mandolin interplay",
+      "output": "bluegrass",
       "tags": [
         "bluegrass",
         "banjo",
         "mandolin",
         "harmony",
         "roots"
-      ]
+      ],
+      "family": "folk_traditional",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_country",
       "label": "Country",
       "nodeKind": "style",
       "category": "genre",
-      "output": "country, twangy guitars",
+      "output": "country",
       "tags": [
         "country",
         "twang",
         "storytelling",
         "roots"
-      ]
+      ],
+      "family": "country",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_outlaw_country",
       "label": "Outlaw Country",
       "nodeKind": "style",
       "category": "genre",
-      "output": "outlaw country, gritty barroom guitars",
+      "output": "outlaw country",
       "tags": [
         "country",
         "outlaw",
         "gritty",
         "storytelling"
-      ]
+      ],
+      "family": "country",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_blues",
       "label": "Blues",
       "nodeKind": "style",
       "category": "genre",
-      "output": "blues, expressive guitar licks",
+      "output": "blues",
       "tags": [
         "blues",
         "guitar",
         "expressive",
         "smoky"
-      ]
+      ],
+      "family": "blues",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_delta_blues",
       "label": "Delta Blues",
       "nodeKind": "style",
       "category": "genre",
-      "output": "delta blues, raw acoustic guitar",
+      "output": "delta blues",
       "tags": [
         "blues",
         "delta",
         "raw",
         "slide_guitar"
-      ]
+      ],
+      "family": "blues",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_jazz_blues",
       "label": "Jazz Blues",
       "nodeKind": "style",
       "category": "genre",
-      "output": "jazz blues, swing-informed rhythm section",
+      "output": "jazz blues",
       "tags": [
         "jazz",
         "blues",
         "swing",
         "extended_chords"
-      ]
+      ],
+      "family": "jazz",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_jazz_standard",
       "label": "Jazz Standard",
       "nodeKind": "style",
       "category": "genre",
-      "output": "jazz standard, walking bass",
+      "output": "jazz standard",
       "tags": [
         "jazz",
         "standard",
         "walking_bass",
         "harmony"
-      ]
+      ],
+      "family": "jazz",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_smooth_jazz",
       "label": "Smooth Jazz",
       "nodeKind": "style",
       "category": "genre",
-      "output": "smooth jazz, polished saxophone lead",
+      "output": "smooth jazz",
       "tags": [
         "jazz",
         "smooth",
         "saxophone",
         "polished"
-      ]
+      ],
+      "family": "jazz",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_neo_soul",
       "label": "Neo-Soul",
       "nodeKind": "style",
       "category": "genre",
-      "output": "neo-soul, warm electric piano chords",
+      "output": "neo-soul",
       "tags": [
         "soul",
         "rnb",
         "warm",
         "expressive"
-      ]
+      ],
+      "family": "rnb_soul",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_classic_soul",
       "label": "Classic Soul",
       "nodeKind": "style",
       "category": "genre",
-      "output": "classic soul, live band groove",
+      "output": "classic soul",
       "tags": [
         "soul",
         "horns",
         "live_band",
         "vocal_focus"
-      ]
+      ],
+      "family": "rnb_soul",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_rnb",
       "label": "R&B",
       "nodeKind": "style",
       "category": "genre",
-      "output": "R&B, smooth vocal runs",
+      "output": "R&B",
       "tags": [
         "rnb",
         "smooth",
         "vocal_runs",
         "polished"
-      ]
+      ],
+      "family": "rnb_soul",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_alt_rnb",
       "label": "Alternative R&B",
       "nodeKind": "style",
       "category": "genre",
-      "output": "alternative R&B, moody synth textures",
+      "output": "alternative R&B",
       "tags": [
         "rnb",
         "alternative",
         "moody",
         "minimal"
-      ]
+      ],
+      "family": "rnb_soul",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_funk",
       "label": "Funk",
       "nodeKind": "style",
       "category": "genre",
-      "output": "funk, syncopated bassline",
+      "output": "funk",
       "tags": [
         "funk",
         "syncopated",
         "bassline",
         "horns"
-      ]
+      ],
+      "family": "funk_disco",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_disco",
       "label": "Disco",
       "nodeKind": "style",
       "category": "genre",
-      "output": "disco, four-on-the-floor drums",
+      "output": "disco",
       "tags": [
         "disco",
         "dance",
         "strings",
         "rhythm_guitar"
-      ]
+      ],
+      "family": "funk_disco",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_radio_pop",
       "label": "Radio Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "radio pop, bright hook-centered songwriting",
+      "output": "radio pop",
       "tags": [
         "pop",
         "radio",
         "hook",
         "polished"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_dance_pop",
       "label": "Dance Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "dance pop, club-influenced pop production",
+      "output": "dance pop",
       "tags": [
         "pop",
         "dance",
         "club",
         "synth"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_synth_pop",
       "label": "Synth Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "synth pop, melodic synth hooks",
+      "output": "synth pop",
       "tags": [
         "pop",
         "synth",
         "electronic",
         "melodic"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_indie_pop",
       "label": "Indie Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "indie pop, quirky melodic hooks",
+      "output": "indie pop",
       "tags": [
         "pop",
         "indie",
         "melodic",
         "quirky"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_dream_pop",
       "label": "Dream Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "dream pop, hazy guitar layers",
+      "output": "dream pop",
       "tags": [
         "pop",
         "dreamy",
         "hazy",
         "atmospheric"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_power_pop",
       "label": "Power Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "power pop, guitar-driven pop hooks",
+      "output": "power pop",
       "tags": [
         "pop",
         "rock",
         "hooks",
         "harmony"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_adult_contemporary",
       "label": "Adult Contemporary",
       "nodeKind": "style",
       "category": "genre",
-      "output": "adult contemporary, smooth radio-friendly arrangement",
+      "output": "adult contemporary",
       "tags": [
         "radio",
         "polished",
         "melodic",
         "soft_rock"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_club_pop",
       "label": "Club Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "club pop, dancefloor-ready pop hooks",
+      "output": "club pop",
       "tags": [
         "pop",
         "club",
         "dance",
         "glossy"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_boom_bap",
       "label": "Boom Bap",
       "nodeKind": "style",
       "category": "genre",
-      "output": "boom bap hip-hop, sample-based drums",
+      "output": "boom bap",
       "tags": [
         "hip_hop",
         "boom_bap",
         "samples",
         "rhythmic"
-      ]
+      ],
+      "family": "hip-hop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_trap",
       "label": "Trap",
       "nodeKind": "style",
       "category": "genre",
-      "output": "trap, 808 bass",
+      "output": "trap",
       "tags": [
         "trap",
         "808",
         "hi_hats",
         "minimal"
-      ]
+      ],
+      "family": "hip-hop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_conscious_hip_hop",
       "label": "Conscious Hip-Hop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "conscious hip-hop, lyric-forward rap delivery",
+      "output": "conscious hip-hop",
       "tags": [
         "hip_hop",
         "lyrical",
         "soulful",
         "narrative"
-      ]
+      ],
+      "family": "hip-hop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_pop_rap",
       "label": "Pop Rap",
       "nodeKind": "style",
       "category": "genre",
-      "output": "pop rap, melodic rap hooks",
+      "output": "pop rap",
       "tags": [
         "hip_hop",
         "pop",
         "melodic",
         "radio"
-      ]
+      ],
+      "family": "hip-hop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_lofi_hip_hop",
       "label": "Lo-Fi Hip-Hop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "lo-fi hip-hop, dusty vinyl texture",
+      "output": "lo-fi hip-hop",
       "tags": [
         "hip_hop",
         "lofi",
         "vinyl",
         "soft_keys"
-      ]
+      ],
+      "family": "hip-hop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_phonk",
       "label": "Phonk",
       "nodeKind": "style",
       "category": "genre",
-      "output": "phonk, memphis rap influence",
+      "output": "phonk",
       "tags": [
         "phonk",
         "808",
         "memphis",
         "distorted"
-      ]
+      ],
+      "family": "hip-hop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_classic_rock",
       "label": "Classic Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "classic rock, electric guitar riffs",
+      "output": "classic rock",
       "tags": [
         "rock",
         "guitar",
         "live_band",
         "classic"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_hard_rock",
       "label": "Hard Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "hard rock, thick electric guitars",
+      "output": "hard rock",
       "tags": [
         "rock",
         "hard_rock",
         "guitar",
         "anthemic"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_garage_rock",
       "label": "Garage Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "garage rock, raw electric guitars",
+      "output": "garage rock",
       "tags": [
         "rock",
         "garage",
         "raw",
         "band"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_indie_rock",
       "label": "Indie Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "indie rock, textured guitars",
+      "output": "indie rock",
       "tags": [
         "rock",
         "indie",
         "alternative",
         "guitar"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_alternative_rock",
       "label": "Alternative Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "alternative rock, guitar-driven arrangement",
+      "output": "alternative rock",
       "tags": [
         "rock",
         "alternative",
         "guitar",
         "dynamic"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_post_rock",
       "label": "Post-Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "post-rock, layered guitars",
+      "output": "post-rock",
       "tags": [
         "post_rock",
         "cinematic",
         "layered",
         "atmospheric"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_progressive_rock",
       "label": "Progressive Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "progressive rock, complex song architecture",
+      "output": "progressive rock",
       "tags": [
         "rock",
         "progressive",
         "complex",
         "harmonic"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_psychedelic_rock",
       "label": "Psychedelic Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "psychedelic rock, swirling guitar effects",
+      "output": "psychedelic rock",
       "tags": [
         "rock",
         "psychedelic",
         "effects",
         "surreal"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_desert_rock",
       "label": "Desert Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "desert rock, dusty hypnotic groove",
+      "output": "desert rock",
       "tags": [
         "desert",
         "rock",
         "groove",
         "analog",
         "warm"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_grunge",
       "label": "Grunge",
       "nodeKind": "style",
       "category": "genre",
-      "output": "grunge, dirty guitar distortion",
+      "output": "grunge",
       "tags": [
         "rock",
         "grunge",
         "dirty",
         "angsty"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_shoegaze",
       "label": "Shoegaze",
       "nodeKind": "style",
       "category": "genre",
-      "output": "shoegaze, wall of guitar effects",
+      "output": "shoegaze",
       "tags": [
         "rock",
         "shoegaze",
         "effects",
         "lush_noise"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_punk_rock",
       "label": "Punk Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "punk rock, raw power chords",
+      "output": "punk rock",
       "tags": [
         "punk",
         "rock",
         "raw",
         "power_chords"
-      ]
+      ],
+      "family": "punk",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_pop_punk",
       "label": "Pop Punk",
       "nodeKind": "style",
       "category": "genre",
-      "output": "pop punk, bright guitar hooks",
+      "output": "pop punk",
       "tags": [
         "punk",
         "pop",
         "hooks",
         "guitar"
-      ]
+      ],
+      "family": "punk",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_post_punk",
       "label": "Post-Punk",
       "nodeKind": "style",
       "category": "genre",
-      "output": "post-punk, angular guitars",
+      "output": "post-punk",
       "tags": [
         "post_punk",
         "angular",
         "cold",
         "bassline"
-      ]
+      ],
+      "family": "punk",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_hardcore_punk",
       "label": "Hardcore Punk",
       "nodeKind": "style",
       "category": "genre",
-      "output": "hardcore punk, aggressive power chords",
+      "output": "hardcore punk",
       "tags": [
         "punk",
         "hardcore",
         "aggressive",
         "raw"
-      ]
+      ],
+      "family": "punk",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_post_hardcore",
       "label": "Post-Hardcore",
       "nodeKind": "style",
       "category": "genre",
-      "output": "post-hardcore, angular guitar tension",
+      "output": "post-hardcore",
       "tags": [
         "post_hardcore",
         "emotional",
         "angular",
         "dynamic"
-      ]
+      ],
+      "family": "punk",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_metalcore",
       "label": "Metalcore",
       "nodeKind": "style",
       "category": "genre",
-      "output": "metalcore, chugging guitar riffs",
+      "output": "metalcore",
       "tags": [
         "metal",
         "core",
         "breakdown",
         "vocal_contrast"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_deathcore",
       "label": "Deathcore",
       "nodeKind": "style",
       "category": "genre",
-      "output": "deathcore, extreme low-tuned guitar weight",
+      "output": "deathcore",
       "tags": [
         "metal",
         "core",
         "extreme",
         "guttural"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_heavy_metal",
       "label": "Heavy Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "heavy metal, classic riff-driven guitars",
+      "output": "heavy metal",
       "tags": [
         "metal",
         "classic",
         "riffs",
         "lead_vocals"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_traditional_doom",
       "label": "Traditional Doom",
       "nodeKind": "style",
       "category": "genre",
-      "output": "traditional doom metal, vintage heavy metal structure",
+      "output": "traditional doom",
       "tags": [
         "doom",
         "traditional",
         "vintage",
         "blues_rooted"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_doom_metal",
       "label": "Doom Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "doom metal, crushing doom weight",
+      "output": "doom metal",
       "tags": [
         "doom",
         "metal",
         "heavy",
         "minor_key",
         "low_register"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_epic_doom",
       "label": "Epic Doom",
       "nodeKind": "style",
       "category": "genre",
-      "output": "epic doom metal, majestic heavy riffs",
+      "output": "epic doom",
       "tags": [
         "doom",
         "epic",
         "dramatic",
         "melodic",
         "large_room"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_funeral_doom",
       "label": "Funeral Doom",
       "nodeKind": "style",
       "category": "genre",
-      "output": "funeral doom metal, extreme doom weight",
+      "output": "funeral doom",
       "tags": [
         "doom",
         "funeral",
         "bleak",
         "sustained",
         "cavernous"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_stoner_metal",
       "label": "Stoner Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "stoner metal, fuzz-heavy riffs",
+      "output": "stoner metal",
       "tags": [
         "stoner",
         "metal",
@@ -763,14 +877,16 @@
         "groove",
         "desert",
         "tube_saturation"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_sludge_metal",
       "label": "Sludge Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "sludge metal, filthy low-end distortion",
+      "output": "sludge metal",
       "tags": [
         "sludge",
         "metal",
@@ -778,874 +894,1112 @@
         "heavy",
         "distorted",
         "oppressive"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_post_metal",
       "label": "Post-Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "post-metal, evolving heavy atmosphere",
+      "output": "post-metal",
       "tags": [
         "post_metal",
         "cinematic",
         "layered",
         "build",
         "atmospheric"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_progressive_metal",
       "label": "Progressive Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "progressive metal, complex riff architecture",
+      "output": "progressive metal",
       "tags": [
         "metal",
         "progressive",
         "technical",
         "complex"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_power_metal",
       "label": "Power Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "power metal, soaring melodic vocals",
+      "output": "power metal",
       "tags": [
         "metal",
         "power_metal",
         "melodic",
         "heroic"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_symphonic_metal",
       "label": "Symphonic Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "symphonic metal, orchestral strings",
+      "output": "symphonic metal",
       "tags": [
         "symphonic",
         "metal",
         "orchestral",
         "cinematic",
         "dramatic"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_gothic_metal",
       "label": "Gothic Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "gothic metal, dark romantic atmosphere",
+      "output": "gothic metal",
       "tags": [
         "gothic",
         "metal",
         "melancholic",
         "dark_romantic",
         "dramatic"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_folk_metal",
       "label": "Folk Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "folk metal, traditional melody influence",
+      "output": "folk metal",
       "tags": [
         "folk",
         "metal",
         "traditional",
         "earthy",
         "melodic"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_industrial_metal",
       "label": "Industrial Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "industrial metal, mechanical rhythm",
+      "output": "industrial metal",
       "tags": [
         "industrial",
         "metal",
         "mechanical",
         "cold",
         "synthetic"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_nu_metal",
       "label": "Nu Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "nu metal, low-tuned guitar riffs",
+      "output": "nu metal",
       "tags": [
         "metal",
         "nu_metal",
         "low_tuned",
         "rhythmic"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_thrash_metal",
       "label": "Thrash Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "thrash metal, palm-muted riff attack",
+      "output": "thrash metal",
       "tags": [
         "metal",
         "thrash",
         "riff_attack",
         "aggressive"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_death_metal",
       "label": "Death Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "death metal, guttural vocals",
+      "output": "death metal",
       "tags": [
         "metal",
         "death_metal",
         "guttural",
         "brutal"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_melodic_death_metal",
       "label": "Melodic Death Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "melodic death metal, harmonized guitar leads",
+      "output": "melodic death metal",
       "tags": [
         "metal",
         "death_metal",
         "melodic",
         "harsh"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_technical_death_metal",
       "label": "Technical Death Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "technical death metal, complex riff patterns",
+      "output": "technical death metal",
       "tags": [
         "metal",
         "death_metal",
         "technical",
         "precision"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_black_metal",
       "label": "Black Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "black metal, tremolo-picked guitars",
+      "output": "black metal",
       "tags": [
         "black_metal",
         "cold",
         "tremolo",
         "harsh"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_atmospheric_black_metal",
       "label": "Atmospheric Black Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "atmospheric black metal, icy layered guitars",
+      "output": "atmospheric black metal",
       "tags": [
         "black_metal",
         "atmospheric",
         "cold",
         "layered",
         "melancholic"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_blackened_death_metal",
       "label": "Blackened Death Metal",
       "nodeKind": "style",
       "category": "genre",
-      "output": "blackened death metal, cold tremolo guitars",
+      "output": "blackened death metal",
       "tags": [
         "metal",
         "black_metal",
         "death_metal",
         "bleak"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_grindcore",
       "label": "Grindcore",
       "nodeKind": "style",
       "category": "genre",
-      "output": "grindcore, chaotic extreme-metal attack",
+      "output": "grindcore",
       "tags": [
         "metal",
         "grindcore",
         "chaotic",
         "abrasive"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_djent",
       "label": "Djent",
       "nodeKind": "style",
       "category": "genre",
-      "output": "djent, polyrhythmic low-tuned guitars",
+      "output": "djent",
       "tags": [
         "metal",
         "djent",
         "polyrhythm",
         "technical"
-      ]
+      ],
+      "family": "metal",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_edm",
       "label": "EDM",
       "nodeKind": "style",
       "category": "genre",
-      "output": "EDM, big synth lead",
+      "output": "EDM",
       "tags": [
         "edm",
         "synth",
         "drop",
         "festival"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_club_edm",
       "label": "Club EDM",
       "nodeKind": "style",
       "category": "genre",
-      "output": "club EDM, floor-focused electronic drums",
+      "output": "club edm",
       "tags": [
         "edm",
         "club",
         "dance",
         "synth_bass"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_progressive_edm",
       "label": "Progressive EDM",
       "nodeKind": "style",
       "category": "genre",
-      "output": "progressive EDM, emotional synth chords",
+      "output": "progressive edm",
       "tags": [
         "edm",
         "progressive",
         "anthemic",
         "synth"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_big_room_house",
       "label": "Big Room House",
       "nodeKind": "style",
       "category": "genre",
-      "output": "big room house, festival synth lead",
+      "output": "big room house",
       "tags": [
         "house",
         "big_room",
         "festival",
         "drop"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_house",
       "label": "House",
       "nodeKind": "style",
       "category": "genre",
-      "output": "house, four-on-the-floor drums",
+      "output": "house",
       "tags": [
         "house",
         "dance",
         "four_on_floor",
         "synth_bass"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_deep_house",
       "label": "Deep House",
       "nodeKind": "style",
       "category": "genre",
-      "output": "deep house, warm chord stabs",
+      "output": "deep house",
       "tags": [
         "house",
         "deep",
         "warm",
         "vocal_chops"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_tech_house",
       "label": "Tech House",
       "nodeKind": "style",
       "category": "genre",
-      "output": "tech house, minimal club groove",
+      "output": "tech house",
       "tags": [
         "house",
         "tech_house",
         "minimal",
         "percussion"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_future_house",
       "label": "Future House",
       "nodeKind": "style",
       "category": "genre",
-      "output": "future house, bouncy synth bass",
+      "output": "future house",
       "tags": [
         "house",
         "future_house",
         "synth_bass",
         "club"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_electro_house",
       "label": "Electro House",
       "nodeKind": "style",
       "category": "genre",
-      "output": "electro house, aggressive synth bass",
+      "output": "electro house",
       "tags": [
         "house",
         "electro",
         "synth_bass",
         "bold"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_progressive_house",
       "label": "Progressive House",
       "nodeKind": "style",
       "category": "genre",
-      "output": "progressive house, layered synth chords",
+      "output": "progressive house",
       "tags": [
         "house",
         "progressive",
         "melodic",
         "club"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_acid_house",
       "label": "Acid House",
       "nodeKind": "style",
       "category": "genre",
-      "output": "acid house, squelching acid bassline",
+      "output": "acid house",
       "tags": [
         "house",
         "acid",
         "303",
         "club"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_trance",
       "label": "Trance",
       "nodeKind": "style",
       "category": "genre",
-      "output": "trance, arpeggiated synth patterns",
+      "output": "trance",
       "tags": [
         "trance",
         "arpeggio",
         "euphoric",
         "synth"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_uplifting_trance",
       "label": "Uplifting Trance",
       "nodeKind": "style",
       "category": "genre",
-      "output": "uplifting trance, emotional supersaw lead",
+      "output": "uplifting trance",
       "tags": [
         "trance",
         "uplifting",
         "supersaw",
         "emotional"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_progressive_trance",
       "label": "Progressive Trance",
       "nodeKind": "style",
       "category": "genre",
-      "output": "progressive trance, layered synth progression",
+      "output": "progressive trance",
       "tags": [
         "trance",
         "progressive",
         "layered",
         "club"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_psytrance",
       "label": "Psytrance",
       "nodeKind": "style",
       "category": "genre",
-      "output": "psytrance, psychedelic synth sequences",
+      "output": "psytrance",
       "tags": [
         "trance",
         "psytrance",
         "psychedelic",
         "bassline"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_techno",
       "label": "Techno",
       "nodeKind": "style",
       "category": "genre",
-      "output": "techno, machine-driven drum programming",
+      "output": "techno",
       "tags": [
         "techno",
         "warehouse",
         "machine",
         "repetitive"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_melodic_techno",
       "label": "Melodic Techno",
       "nodeKind": "style",
       "category": "genre",
-      "output": "melodic techno, dark synth arpeggios",
+      "output": "melodic techno",
       "tags": [
         "techno",
         "melodic",
         "dark",
         "club"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_industrial_techno",
       "label": "Industrial Techno",
       "nodeKind": "style",
       "category": "genre",
-      "output": "industrial techno, metallic percussion",
+      "output": "industrial techno",
       "tags": [
         "techno",
         "industrial",
         "metallic",
         "cold"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_minimal_techno",
       "label": "Minimal Techno",
       "nodeKind": "style",
       "category": "genre",
-      "output": "minimal techno, stripped electronic drums",
+      "output": "minimal techno",
       "tags": [
         "techno",
         "minimal",
         "dry",
         "club"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_dubstep",
       "label": "Dubstep",
       "nodeKind": "style",
       "category": "genre",
-      "output": "dubstep, wobble bass design",
+      "output": "dubstep",
       "tags": [
         "dubstep",
         "bass",
         "drop",
         "weighted_feel"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_brostep",
       "label": "Brostep",
       "nodeKind": "style",
       "category": "genre",
-      "output": "brostep, aggressive bass growls",
+      "output": "brostep",
       "tags": [
         "dubstep",
         "brostep",
         "bass_growl",
         "maximal"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_future_bass",
       "label": "Future Bass",
       "nodeKind": "style",
       "category": "genre",
-      "output": "future bass, wide detuned synth chords",
+      "output": "future bass",
       "tags": [
         "future_bass",
         "vocal_chops",
         "glossy",
         "synth"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_drum_and_bass",
       "label": "Drum and Bass",
       "nodeKind": "style",
       "category": "genre",
-      "output": "drum and bass, breakbeat drum programming",
+      "output": "drum and bass",
       "tags": [
         "drum_and_bass",
         "breakbeat",
         "sub_bass",
         "percussion"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_liquid_dnb",
       "label": "Liquid Drum and Bass",
       "nodeKind": "style",
       "category": "genre",
-      "output": "liquid drum and bass, smooth pads",
+      "output": "liquid drum and bass",
       "tags": [
         "drum_and_bass",
         "liquid",
         "smooth",
         "pads"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_breakbeat",
       "label": "Breakbeat",
       "nodeKind": "style",
       "category": "genre",
-      "output": "breakbeat, syncopated drum breaks",
+      "output": "breakbeat",
       "tags": [
         "breakbeat",
         "samples",
         "club",
         "bassline"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_garage_uk",
       "label": "UK Garage",
       "nodeKind": "style",
       "category": "genre",
-      "output": "UK garage, shuffled drum programming",
+      "output": "UK garage",
       "tags": [
         "garage",
         "uk_garage",
         "shuffle",
         "vocal_chops"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_electro",
       "label": "Electro",
       "nodeKind": "style",
       "category": "genre",
-      "output": "electro, robotic drum machine pattern",
+      "output": "electro",
       "tags": [
         "electro",
         "robotic",
         "synth_bass",
         "vocoder"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_idm",
       "label": "IDM",
       "nodeKind": "style",
       "category": "genre",
-      "output": "IDM, glitchy percussion edits",
+      "output": "IDM",
       "tags": [
         "idm",
         "glitch",
         "experimental",
         "abstract"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_glitch_hop",
       "label": "Glitch Hop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "glitch hop, chopped digital percussion",
+      "output": "glitch hop",
       "tags": [
         "glitch",
         "hip_hop",
         "samples",
         "bass"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_hyperpop",
       "label": "Hyperpop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "hyperpop, pitched vocal processing",
+      "output": "hyperpop",
       "tags": [
         "pop",
         "hyperpop",
         "maximal",
         "vocal_processing"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_synthwave",
       "label": "Synthwave",
       "nodeKind": "style",
       "category": "genre",
-      "output": "synthwave, retro analog synths",
+      "output": "synthwave",
       "tags": [
         "synthwave",
         "retro",
         "analog_synth",
         "neon"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_dark_synthwave",
       "label": "Dark Synthwave",
       "nodeKind": "style",
       "category": "genre",
-      "output": "dark synthwave, analog synth bass",
+      "output": "dark synthwave",
       "tags": [
         "synthwave",
         "dark",
         "retro",
         "analog_synth"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_outrun",
       "label": "Outrun",
       "nodeKind": "style",
       "category": "genre",
-      "output": "outrun, neon synth leads",
+      "output": "outrun",
       "tags": [
         "synthwave",
         "outrun",
         "neon",
         "retro"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_cyberpunk_electronic",
       "label": "Cyberpunk Electronic",
       "nodeKind": "style",
       "category": "genre",
-      "output": "cyberpunk electronic, gritty synth bass",
+      "output": "cyberpunk electronic",
       "tags": [
         "cyberpunk",
         "electronic",
         "dystopian",
         "synth_bass"
-      ]
+      ],
+      "family": "punk",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_ambient",
       "label": "Ambient",
       "nodeKind": "style",
       "category": "genre",
-      "output": "ambient, evolving pads",
+      "output": "ambient",
       "tags": [
         "ambient",
         "pads",
         "spacious",
         "minimal"
-      ]
+      ],
+      "family": "ambient",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_dark_ambient",
       "label": "Dark Ambient",
       "nodeKind": "style",
       "category": "genre",
-      "output": "dark ambient, evolving drones",
+      "output": "dark ambient",
       "tags": [
         "dark_ambient",
         "drone",
         "spacious",
         "ominous",
         "minimal"
-      ]
+      ],
+      "family": "ambient",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_dungeon_synth",
       "label": "Dungeon Synth",
       "nodeKind": "style",
       "category": "genre",
-      "output": "dungeon synth, medieval dark ambient atmosphere",
+      "output": "dungeon synth",
       "tags": [
         "dungeon_synth",
         "ambient",
         "medieval",
         "fantasy",
         "minimal"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_new_age",
       "label": "New Age",
       "nodeKind": "style",
       "category": "genre",
-      "output": "new age, gentle pads",
+      "output": "new age",
       "tags": [
         "new_age",
         "pads",
         "peaceful",
         "spacious"
-      ]
+      ],
+      "family": "ambient",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_cinematic_orchestral",
       "label": "Cinematic Orchestral",
       "nodeKind": "style",
       "category": "genre",
-      "output": "cinematic orchestral, large string sections",
+      "output": "cinematic orchestral",
       "tags": [
         "cinematic",
         "orchestral",
         "wide",
         "dramatic",
         "large_room"
-      ]
+      ],
+      "family": "cinematic",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_epic_trailer",
       "label": "Epic Trailer",
       "nodeKind": "style",
       "category": "genre",
-      "output": "epic trailer music, massive percussion hits",
+      "output": "epic trailer",
       "tags": [
         "cinematic",
         "trailer",
         "hybrid",
         "impact"
-      ]
+      ],
+      "family": "cinematic",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_chiptune",
       "label": "Chiptune",
       "nodeKind": "style",
       "category": "genre",
-      "output": "chiptune, 8-bit synth leads",
+      "output": "chiptune",
       "tags": [
         "chiptune",
         "8bit",
         "retro",
         "game"
-      ]
+      ],
+      "family": "electronic_edm",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_reggae",
       "label": "Reggae",
       "nodeKind": "style",
       "category": "genre",
-      "output": "reggae, offbeat guitar chops",
+      "output": "reggae",
       "tags": [
         "reggae",
         "offbeat",
         "bassline",
         "warm"
-      ]
+      ],
+      "family": "reggae_ska_dub",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_ska",
       "label": "Ska",
       "nodeKind": "style",
       "category": "genre",
-      "output": "ska, offbeat guitar skank",
+      "output": "ska",
       "tags": [
         "ska",
         "horns",
         "offbeat",
         "band"
-      ]
+      ],
+      "family": "reggae_ska_dub",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_latin_pop",
       "label": "Latin Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "latin pop, romantic vocal focus",
+      "output": "latin pop",
       "tags": [
         "latin",
         "pop",
         "romantic",
         "polished"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_reggaeton",
       "label": "Reggaeton",
       "nodeKind": "style",
       "category": "genre",
-      "output": "reggaeton, dembow rhythm foundation",
+      "output": "reggaeton",
       "tags": [
         "latin",
         "reggaeton",
         "dembow",
         "bass"
-      ]
+      ],
+      "family": "world_regional",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_afrobeats",
       "label": "Afrobeats",
       "nodeKind": "style",
       "category": "genre",
-      "output": "afrobeats, syncopated percussion",
+      "output": "afrobeats",
       "tags": [
         "afrobeats",
         "percussion",
         "guitar",
         "melodic"
-      ]
+      ],
+      "family": "world_regional",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_k_pop",
       "label": "K-Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "K-pop, polished group vocals",
+      "output": "K-Pop",
       "tags": [
         "pop",
         "kpop",
         "polished",
         "group_vocals"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_j_pop",
       "label": "J-Pop",
       "nodeKind": "style",
       "category": "genre",
-      "output": "J-pop, bright melodic writing",
+      "output": "J-Pop",
       "tags": [
         "pop",
         "jpop",
         "melodic",
         "colorful"
-      ]
+      ],
+      "family": "pop",
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_anime_rock",
       "label": "Anime Rock",
       "nodeKind": "style",
       "category": "genre",
-      "output": "anime rock, dramatic guitar hooks",
+      "output": "anime rock",
       "tags": [
         "rock",
         "anime",
         "melodic",
         "dramatic"
-      ]
+      ],
+      "family": "rock",
+      "injectionPolicy": "canonical_term_only"
+    },
+    {
+      "id": "style_stoner_rock",
+      "label": "Stoner Rock",
+      "nodeKind": "style",
+      "category": "genre",
+      "family": "rock",
+      "output": "stoner rock",
+      "tags": [
+        "rock",
+        "stoner_rock"
+      ],
+      "injectionPolicy": "canonical_term_only"
+    },
+    {
+      "id": "style_skate_punk",
+      "label": "Skate Punk",
+      "nodeKind": "style",
+      "category": "genre",
+      "family": "punk",
+      "output": "skate punk",
+      "tags": [
+        "punk",
+        "skate_punk"
+      ],
+      "injectionPolicy": "canonical_term_only"
+    },
+    {
+      "id": "style_crust_punk",
+      "label": "Crust Punk",
+      "nodeKind": "style",
+      "category": "genre",
+      "family": "punk",
+      "output": "crust punk",
+      "tags": [
+        "punk",
+        "crust_punk"
+      ],
+      "injectionPolicy": "canonical_term_only"
+    },
+    {
+      "id": "style_street_punk",
+      "label": "Street Punk",
+      "nodeKind": "style",
+      "category": "genre",
+      "family": "punk",
+      "output": "street punk",
+      "tags": [
+        "punk",
+        "street_punk"
+      ],
+      "injectionPolicy": "canonical_term_only"
+    },
+    {
+      "id": "style_red_dirt_country",
+      "label": "Red Dirt Country",
+      "nodeKind": "style",
+      "category": "genre",
+      "family": "country",
+      "output": "red dirt country",
+      "tags": [
+        "country",
+        "red_dirt_country"
+      ],
+      "injectionPolicy": "canonical_term_only"
+    },
+    {
+      "id": "style_bro_country",
+      "label": "Bro Country",
+      "nodeKind": "style",
+      "category": "genre",
+      "family": "country",
+      "output": "bro country",
+      "tags": [
+        "country",
+        "bro_country"
+      ],
+      "injectionPolicy": "canonical_term_only"
+    },
+    {
+      "id": "style_classic_country",
+      "label": "Classic Country",
+      "nodeKind": "style",
+      "category": "genre",
+      "family": "country",
+      "output": "classic country",
+      "tags": [
+        "country",
+        "classic_country"
+      ],
+      "injectionPolicy": "canonical_term_only"
+    },
+    {
+      "id": "style_alt_country",
+      "label": "Alt-Country",
+      "nodeKind": "style",
+      "category": "genre",
+      "family": "country",
+      "output": "alt-country",
+      "tags": [
+        "country",
+        "alt_country"
+      ],
+      "injectionPolicy": "canonical_term_only"
     },
     {
       "id": "style_early_doom_anchor",

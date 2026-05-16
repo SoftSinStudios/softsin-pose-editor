@@ -1,1062 +1,735 @@
 [
   {
-    "id": "acid_house",
-    "label": "Acid House",
-    "prompt": [
-      "acid house",
-      "squelching acid bassline",
-      "hypnotic drum machine pattern",
-      "raw club texture"
-    ],
-    "exclude": [
-      "orchestral ballad arrangement",
-      "metalcore breakdown",
-      "country twang"
-    ],
-    "traits": [
-      "house",
-      "acid",
-      "303",
-      "club"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "House centered on acid bass character.",
-    "category": "house"
-  },
-  {
-    "id": "dark_acoustic_folk",
-    "label": "Acoustic Dark Folk",
-    "prompt": [
-      "dark acoustic folk",
-      "fingerpicked guitar",
-      "low intimate vocals",
-      "melancholic old-world atmosphere"
-    ],
-    "exclude": [
-      "huge metal wall of sound",
-      "EDM drop",
-      "arena rock chorus"
-    ],
-    "traits": [
-      "folk",
-      "acoustic",
-      "dark",
-      "intimate",
-      "melancholic"
-    ],
-    "risk": {
-      "reverb": -1,
-      "butt_rock": -2
-    },
-    "weight": 1,
-    "description": "Dark intimate folk music.",
-    "category": "folk"
-  },
-  {
     "id": "acoustic_pop",
     "label": "Acoustic Pop",
     "prompt": [
-      "acoustic pop",
-      "clean melodic hooks",
-      "polished acoustic guitar layers",
-      "radio-friendly vocal focus"
+      "acoustic pop"
     ],
-    "exclude": [
-      "distorted metal guitars",
-      "industrial percussion",
-      "underground club mix"
-    ],
+    "exclude": [],
     "traits": [
-      "acoustic",
-      "pop",
-      "melodic",
-      "polished"
+      "acoustic_pop",
+      "pop"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Accessible pop built around acoustic texture.",
-    "category": "pop"
+    "description": "Canonical genre/style term: Acoustic Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "acoustic pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "adult_contemporary",
     "label": "Adult Contemporary",
     "prompt": [
-      "adult contemporary",
-      "smooth radio-friendly arrangement",
-      "clean melodic vocals",
-      "polished soft-rock texture"
+      "adult contemporary"
     ],
-    "exclude": [
-      "extreme metal vocals",
-      "underground techno mix",
-      "raw punk noise"
-    ],
+    "exclude": [],
     "traits": [
-      "radio",
-      "polished",
-      "melodic",
-      "soft_rock"
+      "adult_contemporary",
+      "pop"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Smooth accessible radio music.",
-    "category": "pop"
-  },
-  {
-    "id": "afrobeats",
-    "label": "Afrobeats",
-    "prompt": [
-      "afrobeats",
-      "syncopated percussion",
-      "warm guitar accents",
-      "melodic vocal hooks"
-    ],
-    "exclude": [
-      "metalcore breakdown",
-      "dark ambient drone",
-      "country twang"
-    ],
-    "traits": [
-      "afrobeats",
-      "percussion",
-      "guitar",
-      "melodic"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "African pop-influenced groove music.",
-    "category": "world"
-  },
-  {
-    "id": "alt_rnb",
-    "label": "Alternative R&B",
-    "prompt": [
-      "alternative R&B",
-      "moody synth textures",
-      "minimal drum programming",
-      "intimate vocal layering"
-    ],
-    "exclude": [
-      "country twang",
-      "arena rock chorus",
-      "bluegrass banjo"
-    ],
-    "traits": [
-      "rnb",
-      "alternative",
-      "moody",
-      "minimal"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "R&B with experimental atmosphere.",
-    "category": "rnb"
-  },
-  {
-    "id": "alternative_rock",
-    "label": "Alternative Rock",
-    "prompt": [
-      "alternative rock",
-      "guitar-driven arrangement",
-      "dynamic chorus writing",
-      "modern rock vocal focus"
-    ],
-    "exclude": [
-      "EDM festival drop",
-      "bluegrass banjo feature",
-      "black metal vocals"
-    ],
-    "traits": [
-      "rock",
-      "alternative",
-      "guitar",
-      "dynamic"
-    ],
-    "risk": {
-      "butt_rock": 1
-    },
-    "weight": 1,
-    "description": "Modern rock with alternative edge.",
-    "category": "rock"
-  },
-  {
-    "id": "ambient",
-    "label": "Ambient",
-    "prompt": [
-      "ambient",
-      "evolving pads",
-      "minimal melodic fragments",
-      "spacious atmospheric texture"
-    ],
-    "exclude": [
-      "anthemic chorus",
-      "metal breakdown",
-      "club drop"
-    ],
-    "traits": [
-      "ambient",
-      "pads",
-      "spacious",
-      "minimal"
-    ],
-    "risk": {
-      "reverb": 2
-    },
-    "weight": 1,
-    "description": "Atmospheric music focused on texture.",
-    "category": "ambient"
-  },
-  {
-    "id": "americana",
-    "label": "Americana",
-    "prompt": [
-      "americana",
-      "roots-influenced songwriting",
-      "warm acoustic guitars",
-      "weathered vocal character"
-    ],
-    "exclude": [
-      "EDM drop",
-      "synthetic club drums",
-      "extreme metal riffing"
-    ],
-    "traits": [
-      "americana",
-      "roots",
-      "acoustic",
-      "storytelling"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Roots-based American songwriting.",
-    "category": "folk"
-  },
-  {
-    "id": "anime_rock",
-    "label": "Anime Rock",
-    "prompt": [
-      "anime rock",
-      "dramatic guitar hooks",
-      "bright melodic chorus",
-      "high-impact vocal delivery"
-    ],
-    "exclude": [
-      "ambient drone-only texture",
-      "country fiddle lead",
-      "minimal club loop"
-    ],
-    "traits": [
-      "rock",
-      "anime",
-      "melodic",
-      "dramatic"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Rock with anime-opening style drama.",
-    "category": "rock"
-  },
-  {
-    "id": "atmospheric_black_metal",
-    "label": "Atmospheric Black Metal",
-    "prompt": [
-      "atmospheric black metal",
-      "icy layered guitars",
-      "distant drums",
-      "long melancholic passages"
-    ],
-    "exclude": [
-      "radio rock chorus",
-      "modern metalcore production",
-      "cheerful major-key pop tone"
-    ],
-    "traits": [
-      "black_metal",
-      "atmospheric",
-      "cold",
-      "layered",
-      "melancholic"
-    ],
-    "risk": {
-      "reverb": 2,
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Black metal with expansive atmosphere.",
-    "category": "metal"
-  },
-  {
-    "id": "big_room_house",
-    "label": "Big Room House",
-    "prompt": [
-      "big room house",
-      "festival synth lead",
-      "huge drop arrangement",
-      "massive kick-and-bass impact"
-    ],
-    "exclude": [
-      "acoustic ballad mix",
-      "black metal vocals",
-      "jazz trio arrangement"
-    ],
-    "traits": [
-      "house",
-      "big_room",
-      "festival",
-      "drop"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Large-scale festival house.",
-    "category": "house"
-  },
-  {
-    "id": "black_metal",
-    "label": "Black Metal",
-    "prompt": [
-      "black metal",
-      "tremolo-picked guitars",
-      "cold atmosphere",
-      "extreme metal intensity"
-    ],
-    "exclude": [
-      "post-grunge vocals",
-      "funk groove",
-      "pop chorus"
-    ],
-    "traits": [
-      "black_metal",
-      "cold",
-      "tremolo",
-      "harsh"
-    ],
-    "risk": {
-      "vocal_grunts": 2,
-      "reverb": 1
-    },
-    "weight": 1,
-    "description": "Cold, intense, atmosphere-heavy extreme metal.",
-    "category": "metal"
-  },
-  {
-    "id": "blackened_death_metal",
-    "label": "Blackened Death Metal",
-    "prompt": [
-      "blackened death metal",
-      "cold tremolo guitars",
-      "death metal brutality",
-      "bleak occult atmosphere"
-    ],
-    "exclude": [
-      "radio pop hook",
-      "country fiddle lead",
-      "smooth jazz polish"
-    ],
-    "traits": [
-      "metal",
-      "black_metal",
-      "death_metal",
-      "bleak"
-    ],
-    "risk": {
-      "vocal_grunts": 2,
-      "reverb": 1
-    },
-    "weight": 1,
-    "description": "Extreme metal blending black and death metal traits.",
-    "category": "metal"
-  },
-  {
-    "id": "bluegrass",
-    "label": "Bluegrass",
-    "prompt": [
-      "bluegrass",
-      "banjo and mandolin interplay",
-      "upright bass foundation",
-      "close harmony vocals"
-    ],
-    "exclude": [
-      "synth bass drop",
-      "metal guitar wall",
-      "trap hi-hats"
-    ],
-    "traits": [
-      "bluegrass",
-      "banjo",
-      "mandolin",
-      "harmony",
-      "roots"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Acoustic roots music with string-band detail.",
-    "category": "folk"
-  },
-  {
-    "id": "blues",
-    "label": "Blues",
-    "prompt": [
-      "blues",
-      "expressive guitar licks",
-      "call-and-response phrasing",
-      "smoky vocal tone"
-    ],
-    "exclude": [
-      "EDM drop",
-      "extreme metal drumming",
-      "hyperpop gloss"
-    ],
-    "traits": [
-      "blues",
-      "guitar",
-      "expressive",
-      "smoky"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Guitar-centered blues vocabulary.",
-    "category": "blues"
-  },
-  {
-    "id": "boom_bap",
-    "label": "Boom Bap",
-    "prompt": [
-      "boom bap hip-hop",
-      "sample-based drums",
-      "dusty loop texture",
-      "clear rhythmic vocal delivery"
-    ],
-    "exclude": [
-      "EDM festival drop",
-      "country fiddle lead",
-      "metal guitar solo focus"
-    ],
-    "traits": [
-      "hip_hop",
-      "boom_bap",
-      "samples",
-      "rhythmic"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Classic sample-based hip-hop.",
-    "category": "hip-hop"
-  },
-  {
-    "id": "breakbeat",
-    "label": "Breakbeat",
-    "prompt": [
-      "breakbeat",
-      "syncopated drum breaks",
-      "electronic bassline",
-      "sample-based club texture"
-    ],
-    "exclude": [
-      "acoustic-only folk",
-      "doom metal wall",
-      "country ballad"
-    ],
-    "traits": [
-      "breakbeat",
-      "samples",
-      "club",
-      "bassline"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Electronic music centered on broken drum patterns.",
-    "category": "electronic"
-  },
-  {
-    "id": "brostep",
-    "label": "Brostep",
-    "prompt": [
-      "brostep",
-      "aggressive bass growls",
-      "impact-heavy drop structure",
-      "maximal electronic sound design"
-    ],
-    "exclude": [
-      "soft acoustic arrangement",
-      "smooth jazz polish",
-      "country fiddle"
-    ],
-    "traits": [
-      "dubstep",
-      "brostep",
-      "bass_growl",
-      "maximal"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Harder dubstep variant with aggressive sound design.",
-    "category": "bass_music"
-  },
-  {
-    "id": "chiptune",
-    "label": "Chiptune",
-    "prompt": [
-      "chiptune",
-      "8-bit synth leads",
-      "retro game console texture",
-      "simple melodic hook writing"
-    ],
-    "exclude": [
-      "orchestral realism",
-      "metal guitar wall",
-      "country twang"
-    ],
-    "traits": [
-      "chiptune",
-      "8bit",
-      "retro",
-      "game"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Retro game-console music.",
-    "category": "electronic"
-  },
-  {
-    "id": "cinematic_orchestral",
-    "label": "Cinematic Orchestral",
-    "prompt": [
-      "cinematic orchestral",
-      "large string sections",
-      "dramatic percussion",
-      "wide film-score atmosphere"
-    ],
-    "exclude": [
-      "raw garage recording",
-      "lo-fi punk mix",
-      "small acoustic demo"
-    ],
-    "traits": [
-      "cinematic",
-      "orchestral",
-      "wide",
-      "dramatic",
-      "large_room"
-    ],
-    "risk": {
-      "reverb": 2
-    },
-    "weight": 1,
-    "description": "Film-score style orchestral production.",
-    "category": "cinematic"
-  },
-  {
-    "id": "classic_rock",
-    "label": "Classic Rock",
-    "prompt": [
-      "classic rock",
-      "electric guitar riffs",
-      "live rhythm section",
-      "confident lead vocal"
-    ],
-    "exclude": [
-      "EDM drop",
-      "trap hi-hat grid",
-      "black metal shrieks"
-    ],
-    "traits": [
-      "rock",
-      "guitar",
-      "live_band",
-      "classic"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Traditional electric rock arrangement.",
-    "category": "rock"
-  },
-  {
-    "id": "classic_soul",
-    "label": "Classic Soul",
-    "prompt": [
-      "classic soul",
-      "live band groove",
-      "horn section accents",
-      "powerful lead vocal"
-    ],
-    "exclude": [
-      "cold industrial synths",
-      "black metal vocals",
-      "trap hi-hat grid"
-    ],
-    "traits": [
-      "soul",
-      "horns",
-      "live_band",
-      "vocal_focus"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Vintage soul energy and arrangement.",
-    "category": "soul"
-  },
-  {
-    "id": "club_edm",
-    "label": "Club EDM",
-    "prompt": [
-      "club EDM",
-      "floor-focused electronic drums",
-      "punchy synth bass",
-      "clean drop-and-build arrangement"
-    ],
-    "exclude": [
-      "acoustic campfire texture",
-      "extreme metal vocals",
-      "country fiddle lead"
-    ],
-    "traits": [
-      "edm",
-      "club",
-      "dance",
-      "synth_bass"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Club-oriented electronic dance production.",
-    "category": "electronic"
+    "description": "Canonical genre/style term: Adult Contemporary. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "adult contemporary",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "club_pop",
     "label": "Club Pop",
     "prompt": [
-      "club pop",
-      "dancefloor-ready pop hooks",
-      "synthetic bass foundation",
-      "glossy vocal processing"
+      "club pop"
     ],
-    "exclude": [
-      "acoustic-only folk demo",
-      "black metal atmosphere",
-      "raw garage drums"
-    ],
+    "exclude": [],
     "traits": [
-      "pop",
-      "club",
-      "dance",
-      "glossy"
+      "club_pop",
+      "pop"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Pop songcraft with club texture.",
-    "category": "dance"
-  },
-  {
-    "id": "conscious_hip_hop",
-    "label": "Conscious Hip-Hop",
-    "prompt": [
-      "conscious hip-hop",
-      "lyric-forward rap delivery",
-      "soulful sample texture",
-      "grounded narrative focus"
-    ],
-    "exclude": [
-      "EDM drop",
-      "metalcore breakdown",
-      "bubblegum pop gloss"
-    ],
-    "traits": [
-      "hip_hop",
-      "lyrical",
-      "soulful",
-      "narrative"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Hip-hop centered on message and lyrics.",
-    "category": "hip-hop"
-  },
-  {
-    "id": "country",
-    "label": "Country",
-    "prompt": [
-      "country",
-      "twangy guitars",
-      "clear storytelling vocals",
-      "warm roots rhythm section"
-    ],
-    "exclude": [
-      "EDM drop",
-      "black metal atmosphere",
-      "industrial synth texture"
-    ],
-    "traits": [
-      "country",
-      "twang",
-      "storytelling",
-      "roots"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Story-focused country arrangement.",
-    "category": "country"
-  },
-  {
-    "id": "cyberpunk_electronic",
-    "label": "Cyberpunk Electronic",
-    "prompt": [
-      "cyberpunk electronic",
-      "gritty synth bass",
-      "dystopian digital texture",
-      "rain-soaked neon atmosphere"
-    ],
-    "exclude": [
-      "acoustic country twang",
-      "bluegrass banjo",
-      "warm campfire folk"
-    ],
-    "traits": [
-      "cyberpunk",
-      "electronic",
-      "dystopian",
-      "synth_bass"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Dark futuristic electronic style.",
-    "category": "electronic"
+    "description": "Canonical genre/style term: Club Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "club pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "dance_pop",
     "label": "Dance Pop",
     "prompt": [
-      "dance pop",
-      "club-influenced pop production",
-      "clean synth hooks",
-      "polished lead vocal"
+      "dance pop"
     ],
-    "exclude": [
-      "raw black metal mix",
-      "acoustic-only folk arrangement",
-      "doom guitar wall"
-    ],
+    "exclude": [],
     "traits": [
-      "pop",
-      "dance",
-      "club",
-      "synth"
+      "dance_pop",
+      "pop"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Pop songwriting with club production.",
-    "category": "pop"
+    "description": "Canonical genre/style term: Dance Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "dance pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
   },
   {
-    "id": "dark_ambient",
-    "label": "Dark Ambient",
+    "id": "disco",
+    "label": "Disco",
     "prompt": [
-      "dark ambient",
-      "evolving drones",
-      "subtle textures",
-      "ominous spacious atmosphere"
+      "disco"
     ],
-    "exclude": [
-      "anthemic chorus",
-      "dance beat",
-      "bright pop melody"
-    ],
+    "exclude": [],
     "traits": [
-      "dark_ambient",
-      "drone",
-      "spacious",
-      "ominous",
-      "minimal"
+      "funk_disco",
+      "disco",
+      "pop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Disco. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "funk_disco",
+    "promptTerm": "disco",
+    "family": "funk_disco",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "dream_pop",
+    "label": "Dream Pop",
+    "prompt": [
+      "dream pop"
+    ],
+    "exclude": [],
+    "traits": [
+      "dream_pop",
+      "pop"
     ],
     "risk": {
       "reverb": 2,
-      "genre_drift": -1
+      "genre_drift": 0
     },
     "weight": 1,
-    "description": "Atmospheric soundscape music.",
-    "category": "ambient"
+    "description": "Canonical genre/style term: Dream Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "dream pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
   },
   {
-    "id": "dark_synthwave",
-    "label": "Dark Synthwave",
+    "id": "hyperpop",
+    "label": "Hyperpop",
     "prompt": [
-      "dark synthwave",
-      "analog synth bass",
-      "nocturnal synth momentum",
-      "retro cinematic atmosphere"
+      "hyperpop"
     ],
-    "exclude": [
-      "acoustic folk arrangement",
-      "extreme metal drumming",
-      "country twang"
-    ],
+    "exclude": [],
     "traits": [
-      "synthwave",
-      "dark",
-      "retro",
-      "analog_synth"
-    ],
-    "risk": {
-      "genre_drift": -1
-    },
-    "weight": 1,
-    "description": "Retro synth music with dark cinematic tone.",
-    "category": "electronic"
-  },
-  {
-    "id": "death_metal",
-    "label": "Death Metal",
-    "prompt": [
-      "death metal",
-      "guttural vocals",
-      "dense distorted guitar riffs",
-      "brutal rhythmic precision"
-    ],
-    "exclude": [
-      "radio pop chorus",
-      "soft acoustic ballad",
-      "club synth hook"
-    ],
-    "traits": [
-      "metal",
-      "death_metal",
-      "guttural",
-      "brutal"
-    ],
-    "risk": {
-      "vocal_grunts": 2
-    },
-    "weight": 1,
-    "description": "Extreme metal with guttural vocals and dense riffing.",
-    "category": "metal"
-  },
-  {
-    "id": "deathcore",
-    "label": "Deathcore",
-    "prompt": [
-      "deathcore",
-      "extreme low-tuned guitar weight",
-      "breakdown focus",
-      "harsh guttural vocals"
-    ],
-    "exclude": [
-      "radio pop chorus",
-      "country fiddle lead",
-      "smooth lounge texture"
-    ],
-    "traits": [
-      "metal",
-      "core",
-      "extreme",
-      "guttural"
-    ],
-    "risk": {
-      "vocal_grunts": 2
-    },
-    "weight": 1,
-    "description": "Extreme metalcore/death metal hybrid.",
-    "category": "metal"
-  },
-  {
-    "id": "deep_house",
-    "label": "Deep House",
-    "prompt": [
-      "deep house",
-      "warm chord stabs",
-      "smooth bassline",
-      "subtle vocal chops"
-    ],
-    "exclude": [
-      "metal guitar wall",
-      "punk shouting",
-      "country fiddle lead"
-    ],
-    "traits": [
-      "house",
-      "deep",
-      "warm",
-      "vocal_chops"
+      "hyperpop",
+      "pop"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "House with softer harmonic depth.",
-    "category": "house"
+    "description": "Canonical genre/style term: Hyperpop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "hyperpop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
   },
   {
-    "id": "delta_blues",
-    "label": "Delta Blues",
+    "id": "indie_pop",
+    "label": "Indie Pop",
     "prompt": [
-      "delta blues",
-      "raw acoustic guitar",
-      "slide guitar color",
-      "haunted storytelling vocal"
+      "indie pop"
     ],
-    "exclude": [
-      "polished radio pop chorus",
-      "club synth bass",
-      "metal wall of sound"
-    ],
+    "exclude": [],
     "traits": [
-      "blues",
-      "delta",
-      "raw",
-      "slide_guitar"
+      "indie_pop",
+      "pop"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Raw acoustic blues character.",
-    "category": "blues"
+    "description": "Canonical genre/style term: Indie Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "indie pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "j_pop",
+    "label": "J-Pop",
+    "prompt": [
+      "J-Pop"
+    ],
+    "exclude": [],
+    "traits": [
+      "j_pop",
+      "pop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: J-Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "J-Pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "k_pop",
+    "label": "K-Pop",
+    "prompt": [
+      "K-Pop"
+    ],
+    "exclude": [],
+    "traits": [
+      "k_pop",
+      "pop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: K-Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "K-Pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "latin_pop",
+    "label": "Latin Pop",
+    "prompt": [
+      "latin pop"
+    ],
+    "exclude": [],
+    "traits": [
+      "latin_pop",
+      "pop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Latin Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "latin pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "pop_rap",
+    "label": "Pop Rap",
+    "prompt": [
+      "pop rap"
+    ],
+    "exclude": [],
+    "traits": [
+      "hip-hop",
+      "pop",
+      "pop_rap"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Pop Rap. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "hip-hop",
+    "promptTerm": "pop rap",
+    "family": "hip-hop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "power_pop",
+    "label": "Power Pop",
+    "prompt": [
+      "power pop"
+    ],
+    "exclude": [],
+    "traits": [
+      "pop",
+      "power_pop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Power Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "power pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "radio_pop",
+    "label": "Radio Pop",
+    "prompt": [
+      "radio pop"
+    ],
+    "exclude": [],
+    "traits": [
+      "pop",
+      "radio_pop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Radio Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "radio pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "synth_pop",
+    "label": "Synth Pop",
+    "prompt": [
+      "synth pop"
+    ],
+    "exclude": [],
+    "traits": [
+      "pop",
+      "synth_pop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Synth Pop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "pop",
+    "promptTerm": "synth pop",
+    "family": "pop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "alternative_rock",
+    "label": "Alternative Rock",
+    "prompt": [
+      "alternative rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "alternative_rock",
+      "rock"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Alternative Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "alternative rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "anime_rock",
+    "label": "Anime Rock",
+    "prompt": [
+      "anime rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "anime_rock",
+      "rock"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Anime Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "anime rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "classic_rock",
+    "label": "Classic Rock",
+    "prompt": [
+      "classic rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "classic_rock",
+      "rock"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Classic Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "classic rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "desert_rock",
     "label": "Desert Rock",
     "prompt": [
-      "desert rock",
-      "dusty hypnotic groove",
-      "warm analog guitars",
-      "loose sun-baked rhythm section"
+      "desert rock"
     ],
-    "exclude": [
-      "cold digital production",
-      "over-compressed radio mix",
-      "metalcore breakdowns"
-    ],
+    "exclude": [],
     "traits": [
-      "desert",
-      "rock",
-      "groove",
-      "analog",
-      "warm"
+      "desert_rock",
+      "rock"
     ],
     "risk": {
       "butt_rock": 1,
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Fuzzy groove rock with desert-space texture.",
-    "category": "rock"
+    "description": "Canonical genre/style term: Desert Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "desert rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
   },
   {
-    "id": "disco",
-    "label": "Disco",
+    "id": "garage_rock",
+    "label": "Garage Rock",
     "prompt": [
-      "disco",
-      "four-on-the-floor drums",
-      "orchestral strings",
-      "chic rhythm guitar"
+      "garage rock"
     ],
-    "exclude": [
-      "black metal vocals",
-      "raw punk distortion",
-      "acoustic campfire mix"
-    ],
+    "exclude": [],
     "traits": [
-      "disco",
-      "dance",
-      "strings",
-      "rhythm_guitar"
+      "garage_rock",
+      "rock"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Classic dance-pop foundation with strings and groove.",
-    "category": "dance"
+    "description": "Canonical genre/style term: Garage Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "garage rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "grunge",
+    "label": "Grunge",
+    "prompt": [
+      "grunge"
+    ],
+    "exclude": [],
+    "traits": [
+      "grunge",
+      "rock"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Grunge. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "grunge",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "hard_rock",
+    "label": "Hard Rock",
+    "prompt": [
+      "hard rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "hard_rock",
+      "rock"
+    ],
+    "risk": {
+      "butt_rock": 1
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Hard Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "hard rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "indie_rock",
+    "label": "Indie Rock",
+    "prompt": [
+      "indie rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "indie_rock",
+      "rock"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Indie Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "indie rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "post_rock",
+    "label": "Post-Rock",
+    "prompt": [
+      "post-rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "post_rock",
+      "rock"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Post-Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "post-rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "progressive_rock",
+    "label": "Progressive Rock",
+    "prompt": [
+      "progressive rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "progressive_rock",
+      "rock"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Progressive Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "progressive rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "psychedelic_rock",
+    "label": "Psychedelic Rock",
+    "prompt": [
+      "psychedelic rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "psychedelic_rock",
+      "rock"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Psychedelic Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "psychedelic rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "shoegaze",
+    "label": "Shoegaze",
+    "prompt": [
+      "shoegaze"
+    ],
+    "exclude": [],
+    "traits": [
+      "rock",
+      "shoegaze"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Shoegaze. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "promptTerm": "shoegaze",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "stoner_rock",
+    "label": "Stoner Rock",
+    "prompt": [
+      "stoner rock"
+    ],
+    "promptTerm": "stoner rock",
+    "exclude": [],
+    "traits": [
+      "rock",
+      "stoner_rock"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Stoner Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rock",
+    "family": "rock",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "atmospheric_black_metal",
+    "label": "Atmospheric Black Metal",
+    "prompt": [
+      "atmospheric black metal"
+    ],
+    "exclude": [],
+    "traits": [
+      "atmospheric_black_metal",
+      "metal"
+    ],
+    "risk": {
+      "reverb": 2,
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Atmospheric Black Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "atmospheric black metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "black_metal",
+    "label": "Black Metal",
+    "prompt": [
+      "black metal"
+    ],
+    "exclude": [],
+    "traits": [
+      "black_metal",
+      "metal"
+    ],
+    "risk": {
+      "vocal_grunts": 2,
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Black Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "black metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "blackened_death_metal",
+    "label": "Blackened Death Metal",
+    "prompt": [
+      "blackened death metal"
+    ],
+    "exclude": [],
+    "traits": [
+      "blackened_death_metal",
+      "metal"
+    ],
+    "risk": {
+      "vocal_grunts": 2,
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Blackened Death Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "blackened death metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "death_metal",
+    "label": "Death Metal",
+    "prompt": [
+      "death metal"
+    ],
+    "exclude": [],
+    "traits": [
+      "death_metal",
+      "metal"
+    ],
+    "risk": {
+      "vocal_grunts": 2
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Death Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "death metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "deathcore",
+    "label": "Deathcore",
+    "prompt": [
+      "deathcore"
+    ],
+    "exclude": [],
+    "traits": [
+      "deathcore",
+      "metal"
+    ],
+    "risk": {
+      "vocal_grunts": 2
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Deathcore. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "deathcore",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "djent",
     "label": "Djent",
     "prompt": [
-      "djent",
-      "polyrhythmic low-tuned guitars",
-      "tight gated rhythm tone",
-      "modern technical metal production"
+      "djent"
     ],
-    "exclude": [
-      "vintage blues tone",
-      "country twang",
-      "lo-fi folk demo"
-    ],
+    "exclude": [],
     "traits": [
-      "metal",
       "djent",
-      "polyrhythm",
-      "technical"
+      "metal"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Modern technical metal with precise low-tuned rhythm focus.",
-    "category": "metal"
+    "description": "Canonical genre/style term: Djent. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "djent",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "doom_metal",
     "label": "Doom Metal",
     "prompt": [
-      "doom metal",
-      "crushing doom weight",
-      "heavy low-register riffs",
-      "dark minor-key atmosphere"
+      "doom metal"
     ],
-    "exclude": [
-      "modern metalcore production",
-      "post-grunge vocals",
-      "bright pop chorus"
-    ],
+    "exclude": [],
     "traits": [
-      "doom",
-      "metal",
-      "heavy",
-      "minor_key",
-      "low_register"
+      "doom_metal",
+      "metal"
     ],
     "risk": {
       "butt_rock": -1,
@@ -1064,2355 +737,2079 @@
       "genre_drift": -1
     },
     "weight": 1,
-    "description": "Heavy, riff-centered metal with dark atmosphere.",
-    "category": "metal"
-  },
-  {
-    "id": "dream_pop",
-    "label": "Dream Pop",
-    "prompt": [
-      "dream pop",
-      "hazy guitar layers",
-      "soft vocal wash",
-      "shimmering atmospheric production"
-    ],
-    "exclude": [
-      "dry punk shouting",
-      "metalcore breakdowns",
-      "trap club drums"
-    ],
-    "traits": [
-      "pop",
-      "dreamy",
-      "hazy",
-      "atmospheric"
-    ],
-    "risk": {
-      "reverb": 2,
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Atmospheric pop with soft-focus texture.",
-    "category": "pop"
-  },
-  {
-    "id": "drum_and_bass",
-    "label": "Drum and Bass",
-    "prompt": [
-      "drum and bass",
-      "breakbeat drum programming",
-      "sub-bass foundation",
-      "high-detail electronic percussion"
-    ],
-    "exclude": [
-      "acoustic country band",
-      "doom metal riff focus",
-      "jazz lounge arrangement"
-    ],
-    "traits": [
-      "drum_and_bass",
-      "breakbeat",
-      "sub_bass",
-      "percussion"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Breakbeat-driven bass music.",
-    "category": "bass_music"
-  },
-  {
-    "id": "dubstep",
-    "label": "Dubstep",
-    "prompt": [
-      "dubstep",
-      "wobble bass design",
-      "weighted drum feel",
-      "heavy drop structure"
-    ],
-    "exclude": [
-      "acoustic folk demo",
-      "country twang",
-      "jazz standard combo"
-    ],
-    "traits": [
-      "dubstep",
-      "bass",
-      "drop",
-      "weighted_feel"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Bass music with wobble and drop focus.",
-    "category": "bass_music"
-  },
-  {
-    "id": "dungeon_synth",
-    "label": "Dungeon Synth",
-    "prompt": [
-      "dungeon synth",
-      "medieval dark ambient atmosphere",
-      "simple haunting synth melodies",
-      "ancient fantasy texture"
-    ],
-    "exclude": [
-      "modern EDM drop",
-      "radio rock chorus",
-      "trap drums"
-    ],
-    "traits": [
-      "dungeon_synth",
-      "ambient",
-      "medieval",
-      "fantasy",
-      "minimal"
-    ],
-    "risk": {
-      "genre_drift": -1,
-      "reverb": 1
-    },
-    "weight": 1,
-    "description": "Minimal fantasy-ambient synth music.",
-    "category": "electronic"
-  },
-  {
-    "id": "edm",
-    "label": "EDM",
-    "prompt": [
-      "EDM",
-      "big synth lead",
-      "festival-style drop structure",
-      "wide electronic production"
-    ],
-    "exclude": [
-      "acoustic-only folk arrangement",
-      "raw black metal mix",
-      "jazz standard combo"
-    ],
-    "traits": [
-      "edm",
-      "synth",
-      "drop",
-      "festival"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Broad electronic dance music framework.",
-    "category": "electronic"
-  },
-  {
-    "id": "electro",
-    "label": "Electro",
-    "prompt": [
-      "electro",
-      "robotic drum machine pattern",
-      "funky synth bass",
-      "vocoder-style texture"
-    ],
-    "exclude": [
-      "acoustic folk guitar lead",
-      "black metal vocals",
-      "country twang"
-    ],
-    "traits": [
-      "electro",
-      "robotic",
-      "synth_bass",
-      "vocoder"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Electronic funk with machine character.",
-    "category": "electronic"
-  },
-  {
-    "id": "electro_house",
-    "label": "Electro House",
-    "prompt": [
-      "electro house",
-      "aggressive synth bass",
-      "sharp electronic drums",
-      "bold lead synth hooks"
-    ],
-    "exclude": [
-      "acoustic singer-songwriter texture",
-      "doom metal wall",
-      "bluegrass banjo"
-    ],
-    "traits": [
-      "house",
-      "electro",
-      "synth_bass",
-      "bold"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "House with harder electronic synth attack.",
-    "category": "house"
+    "description": "Canonical genre/style term: Doom Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "doom metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "epic_doom",
     "label": "Epic Doom",
     "prompt": [
-      "epic doom metal",
-      "majestic heavy riffs",
-      "dramatic melodic vocal phrasing",
-      "cathedral-like atmosphere"
+      "epic doom"
     ],
-    "exclude": [
-      "modern radio rock vocals",
-      "macho grunts",
-      "pop-punk energy"
-    ],
+    "exclude": [],
     "traits": [
-      "doom",
-      "epic",
-      "dramatic",
-      "melodic",
-      "large_room"
+      "epic_doom",
+      "metal"
     ],
     "risk": {
       "butt_rock": 1,
       "reverb": 1
     },
     "weight": 1,
-    "description": "Doom with more grandeur, melody, and theatrical scale.",
-    "category": "metal"
-  },
-  {
-    "id": "epic_trailer",
-    "label": "Epic Trailer",
-    "prompt": [
-      "epic trailer music",
-      "massive percussion hits",
-      "hybrid orchestral synth layers",
-      "dramatic rise-and-impact structure"
-    ],
-    "exclude": [
-      "small acoustic demo",
-      "lo-fi punk mix",
-      "jazz lounge combo"
-    ],
-    "traits": [
-      "cinematic",
-      "trailer",
-      "hybrid",
-      "impact"
-    ],
-    "risk": {
-      "reverb": 2
-    },
-    "weight": 1,
-    "description": "Trailer-style hybrid orchestral production.",
-    "category": "cinematic"
+    "description": "Canonical genre/style term: Epic Doom. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "epic doom",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "folk_metal",
     "label": "Folk Metal",
     "prompt": [
-      "folk metal",
-      "traditional melody influence",
-      "forward-leaning guitars",
-      "earthy rhythmic energy"
+      "folk metal"
     ],
-    "exclude": [
-      "EDM drop",
-      "radio rock chorus",
-      "overly glossy pop mix"
-    ],
+    "exclude": [],
     "traits": [
-      "folk",
-      "metal",
-      "traditional",
-      "earthy",
-      "melodic"
+      "folk_metal",
+      "metal"
     ],
     "risk": {
       "genre_drift": 1
     },
     "weight": 1,
-    "description": "Metal fused with folk melody and instrumentation.",
-    "category": "metal"
+    "description": "Canonical genre/style term: Folk Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "folk metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "funeral_doom",
     "label": "Funeral Doom",
     "prompt": [
-      "funeral doom metal",
-      "extreme doom weight",
-      "massive sustained chords",
-      "bleak cavernous atmosphere"
+      "funeral doom"
     ],
-    "exclude": [
-      "punk aggression",
-      "uplifting chorus",
-      "radio rock polish"
-    ],
+    "exclude": [],
     "traits": [
-      "doom",
-      "funeral",
-      "bleak",
-      "sustained",
-      "cavernous"
+      "funeral_doom",
+      "metal"
     ],
     "risk": {
       "reverb": 2,
       "genre_drift": -2
     },
     "weight": 1,
-    "description": "Oppressive doom with cavernous scale.",
-    "category": "metal"
-  },
-  {
-    "id": "funk",
-    "label": "Funk",
-    "prompt": [
-      "funk",
-      "syncopated bassline",
-      "tight rhythm guitar",
-      "horn stabs"
-    ],
-    "exclude": [
-      "doom metal guitar wall",
-      "ambient drone-only arrangement",
-      "folk ballad minimalism"
-    ],
-    "traits": [
-      "funk",
-      "syncopated",
-      "bassline",
-      "horns"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Rhythm-forward funk arrangement.",
-    "category": "funk"
-  },
-  {
-    "id": "future_bass",
-    "label": "Future Bass",
-    "prompt": [
-      "future bass",
-      "wide detuned synth chords",
-      "pitched vocal chops",
-      "glossy emotional drop"
-    ],
-    "exclude": [
-      "black metal vocals",
-      "country twang",
-      "raw punk mix"
-    ],
-    "traits": [
-      "future_bass",
-      "vocal_chops",
-      "glossy",
-      "synth"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Melodic bass music with glossy chords.",
-    "category": "bass_music"
-  },
-  {
-    "id": "future_house",
-    "label": "Future House",
-    "prompt": [
-      "future house",
-      "bouncy synth bass",
-      "bright electronic hook",
-      "clean modern club production"
-    ],
-    "exclude": [
-      "raw acoustic folk",
-      "black metal shrieks",
-      "classic jazz brush kit"
-    ],
-    "traits": [
-      "house",
-      "future_house",
-      "synth_bass",
-      "club"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Modern hooky club-house production.",
-    "category": "house"
-  },
-  {
-    "id": "garage_rock",
-    "label": "Garage Rock",
-    "prompt": [
-      "garage rock",
-      "raw electric guitars",
-      "loose band feel",
-      "unpolished vocal attitude"
-    ],
-    "exclude": [
-      "glossy radio pop sheen",
-      "orchestral film score",
-      "club synth bass"
-    ],
-    "traits": [
-      "rock",
-      "garage",
-      "raw",
-      "band"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Raw rock with rehearsal-room bite.",
-    "category": "rock"
-  },
-  {
-    "id": "glitch_hop",
-    "label": "Glitch Hop",
-    "prompt": [
-      "glitch hop",
-      "chopped digital percussion",
-      "funky bass movement",
-      "playful sample edits"
-    ],
-    "exclude": [
-      "black metal atmosphere",
-      "country twang",
-      "acoustic ballad"
-    ],
-    "traits": [
-      "glitch",
-      "hip_hop",
-      "samples",
-      "bass"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Hip-hop influenced electronic music with glitch detail.",
-    "category": "electronic"
+    "description": "Canonical genre/style term: Funeral Doom. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "funeral doom",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "gothic_metal",
     "label": "Gothic Metal",
     "prompt": [
-      "gothic metal",
-      "dark romantic atmosphere",
-      "melancholic melodies",
-      "heavy guitar foundation"
+      "gothic metal"
     ],
-    "exclude": [
-      "bright summer pop energy",
-      "funky dance groove",
-      "macho arena chant"
-    ],
+    "exclude": [],
     "traits": [
-      "gothic",
-      "metal",
-      "melancholic",
-      "dark_romantic",
-      "dramatic"
+      "gothic_metal",
+      "metal"
     ],
     "risk": {
       "reverb": 1,
       "butt_rock": 1
     },
     "weight": 1,
-    "description": "Dark, dramatic, melodic metal.",
-    "category": "metal"
+    "description": "Canonical genre/style term: Gothic Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "gothic metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "grindcore",
     "label": "Grindcore",
     "prompt": [
-      "grindcore",
-      "chaotic extreme-metal attack",
-      "abrasive guitar texture",
-      "feral shouted vocals"
+      "grindcore"
     ],
-    "exclude": [
-      "polished radio chorus",
-      "soft acoustic folk",
-      "club pop hook"
-    ],
+    "exclude": [],
     "traits": [
-      "metal",
       "grindcore",
-      "chaotic",
-      "abrasive"
+      "metal"
     ],
     "risk": {
       "vocal_grunts": 2,
       "genre_drift": -1
     },
     "weight": 1,
-    "description": "Extreme music with hardcore and metal abrasion.",
-    "category": "metal"
-  },
-  {
-    "id": "grunge",
-    "label": "Grunge",
-    "prompt": [
-      "grunge",
-      "dirty guitar distortion",
-      "angsty vocal tone",
-      "rough alternative rock texture"
-    ],
-    "exclude": [
-      "glossy EDM drop",
-      "bright bubblegum pop sheen",
-      "country fiddle solo"
-    ],
-    "traits": [
-      "rock",
-      "grunge",
-      "dirty",
-      "angsty"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Alternative rock with grime and weight.",
-    "category": "rock"
-  },
-  {
-    "id": "hard_rock",
-    "label": "Hard Rock",
-    "prompt": [
-      "hard rock",
-      "thick electric guitars",
-      "anthemic vocal presence",
-      "solid rhythm section"
-    ],
-    "exclude": [
-      "EDM synth drop",
-      "acoustic-only folk mix",
-      "dungeon synth ambience"
-    ],
-    "traits": [
-      "rock",
-      "hard_rock",
-      "guitar",
-      "anthemic"
-    ],
-    "risk": {
-      "butt_rock": 1
-    },
-    "weight": 1,
-    "description": "Heavy rock without full metal extremity.",
-    "category": "rock"
-  },
-  {
-    "id": "hardcore_punk",
-    "label": "Hardcore Punk",
-    "prompt": [
-      "hardcore punk",
-      "aggressive power chords",
-      "urgent shouted vocals",
-      "raw basement-club production"
-    ],
-    "exclude": [
-      "smooth radio pop polish",
-      "orchestral strings lead",
-      "soft lounge jazz"
-    ],
-    "traits": [
-      "punk",
-      "hardcore",
-      "aggressive",
-      "raw"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Harder punk with direct aggression.",
-    "category": "punk"
+    "description": "Canonical genre/style term: Grindcore. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "grindcore",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "heavy_metal",
     "label": "Heavy Metal",
     "prompt": [
-      "heavy metal",
-      "classic riff-driven guitars",
-      "powerful lead vocals",
-      "galloping rhythm section"
+      "heavy metal"
     ],
-    "exclude": [
-      "EDM drop",
-      "trap drums",
-      "acoustic campfire arrangement"
-    ],
+    "exclude": [],
     "traits": [
-      "metal",
-      "classic",
-      "riffs",
-      "lead_vocals"
+      "heavy_metal",
+      "metal"
     ],
     "risk": {
       "butt_rock": 0
     },
     "weight": 1,
-    "description": "Traditional metal foundation.",
-    "category": "metal"
-  },
-  {
-    "id": "house",
-    "label": "House",
-    "prompt": [
-      "house",
-      "four-on-the-floor drums",
-      "warm synth bass",
-      "repeating piano or synth motif"
-    ],
-    "exclude": [
-      "metalcore breakdowns",
-      "country acoustic twang",
-      "ambient drone-only bed"
-    ],
-    "traits": [
-      "house",
-      "dance",
-      "four_on_floor",
-      "synth_bass"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Core house music pattern and production.",
-    "category": "house"
-  },
-  {
-    "id": "hyperpop",
-    "label": "Hyperpop",
-    "prompt": [
-      "hyperpop",
-      "pitched vocal processing",
-      "bright synthetic textures",
-      "maximal pop distortion"
-    ],
-    "exclude": [
-      "raw acoustic folk",
-      "classic jazz combo",
-      "doom metal atmosphere"
-    ],
-    "traits": [
-      "pop",
-      "hyperpop",
-      "maximal",
-      "vocal_processing"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Exaggerated digital pop.",
-    "category": "pop"
-  },
-  {
-    "id": "idm",
-    "label": "IDM",
-    "prompt": [
-      "IDM",
-      "glitchy percussion edits",
-      "abstract synth design",
-      "experimental electronic structure"
-    ],
-    "exclude": [
-      "radio pop formula",
-      "country band mix",
-      "arena rock chorus"
-    ],
-    "traits": [
-      "idm",
-      "glitch",
-      "experimental",
-      "abstract"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Experimental electronic music with detailed programming.",
-    "category": "electronic"
-  },
-  {
-    "id": "indie_folk",
-    "label": "Indie Folk",
-    "prompt": [
-      "indie folk",
-      "organic acoustic textures",
-      "soft layered harmonies",
-      "earthy melodic writing"
-    ],
-    "exclude": [
-      "glossy EDM drop",
-      "arena rock chants",
-      "extreme metal vocals"
-    ],
-    "traits": [
-      "folk",
-      "indie",
-      "organic",
-      "harmony"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Modern folk with intimate indie production.",
-    "category": "folk"
-  },
-  {
-    "id": "indie_pop",
-    "label": "Indie Pop",
-    "prompt": [
-      "indie pop",
-      "quirky melodic hooks",
-      "clean guitar and synth layers",
-      "light vocal character"
-    ],
-    "exclude": [
-      "arena metal drums",
-      "festival EDM drop",
-      "hardcore shouting"
-    ],
-    "traits": [
-      "pop",
-      "indie",
-      "melodic",
-      "quirky"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Independent pop with character and charm.",
-    "category": "pop"
-  },
-  {
-    "id": "indie_rock",
-    "label": "Indie Rock",
-    "prompt": [
-      "indie rock",
-      "textured guitars",
-      "characterful vocal delivery",
-      "alternative song structure"
-    ],
-    "exclude": [
-      "EDM drop",
-      "metalcore breakdowns",
-      "country honky-tonk lead"
-    ],
-    "traits": [
-      "rock",
-      "indie",
-      "alternative",
-      "guitar"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Alternative guitar music with independent character.",
-    "category": "rock"
+    "description": "Canonical genre/style term: Heavy Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "heavy metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "industrial_metal",
     "label": "Industrial Metal",
     "prompt": [
-      "industrial metal",
-      "mechanical rhythm",
-      "distorted guitars",
-      "cold synthetic atmosphere"
+      "industrial metal"
     ],
-    "exclude": [
-      "warm acoustic folk texture",
-      "loose jam-band groove",
-      "bright cheerful pop tone"
-    ],
+    "exclude": [],
     "traits": [
-      "industrial",
-      "metal",
-      "mechanical",
-      "cold",
-      "synthetic"
+      "industrial_metal",
+      "metal"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Heavy metal with machine-like production.",
-    "category": "metal"
-  },
-  {
-    "id": "industrial_techno",
-    "label": "Industrial Techno",
-    "prompt": [
-      "industrial techno",
-      "metallic percussion",
-      "distorted synth machinery",
-      "cold warehouse atmosphere"
-    ],
-    "exclude": [
-      "warm acoustic folk",
-      "smooth jazz sax lead",
-      "country twang"
-    ],
-    "traits": [
-      "techno",
-      "industrial",
-      "metallic",
-      "cold"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Techno with harsh industrial texture.",
-    "category": "techno"
-  },
-  {
-    "id": "j_pop",
-    "label": "J-Pop",
-    "prompt": [
-      "J-pop",
-      "bright melodic writing",
-      "layered vocal hooks",
-      "colorful pop-rock or synth texture"
-    ],
-    "exclude": [
-      "doom metal wall",
-      "dark ambient drone-only bed",
-      "raw punk shouting"
-    ],
-    "traits": [
-      "pop",
-      "jpop",
-      "melodic",
-      "colorful"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Japanese pop-influenced melodic style.",
-    "category": "pop"
-  },
-  {
-    "id": "jazz_blues",
-    "label": "Jazz Blues",
-    "prompt": [
-      "jazz blues",
-      "swing-informed rhythm section",
-      "extended chord color",
-      "expressive lead phrases"
-    ],
-    "exclude": [
-      "EDM drop",
-      "extreme metal vocals",
-      "punk gang chants"
-    ],
-    "traits": [
-      "jazz",
-      "blues",
-      "swing",
-      "extended_chords"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Blues form with jazz harmony.",
-    "category": "jazz"
-  },
-  {
-    "id": "jazz_standard",
-    "label": "Jazz Standard",
-    "prompt": [
-      "jazz standard",
-      "walking bass",
-      "brush drums",
-      "rich chord substitutions"
-    ],
-    "exclude": [
-      "EDM drop",
-      "metal breakdowns",
-      "trap drums"
-    ],
-    "traits": [
-      "jazz",
-      "standard",
-      "walking_bass",
-      "harmony"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Classic jazz songbook arrangement.",
-    "category": "jazz"
-  },
-  {
-    "id": "k_pop",
-    "label": "K-Pop",
-    "prompt": [
-      "K-pop",
-      "polished group vocals",
-      "sharp pop production",
-      "genre-blended hook sections"
-    ],
-    "exclude": [
-      "raw black metal mix",
-      "acoustic campfire demo",
-      "doom metal minimalism"
-    ],
-    "traits": [
-      "pop",
-      "kpop",
-      "polished",
-      "group_vocals"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Highly polished pop with sectional contrast.",
-    "category": "pop"
-  },
-  {
-    "id": "latin_pop",
-    "label": "Latin Pop",
-    "prompt": [
-      "latin pop",
-      "romantic vocal focus",
-      "nylon guitar or synth layers",
-      "polished radio production"
-    ],
-    "exclude": [
-      "black metal vocals",
-      "doom guitar wall",
-      "industrial warehouse mix"
-    ],
-    "traits": [
-      "latin",
-      "pop",
-      "romantic",
-      "polished"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Pop songwriting with Latin influence.",
-    "category": "world"
-  },
-  {
-    "id": "liquid_dnb",
-    "label": "Liquid Drum and Bass",
-    "prompt": [
-      "liquid drum and bass",
-      "smooth pads",
-      "soulful vocal fragments",
-      "clean rolling bassline"
-    ],
-    "exclude": [
-      "metalcore breakdown",
-      "country fiddle lead",
-      "raw punk shouting"
-    ],
-    "traits": [
-      "drum_and_bass",
-      "liquid",
-      "smooth",
-      "pads"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Softer melodic drum and bass.",
-    "category": "bass_music"
-  },
-  {
-    "id": "lofi_hip_hop",
-    "label": "Lo-Fi Hip-Hop",
-    "prompt": [
-      "lo-fi hip-hop",
-      "dusty vinyl texture",
-      "soft keys",
-      "relaxed drum programming"
-    ],
-    "exclude": [
-      "festival EDM drop",
-      "metal riff wall",
-      "arena rock chorus"
-    ],
-    "traits": [
-      "hip_hop",
-      "lofi",
-      "vinyl",
-      "soft_keys"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Chilled sample-based beat music.",
-    "category": "hip-hop"
+    "description": "Canonical genre/style term: Industrial Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "industrial metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "melodic_death_metal",
     "label": "Melodic Death Metal",
     "prompt": [
-      "melodic death metal",
-      "harmonized guitar leads",
-      "harsh vocals",
-      "melodic extreme-metal riffing"
+      "melodic death metal"
     ],
-    "exclude": [
-      "country twang",
-      "EDM drop",
-      "soft radio ballad"
-    ],
+    "exclude": [],
     "traits": [
-      "metal",
-      "death_metal",
-      "melodic",
-      "harsh"
+      "melodic_death_metal",
+      "metal"
     ],
     "risk": {
       "vocal_grunts": 2
     },
     "weight": 1,
-    "description": "Death metal intensity with melodic guitar writing.",
-    "category": "metal"
-  },
-  {
-    "id": "melodic_techno",
-    "label": "Melodic Techno",
-    "prompt": [
-      "melodic techno",
-      "dark synth arpeggios",
-      "deep kick foundation",
-      "cinematic club atmosphere"
-    ],
-    "exclude": [
-      "bluegrass banjo",
-      "bright teen pop vocals",
-      "metalcore breakdown"
-    ],
-    "traits": [
-      "techno",
-      "melodic",
-      "dark",
-      "club"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Techno with melodic atmosphere.",
-    "category": "techno"
+    "description": "Canonical genre/style term: Melodic Death Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "melodic death metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "metalcore",
     "label": "Metalcore",
     "prompt": [
-      "metalcore",
-      "chugging guitar riffs",
-      "breakdown-centered structure",
-      "harsh and clean vocal contrast"
+      "metalcore"
     ],
-    "exclude": [
-      "classic country twang",
-      "smooth jazz harmony focus",
-      "ambient drone-only track"
-    ],
+    "exclude": [],
     "traits": [
       "metal",
-      "core",
-      "breakdown",
-      "vocal_contrast"
+      "metalcore"
     ],
     "risk": {
       "vocal_grunts": 1,
       "butt_rock": 1
     },
     "weight": 1,
-    "description": "Modern metal/hardcore hybrid.",
-    "category": "metal"
-  },
-  {
-    "id": "minimal_techno",
-    "label": "Minimal Techno",
-    "prompt": [
-      "minimal techno",
-      "stripped electronic drums",
-      "tiny evolving synth details",
-      "dry club mix"
-    ],
-    "exclude": [
-      "orchestral film score",
-      "arena rock chorus",
-      "bluegrass instrumentation"
-    ],
-    "traits": [
-      "techno",
-      "minimal",
-      "dry",
-      "club"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Reduced techno focused on small changes.",
-    "category": "techno"
-  },
-  {
-    "id": "neo_soul",
-    "label": "Neo-Soul",
-    "prompt": [
-      "neo-soul",
-      "warm electric piano chords",
-      "fluid bassline",
-      "expressive soulful vocals"
-    ],
-    "exclude": [
-      "metal breakdowns",
-      "EDM festival drop",
-      "country twang"
-    ],
-    "traits": [
-      "soul",
-      "rnb",
-      "warm",
-      "expressive"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Modern soul with lush harmony.",
-    "category": "rnb"
-  },
-  {
-    "id": "new_age",
-    "label": "New Age",
-    "prompt": [
-      "new age",
-      "gentle pads",
-      "soft melodic motifs",
-      "peaceful spacious production"
-    ],
-    "exclude": [
-      "metal guitar wall",
-      "EDM festival drop",
-      "punk shouting"
-    ],
-    "traits": [
-      "new_age",
-      "pads",
-      "peaceful",
-      "spacious"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Soft meditative instrumental style.",
-    "category": "ambient"
+    "description": "Canonical genre/style term: Metalcore. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "metalcore",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "nu_metal",
     "label": "Nu Metal",
     "prompt": [
-      "nu metal",
-      "low-tuned guitar riffs",
-      "hip-hop influenced rhythm",
-      "angsty vocal contrast"
+      "nu metal"
     ],
-    "exclude": [
-      "traditional folk instrumentation",
-      "orchestral ballad focus",
-      "bright synthpop sheen"
-    ],
+    "exclude": [],
     "traits": [
       "metal",
-      "nu_metal",
-      "low_tuned",
-      "rhythmic"
+      "nu_metal"
     ],
     "risk": {
       "butt_rock": 2
     },
     "weight": 1,
-    "description": "Metal with groove, rap influence, and alternative texture.",
-    "category": "metal"
-  },
-  {
-    "id": "outlaw_country",
-    "label": "Outlaw Country",
-    "prompt": [
-      "outlaw country",
-      "gritty barroom guitars",
-      "weathered vocal tone",
-      "rebel storytelling attitude"
-    ],
-    "exclude": [
-      "glossy teen pop sheen",
-      "EDM drop",
-      "metalcore breakdown"
-    ],
-    "traits": [
-      "country",
-      "outlaw",
-      "gritty",
-      "storytelling"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Rougher country with darker edge.",
-    "category": "country"
-  },
-  {
-    "id": "outrun",
-    "label": "Outrun",
-    "prompt": [
-      "outrun",
-      "neon synth leads",
-      "retro drum machines",
-      "arcade-night atmosphere"
-    ],
-    "exclude": [
-      "acoustic roots band",
-      "black metal vocals",
-      "country twang"
-    ],
-    "traits": [
-      "synthwave",
-      "outrun",
-      "neon",
-      "retro"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Bright retro synthwave variant.",
-    "category": "electronic"
-  },
-  {
-    "id": "phonk",
-    "label": "Phonk",
-    "prompt": [
-      "phonk",
-      "memphis rap influence",
-      "cowbell lead motifs",
-      "distorted 808 weight"
-    ],
-    "exclude": [
-      "acoustic folk guitar lead",
-      "orchestral ballad arrangement",
-      "country fiddle"
-    ],
-    "traits": [
-      "phonk",
-      "808",
-      "memphis",
-      "distorted"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Dark hip-hop/electronic hybrid with Memphis influence.",
-    "category": "hip-hop"
-  },
-  {
-    "id": "pop_punk",
-    "label": "Pop Punk",
-    "prompt": [
-      "pop punk",
-      "bright guitar hooks",
-      "youthful vocal energy",
-      "catchy chorus focus"
-    ],
-    "exclude": [
-      "black metal atmosphere",
-      "ambient drone bed",
-      "country ballad texture"
-    ],
-    "traits": [
-      "punk",
-      "pop",
-      "hooks",
-      "guitar"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Punk energy with pop hooks.",
-    "category": "punk"
-  },
-  {
-    "id": "pop_rap",
-    "label": "Pop Rap",
-    "prompt": [
-      "pop rap",
-      "melodic rap hooks",
-      "clean radio production",
-      "catchy chorus focus"
-    ],
-    "exclude": [
-      "black metal vocals",
-      "ambient drone-only bed",
-      "raw garage noise"
-    ],
-    "traits": [
-      "hip_hop",
-      "pop",
-      "melodic",
-      "radio"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Rap with pop accessibility.",
-    "category": "hip-hop"
-  },
-  {
-    "id": "post_hardcore",
-    "label": "Post-Hardcore",
-    "prompt": [
-      "post-hardcore",
-      "angular guitar tension",
-      "emotional vocal contrast",
-      "explosive band dynamics"
-    ],
-    "exclude": [
-      "country twang",
-      "EDM festival drop",
-      "smooth jazz sax lead"
-    ],
-    "traits": [
-      "post_hardcore",
-      "emotional",
-      "angular",
-      "dynamic"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Hardcore roots with more tension and melody.",
-    "category": "punk"
+    "description": "Canonical genre/style term: Nu Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "nu metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "post_metal",
     "label": "Post-Metal",
     "prompt": [
-      "post-metal",
-      "evolving heavy atmosphere",
-      "layered guitars",
-      "cinematic build-and-release structure"
+      "post-metal"
     ],
-    "exclude": [
-      "radio rock chorus",
-      "simple party-rock energy",
-      "glossy pop vocals"
-    ],
+    "exclude": [],
     "traits": [
-      "post_metal",
-      "cinematic",
-      "layered",
-      "build",
-      "atmospheric"
+      "metal",
+      "post_metal"
     ],
     "risk": {
       "reverb": 2,
       "genre_drift": 1
     },
     "weight": 1,
-    "description": "Atmospheric heavy music with long-form structure.",
-    "category": "metal"
-  },
-  {
-    "id": "post_punk",
-    "label": "Post-Punk",
-    "prompt": [
-      "post-punk",
-      "angular guitars",
-      "cold bassline focus",
-      "detached vocal style"
-    ],
-    "exclude": [
-      "bright country twang",
-      "EDM festival drop",
-      "arena metal solo"
-    ],
-    "traits": [
-      "post_punk",
-      "angular",
-      "cold",
-      "bassline"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Art-damaged punk with cold texture.",
-    "category": "punk"
-  },
-  {
-    "id": "post_rock",
-    "label": "Post-Rock",
-    "prompt": [
-      "post-rock",
-      "layered guitars",
-      "cinematic build-and-release structure",
-      "wordless atmospheric movement"
-    ],
-    "exclude": [
-      "radio pop chorus",
-      "trap drums",
-      "country twang"
-    ],
-    "traits": [
-      "post_rock",
-      "cinematic",
-      "layered",
-      "atmospheric"
-    ],
-    "risk": {
-      "reverb": 2
-    },
-    "weight": 1,
-    "description": "Instrumental-leaning atmospheric rock.",
-    "category": "rock"
+    "description": "Canonical genre/style term: Post-Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "post-metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "power_metal",
     "label": "Power Metal",
     "prompt": [
-      "power metal",
-      "soaring melodic vocals",
-      "heroic guitar leads",
-      "anthemic fantasy atmosphere"
+      "power metal"
     ],
-    "exclude": [
-      "grunge vocal drawl",
-      "minimal club beat",
-      "lo-fi folk demo"
-    ],
+    "exclude": [],
     "traits": [
       "metal",
-      "power_metal",
-      "melodic",
-      "heroic"
+      "power_metal"
     ],
     "risk": {
       "butt_rock": 1,
       "reverb": 1
     },
     "weight": 1,
-    "description": "Melodic metal with heroic scale.",
-    "category": "metal"
-  },
-  {
-    "id": "power_pop",
-    "label": "Power Pop",
-    "prompt": [
-      "power pop",
-      "guitar-driven pop hooks",
-      "stacked vocal harmonies",
-      "crisp chorus energy"
-    ],
-    "exclude": [
-      "doom metal weight",
-      "ambient drone arrangement",
-      "EDM drop"
-    ],
-    "traits": [
-      "pop",
-      "rock",
-      "hooks",
-      "harmony"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Rock-edged pop with strong hooks.",
-    "category": "pop"
-  },
-  {
-    "id": "progressive_edm",
-    "label": "Progressive EDM",
-    "prompt": [
-      "progressive EDM",
-      "emotional synth chords",
-      "expansive build structure",
-      "anthemic electronic hook"
-    ],
-    "exclude": [
-      "raw punk guitars",
-      "bluegrass banjo",
-      "doom metal atmosphere"
-    ],
-    "traits": [
-      "edm",
-      "progressive",
-      "anthemic",
-      "synth"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "EDM with large melodic builds.",
-    "category": "electronic"
-  },
-  {
-    "id": "progressive_house",
-    "label": "Progressive House",
-    "prompt": [
-      "progressive house",
-      "layered synth chords",
-      "emotional melodic lead",
-      "large club arrangement"
-    ],
-    "exclude": [
-      "garage punk distortion",
-      "country twang",
-      "dark ambient drones only"
-    ],
-    "traits": [
-      "house",
-      "progressive",
-      "melodic",
-      "club"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Melodic house with expansive arrangement.",
-    "category": "house"
+    "description": "Canonical genre/style term: Power Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "power metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "progressive_metal",
     "label": "Progressive Metal",
     "prompt": [
-      "progressive metal",
-      "complex riff architecture",
-      "technical instrumental passages",
-      "dramatic arrangement shifts"
+      "progressive metal"
     ],
-    "exclude": [
-      "simple club loop",
-      "country twang",
-      "raw punk minimalism"
-    ],
+    "exclude": [],
     "traits": [
       "metal",
-      "progressive",
-      "technical",
-      "complex"
+      "progressive_metal"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Metal with advanced structure and musicianship.",
-    "category": "metal"
-  },
-  {
-    "id": "progressive_rock",
-    "label": "Progressive Rock",
-    "prompt": [
-      "progressive rock",
-      "complex song architecture",
-      "extended instrumental passages",
-      "rich harmonic movement"
-    ],
-    "exclude": [
-      "simple club loop",
-      "minimal trap beat",
-      "three-chord garage stomp only"
-    ],
-    "traits": [
-      "rock",
-      "progressive",
-      "complex",
-      "harmonic"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Rock with elaborate structure and musicianship.",
-    "category": "rock"
-  },
-  {
-    "id": "progressive_trance",
-    "label": "Progressive Trance",
-    "prompt": [
-      "progressive trance",
-      "layered synth progression",
-      "subtle melodic evolution",
-      "polished club atmosphere"
-    ],
-    "exclude": [
-      "country twang",
-      "metal breakdowns",
-      "jazz lounge texture"
-    ],
-    "traits": [
-      "trance",
-      "progressive",
-      "layered",
-      "club"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Trance with patient melodic development.",
-    "category": "trance"
-  },
-  {
-    "id": "psychedelic_rock",
-    "label": "Psychedelic Rock",
-    "prompt": [
-      "psychedelic rock",
-      "swirling guitar effects",
-      "surreal melodic color",
-      "trippy studio texture"
-    ],
-    "exclude": [
-      "dry acoustic demo",
-      "metalcore breakdowns",
-      "clean corporate jingle tone"
-    ],
-    "traits": [
-      "rock",
-      "psychedelic",
-      "effects",
-      "surreal"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Rock with altered-color studio texture.",
-    "category": "rock"
-  },
-  {
-    "id": "psytrance",
-    "label": "Psytrance",
-    "prompt": [
-      "psytrance",
-      "psychedelic synth sequences",
-      "rubbery bassline",
-      "hypnotic electronic percussion"
-    ],
-    "exclude": [
-      "acoustic country band",
-      "radio rock chorus",
-      "orchestral ballad"
-    ],
-    "traits": [
-      "trance",
-      "psytrance",
-      "psychedelic",
-      "bassline"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Psychedelic trance production.",
-    "category": "trance"
-  },
-  {
-    "id": "punk_rock",
-    "label": "Punk Rock",
-    "prompt": [
-      "punk rock",
-      "raw power chords",
-      "shouted vocal attitude",
-      "stripped-down band arrangement"
-    ],
-    "exclude": [
-      "orchestral film score",
-      "smooth jazz polish",
-      "EDM drop"
-    ],
-    "traits": [
-      "punk",
-      "rock",
-      "raw",
-      "power_chords"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Direct guitar punk.",
-    "category": "punk"
-  },
-  {
-    "id": "rnb",
-    "label": "R&B",
-    "prompt": [
-      "R&B",
-      "smooth vocal runs",
-      "deep bass foundation",
-      "polished modern production"
-    ],
-    "exclude": [
-      "metal guitar wall",
-      "folk banjo lead",
-      "punk shouting"
-    ],
-    "traits": [
-      "rnb",
-      "smooth",
-      "vocal_runs",
-      "polished"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Modern vocal-centered R&B.",
-    "category": "rnb"
-  },
-  {
-    "id": "radio_pop",
-    "label": "Radio Pop",
-    "prompt": [
-      "radio pop",
-      "bright hook-centered songwriting",
-      "polished vocal production",
-      "clean chorus lift"
-    ],
-    "exclude": [
-      "extreme metal vocals",
-      "lo-fi dungeon synth",
-      "raw rehearsal-room mix"
-    ],
-    "traits": [
-      "pop",
-      "radio",
-      "hook",
-      "polished"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Mainstream pop built for broad accessibility.",
-    "category": "pop"
-  },
-  {
-    "id": "reggae",
-    "label": "Reggae",
-    "prompt": [
-      "reggae",
-      "offbeat guitar chops",
-      "warm bassline",
-      "laid-back vocal phrasing"
-    ],
-    "exclude": [
-      "metal riff wall",
-      "EDM drop",
-      "industrial percussion"
-    ],
-    "traits": [
-      "reggae",
-      "offbeat",
-      "bassline",
-      "warm"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Reggae rhythm and warm bass foundation.",
-    "category": "world"
-  },
-  {
-    "id": "reggaeton",
-    "label": "Reggaeton",
-    "prompt": [
-      "reggaeton",
-      "dembow rhythm foundation",
-      "deep bass groove",
-      "catchy vocal hook"
-    ],
-    "exclude": [
-      "acoustic folk strumming only",
-      "black metal vocals",
-      "jazz standard combo"
-    ],
-    "traits": [
-      "latin",
-      "reggaeton",
-      "dembow",
-      "bass"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Latin urban club style.",
-    "category": "world"
-  },
-  {
-    "id": "shoegaze",
-    "label": "Shoegaze",
-    "prompt": [
-      "shoegaze",
-      "wall of guitar effects",
-      "buried vocals",
-      "lush noise texture"
-    ],
-    "exclude": [
-      "dry radio rock mix",
-      "trap hi-hat grid",
-      "bluegrass arrangement"
-    ],
-    "traits": [
-      "rock",
-      "shoegaze",
-      "effects",
-      "lush_noise"
-    ],
-    "risk": {
-      "reverb": 2
-    },
-    "weight": 1,
-    "description": "Guitar music built from haze and texture.",
-    "category": "rock"
-  },
-  {
-    "id": "singer_songwriter",
-    "label": "Singer-Songwriter",
-    "prompt": [
-      "singer-songwriter",
-      "intimate lyric-forward arrangement",
-      "acoustic guitar foundation",
-      "personal vocal delivery"
-    ],
-    "exclude": [
-      "EDM drop",
-      "metal breakdowns",
-      "club synth lead"
-    ],
-    "traits": [
-      "acoustic",
-      "lyric_forward",
-      "intimate",
-      "songwriter"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Personal acoustic-centered songwriting.",
-    "category": "acoustic"
-  },
-  {
-    "id": "ska",
-    "label": "Ska",
-    "prompt": [
-      "ska",
-      "offbeat guitar skank",
-      "horn section accents",
-      "bright band energy"
-    ],
-    "exclude": [
-      "doom metal atmosphere",
-      "ambient drone bed",
-      "trap minimalism"
-    ],
-    "traits": [
-      "ska",
-      "horns",
-      "offbeat",
-      "band"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Horn-forward offbeat band music.",
-    "category": "world"
+    "description": "Canonical genre/style term: Progressive Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "progressive metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "sludge_metal",
     "label": "Sludge Metal",
     "prompt": [
-      "sludge metal",
-      "filthy low-end distortion",
-      "raw oppressive atmosphere",
-      "hostile heavy riffs"
+      "sludge metal"
     ],
-    "exclude": [
-      "clean radio rock mix",
-      "glossy hard rock production",
-      "cheerful radio hook"
-    ],
+    "exclude": [],
     "traits": [
-      "sludge",
       "metal",
-      "raw",
-      "heavy",
-      "distorted",
-      "oppressive"
+      "sludge_metal"
     ],
     "risk": {
       "vocal_grunts": 1,
       "reverb": 0
     },
     "weight": 1,
-    "description": "Doom weight plus hardcore grime and anger.",
-    "category": "metal"
-  },
-  {
-    "id": "smooth_jazz",
-    "label": "Smooth Jazz",
-    "prompt": [
-      "smooth jazz",
-      "polished saxophone lead",
-      "clean electric piano",
-      "silky rhythm section"
-    ],
-    "exclude": [
-      "garage punk distortion",
-      "extreme metal vocals",
-      "raw lo-fi tape grime"
-    ],
-    "traits": [
-      "jazz",
-      "smooth",
-      "saxophone",
-      "polished"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Polished jazz with soft-focus production.",
-    "category": "jazz"
-  },
-  {
-    "id": "southern_gothic",
-    "label": "Southern Gothic",
-    "prompt": [
-      "southern gothic",
-      "dusty acoustic textures",
-      "dark storytelling atmosphere",
-      "swampy rhythm"
-    ],
-    "exclude": [
-      "bright pop sheen",
-      "EDM synth lead",
-      "arena rock gang chants"
-    ],
-    "traits": [
-      "southern_gothic",
-      "dusty",
-      "storytelling",
-      "dark",
-      "swampy"
-    ],
-    "risk": {
-      "butt_rock": 0
-    },
-    "weight": 1,
-    "description": "Dark American gothic folk/rock tone.",
-    "category": "folk"
+    "description": "Canonical genre/style term: Sludge Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "sludge metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "stoner_metal",
     "label": "Stoner Metal",
     "prompt": [
-      "stoner metal",
-      "fuzz-heavy riffs",
-      "hypnotic desert groove",
-      "warm tube amp saturation"
+      "stoner metal"
     ],
-    "exclude": [
-      "glossy modern production",
-      "arena rock chorus",
-      "thin guitar tone"
-    ],
+    "exclude": [],
     "traits": [
-      "stoner",
       "metal",
-      "fuzz",
-      "groove",
-      "desert",
-      "tube_saturation"
+      "stoner_metal"
     ],
     "risk": {
       "butt_rock": -1,
       "genre_drift": -1
     },
     "weight": 1,
-    "description": "Fuzzy, groove-heavy metal with warm desert energy.",
-    "category": "metal"
+    "description": "Canonical genre/style term: Stoner Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "stoner metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "symphonic_metal",
     "label": "Symphonic Metal",
     "prompt": [
-      "symphonic metal",
-      "orchestral strings",
-      "large cinematic arrangement",
-      "dramatic melodic structure"
+      "symphonic metal"
     ],
-    "exclude": [
-      "lo-fi demo mix",
-      "garage punk vocals",
-      "minimal acoustic arrangement"
-    ],
+    "exclude": [],
     "traits": [
-      "symphonic",
       "metal",
-      "orchestral",
-      "cinematic",
-      "dramatic"
+      "symphonic_metal"
     ],
     "risk": {
       "reverb": 2,
       "butt_rock": 1
     },
     "weight": 1,
-    "description": "Metal with orchestral scale and polish.",
-    "category": "metal"
-  },
-  {
-    "id": "synth_pop",
-    "label": "Synth Pop",
-    "prompt": [
-      "synth pop",
-      "melodic synth hooks",
-      "electronic drum programming",
-      "clean vocal focus"
-    ],
-    "exclude": [
-      "metalcore breakdowns",
-      "country fiddle lead",
-      "garage punk noise"
-    ],
-    "traits": [
-      "pop",
-      "synth",
-      "electronic",
-      "melodic"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Pop built around synthesizer melody.",
-    "category": "pop"
-  },
-  {
-    "id": "synthwave",
-    "label": "Synthwave",
-    "prompt": [
-      "synthwave",
-      "retro analog synths",
-      "nostalgic electronic drums",
-      "neon cinematic atmosphere"
-    ],
-    "exclude": [
-      "acoustic folk arrangement",
-      "extreme metal drumming",
-      "country twang"
-    ],
-    "traits": [
-      "synthwave",
-      "retro",
-      "analog_synth",
-      "neon"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Retro synth music with cinematic color.",
-    "category": "electronic"
-  },
-  {
-    "id": "tech_house",
-    "label": "Tech House",
-    "prompt": [
-      "tech house",
-      "minimal club groove",
-      "tight percussion loops",
-      "dry bassline focus"
-    ],
-    "exclude": [
-      "orchestral strings lead",
-      "doom guitars",
-      "folk storytelling vocals"
-    ],
-    "traits": [
-      "house",
-      "tech_house",
-      "minimal",
-      "percussion"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "House with techno-informed restraint.",
-    "category": "house"
+    "description": "Canonical genre/style term: Symphonic Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "symphonic metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "technical_death_metal",
     "label": "Technical Death Metal",
     "prompt": [
-      "technical death metal",
-      "complex riff patterns",
-      "precision drum performance",
-      "guttural vocal intensity"
+      "technical death metal"
     ],
-    "exclude": [
-      "simple radio chorus",
-      "folk campfire chords",
-      "club pop sheen"
-    ],
+    "exclude": [],
     "traits": [
       "metal",
-      "death_metal",
-      "technical",
-      "precision"
+      "technical_death_metal"
     ],
     "risk": {
       "vocal_grunts": 2
     },
     "weight": 1,
-    "description": "Death metal with advanced technical detail.",
-    "category": "metal"
-  },
-  {
-    "id": "techno",
-    "label": "Techno",
-    "prompt": [
-      "techno",
-      "machine-driven drum programming",
-      "repetitive synth motif",
-      "warehouse club atmosphere"
-    ],
-    "exclude": [
-      "acoustic folk chorus",
-      "country fiddle",
-      "radio pop ballad"
-    ],
-    "traits": [
-      "techno",
-      "warehouse",
-      "machine",
-      "repetitive"
-    ],
-    "risk": {
-      "genre_drift": 0
-    },
-    "weight": 1,
-    "description": "Minimal electronic club music built on repetition.",
-    "category": "techno"
+    "description": "Canonical genre/style term: Technical Death Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "technical death metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "thrash_metal",
     "label": "Thrash Metal",
     "prompt": [
-      "thrash metal",
-      "palm-muted riff attack",
-      "sharp rhythm guitars",
-      "aggressive shouted vocals"
+      "thrash metal"
     ],
-    "exclude": [
-      "radio pop sheen",
-      "country twang",
-      "ambient drone arrangement"
-    ],
+    "exclude": [],
     "traits": [
       "metal",
-      "thrash",
-      "riff_attack",
-      "aggressive"
+      "thrash_metal"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Aggressive riff-focused metal.",
-    "category": "metal"
+    "description": "Canonical genre/style term: Thrash Metal. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "thrash metal",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "traditional_doom",
     "label": "Traditional Doom",
     "prompt": [
-      "traditional doom metal",
-      "vintage heavy metal structure",
-      "grounded heavy feel",
-      "blues-rooted riffs"
+      "traditional doom"
     ],
-    "exclude": [
-      "modern djent tone",
-      "metalcore breakdowns",
-      "glossy radio rock chorus"
-    ],
+    "exclude": [],
     "traits": [
-      "doom",
-      "traditional",
-      "vintage",
-      "blues_rooted"
+      "metal",
+      "traditional_doom"
     ],
     "risk": {
       "butt_rock": -1,
       "genre_drift": -1
     },
     "weight": 1,
-    "description": "Classic doom-metal foundation.",
-    "category": "metal"
+    "description": "Canonical genre/style term: Traditional Doom. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "metal",
+    "promptTerm": "traditional doom",
+    "family": "metal",
+    "injectionPolicy": "canonical_term_only"
   },
   {
-    "id": "trance",
-    "label": "Trance",
+    "id": "crust_punk",
+    "label": "Crust Punk",
     "prompt": [
-      "trance",
-      "arpeggiated synth patterns",
-      "euphoric chord movement",
-      "wide breakdown-and-release structure"
+      "crust punk"
     ],
-    "exclude": [
-      "acoustic-only folk demo",
-      "black metal vocals",
-      "country band arrangement"
-    ],
+    "promptTerm": "crust punk",
+    "exclude": [],
     "traits": [
-      "trance",
-      "arpeggio",
-      "euphoric",
-      "synth"
+      "punk",
+      "crust_punk"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Electronic music with hypnotic synth motion.",
-    "category": "trance"
+    "description": "Canonical genre/style term: Crust Punk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "cyberpunk_electronic",
+    "label": "Cyberpunk Electronic",
+    "prompt": [
+      "cyberpunk electronic"
+    ],
+    "exclude": [],
+    "traits": [
+      "cyberpunk_electronic",
+      "punk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Cyberpunk Electronic. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "promptTerm": "cyberpunk electronic",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "hardcore_punk",
+    "label": "Hardcore Punk",
+    "prompt": [
+      "hardcore punk"
+    ],
+    "exclude": [],
+    "traits": [
+      "hardcore_punk",
+      "punk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Hardcore Punk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "promptTerm": "hardcore punk",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "pop_punk",
+    "label": "Pop Punk",
+    "prompt": [
+      "pop punk"
+    ],
+    "exclude": [],
+    "traits": [
+      "pop_punk",
+      "punk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Pop Punk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "promptTerm": "pop punk",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "post_hardcore",
+    "label": "Post-Hardcore",
+    "prompt": [
+      "post-hardcore"
+    ],
+    "exclude": [],
+    "traits": [
+      "post_hardcore",
+      "punk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Post-Hardcore. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "promptTerm": "post-hardcore",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "post_punk",
+    "label": "Post-Punk",
+    "prompt": [
+      "post-punk"
+    ],
+    "exclude": [],
+    "traits": [
+      "post_punk",
+      "punk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Post-Punk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "promptTerm": "post-punk",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "punk_rock",
+    "label": "Punk Rock",
+    "prompt": [
+      "punk rock"
+    ],
+    "exclude": [],
+    "traits": [
+      "punk",
+      "punk_rock"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Punk Rock. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "promptTerm": "punk rock",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "skate_punk",
+    "label": "Skate Punk",
+    "prompt": [
+      "skate punk"
+    ],
+    "promptTerm": "skate punk",
+    "exclude": [],
+    "traits": [
+      "punk",
+      "skate_punk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Skate Punk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "street_punk",
+    "label": "Street Punk",
+    "prompt": [
+      "street punk"
+    ],
+    "promptTerm": "street punk",
+    "exclude": [],
+    "traits": [
+      "punk",
+      "street_punk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Street Punk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "punk",
+    "family": "punk",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "boom_bap",
+    "label": "Boom Bap",
+    "prompt": [
+      "boom bap"
+    ],
+    "exclude": [],
+    "traits": [
+      "boom_bap",
+      "hip-hop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Boom Bap. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "hip-hop",
+    "promptTerm": "boom bap",
+    "family": "hip-hop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "conscious_hip_hop",
+    "label": "Conscious Hip-Hop",
+    "prompt": [
+      "conscious hip-hop"
+    ],
+    "exclude": [],
+    "traits": [
+      "conscious_hip_hop",
+      "hip-hop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Conscious Hip-Hop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "hip-hop",
+    "promptTerm": "conscious hip-hop",
+    "family": "hip-hop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "lofi_hip_hop",
+    "label": "Lo-Fi Hip-Hop",
+    "prompt": [
+      "lo-fi hip-hop"
+    ],
+    "exclude": [],
+    "traits": [
+      "hip-hop",
+      "lo_fi_hip_hop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Lo-Fi Hip-Hop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "hip-hop",
+    "promptTerm": "lo-fi hip-hop",
+    "family": "hip-hop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "phonk",
+    "label": "Phonk",
+    "prompt": [
+      "phonk"
+    ],
+    "exclude": [],
+    "traits": [
+      "hip-hop",
+      "phonk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Phonk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "hip-hop",
+    "promptTerm": "phonk",
+    "family": "hip-hop",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "trap",
     "label": "Trap",
     "prompt": [
-      "trap",
-      "808 bass",
-      "sharp hi-hat patterns",
-      "minimal dark synth motifs"
+      "trap"
     ],
-    "exclude": [
-      "bluegrass banjo lead",
-      "jazz brush drums",
-      "folk campfire arrangement"
-    ],
+    "exclude": [],
     "traits": [
-      "trap",
-      "808",
-      "hi_hats",
-      "minimal"
+      "hip-hop",
+      "trap"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Modern hip-hop production with 808 weight.",
-    "category": "hip-hop"
+    "description": "Canonical genre/style term: Trap. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "hip-hop",
+    "promptTerm": "trap",
+    "family": "hip-hop",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "acid_house",
+    "label": "Acid House",
+    "prompt": [
+      "acid house"
+    ],
+    "exclude": [],
+    "traits": [
+      "acid_house",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Acid House. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "acid house",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "big_room_house",
+    "label": "Big Room House",
+    "prompt": [
+      "big room house"
+    ],
+    "exclude": [],
+    "traits": [
+      "big_room_house",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Big Room House. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "big room house",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "breakbeat",
+    "label": "Breakbeat",
+    "prompt": [
+      "breakbeat"
+    ],
+    "exclude": [],
+    "traits": [
+      "breakbeat",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Breakbeat. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "breakbeat",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "brostep",
+    "label": "Brostep",
+    "prompt": [
+      "brostep"
+    ],
+    "exclude": [],
+    "traits": [
+      "brostep",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Brostep. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "brostep",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "chiptune",
+    "label": "Chiptune",
+    "prompt": [
+      "chiptune"
+    ],
+    "exclude": [],
+    "traits": [
+      "chiptune",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Chiptune. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "chiptune",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "club_edm",
+    "label": "Club EDM",
+    "prompt": [
+      "club edm"
+    ],
+    "exclude": [],
+    "traits": [
+      "club_edm",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Club EDM. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "club edm",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "dark_synthwave",
+    "label": "Dark Synthwave",
+    "prompt": [
+      "dark synthwave"
+    ],
+    "exclude": [],
+    "traits": [
+      "dark_synthwave",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Dark Synthwave. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "dark synthwave",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "deep_house",
+    "label": "Deep House",
+    "prompt": [
+      "deep house"
+    ],
+    "exclude": [],
+    "traits": [
+      "deep_house",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Deep House. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "deep house",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "drum_and_bass",
+    "label": "Drum and Bass",
+    "prompt": [
+      "drum and bass"
+    ],
+    "exclude": [],
+    "traits": [
+      "drum_and_bass",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Drum and Bass. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "drum and bass",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "dubstep",
+    "label": "Dubstep",
+    "prompt": [
+      "dubstep"
+    ],
+    "exclude": [],
+    "traits": [
+      "dubstep",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Dubstep. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "dubstep",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "dungeon_synth",
+    "label": "Dungeon Synth",
+    "prompt": [
+      "dungeon synth"
+    ],
+    "exclude": [],
+    "traits": [
+      "dungeon_synth",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": -1,
+      "reverb": 1
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Dungeon Synth. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "dungeon synth",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "edm",
+    "label": "EDM",
+    "prompt": [
+      "EDM"
+    ],
+    "exclude": [],
+    "traits": [
+      "edm",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: EDM. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "EDM",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "electro",
+    "label": "Electro",
+    "prompt": [
+      "electro"
+    ],
+    "exclude": [],
+    "traits": [
+      "electro",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Electro. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "electro",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "electro_house",
+    "label": "Electro House",
+    "prompt": [
+      "electro house"
+    ],
+    "exclude": [],
+    "traits": [
+      "electro_house",
+      "electronic_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Electro House. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "electro house",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "future_bass",
+    "label": "Future Bass",
+    "prompt": [
+      "future bass"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "future_bass"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Future Bass. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "future bass",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "future_house",
+    "label": "Future House",
+    "prompt": [
+      "future house"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "future_house"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Future House. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "future house",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "glitch_hop",
+    "label": "Glitch Hop",
+    "prompt": [
+      "glitch hop"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "glitch_hop"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Glitch Hop. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "glitch hop",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "house",
+    "label": "House",
+    "prompt": [
+      "house"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "house"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: House. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "house",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "idm",
+    "label": "IDM",
+    "prompt": [
+      "IDM"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "idm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: IDM. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "IDM",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "industrial_techno",
+    "label": "Industrial Techno",
+    "prompt": [
+      "industrial techno"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "industrial_techno"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Industrial Techno. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "industrial techno",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "liquid_dnb",
+    "label": "Liquid Drum and Bass",
+    "prompt": [
+      "liquid drum and bass"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "liquid_drum_and_bass"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Liquid Drum and Bass. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "liquid drum and bass",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "melodic_techno",
+    "label": "Melodic Techno",
+    "prompt": [
+      "melodic techno"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "melodic_techno"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Melodic Techno. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "melodic techno",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "minimal_techno",
+    "label": "Minimal Techno",
+    "prompt": [
+      "minimal techno"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "minimal_techno"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Minimal Techno. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "minimal techno",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "outrun",
+    "label": "Outrun",
+    "prompt": [
+      "outrun"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "outrun"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Outrun. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "outrun",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "progressive_edm",
+    "label": "Progressive EDM",
+    "prompt": [
+      "progressive edm"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "progressive_edm"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Progressive EDM. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "progressive edm",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "progressive_house",
+    "label": "Progressive House",
+    "prompt": [
+      "progressive house"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "progressive_house"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Progressive House. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "progressive house",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "progressive_trance",
+    "label": "Progressive Trance",
+    "prompt": [
+      "progressive trance"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "progressive_trance"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Progressive Trance. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "progressive trance",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "psytrance",
+    "label": "Psytrance",
+    "prompt": [
+      "psytrance"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "psytrance"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Psytrance. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "psytrance",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "synthwave",
+    "label": "Synthwave",
+    "prompt": [
+      "synthwave"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "synthwave"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Synthwave. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "synthwave",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "tech_house",
+    "label": "Tech House",
+    "prompt": [
+      "tech house"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "tech_house"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Tech House. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "tech house",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "techno",
+    "label": "Techno",
+    "prompt": [
+      "techno"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "techno"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Techno. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "techno",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "trance",
+    "label": "Trance",
+    "prompt": [
+      "trance"
+    ],
+    "exclude": [],
+    "traits": [
+      "electronic_edm",
+      "trance"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Trance. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "trance",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "garage_uk",
     "label": "UK Garage",
     "prompt": [
-      "UK garage",
-      "shuffled drum programming",
-      "chopped vocal hooks",
-      "rubbery bassline"
+      "UK garage"
     ],
-    "exclude": [
-      "metal guitar wall",
-      "country fiddle",
-      "orchestral film score"
-    ],
+    "exclude": [],
     "traits": [
-      "garage",
-      "uk_garage",
-      "shuffle",
-      "vocal_chops"
+      "electronic_edm",
+      "uk_garage"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "UK club style with shuffled drums and vocal cuts.",
-    "category": "electronic"
+    "description": "Canonical genre/style term: UK Garage. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "UK garage",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
   },
   {
     "id": "uplifting_trance",
     "label": "Uplifting Trance",
     "prompt": [
-      "uplifting trance",
-      "emotional supersaw lead",
-      "bright chord progression",
-      "large breakdown section"
+      "uplifting trance"
     ],
-    "exclude": [
-      "doom metal weight",
-      "raw punk shouting",
-      "lo-fi folk texture"
-    ],
+    "exclude": [],
     "traits": [
-      "trance",
-      "uplifting",
-      "supersaw",
-      "emotional"
+      "electronic_edm",
+      "uplifting_trance"
     ],
     "risk": {
       "genre_drift": 0
     },
     "weight": 1,
-    "description": "Trance with bright emotional lift.",
-    "category": "trance"
+    "description": "Canonical genre/style term: Uplifting Trance. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "electronic_edm",
+    "promptTerm": "uplifting trance",
+    "family": "electronic_edm",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "alt_rnb",
+    "label": "Alternative R&B",
+    "prompt": [
+      "alternative R&B"
+    ],
+    "exclude": [],
+    "traits": [
+      "alternative_randb",
+      "rnb_soul"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Alternative R&B. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rnb_soul",
+    "promptTerm": "alternative R&B",
+    "family": "rnb_soul",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "classic_soul",
+    "label": "Classic Soul",
+    "prompt": [
+      "classic soul"
+    ],
+    "exclude": [],
+    "traits": [
+      "classic_soul",
+      "rnb_soul"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Classic Soul. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rnb_soul",
+    "promptTerm": "classic soul",
+    "family": "rnb_soul",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "neo_soul",
+    "label": "Neo-Soul",
+    "prompt": [
+      "neo-soul"
+    ],
+    "exclude": [],
+    "traits": [
+      "neo_soul",
+      "rnb_soul"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Neo-Soul. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rnb_soul",
+    "promptTerm": "neo-soul",
+    "family": "rnb_soul",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "rnb",
+    "label": "R&B",
+    "prompt": [
+      "R&B"
+    ],
+    "exclude": [],
+    "traits": [
+      "randb",
+      "rnb_soul"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: R&B. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "rnb_soul",
+    "promptTerm": "R&B",
+    "family": "rnb_soul",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "alt_country",
+    "label": "Alt-Country",
+    "prompt": [
+      "alt-country"
+    ],
+    "promptTerm": "alt-country",
+    "exclude": [],
+    "traits": [
+      "country",
+      "alt_country"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Alt-Country. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "country",
+    "family": "country",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "americana",
+    "label": "Americana",
+    "prompt": [
+      "americana"
+    ],
+    "exclude": [],
+    "traits": [
+      "americana",
+      "country"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Americana. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "country",
+    "promptTerm": "americana",
+    "family": "country",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "bro_country",
+    "label": "Bro Country",
+    "prompt": [
+      "bro country"
+    ],
+    "promptTerm": "bro country",
+    "exclude": [],
+    "traits": [
+      "country",
+      "bro_country"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Bro Country. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "country",
+    "family": "country",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "classic_country",
+    "label": "Classic Country",
+    "prompt": [
+      "classic country"
+    ],
+    "promptTerm": "classic country",
+    "exclude": [],
+    "traits": [
+      "country",
+      "classic_country"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Classic Country. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "country",
+    "family": "country",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "country",
+    "label": "Country",
+    "prompt": [
+      "country"
+    ],
+    "exclude": [],
+    "traits": [
+      "country"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Country. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "country",
+    "promptTerm": "country",
+    "family": "country",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "outlaw_country",
+    "label": "Outlaw Country",
+    "prompt": [
+      "outlaw country"
+    ],
+    "exclude": [],
+    "traits": [
+      "country",
+      "outlaw_country"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Outlaw Country. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "country",
+    "promptTerm": "outlaw country",
+    "family": "country",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "red_dirt_country",
+    "label": "Red Dirt Country",
+    "prompt": [
+      "red dirt country"
+    ],
+    "promptTerm": "red dirt country",
+    "exclude": [],
+    "traits": [
+      "country",
+      "red_dirt_country"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Red Dirt Country. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "country",
+    "family": "country",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "jazz_blues",
+    "label": "Jazz Blues",
+    "prompt": [
+      "jazz blues"
+    ],
+    "exclude": [],
+    "traits": [
+      "jazz",
+      "jazz_blues"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Jazz Blues. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "jazz",
+    "promptTerm": "jazz blues",
+    "family": "jazz",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "jazz_standard",
+    "label": "Jazz Standard",
+    "prompt": [
+      "jazz standard"
+    ],
+    "exclude": [],
+    "traits": [
+      "jazz",
+      "jazz_standard"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Jazz Standard. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "jazz",
+    "promptTerm": "jazz standard",
+    "family": "jazz",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "smooth_jazz",
+    "label": "Smooth Jazz",
+    "prompt": [
+      "smooth jazz"
+    ],
+    "exclude": [],
+    "traits": [
+      "jazz",
+      "smooth_jazz"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Smooth Jazz. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "jazz",
+    "promptTerm": "smooth jazz",
+    "family": "jazz",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "blues",
+    "label": "Blues",
+    "prompt": [
+      "blues"
+    ],
+    "exclude": [],
+    "traits": [
+      "blues"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Blues. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "blues",
+    "promptTerm": "blues",
+    "family": "blues",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "delta_blues",
+    "label": "Delta Blues",
+    "prompt": [
+      "delta blues"
+    ],
+    "exclude": [],
+    "traits": [
+      "blues",
+      "delta_blues"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Delta Blues. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "blues",
+    "promptTerm": "delta blues",
+    "family": "blues",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "dark_acoustic_folk",
+    "label": "Acoustic Dark Folk",
+    "prompt": [
+      "acoustic dark folk"
+    ],
+    "exclude": [],
+    "traits": [
+      "acoustic_dark_folk",
+      "folk_traditional"
+    ],
+    "risk": {
+      "reverb": -1,
+      "butt_rock": -2
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Acoustic Dark Folk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "folk_traditional",
+    "promptTerm": "acoustic dark folk",
+    "family": "folk_traditional",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "bluegrass",
+    "label": "Bluegrass",
+    "prompt": [
+      "bluegrass"
+    ],
+    "exclude": [],
+    "traits": [
+      "bluegrass",
+      "folk_traditional"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Bluegrass. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "folk_traditional",
+    "promptTerm": "bluegrass",
+    "family": "folk_traditional",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "indie_folk",
+    "label": "Indie Folk",
+    "prompt": [
+      "indie folk"
+    ],
+    "exclude": [],
+    "traits": [
+      "folk_traditional",
+      "indie_folk"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Indie Folk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "folk_traditional",
+    "promptTerm": "indie folk",
+    "family": "folk_traditional",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "singer_songwriter",
+    "label": "Singer-Songwriter",
+    "prompt": [
+      "singer-songwriter"
+    ],
+    "exclude": [],
+    "traits": [
+      "folk_traditional",
+      "singer_songwriter"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Singer-Songwriter. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "folk_traditional",
+    "promptTerm": "singer-songwriter",
+    "family": "folk_traditional",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "southern_gothic",
+    "label": "Southern Gothic",
+    "prompt": [
+      "southern gothic"
+    ],
+    "exclude": [],
+    "traits": [
+      "folk_traditional",
+      "southern_gothic"
+    ],
+    "risk": {
+      "butt_rock": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Southern Gothic. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "folk_traditional",
+    "promptTerm": "southern gothic",
+    "family": "folk_traditional",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "reggae",
+    "label": "Reggae",
+    "prompt": [
+      "reggae"
+    ],
+    "exclude": [],
+    "traits": [
+      "reggae",
+      "reggae_ska_dub"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Reggae. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "reggae_ska_dub",
+    "promptTerm": "reggae",
+    "family": "reggae_ska_dub",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "ska",
+    "label": "Ska",
+    "prompt": [
+      "ska"
+    ],
+    "exclude": [],
+    "traits": [
+      "reggae_ska_dub",
+      "ska"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Ska. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "reggae_ska_dub",
+    "promptTerm": "ska",
+    "family": "reggae_ska_dub",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "funk",
+    "label": "Funk",
+    "prompt": [
+      "funk"
+    ],
+    "exclude": [],
+    "traits": [
+      "funk",
+      "funk_disco"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Funk. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "funk_disco",
+    "promptTerm": "funk",
+    "family": "funk_disco",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "cinematic_orchestral",
+    "label": "Cinematic Orchestral",
+    "prompt": [
+      "cinematic orchestral"
+    ],
+    "exclude": [],
+    "traits": [
+      "cinematic",
+      "cinematic_orchestral"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Cinematic Orchestral. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "cinematic",
+    "promptTerm": "cinematic orchestral",
+    "family": "cinematic",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "epic_trailer",
+    "label": "Epic Trailer",
+    "prompt": [
+      "epic trailer"
+    ],
+    "exclude": [],
+    "traits": [
+      "cinematic",
+      "epic_trailer"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Epic Trailer. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "cinematic",
+    "promptTerm": "epic trailer",
+    "family": "cinematic",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "ambient",
+    "label": "Ambient",
+    "prompt": [
+      "ambient"
+    ],
+    "exclude": [],
+    "traits": [
+      "ambient"
+    ],
+    "risk": {
+      "reverb": 2
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Ambient. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "ambient",
+    "promptTerm": "ambient",
+    "family": "ambient",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "dark_ambient",
+    "label": "Dark Ambient",
+    "prompt": [
+      "dark ambient"
+    ],
+    "exclude": [],
+    "traits": [
+      "ambient",
+      "dark_ambient"
+    ],
+    "risk": {
+      "reverb": 2,
+      "genre_drift": -1
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Dark Ambient. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "ambient",
+    "promptTerm": "dark ambient",
+    "family": "ambient",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "new_age",
+    "label": "New Age",
+    "prompt": [
+      "new age"
+    ],
+    "exclude": [],
+    "traits": [
+      "ambient",
+      "new_age"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: New Age. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "ambient",
+    "promptTerm": "new age",
+    "family": "ambient",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "afrobeats",
+    "label": "Afrobeats",
+    "prompt": [
+      "afrobeats"
+    ],
+    "exclude": [],
+    "traits": [
+      "afrobeats",
+      "world_regional"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Afrobeats. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "world_regional",
+    "promptTerm": "afrobeats",
+    "family": "world_regional",
+    "injectionPolicy": "canonical_term_only"
+  },
+  {
+    "id": "reggaeton",
+    "label": "Reggaeton",
+    "prompt": [
+      "reggaeton"
+    ],
+    "exclude": [],
+    "traits": [
+      "reggaeton",
+      "world_regional"
+    ],
+    "risk": {
+      "genre_drift": 0
+    },
+    "weight": 1,
+    "description": "Canonical genre/style term: Reggaeton. Additional detail should come from user-selected vocals, instruments, production, mood, lyrics, or custom prompt text.",
+    "category": "world_regional",
+    "promptTerm": "reggaeton",
+    "family": "world_regional",
+    "injectionPolicy": "canonical_term_only"
   }
 ]
