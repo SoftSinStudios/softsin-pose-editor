@@ -1,0 +1,782 @@
+{
+  "version": 1,
+  "families": [
+    {
+      "id": "ambient",
+      "label": "Ambient",
+      "selectable": false,
+      "children": [
+        {
+          "id": "ambient",
+          "label": "Ambient",
+          "promptTerm": "ambient"
+        },
+        {
+          "id": "dark_ambient",
+          "label": "Dark Ambient",
+          "promptTerm": "dark ambient"
+        },
+        {
+          "id": "new_age",
+          "label": "New Age",
+          "promptTerm": "new age"
+        }
+      ]
+    },
+    {
+      "id": "blues",
+      "label": "Blues",
+      "selectable": false,
+      "children": [
+        {
+          "id": "blues",
+          "label": "Blues",
+          "promptTerm": "blues"
+        },
+        {
+          "id": "delta_blues",
+          "label": "Delta Blues",
+          "promptTerm": "delta blues"
+        }
+      ]
+    },
+    {
+      "id": "cinematic",
+      "label": "Cinematic",
+      "selectable": false,
+      "children": [
+        {
+          "id": "cinematic_orchestral",
+          "label": "Cinematic Orchestral",
+          "promptTerm": "cinematic orchestral"
+        },
+        {
+          "id": "epic_trailer",
+          "label": "Epic Trailer",
+          "promptTerm": "epic trailer"
+        }
+      ]
+    },
+    {
+      "id": "country",
+      "label": "Country",
+      "selectable": false,
+      "children": [
+        {
+          "id": "alt_country",
+          "label": "Alt-Country",
+          "promptTerm": "alt-country"
+        },
+        {
+          "id": "americana",
+          "label": "Americana",
+          "promptTerm": "americana"
+        },
+        {
+          "id": "bro_country",
+          "label": "Bro Country",
+          "promptTerm": "bro country"
+        },
+        {
+          "id": "classic_country",
+          "label": "Classic Country",
+          "promptTerm": "classic country"
+        },
+        {
+          "id": "country",
+          "label": "Country",
+          "promptTerm": "country"
+        },
+        {
+          "id": "outlaw_country",
+          "label": "Outlaw Country",
+          "promptTerm": "outlaw country"
+        },
+        {
+          "id": "red_dirt_country",
+          "label": "Red Dirt Country",
+          "promptTerm": "red dirt country"
+        }
+      ]
+    },
+    {
+      "id": "electronic_edm",
+      "label": "Electronic / EDM",
+      "selectable": false,
+      "children": [
+        {
+          "id": "acid_house",
+          "label": "Acid House",
+          "promptTerm": "acid house"
+        },
+        {
+          "id": "big_room_house",
+          "label": "Big Room House",
+          "promptTerm": "big room house"
+        },
+        {
+          "id": "breakbeat",
+          "label": "Breakbeat",
+          "promptTerm": "breakbeat"
+        },
+        {
+          "id": "brostep",
+          "label": "Brostep",
+          "promptTerm": "brostep"
+        },
+        {
+          "id": "chiptune",
+          "label": "Chiptune",
+          "promptTerm": "chiptune"
+        },
+        {
+          "id": "club_edm",
+          "label": "Club EDM",
+          "promptTerm": "club edm"
+        },
+        {
+          "id": "dark_synthwave",
+          "label": "Dark Synthwave",
+          "promptTerm": "dark synthwave"
+        },
+        {
+          "id": "deep_house",
+          "label": "Deep House",
+          "promptTerm": "deep house"
+        },
+        {
+          "id": "drum_and_bass",
+          "label": "Drum and Bass",
+          "promptTerm": "drum and bass"
+        },
+        {
+          "id": "dubstep",
+          "label": "Dubstep",
+          "promptTerm": "dubstep"
+        },
+        {
+          "id": "dungeon_synth",
+          "label": "Dungeon Synth",
+          "promptTerm": "dungeon synth"
+        },
+        {
+          "id": "edm",
+          "label": "EDM",
+          "promptTerm": "EDM"
+        },
+        {
+          "id": "electro",
+          "label": "Electro",
+          "promptTerm": "electro"
+        },
+        {
+          "id": "electro_house",
+          "label": "Electro House",
+          "promptTerm": "electro house"
+        },
+        {
+          "id": "future_bass",
+          "label": "Future Bass",
+          "promptTerm": "future bass"
+        },
+        {
+          "id": "future_house",
+          "label": "Future House",
+          "promptTerm": "future house"
+        },
+        {
+          "id": "glitch_hop",
+          "label": "Glitch Hop",
+          "promptTerm": "glitch hop"
+        },
+        {
+          "id": "house",
+          "label": "House",
+          "promptTerm": "house"
+        },
+        {
+          "id": "idm",
+          "label": "IDM",
+          "promptTerm": "IDM"
+        },
+        {
+          "id": "industrial_techno",
+          "label": "Industrial Techno",
+          "promptTerm": "industrial techno"
+        },
+        {
+          "id": "liquid_dnb",
+          "label": "Liquid Drum and Bass",
+          "promptTerm": "liquid drum and bass"
+        },
+        {
+          "id": "melodic_techno",
+          "label": "Melodic Techno",
+          "promptTerm": "melodic techno"
+        },
+        {
+          "id": "minimal_techno",
+          "label": "Minimal Techno",
+          "promptTerm": "minimal techno"
+        },
+        {
+          "id": "outrun",
+          "label": "Outrun",
+          "promptTerm": "outrun"
+        },
+        {
+          "id": "progressive_edm",
+          "label": "Progressive EDM",
+          "promptTerm": "progressive edm"
+        },
+        {
+          "id": "progressive_house",
+          "label": "Progressive House",
+          "promptTerm": "progressive house"
+        },
+        {
+          "id": "progressive_trance",
+          "label": "Progressive Trance",
+          "promptTerm": "progressive trance"
+        },
+        {
+          "id": "psytrance",
+          "label": "Psytrance",
+          "promptTerm": "psytrance"
+        },
+        {
+          "id": "synthwave",
+          "label": "Synthwave",
+          "promptTerm": "synthwave"
+        },
+        {
+          "id": "tech_house",
+          "label": "Tech House",
+          "promptTerm": "tech house"
+        },
+        {
+          "id": "techno",
+          "label": "Techno",
+          "promptTerm": "techno"
+        },
+        {
+          "id": "trance",
+          "label": "Trance",
+          "promptTerm": "trance"
+        },
+        {
+          "id": "garage_uk",
+          "label": "UK Garage",
+          "promptTerm": "UK garage"
+        },
+        {
+          "id": "uplifting_trance",
+          "label": "Uplifting Trance",
+          "promptTerm": "uplifting trance"
+        }
+      ]
+    },
+    {
+      "id": "folk_traditional",
+      "label": "Folk / Traditional",
+      "selectable": false,
+      "children": [
+        {
+          "id": "dark_acoustic_folk",
+          "label": "Acoustic Dark Folk",
+          "promptTerm": "acoustic dark folk"
+        },
+        {
+          "id": "bluegrass",
+          "label": "Bluegrass",
+          "promptTerm": "bluegrass"
+        },
+        {
+          "id": "indie_folk",
+          "label": "Indie Folk",
+          "promptTerm": "indie folk"
+        },
+        {
+          "id": "singer_songwriter",
+          "label": "Singer-Songwriter",
+          "promptTerm": "singer-songwriter"
+        },
+        {
+          "id": "southern_gothic",
+          "label": "Southern Gothic",
+          "promptTerm": "southern gothic"
+        }
+      ]
+    },
+    {
+      "id": "funk_disco",
+      "label": "Funk / Disco",
+      "selectable": false,
+      "children": [
+        {
+          "id": "disco",
+          "label": "Disco",
+          "promptTerm": "disco"
+        },
+        {
+          "id": "funk",
+          "label": "Funk",
+          "promptTerm": "funk"
+        }
+      ]
+    },
+    {
+      "id": "hip-hop",
+      "label": "Hip-Hop / Rap",
+      "selectable": false,
+      "children": [
+        {
+          "id": "boom_bap",
+          "label": "Boom Bap",
+          "promptTerm": "boom bap"
+        },
+        {
+          "id": "conscious_hip_hop",
+          "label": "Conscious Hip-Hop",
+          "promptTerm": "conscious hip-hop"
+        },
+        {
+          "id": "lofi_hip_hop",
+          "label": "Lo-Fi Hip-Hop",
+          "promptTerm": "lo-fi hip-hop"
+        },
+        {
+          "id": "phonk",
+          "label": "Phonk",
+          "promptTerm": "phonk"
+        },
+        {
+          "id": "pop_rap",
+          "label": "Pop Rap",
+          "promptTerm": "pop rap"
+        },
+        {
+          "id": "trap",
+          "label": "Trap",
+          "promptTerm": "trap"
+        }
+      ]
+    },
+    {
+      "id": "jazz",
+      "label": "Jazz",
+      "selectable": false,
+      "children": [
+        {
+          "id": "jazz_blues",
+          "label": "Jazz Blues",
+          "promptTerm": "jazz blues"
+        },
+        {
+          "id": "jazz_standard",
+          "label": "Jazz Standard",
+          "promptTerm": "jazz standard"
+        },
+        {
+          "id": "smooth_jazz",
+          "label": "Smooth Jazz",
+          "promptTerm": "smooth jazz"
+        }
+      ]
+    },
+    {
+      "id": "metal",
+      "label": "Metal",
+      "selectable": false,
+      "children": [
+        {
+          "id": "atmospheric_black_metal",
+          "label": "Atmospheric Black Metal",
+          "promptTerm": "atmospheric black metal"
+        },
+        {
+          "id": "black_metal",
+          "label": "Black Metal",
+          "promptTerm": "black metal"
+        },
+        {
+          "id": "blackened_death_metal",
+          "label": "Blackened Death Metal",
+          "promptTerm": "blackened death metal"
+        },
+        {
+          "id": "death_metal",
+          "label": "Death Metal",
+          "promptTerm": "death metal"
+        },
+        {
+          "id": "deathcore",
+          "label": "Deathcore",
+          "promptTerm": "deathcore"
+        },
+        {
+          "id": "djent",
+          "label": "Djent",
+          "promptTerm": "djent"
+        },
+        {
+          "id": "doom_metal",
+          "label": "Doom Metal",
+          "promptTerm": "doom metal"
+        },
+        {
+          "id": "epic_doom",
+          "label": "Epic Doom",
+          "promptTerm": "epic doom"
+        },
+        {
+          "id": "folk_metal",
+          "label": "Folk Metal",
+          "promptTerm": "folk metal"
+        },
+        {
+          "id": "funeral_doom",
+          "label": "Funeral Doom",
+          "promptTerm": "funeral doom"
+        },
+        {
+          "id": "gothic_metal",
+          "label": "Gothic Metal",
+          "promptTerm": "gothic metal"
+        },
+        {
+          "id": "grindcore",
+          "label": "Grindcore",
+          "promptTerm": "grindcore"
+        },
+        {
+          "id": "heavy_metal",
+          "label": "Heavy Metal",
+          "promptTerm": "heavy metal"
+        },
+        {
+          "id": "industrial_metal",
+          "label": "Industrial Metal",
+          "promptTerm": "industrial metal"
+        },
+        {
+          "id": "melodic_death_metal",
+          "label": "Melodic Death Metal",
+          "promptTerm": "melodic death metal"
+        },
+        {
+          "id": "metalcore",
+          "label": "Metalcore",
+          "promptTerm": "metalcore"
+        },
+        {
+          "id": "nu_metal",
+          "label": "Nu Metal",
+          "promptTerm": "nu metal"
+        },
+        {
+          "id": "post_metal",
+          "label": "Post-Metal",
+          "promptTerm": "post-metal"
+        },
+        {
+          "id": "power_metal",
+          "label": "Power Metal",
+          "promptTerm": "power metal"
+        },
+        {
+          "id": "progressive_metal",
+          "label": "Progressive Metal",
+          "promptTerm": "progressive metal"
+        },
+        {
+          "id": "sludge_metal",
+          "label": "Sludge Metal",
+          "promptTerm": "sludge metal"
+        },
+        {
+          "id": "stoner_metal",
+          "label": "Stoner Metal",
+          "promptTerm": "stoner metal"
+        },
+        {
+          "id": "symphonic_metal",
+          "label": "Symphonic Metal",
+          "promptTerm": "symphonic metal"
+        },
+        {
+          "id": "technical_death_metal",
+          "label": "Technical Death Metal",
+          "promptTerm": "technical death metal"
+        },
+        {
+          "id": "thrash_metal",
+          "label": "Thrash Metal",
+          "promptTerm": "thrash metal"
+        },
+        {
+          "id": "traditional_doom",
+          "label": "Traditional Doom",
+          "promptTerm": "traditional doom"
+        }
+      ]
+    },
+    {
+      "id": "pop",
+      "label": "Pop",
+      "selectable": false,
+      "children": [
+        {
+          "id": "acoustic_pop",
+          "label": "Acoustic Pop",
+          "promptTerm": "acoustic pop"
+        },
+        {
+          "id": "adult_contemporary",
+          "label": "Adult Contemporary",
+          "promptTerm": "adult contemporary"
+        },
+        {
+          "id": "club_pop",
+          "label": "Club Pop",
+          "promptTerm": "club pop"
+        },
+        {
+          "id": "dance_pop",
+          "label": "Dance Pop",
+          "promptTerm": "dance pop"
+        },
+        {
+          "id": "dream_pop",
+          "label": "Dream Pop",
+          "promptTerm": "dream pop"
+        },
+        {
+          "id": "hyperpop",
+          "label": "Hyperpop",
+          "promptTerm": "hyperpop"
+        },
+        {
+          "id": "indie_pop",
+          "label": "Indie Pop",
+          "promptTerm": "indie pop"
+        },
+        {
+          "id": "j_pop",
+          "label": "J-Pop",
+          "promptTerm": "J-Pop"
+        },
+        {
+          "id": "k_pop",
+          "label": "K-Pop",
+          "promptTerm": "K-Pop"
+        },
+        {
+          "id": "latin_pop",
+          "label": "Latin Pop",
+          "promptTerm": "latin pop"
+        },
+        {
+          "id": "power_pop",
+          "label": "Power Pop",
+          "promptTerm": "power pop"
+        },
+        {
+          "id": "radio_pop",
+          "label": "Radio Pop",
+          "promptTerm": "radio pop"
+        },
+        {
+          "id": "synth_pop",
+          "label": "Synth Pop",
+          "promptTerm": "synth pop"
+        }
+      ]
+    },
+    {
+      "id": "punk",
+      "label": "Punk",
+      "selectable": false,
+      "children": [
+        {
+          "id": "crust_punk",
+          "label": "Crust Punk",
+          "promptTerm": "crust punk"
+        },
+        {
+          "id": "cyberpunk_electronic",
+          "label": "Cyberpunk Electronic",
+          "promptTerm": "cyberpunk electronic"
+        },
+        {
+          "id": "hardcore_punk",
+          "label": "Hardcore Punk",
+          "promptTerm": "hardcore punk"
+        },
+        {
+          "id": "pop_punk",
+          "label": "Pop Punk",
+          "promptTerm": "pop punk"
+        },
+        {
+          "id": "post_hardcore",
+          "label": "Post-Hardcore",
+          "promptTerm": "post-hardcore"
+        },
+        {
+          "id": "post_punk",
+          "label": "Post-Punk",
+          "promptTerm": "post-punk"
+        },
+        {
+          "id": "punk_rock",
+          "label": "Punk Rock",
+          "promptTerm": "punk rock"
+        },
+        {
+          "id": "skate_punk",
+          "label": "Skate Punk",
+          "promptTerm": "skate punk"
+        },
+        {
+          "id": "street_punk",
+          "label": "Street Punk",
+          "promptTerm": "street punk"
+        }
+      ]
+    },
+    {
+      "id": "rnb_soul",
+      "label": "R&B / Soul",
+      "selectable": false,
+      "children": [
+        {
+          "id": "alt_rnb",
+          "label": "Alternative R&B",
+          "promptTerm": "alternative R&B"
+        },
+        {
+          "id": "classic_soul",
+          "label": "Classic Soul",
+          "promptTerm": "classic soul"
+        },
+        {
+          "id": "neo_soul",
+          "label": "Neo-Soul",
+          "promptTerm": "neo-soul"
+        },
+        {
+          "id": "rnb",
+          "label": "R&B",
+          "promptTerm": "R&B"
+        }
+      ]
+    },
+    {
+      "id": "reggae_ska_dub",
+      "label": "Reggae / Ska / Dub",
+      "selectable": false,
+      "children": [
+        {
+          "id": "reggae",
+          "label": "Reggae",
+          "promptTerm": "reggae"
+        },
+        {
+          "id": "ska",
+          "label": "Ska",
+          "promptTerm": "ska"
+        }
+      ]
+    },
+    {
+      "id": "rock",
+      "label": "Rock",
+      "selectable": false,
+      "children": [
+        {
+          "id": "alternative_rock",
+          "label": "Alternative Rock",
+          "promptTerm": "alternative rock"
+        },
+        {
+          "id": "anime_rock",
+          "label": "Anime Rock",
+          "promptTerm": "anime rock"
+        },
+        {
+          "id": "classic_rock",
+          "label": "Classic Rock",
+          "promptTerm": "classic rock"
+        },
+        {
+          "id": "desert_rock",
+          "label": "Desert Rock",
+          "promptTerm": "desert rock"
+        },
+        {
+          "id": "garage_rock",
+          "label": "Garage Rock",
+          "promptTerm": "garage rock"
+        },
+        {
+          "id": "grunge",
+          "label": "Grunge",
+          "promptTerm": "grunge"
+        },
+        {
+          "id": "hard_rock",
+          "label": "Hard Rock",
+          "promptTerm": "hard rock"
+        },
+        {
+          "id": "indie_rock",
+          "label": "Indie Rock",
+          "promptTerm": "indie rock"
+        },
+        {
+          "id": "post_rock",
+          "label": "Post-Rock",
+          "promptTerm": "post-rock"
+        },
+        {
+          "id": "progressive_rock",
+          "label": "Progressive Rock",
+          "promptTerm": "progressive rock"
+        },
+        {
+          "id": "psychedelic_rock",
+          "label": "Psychedelic Rock",
+          "promptTerm": "psychedelic rock"
+        },
+        {
+          "id": "shoegaze",
+          "label": "Shoegaze",
+          "promptTerm": "shoegaze"
+        },
+        {
+          "id": "stoner_rock",
+          "label": "Stoner Rock",
+          "promptTerm": "stoner rock"
+        }
+      ]
+    },
+    {
+      "id": "world_regional",
+      "label": "World / Regional",
+      "selectable": false,
+      "children": [
+        {
+          "id": "afrobeats",
+          "label": "Afrobeats",
+          "promptTerm": "afrobeats"
+        },
+        {
+          "id": "reggaeton",
+          "label": "Reggaeton",
+          "promptTerm": "reggaeton"
+        }
+      ]
+    }
+  ]
+}
