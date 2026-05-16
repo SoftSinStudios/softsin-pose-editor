@@ -146,17 +146,71 @@ function modifierItemOptionsHtml(type) {
   return items.map(item => `<option value="${escapeHtml(item.id)}" data-output="${escapeHtml(item.output)}">${escapeHtml(item.label)}</option>`).join("") + `<option value="custom">Custom...</option>`;
 }
 
+function styleFamilyLabel(item) {
+  const key = String(item.family || item.category || "style").trim();
+  const labels = {
+    ambient: "Ambient",
+    blues: "Blues",
+    cinematic: "Cinematic",
+    classical_orchestral: "Classical / Orchestral",
+    country: "Country",
+    electronic_edm: "Electronic / EDM",
+    folk_traditional: "Folk / Traditional",
+    funk_disco: "Funk / Disco",
+    gospel_sacred: "Gospel / Sacred",
+    "hip-hop": "Hip-Hop / Rap",
+    hip_hop: "Hip-Hop / Rap",
+    jazz: "Jazz",
+    metal: "Metal",
+    pop: "Pop",
+    punk: "Punk",
+    rnb_soul: "R&B / Soul",
+    reggae_ska_dub: "Reggae / Ska / Dub",
+    rock: "Rock",
+    world_regional: "World / Regional"
+  };
+  return labels[key] || titleFromId(key);
+}
+
+function sortedStyleGroups() {
+  const groups = new Map();
+
+  STYLE_LIBRARY.forEach(item => {
+    const family = styleFamilyLabel(item);
+    if (!groups.has(family)) groups.set(family, []);
+    groups.get(family).push(item);
+  });
+
+  return [...groups.entries()]
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { sensitivity: "base" }))
+    .map(([family, items]) => [
+      family,
+      [...items].sort((a, b) => String(a.label || "").localeCompare(String(b.label || ""), undefined, { sensitivity: "base" }))
+    ]);
+}
+
+function styleOptionGroupsHtml({ valueMode = "id", currentValue = "" } = {}) {
+  const groups = sortedStyleGroups();
+  if (!groups.length) return `<option value="custom">Custom</option>`;
+
+  return groups.map(([family, items]) => {
+    const options = items.map(item => {
+      const value = valueMode === "output" ? item.output : item.id;
+      const selected = valueMode === "output" && item.output === currentValue ? " selected" : "";
+      return `<option value="${escapeHtml(value)}" data-output="${escapeHtml(item.output)}"${selected}>${escapeHtml(item.label)}</option>`;
+    }).join("");
+
+    return `<optgroup label="${escapeHtml(family)}">${options}</optgroup>`;
+  }).join("");
+}
+
 function styleOptionsHtml() {
-  if (!STYLE_LIBRARY.length) return `<option value="custom">Custom</option>`;
-  return STYLE_LIBRARY.map(item => `<option value="${escapeHtml(item.id)}" data-output="${escapeHtml(item.output)}">${escapeHtml(item.label)} · ${escapeHtml(item.category || "style")}</option>`).join("") + `<option value="custom">Custom...</option>`;
+  return styleOptionGroupsHtml({ valueMode: "id" }) + `<option value="custom">Custom...</option>`;
 }
 
 function styleNodeOptionsHtml(currentValue = "") {
   const options = [`<option value="">Select style preset...</option>`];
-  STYLE_LIBRARY.forEach(item => {
-    const selected = item.output === currentValue ? " selected" : "";
-    options.push(`<option value="${escapeHtml(item.output)}"${selected}>${escapeHtml(item.label)} · ${escapeHtml(item.category || "style")}</option>`);
-  });
+  options.push(styleOptionGroupsHtml({ valueMode: "output", currentValue }));
   options.push(`<option value="custom">Custom...</option>`);
   return options.join("");
 }
@@ -169,9 +223,7 @@ function populateStylePresetSelect() {
   if (!stylePreset) return;
   const current = stylePreset.value || "";
   const options = [`<option value="">No preset selected</option>`];
-  STYLE_LIBRARY.forEach(item => {
-    options.push(`<option value="${escapeHtml(item.output)}">${escapeHtml(item.label)} · ${escapeHtml(item.category || "style")}</option>`);
-  });
+  options.push(styleOptionGroupsHtml({ valueMode: "output", currentValue: current }));
   options.push(`<option value="custom">Custom / manual entry</option>`);
   stylePreset.innerHTML = options.join("");
   stylePreset.value = current && [...stylePreset.options].some(opt => opt.value === current) ? current : "";
