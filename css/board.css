@@ -1027,6 +1027,25 @@ button.btn {
   }
 }
 
+.markdown-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.markdown-gallery .markdown-image-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.markdown-gallery .markdown-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 @media (max-width: 880px) {
   .forum-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));

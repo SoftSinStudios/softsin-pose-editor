@@ -249,7 +249,9 @@ function formatInlineMarkdown(text) {
 function renderMarkdownLite(raw) {
   const lines = String(raw || "").replaceAll("\r\n", "\n").split("\n");
   const html = [];
+
   let listType = null;
+  let galleryImages = [];
 
   function closeList() {
     if (listType) {
@@ -258,13 +260,64 @@ function renderMarkdownLite(raw) {
     }
   }
 
+  function closeGallery() {
+    if (!galleryImages.length) return;
+
+    if (galleryImages.length === 1) {
+      html.push(`<p>${galleryImages[0]}</p>`);
+    } else {
+      html.push(`
+        <div class="markdown-gallery">
+          ${galleryImages.join("")}
+        </div>
+      `);
+    }
+
+    galleryImages = [];
+  }
+
   lines.forEach((line) => {
     const trimmed = line.trim();
 
     if (!trimmed) {
       closeList();
+      closeGallery();
       return;
     }
+
+    // Detect a line containing ONLY an image
+    const imageMatch = trimmed.match(
+      /^!\[([^\]]*)\]\((https?:\/\/[^)\s]+)\)$/
+    );
+
+    if (imageMatch) {
+      closeList();
+
+      const alt = imageMatch[1] || "Posted image";
+      const url = imageMatch[2];
+
+      galleryImages.push(`
+        <a
+          class="markdown-image-link"
+          href="${url}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="markdown-image"
+            src="${url}"
+            alt="${escapeHtml(alt)}"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+        </a>
+      `);
+
+      return;
+    }
+
+    // Any normal content ends the current gallery.
+    closeGallery();
 
     if (/^(---|\*\*\*|___|<hr\s*\/?\s*>)$/i.test(trimmed)) {
       closeList();
@@ -274,7 +327,11 @@ function renderMarkdownLite(raw) {
 
     if (trimmed.startsWith("> ")) {
       closeList();
-      html.push(`<div class="markdown-quote">${formatInlineMarkdown(trimmed.slice(2))}</div>`);
+      html.push(
+        `<div class="markdown-quote">${formatInlineMarkdown(
+          trimmed.slice(2)
+        )}</div>`
+      );
       return;
     }
 
@@ -307,6 +364,7 @@ function renderMarkdownLite(raw) {
   });
 
   closeList();
+  closeGallery();
 
   return html.join("");
 }
