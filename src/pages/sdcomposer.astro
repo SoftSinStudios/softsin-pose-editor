@@ -17,10 +17,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p>Separate subject, environment, lighting, composition, and quality without turning the final prompt into an uneditable tag pile.</p>
     </div>
     <div class="project-actions" aria-label="Project actions">
-      <button class="btn" id="newProjectBtn" type="button">New</button>
-      <button class="btn" id="importJsonBtn" type="button">Import JSON</button>
-      <button class="btn" id="exportJsonBtn" type="button">Export JSON</button>
-      <button class="btn" id="exportTxtBtn" type="button">Export TXT</button>
+      <button class="btn primary" id="newProjectBtn" type="button">New</button>
+      <button class="btn info" id="importJsonBtn" type="button">Import JSON</button>
+      <button class="btn success" id="exportJsonBtn" type="button">Export JSON</button>
+      <button class="btn success" id="exportTxtBtn" type="button">Export TXT</button>
       <input id="importJsonInput" type="file" accept="application/json,.json" hidden />
     </div>
   </section>
@@ -47,8 +47,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <p id="subjectDescription"></p>
         </div>
         <div class="builder-actions">
-          <button class="btn" id="loadExampleBtn" type="button">Load Example</button>
-          <button class="btn red" id="clearBtn" type="button">Clear Subject</button>
+          <button class="btn warning" id="loadExampleBtn" type="button">Load Example</button>
+          <button class="btn danger" id="clearBtn" type="button">Clear Subject</button>
         </div>
       </header>
 
@@ -109,7 +109,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <article class="prompt-preview positive-preview">
         <div class="preview-head">
           <span>Positive Prompt</span>
-          <button class="btn" data-copy="positive" type="button">Copy</button>
+          <button class="btn primary" data-copy="positive" type="button">Copy</button>
         </div>
         <pre id="positivePreview"></pre>
       </article>
@@ -117,7 +117,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <article class="prompt-preview negative-preview">
         <div class="preview-head">
           <span>Negative Prompt</span>
-          <button class="btn" data-copy="negative" type="button">Copy</button>
+          <button class="btn primary" data-copy="negative" type="button">Copy</button>
         </div>
         <pre id="negativePreview"></pre>
       </article>
