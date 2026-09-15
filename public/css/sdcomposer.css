@@ -576,7 +576,10 @@
 
 .composer-workspace {
   display: grid;
-  grid-template-columns: 190px minmax(580px, 1fr) minmax(320px, 390px);
+  grid-template-columns: minmax(0, 1fr) minmax(350px, 430px);
+  grid-template-areas:
+    "subjects subjects"
+    "builder output";
   gap: 14px;
   align-items: start;
 }
@@ -588,10 +591,24 @@
   overflow: hidden;
 }
 
-.subject-panel,
 .output-panel {
   position: sticky;
   top: 14px;
+}
+
+.subject-panel {
+  grid-area: subjects;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: center;
+}
+
+.prompt-builder {
+  grid-area: builder;
+}
+
+.output-panel {
+  grid-area: output;
 }
 
 .workspace-panel-head,
@@ -610,16 +627,19 @@
 }
 
 .subject-panel .tab-list {
+  grid-template-columns: repeat(7, minmax(100px, 1fr));
+  gap: 6px;
   padding: 8px;
 }
 
 .subject-panel .tab-btn {
   min-height: 42px;
+  text-align: center;
 }
 
 .subject-panel .tab-btn.active {
   border-color: rgba(103,232,255,.22);
-  box-shadow: inset 3px 0 0 var(--accent);
+  box-shadow: inset 0 -3px 0 var(--accent);
 }
 
 .builder-head {
@@ -647,7 +667,7 @@
 }
 
 .field-row {
-  padding: 12px;
+  padding: 10px;
   border: 1px solid rgba(255,255,255,.055);
   border-radius: 14px;
   background: rgba(255,255,255,.018);
@@ -716,19 +736,30 @@
   max-height: 340px;
 }
 
+.output-panel .positive-preview pre {
+  min-height: 220px;
+}
+
+.output-panel .negative-preview pre {
+  min-height: 130px;
+}
+
+.field-hint {
+  opacity: .78;
+  font-size: 10px;
+}
+
 @media (max-width: 1280px) {
   .composer-workspace {
-    grid-template-columns: 180px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
   }
 
-  .output-panel {
-    position: static;
-    grid-column: 1 / -1;
-    grid-template-columns: 1fr 1fr;
+  .subject-panel {
+    grid-template-columns: 190px minmax(0, 1fr);
   }
 
-  .output-panel .output-heading {
-    grid-column: 1 / -1;
+  .subject-panel .tab-list {
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
   }
 }
 
@@ -746,10 +777,15 @@
 
   .composer-workspace {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "subjects"
+      "builder"
+      "output";
   }
 
   .subject-panel {
     position: static;
+    grid-template-columns: 1fr;
   }
 
   .subject-panel .tab-list {
@@ -757,7 +793,12 @@
   }
 
   .output-panel {
-    grid-column: auto;
+    position: static;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .output-panel .output-heading {
+    grid-column: 1 / -1;
   }
 }
 
@@ -778,6 +819,14 @@
     grid-column: 1 / -1;
   }
 
+  .subject-panel .tab-list,
+  .output-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 460px) {
   .subject-panel .tab-list,
   .output-panel {
     grid-template-columns: 1fr;
