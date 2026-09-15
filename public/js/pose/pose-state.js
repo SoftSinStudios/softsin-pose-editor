@@ -126,7 +126,7 @@ function getDefaultBoneMode(boneId) {
     return BONE_MODES.HIDDEN;
   }
 
-  return boneDef?.curve ? BONE_MODES.CURVE : BONE_MODES.STRAIGHT;
+  return BONE_MODES.STRAIGHT;
 }
 
 // Create full state
@@ -236,6 +236,9 @@ export function clearCurveHandles(state) {
   const bone = getSelectedBone(state);
   if (!bone) return;
   bone.handles = [];
+  if (bone.mode === BONE_MODES.CURVE) {
+    bone.mode = BONE_MODES.STRAIGHT;
+  }
 }
 
 export function restoreHiddenBone(state, boneId = state.selectedBone) {
@@ -244,10 +247,9 @@ export function restoreHiddenBone(state, boneId = state.selectedBone) {
   const bone = state.bones[boneId];
 
   if (bone.mode === BONE_MODES.HIDDEN) {
-    bone.mode =
-      BODY25_BONES[boneId]?.curve
-        ? BONE_MODES.CURVE
-        : BONE_MODES.STRAIGHT;
+    bone.mode = bone.handles?.length
+      ? BONE_MODES.CURVE
+      : BONE_MODES.STRAIGHT;
   }
 
   state.selectedBone = boneId;

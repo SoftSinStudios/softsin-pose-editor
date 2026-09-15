@@ -969,10 +969,14 @@ function syncUI() {
   }
 
   if (dom.boneModeDisplay) {
-    const mode = selectedBoneState?.mode || "";
-    dom.boneModeDisplay.value = mode
-      ? mode.charAt(0).toUpperCase() + mode.slice(1)
-      : "No selection";
+    const displayMode = !selectedBoneState
+      ? "No selection"
+      : selectedBoneState.mode === BONE_MODES.HIDDEN
+        ? "Hidden"
+        : selectedBoneState.handles?.length
+          ? "Curved"
+          : "Straight";
+    dom.boneModeDisplay.value = displayMode;
   }
 
   if (dom.zDepthSelect) {
