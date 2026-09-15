@@ -96,9 +96,16 @@ body.musicnode-page {
 
 .toolbar-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
   justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1700px) {
+  .canvas-hint {
+    display: none;
+  }
 }
 
 .node-canvas {
@@ -430,6 +437,11 @@ body.musicnode-page {
   .node-top-strip {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .toolbar-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 
   .node-site-header {
