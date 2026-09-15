@@ -1,4 +1,4 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient } from "@supabase/supabase-js";
 
 const SUPABASE_URL = "https://pnpijueflzvlyzzmhdwa.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ts2QrwDwmmIrXbSzG14fBQ_REyHdGS5";
@@ -43,6 +43,9 @@ const onlineNowCount = document.getElementById("onlineNowCount");
 const newestMemberName = document.getElementById("newestMemberName");
 const threadTotalCount = document.getElementById("threadTotalCount");
 const postTotalCount = document.getElementById("postTotalCount");
+const breadcrumbCategory = document.getElementById("breadcrumbCategory");
+const breadcrumbThread = document.getElementById("breadcrumbThread");
+const breadcrumbThreadSeparator = document.getElementById("breadcrumbThreadSeparator");
 
 const READ_THREADS_KEY = "softsin_read_threads_v1";
 
@@ -65,6 +68,10 @@ let boardPresenceUserKey = null;
 let postTemplates = [];
 let selectedPostTemplate = null;
 let postTemplatesLoaded = false;
+let sessionRequestId = 0;
+let threadRequestId = 0;
+let postRequestId = 0;
+const profileCache = new Map();
 
 const fallbackCategories = [
   { id: null, name: "General", slug: "general", description: "Public discussion for the SoftSin Studios ecosystem." },
@@ -177,6 +184,46 @@ function formatDate(value) {
     day: "numeric",
     year: date.getFullYear() !== now.getFullYear() ? "numeric" : undefined
   });
+}
+
+function readBoardLocation() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    category: params.get("category") || "general",
+    thread: params.get("thread")
+  };
+}
+
+function writeBoardLocation(categorySlug, threadId = null, mode = "push") {
+  if (mode === "none") return;
+
+  const url = new URL(window.location.href);
+  url.pathname = "/board.html";
+  url.search = "";
+  url.hash = "";
+
+  if (categorySlug) {
+    url.searchParams.set("category", categorySlug);
+  }
+
+  if (threadId) {
+    url.searchParams.set("thread", threadId);
+  }
+
+  const state = { category: categorySlug, thread: threadId };
+  window.history[mode === "replace" ? "replaceState" : "pushState"](state, "", url);
+}
+
+function syncBreadcrumbs(thread = null) {
+  if (breadcrumbCategory) {
+    breadcrumbCategory.textContent = currentCategory?.name || "General";
+  }
+
+  if (breadcrumbThread && breadcrumbThreadSeparator) {
+    breadcrumbThread.textContent = thread?.title || "";
+    breadcrumbThread.hidden = !thread;
+    breadcrumbThreadSeparator.hidden = !thread;
+  }
 }
 
 function formatDateOnly(value) {
@@ -1406,6 +1453,10 @@ function setSignedIn(user, profile) {
 }
 
 async function getProfile(userId) {
+  if (profileCache.has(userId)) {
+    return profileCache.get(userId);
+  }
+
   const { data, error } = await supabase
     .from("profiles")
     .select("id, username, display_name, avatar_url, role, bio")
@@ -1417,26 +1468,31 @@ async function getProfile(userId) {
     return null;
   }
 
+  profileCache.set(userId, data);
   return data;
 }
 
-async function refreshSession() {
-  const { data, error } = await supabase.auth.getSession();
+async function applySession(session) {
+  const requestId = ++sessionRequestId;
 
-  if (error || !data.session) {
+  if (!session) {
     setSignedOut();
     return;
   }
 
-  const user = data.session.user;
+  const user = session.user;
   const profile = await getProfile(user.id);
 
+  if (requestId !== sessionRequestId) return;
   setSignedIn(user, profile);
 }
 
 async function signInWithProvider(provider) {
   const redirectTo = window.location.href.split("#")[0];
   const providerName = provider.charAt(0).toUpperCase() + provider.slice(1);
+  loginDiscord.disabled = true;
+  loginGoogle.disabled = true;
+  composerStatus.textContent = `Opening ${providerName} sign-in...`;
 
   const { error } = await supabase.auth.signInWithOAuth({
     provider,
@@ -1448,6 +1504,8 @@ async function signInWithProvider(provider) {
   if (error) {
     console.error(`${providerName} sign-in failed:`, error);
     composerStatus.textContent = `${providerName} sign-in failed. Check console and Supabase redirect URLs.`;
+    loginDiscord.disabled = false;
+    loginGoogle.disabled = false;
   }
 }
 
@@ -1662,12 +1720,12 @@ function renderCategories(categories) {
   categoryList.innerHTML = "";
   categoriesBySlug = new Map();
 
-  categories.forEach((category, index) => {
+  categories.forEach((category) => {
     categoriesBySlug.set(category.slug, category);
 
     const item = document.createElement("a");
-    item.href = "#";
-    item.className = `channel${index === 0 ? " active" : ""}`;
+    item.href = `/board.html?category=${encodeURIComponent(category.slug)}`;
+    item.className = "channel";
     item.dataset.slug = category.slug;
     item.innerHTML = `
       <span>${escapeHtml(category.name)}</span>
@@ -1682,10 +1740,16 @@ function renderCategories(categories) {
     categoryList.appendChild(item);
   });
 
-  const first = categories[0];
+  const location = readBoardLocation();
+  const selected =
+    categoriesBySlug.get(location.category) ||
+    categories[0];
 
-  if (first) {
-    selectCategory(first.slug);
+  if (selected) {
+    selectCategory(selected.slug, {
+      history: "replace",
+      threadId: location.thread
+    });
   }
 }
 
@@ -1762,13 +1826,11 @@ function renderThreads(threads, category, options = {}) {
 
   if (!loadedThreads.length) {
     renderEmptyThreads(category);
-    refreshSession();
     return;
   }
 
   if (!visibleThreads.length) {
     renderNoSearchResults();
-    refreshSession();
     return;
   }
 
@@ -1791,7 +1853,7 @@ function renderThreads(threads, category, options = {}) {
           : cleanBody;
 
       return `
-        <article class="thread clickable-thread" data-thread-id="${escapeHtml(thread.id)}">
+        <a class="thread clickable-thread" data-thread-id="${escapeHtml(thread.id)}" href="/board.html?category=${encodeURIComponent(category.slug)}&thread=${encodeURIComponent(thread.id)}">
           ${renderAvatar(profile)}
           <div>
             <h3>${escapeHtml(thread.title)}</h3>
@@ -1803,18 +1865,18 @@ function renderThreads(threads, category, options = {}) {
             ${replyCount} ${replyCount === 1 ? "reply" : "replies"}<br>
             ${escapeHtml(activityLabel)}
           </div>
-        </article>
+        </a>
       `;
     })
     .join("");
 
   document.querySelectorAll(".thread[data-thread-id]").forEach((row) => {
-    row.addEventListener("click", () => {
+    row.addEventListener("click", (event) => {
+      event.preventDefault();
       openThread(row.dataset.threadId);
     });
   });
 
-  refreshSession();
 }
 
 function applyThreadSearch() {
@@ -1824,7 +1886,8 @@ function applyThreadSearch() {
   renderThreads(filtered, currentCategory, { preserveLoaded: true });
 }
 
-async function loadThreadsForCategory(category) {
+async function loadThreadsForCategory(category, options = {}) {
+  const requestId = ++threadRequestId;
   currentBoardView = "threads";
   setComposerVisibility(true);
   setSearchEnabled(true);
@@ -1863,6 +1926,8 @@ async function loadThreadsForCategory(category) {
     .order("pinned", { ascending: false })
     .order("updated_at", { ascending: false });
 
+  if (requestId !== threadRequestId || currentCategory?.id !== category.id) return;
+
   if (error) {
     console.error("Thread load failed:", error);
     renderThreadError(error.message || "Unknown thread loading error.");
@@ -1871,6 +1936,10 @@ async function loadThreadsForCategory(category) {
 
   loadedThreads = data || [];
   renderThreads(loadedThreads, category, { preserveLoaded: true });
+
+  if (options.threadId && threadsById.has(options.threadId)) {
+    await openThread(options.threadId, { history: options.history || "none" });
+  }
 }
 
 function renderPostLoading() {
@@ -1989,6 +2058,7 @@ function renderPosts(posts) {
 }
 
 async function loadPostsForThread(threadId) {
+  const requestId = ++postRequestId;
   renderPostLoading();
 
   const { data, error } = await supabase
@@ -2009,6 +2079,8 @@ async function loadPostsForThread(threadId) {
     .eq("thread_id", threadId)
     .is("deleted_at", null)
     .order("created_at", { ascending: true });
+
+  if (requestId !== postRequestId || currentThread?.id !== threadId) return;
 
   const loadingRow = document.getElementById("replyLoadingRow");
 
@@ -2182,11 +2254,7 @@ async function softDeleteReply(postId) {
 
   composerStatus.textContent = "Reply deleted.";
 
-  if (currentCategory) {
-    await loadThreadsForCategory(currentCategory);
-  }
-
-  await openThread(threadId);
+  await loadPostsForThread(threadId);
   await loadCategoryCounts();
 }
 
@@ -2473,7 +2541,7 @@ function attachAdminControlListeners(thread) {
   }
 }
 
-function closeThreadView() {
+function closeThreadView(options = {}) {
   currentBoardView = "threads";
   currentThread = null;
   editingThreadId = null;
@@ -2498,11 +2566,14 @@ function closeThreadView() {
 
   postMessage.textContent = "Create Thread";
   postMessage.disabled = signedInBox.hidden;
+  composer.hidden = true;
 
+  syncBreadcrumbs();
+  writeBoardLocation(currentCategory.slug, null, options.history || "push");
   applyThreadSearch();
 }
 
-async function openThread(threadId) {
+async function openThread(threadId, options = {}) {
   currentBoardView = "thread";
 
   const thread = threadsById.get(threadId);
@@ -2523,6 +2594,8 @@ async function openThread(threadId) {
   boardSubtitle.textContent = currentCategory
     ? `${currentCategory.name} thread`
     : "Thread";
+  syncBreadcrumbs(thread);
+  writeBoardLocation(currentCategory?.slug, thread.id, options.history || "push");
 
   if (composerTitle) {
     composerTitle.hidden = true;
@@ -2540,6 +2613,7 @@ async function openThread(threadId) {
   postMessage.textContent = "Post Reply";
   postMessage.disabled = signedInBox.hidden || thread.locked;
   setEditorDisabled(signedInBox.hidden || thread.locked);
+  composer.hidden = false;
 
   if (!signedInBox.hidden && thread.locked) {
     composerStatus.textContent = "This thread is locked.";
@@ -2600,7 +2674,7 @@ async function openThread(threadId) {
   await loadPostsForThread(thread.id);
 }
 
-function selectCategory(slug) {
+async function selectCategory(slug, options = {}) {
   currentBoardView = "threads";
   editingThreadId = null;
   editingReplyId = null;
@@ -2632,6 +2706,8 @@ function selectCategory(slug) {
 
   boardTitle.textContent = category.name;
   boardSubtitle.textContent = category.description || "SoftSin Studios discussion.";
+  syncBreadcrumbs();
+  writeBoardLocation(category.slug, null, options.history || "push");
 
   if (composerTitle) {
     composerTitle.hidden = false;
@@ -2647,8 +2723,9 @@ function selectCategory(slug) {
   postMessage.textContent = "Create Thread";
   postMessage.disabled = signedInBox.hidden;
   setEditorDisabled(signedInBox.hidden);
+  composer.hidden = true;
 
-  loadThreadsForCategory(category);
+  await loadThreadsForCategory(category, options);
 }
 
 async function loadCategories() {
@@ -2660,22 +2737,24 @@ async function loadCategories() {
   if (error || !data?.length) {
     console.warn("Using fallback categories:", error);
     renderCategories(fallbackCategories);
-    await loadCategoryCounts(fallbackCategories);
-    await loadForumStats();
+    await Promise.all([
+      loadCategoryCounts(fallbackCategories),
+      loadForumStats()
+    ]);
     return;
   }
 
   renderCategories(data);
-  await loadCategoryCounts(data);
-  await loadForumStats();
+  await Promise.all([
+    loadCategoryCounts(data),
+    loadForumStats()
+  ]);
 }
 
 async function createThread() {
   if (currentBoardView !== "threads") return;
 
-  const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-
-  if (sessionError || !sessionData.session) {
+  if (!currentUser?.id) {
     composerStatus.textContent = "Sign in before creating a thread.";
     return;
   }
@@ -2724,7 +2803,7 @@ async function createThread() {
     .from("threads")
     .insert({
       category_id: currentCategory.id,
-      author_id: sessionData.session.user.id,
+      author_id: currentUser.id,
       title,
       body
     });
@@ -2760,9 +2839,7 @@ async function createThread() {
 async function createReply() {
   if (currentBoardView !== "thread") return;
 
-  const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-
-  if (sessionError || !sessionData.session) {
+  if (!currentUser?.id) {
     composerStatus.textContent = "Sign in before replying.";
     return;
   }
@@ -2803,7 +2880,7 @@ async function createReply() {
     .from("posts")
     .insert({
       thread_id: currentThread.id,
-      author_id: sessionData.session.user.id,
+      author_id: currentUser.id,
       body
     });
 
@@ -2850,9 +2927,9 @@ newTopicTop.addEventListener("click", () => {
     if (searchInput) {
       searchInput.value = "";
     }
-
-    loadThreadsForCategory(currentCategory);
   }
+
+  composer.hidden = false;
 
   if (composerTitle && !composerTitle.hidden) {
     composerTitle.focus();
@@ -2946,6 +3023,22 @@ if (openRulesReminder) {
   });
 }
 
+if (breadcrumbCategory) {
+  breadcrumbCategory.addEventListener("click", () => {
+    if (currentCategory) {
+      selectCategory(currentCategory.slug);
+    }
+  });
+}
+
+window.addEventListener("popstate", () => {
+  const location = readBoardLocation();
+  selectCategory(location.category, {
+    history: "none",
+    threadId: location.thread
+  });
+});
+
 if (loginDiscord) {
   loginDiscord.addEventListener("click", signInWithDiscord);
 }
@@ -2956,25 +3049,11 @@ if (loginGoogle) {
 
 logout.addEventListener("click", signOut);
 
-supabase.auth.onAuthStateChange(() => {
-  refreshSession();
-
-  if (currentBoardView === "rules") {
-    return;
-  }
-
-  if (currentThread) {
-    openThread(currentThread.id);
-    return;
-  }
-
-  if (currentCategory) {
-    loadThreadsForCategory(currentCategory);
-  }
+supabase.auth.onAuthStateChange((_event, session) => {
+  applySession(session);
 });
 
 updateCharCount();
 setEditorDisabled(true);
 updateTemplatePickerState();
 loadCategories();
-refreshSession();
