@@ -63,7 +63,7 @@ const dom = {
 
   selectedBoneName: document.getElementById("selectedBoneName"),
   selectedBoneRgb: document.getElementById("selectedBoneRgb"),
-  boneModeSelect: document.getElementById("boneModeSelect"),
+  boneModeDisplay: document.getElementById("boneModeDisplay"),
   zDepthSelect: document.getElementById("zDepthSelect"),
 
   addCurveHandleBtn: document.getElementById("addCurveHandleBtn"),
@@ -411,18 +411,12 @@ function bindBoneChips() {
 }
 
 function bindPropertyControls() {
-  [dom.boneModeSelect, dom.zDepthSelect, dom.exportWidthInput, dom.exportHeightInput, dom.boneThicknessInput, dom.jointThicknessInput]
+  [dom.zDepthSelect, dom.exportWidthInput, dom.exportHeightInput, dom.boneThicknessInput, dom.jointThicknessInput]
     .filter(Boolean)
     .forEach(control => {
       control.addEventListener("focus", beginHistoryTransaction);
       control.addEventListener("change", () => commitHistoryTransaction("Settings updated"));
     });
-
-  safeAddEvent(dom.boneModeSelect, "change", () => {
-    setBoneMode(state, dom.boneModeSelect.value);
-    syncUI();
-    redraw();
-  });
 
   safeAddEvent(dom.zDepthSelect, "change", () => {
     setZDepth(state, dom.zDepthSelect.value);
@@ -974,9 +968,11 @@ function syncUI() {
       : "Select a bone on the canvas or from the anatomy list.";
   }
 
-  if (dom.boneModeSelect) {
-    dom.boneModeSelect.disabled = !hasSelection;
-    dom.boneModeSelect.value = selectedBoneState?.mode || BONE_MODES.STRAIGHT;
+  if (dom.boneModeDisplay) {
+    const mode = selectedBoneState?.mode || "";
+    dom.boneModeDisplay.value = mode
+      ? mode.charAt(0).toUpperCase() + mode.slice(1)
+      : "No selection";
   }
 
   if (dom.zDepthSelect) {
