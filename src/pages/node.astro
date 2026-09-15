@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="SoftSin Studios — ComfyUI Nodes" description="Official SoftSin Studios ComfyUI nodes for controlled image saving and user-managed PNG metadata." bodyClass="nodes-page" pageStyles={["/css/node.css"]}>
+  <section class="hero nodes-hero">
+    <div>
+      <span class="eyebrow">ComfyUI Nodes</span>
+      <h1>Clean PNG saving and readable metadata for ComfyUI.</h1>
+      <p class="lead">The SoftSin ComfyUI node set keeps image saving simple: one node builds a readable metadata block, and one node saves the final PNG with the metadata you choose to include.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="https://files.softsinstudios.com/ComfyuiNodes/Softsin_Utility_nodes.zip">Download Nodes</a>
+        <a class="btn" href="#workflow">View Workflow</a>
+        <a class="btn" href="/sdcomposer.html">Prompt Composer</a>
+      </div>
+    </div>
+    <aside class="visual-card nodes-visual-card">
+      <div class="nodes-visual" aria-label="SoftSin ComfyUI nodes visual preview">
+        <div class="node-stack">
+          <div class="mini-node metadata-node"><span>SoftSin Metadata</span><small>artist · year · orientation · disclaimer</small></div>
+          <div class="node-link" aria-hidden="true"></div>
+          <div class="mini-node save-node"><span>SoftSin Save Image</span><small>PNG save · clean metadata · sampler capture</small></div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="panel section">
+    <div class="panel-head"><h2>Supported node set - RELEASED AND READY FOR DOWNLOAD!</h2><p>The public release stays focused on the two nodes that matter most for finished images: metadata control and clean image saving.</p></div>
+    <div class="node-card-grid">
+      <article class="node-card">
+        <figure class="node-image-frame"><img src="/images/softsinmetadatanode.png" alt="SoftSin Metadata ComfyUI node" /></figure>
+        <div class="node-card-top"><span class="node-badge">Metadata</span><h3>SoftSin Metadata</h3><p>Builds a readable PNG metadata block using the fields you control: artist name, copyright year, orientation, and disclaimer text.</p></div>
+        <div class="socket-list"><div><strong>Inputs</strong><span>artist_name</span><span>copyright_year</span><span>orientation</span><span>disclaimer</span></div><div><strong>Output</strong><span>extra_pnginfo</span></div></div>
+      </article>
+      <article class="node-card">
+        <figure class="node-image-frame"><img src="/images/softsinsavenode.png" alt="SoftSin Save Image ComfyUI node" /></figure>
+        <div class="node-card-top"><span class="node-badge">Save</span><h3>SoftSin Save Image</h3><p>Saves images to your chosen output folders, embeds the SoftSin metadata block, and records the connected stock KSampler settings during save.</p></div>
+        <div class="socket-list"><div><strong>Inputs</strong><span>image</span><span>filename_prefix</span><span>extra_pnginfo</span><span>main_dir</span><span>subfolder</span></div><div><strong>Output</strong><span>saved PNG file</span></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section split-panel" id="workflow">
+    <article class="panel">
+      <div class="panel-head"><h2>Recommended workflow</h2><p>Use Preview Image for checking the render while SoftSin Save Image writes the final PNG with your selected metadata attached.</p></div>
+      <figure class="workflow-image-frame"><img src="/images/softsinworkflowexample.png" alt="Recommended SoftSin ComfyUI workflow showing VAEDecode feeding Preview Image and SoftSin Save Image, with SoftSin Metadata feeding extra_pnginfo into SoftSin Save Image." /></figure>
+      <div class="workflow-connection-list" aria-label="Workflow connection summary">
+        <div class="connection-row"><span class="connection-dot blue"></span><strong>VAEDecode.image</strong><span>branches to Preview Image and SoftSin Save Image.</span></div>
+        <div class="connection-row"><span class="connection-dot green"></span><strong>SoftSin Metadata.extra_pnginfo</strong><span>feeds the metadata socket on SoftSin Save Image.</span></div>
+        <div class="connection-row"><span class="connection-dot red"></span><strong>SoftSin Save Image</strong><span>saves the PNG and embeds only the clean SoftSin metadata block.</span></div>
+      </div>
+    </article>
+    <article class="panel">
+      <div class="panel-head"><h2>Metadata output example</h2><p>Example of the readable metadata block written into the saved PNG.</p></div>
+      <pre class="metadata-example">Artist: SoftSin Studios, © 2026 SoftSin Studios
+
+KSampler:
+ Seed: 15  Steps: 35
+ CFG: 1.5
+ Sampler Name: euler_ancestral
+ Scheduler: karras
+ Denoise: 1.0
+
+Orientation: 1080x1440 - portrait
+
+User-written notes or disclaimers can go here.</pre>
+    </article>
+  </section>
+
+  <section class="panel section install-panel" id="download">
+    <div class="panel-head"><h2>Install</h2><p>Install the node folder inside ComfyUI, restart, and add the nodes from the SoftSin utilities section.</p></div>
+    <div class="install-grid">
+      <article class="install-card"><strong>1. Download</strong><span>Download the SoftSin ComfyUI node package from the official release location.</span></article>
+      <article class="install-card"><strong>2. Place folder</strong><span>Place the unzipped node folder inside <code>ComfyUI/custom_nodes/</code>.</span></article>
+      <article class="install-card"><strong>3. Restart</strong><span>Restart ComfyUI, then add the nodes from <code>SoftSin/Utilities</code>.</span></article>
+    </div>
+    <div class="download-actions"><a class="btn primary" href="https://files.softsinstudios.com/ComfyuiNodes/Softsin_Utility_nodes.zip">Download Node Package</a><a class="btn" href="/board.html">Get Support</a></div>
+  </section>
+
+  <section class="card-grid section">
+    <article class="card"><h3>No full workflow dumping</h3><p>The save node is designed to avoid stuffing the full ComfyUI workflow into the PNG metadata.</p></article>
+    <article class="card"><h3>User-controlled notes</h3><p>The disclaimer or notes field is typed in the node instead of being hardcoded into the Python file.</p></article>
+    <article class="card"><h3>Small public release</h3><p>The node set stays narrow, supportable, and easy to understand without turning into another tangled node pile.</p></article>
+  </section>
+</BaseLayout>
