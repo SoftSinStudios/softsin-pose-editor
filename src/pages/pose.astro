@@ -109,17 +109,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <p id="boneInspectorHint">Select a bone on the canvas or from the anatomy list.</p>
             <label><span>Name</span><input id="selectedBoneName" type="text" value="" readonly /></label>
             <label><span>Control Color</span><input id="selectedBoneRgb" type="text" value="" readonly /></label>
-            <div class="bone-inspector-grid">
-              <label>
-                <span>Mode</span>
-                <select id="boneModeSelect">
-                  <option value="straight">Straight</option>
-                  <option value="curve">Curved</option>
-                  <option value="hidden">Hidden</option>
-                </select>
-              </label>
-              <label><span>Weight</span><input id="lineWeightInput" type="number" min="1" max="24" step="1" value="6" /></label>
-            </div>
+            <label>
+              <span>Mode</span>
+              <select id="boneModeSelect">
+                <option value="straight">Straight</option>
+                <option value="curve">Curved</option>
+                <option value="hidden">Hidden</option>
+              </select>
+            </label>
           </section>
           <div class="side-title anatomy-title">Anatomy Navigator</div>
           <div class="bone-color-panel bone-color-panel-rail">

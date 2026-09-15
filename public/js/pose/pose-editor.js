@@ -7,7 +7,6 @@ import {
   selectBone,
   clearSelectedBone,
   setBoneMode,
-  setLineWeight,
   setZDepth,
   setExportSize,
   setPoseThickness,
@@ -65,7 +64,6 @@ const dom = {
   selectedBoneName: document.getElementById("selectedBoneName"),
   selectedBoneRgb: document.getElementById("selectedBoneRgb"),
   boneModeSelect: document.getElementById("boneModeSelect"),
-  lineWeightInput: document.getElementById("lineWeightInput"),
   zDepthSelect: document.getElementById("zDepthSelect"),
 
   addCurveHandleBtn: document.getElementById("addCurveHandleBtn"),
@@ -413,7 +411,7 @@ function bindBoneChips() {
 }
 
 function bindPropertyControls() {
-  [dom.boneModeSelect, dom.lineWeightInput, dom.zDepthSelect, dom.exportWidthInput, dom.exportHeightInput, dom.boneThicknessInput, dom.jointThicknessInput]
+  [dom.boneModeSelect, dom.zDepthSelect, dom.exportWidthInput, dom.exportHeightInput, dom.boneThicknessInput, dom.jointThicknessInput]
     .filter(Boolean)
     .forEach(control => {
       control.addEventListener("focus", beginHistoryTransaction);
@@ -422,12 +420,6 @@ function bindPropertyControls() {
 
   safeAddEvent(dom.boneModeSelect, "change", () => {
     setBoneMode(state, dom.boneModeSelect.value);
-    syncUI();
-    redraw();
-  });
-
-  safeAddEvent(dom.lineWeightInput, "input", () => {
-    setLineWeight(state, dom.lineWeightInput.value);
     syncUI();
     redraw();
   });
@@ -985,11 +977,6 @@ function syncUI() {
   if (dom.boneModeSelect) {
     dom.boneModeSelect.disabled = !hasSelection;
     dom.boneModeSelect.value = selectedBoneState?.mode || BONE_MODES.STRAIGHT;
-  }
-
-  if (dom.lineWeightInput) {
-    dom.lineWeightInput.disabled = !hasSelection;
-    dom.lineWeightInput.value = selectedBoneState?.weight || 6;
   }
 
   if (dom.zDepthSelect) {

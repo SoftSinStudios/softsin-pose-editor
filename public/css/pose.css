@@ -306,12 +306,6 @@
   font-size: 11px;
 }
 
-.bone-inspector-grid {
-  display: grid;
-  grid-template-columns: 1fr 90px;
-  gap: 7px;
-}
-
 .anatomy-title {
   margin: 4px 2px -4px;
 }
