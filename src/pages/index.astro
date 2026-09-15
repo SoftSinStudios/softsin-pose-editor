@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "SoftSin Studios — Creator Tools for AI Art Workflows";
+const description = "SoftSin Studios builds practical creator tools for AI art workflows, BODY_25 pose editing, prompt composition, JSON utilities, ComfyUI metadata, and community updates.";
+---
+
+<BaseLayout title={title} description={description} active="home" canonicalPath="/" pageStyles={["/css/home.css"]}>
+  <style slot="head">
+    .tool-card .tool-orb.tool-card-graphic {
+      width: 100%;
+      min-height: 190px;
+      border-radius: 22px;
+      border: 1px solid rgba(103, 232, 255, 0.18);
+      background: rgba(0, 0, 0, 0.24);
+      box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28), 0 0 42px rgba(103, 232, 255, 0.08);
+      overflow: hidden;
+      transform: none;
+    }
+    .tool-card .tool-orb.tool-card-graphic::before,
+    .tool-card .tool-orb.tool-card-graphic::after { display: none; }
+    .tool-card-graphic img { display: block; width: 100%; height: 100%; min-height: 190px; object-fit: cover; object-position: center; }
+  </style>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">SoftSin Studios</span>
+      <h1>Clean tools for AI art and creator workflows.</h1>
+      <p class="lead"><strong>SoftSin Studios</strong> is a home base for browser-based creator tools, <strong>ComfyUI helpers</strong>, <strong>Stable Diffusion workflow experiments</strong>, artwork, updates, and documentation.</p>
+      <div class="hero-points" aria-label="SoftSin Studios focus areas">
+        <span><strong>Browser tools</strong> - 100% free for everyone!</span><br />
+        <span><strong>Pose control</strong> - Full custom pose creation with bezier curves!</span><br />
+        <span><strong>Image Prompt structure</strong> - Take the guess work out of SD1.5 prompt structure!</span><br />
+        <span><strong>Music Prompt structure</strong> - Take the guess work out of AI music prompt structure!</span><br />
+        <span><strong>Custom ComfyUI Nodes</strong> - Take control of your metadata and saved images!</span><br />
+        <span><strong>Reusable workflow files</strong> - One stop shop for your workflows!</span>
+      </div>
+      <p class="lead">The SoftSin Studios ethos is simple: <em>build useful tools that reduce friction</em> instead of adding another layer of chaos to the creative stack.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="/toolhub.html">Open Tool Hub</a>
+        <a class="btn" href="/socials.html">View socials</a>
+        <a class="btn" href="/board.html">Read Updates</a>
+      </div>
+    </div>
+
+    <div class="tool-showcase">
+      <article class="card tool-card">
+        <div><h3>Pose Editor</h3><p>Create BODY_25 control images from reference art, adjust bones directly on canvas, and export clean OpenPose-ready PNG files.</p></div>
+        <div class="tool-orb tool-card-graphic"><img src="/images/home-pose-editor.png" alt="Pose Editor screenshot showing BODY_25 pose controls over a reference image" loading="lazy" /></div>
+        <a class="btn primary" href="/pose.html">Launch Pose Editor</a>
+      </article>
+      <article class="card tool-card">
+        <div><h3>JSON Maker</h3><p>Build, clean, and reuse structured JSON for prompt vocabularies, tool data, presets, and workflow systems.</p></div>
+        <div class="tool-orb tool-card-graphic"><img src="/images/home-json-maker.png" alt="JSON Maker preview showing category controls and JSON output" loading="lazy" /></div>
+        <a class="btn" href="/json.html">Open JSON Maker</a>
+      </article>
+      <article class="card tool-card">
+        <div><h3>ComfyUI Nodes</h3><p>Documentation for the SoftSin Metadata and Save Image nodes, built around readable PNGInfo and cleaner image output.</p></div>
+        <div class="tool-orb tool-card-graphic"><img src="/images/home-comfyui-nodes.png" alt="SoftSin ComfyUI node screenshots for metadata and image saving" loading="lazy" /></div>
+        <a class="btn" href="/node.html">View Nodes</a>
+      </article>
+      <article class="card tool-card">
+        <div><h3>SD Prompt Composer</h3><p>Compose structured prompts with clear sections for identity, outfit, pose, environment, lighting, quality, and negatives.</p></div>
+        <div class="tool-orb tool-card-graphic"><img src="/images/home-sd-prompt-composer.png" alt="SD Prompt Composer interface showing structured prompt fields" loading="lazy" /></div>
+        <a class="btn" href="/sdcomposer.html">Open Composer</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="panel section">
+    <div class="panel-head"><h2>Tools, updates, and support</h2><p>Find SoftSin tools, release notes, support posts, workflow notes, and project updates from one place.</p></div>
+    <div class="quick-grid">
+      <a class="quick" href="/toolhub.html"><strong>Tools</strong><span>Pose editing, prompt composition, JSON utilities, and ComfyUI workflow support.</span></a>
+      <a class="quick" href="/socials.html"><strong>Socials</strong><span>Social channels, and places to follow current work.</span></a>
+      <a class="quick" href="/board.html"><strong>Updates</strong><span>Release notes, support posts, bug reports, roadmap notes, and community discussion.</span></a>
+      <a class="quick" href="/board.html"><strong>Support</strong><span>Use the message board for tool help, bug reports, feature requests, release notes, and direct SoftSin project support.</span></a>
+    </div>
+  </section>
+
+  <section class="card-grid section">
+    <article class="card"><h3>Built for working artists</h3><p>The tools are designed around real image-generation habits: reference images, pose control, prompt structure, reusable data, and clean exports that plug into an existing workflow.</p></article>
+    <article class="card"><h3>Browser-first utilities</h3><p>Most SoftSin tools run directly in the browser. Open the page, use the tool, save or export the result, and get back to making the thing.</p></article>
+    <article class="card"><h3>Readable workflow systems</h3><p>SoftSin favors simple files, clear labels, visible metadata, and formats that can be inspected later instead of buried in a black box.</p></article>
+  </section>
+</BaseLayout>

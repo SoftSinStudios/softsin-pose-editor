@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ToolCard from "../components/ToolCard.astro";
+
+const title = "SoftSin Studios — Tool Hub";
+const description = "SoftSin Studios tool hub for AI art tools, pose control, prompt building, ComfyUI support, JSON utilities, list formatting, and social posting references.";
+
+const tools = [
+  {
+    label: "Flagship", title: "Pose Editor",
+    description: "Build BODY_25 pose control images over a reference image, adjust bones directly on the canvas, then export a clean black-background PNG for OpenPose-style workflows.",
+    image: "/images/home-pose-editor.png", imageAlt: "SoftSin Pose Editor preview", href: "/pose.html", action: "Launch Pose Editor", featured: true, primary: true
+  },
+  {
+    label: "Prompting", title: "SD Prompt Composer",
+    description: "Create structured Stable Diffusion prompts with organized sections, positive and negative output, and cleaner formatting for ComfyUI or copy-paste workflows.",
+    image: "/images/home-sd-prompt-composer.png", imageAlt: "SD Prompt Composer preview", href: "/sdcomposer.html", action: "Open Composer"
+  },
+  {
+    label: "Music", title: "Music Prompt Builder",
+    description: "Build structured AI music prompts with genre controls, vocal-space control, compact exclusions, diagnostics, and reusable song prompt recipes.",
+    image: "/images/home-music-prompt-builder.svg", imageAlt: "Music Prompt Builder preview", href: "/musicprompt.html", action: "Open Builder"
+  },
+  {
+    label: "Data", title: "JSON Maker",
+    description: "Create and edit structured JSON for prompt banks, vocabularies, tool data, and reusable content sets without hand-formatting every bracket and comma.",
+    image: "/images/home-json-maker.png", imageAlt: "JSON Maker preview", href: "/json.html", action: "Open JSON Maker"
+  },
+  {
+    label: "ComfyUI", title: "ComfyUI Nodes",
+    description: "Documentation for the supported SoftSin ComfyUI nodes: Metadata for readable generation records and Save Image for clean final image output.",
+    image: "/images/home-comfyui-nodes.png", imageAlt: "ComfyUI Nodes preview", href: "/node.html", action: "View Nodes"
+  },
+  {
+    label: "Utility", title: "List Formatter",
+    description: "Paste a plain one-item-per-line list and convert it into clean formatted output for prompt banks, scripts, JSON prep, or quick workflow cleanup.",
+    image: "/images/home-list-formatter.png", imageAlt: "List Formatter preview", href: "/listconverter.html", action: "Open Formatter"
+  },
+  {
+    label: "Guide", title: "Social Post Guide",
+    description: "Check platform image sizes, aspect ratios, posting notes, and practical creator guidance before pushing finished work into the social-media blender.",
+    image: "/images/socialpost.png", imageAlt: "Social Post Guide preview", href: "/socialpostguide.html", action: "Open Guide"
+  }
+];
+---
+
+<BaseLayout title={title} description={description} active="tools" bodyClass="toolhub-page" tagline="Clean tools for AI art and creator workflows" pageStyles={["/css/toolhub.css"]}>
+  <section class="hero toolhub-hero">
+    <div>
+      <span class="eyebrow">Tool Hub</span>
+      <h1>One launch point for SoftSin creator tools.</h1>
+      <p class="lead">Open the active SoftSin tools from one place. Build pose guides, structure prompts, clean up lists, prepare JSON data, and find the workflow pages that support AI art and ComfyUI production.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#tools">Browse Tools</a>
+        <a class="btn" href="/board.html">Get Support</a>
+        <a class="btn" href="/socials.html">View Gallery</a>
+      </div>
+    </div>
+    <aside class="visual-card toolhub-visual-card">
+      <div class="toolhub-visual" aria-label="SoftSin Tool Hub visual preview">
+        <div class="hub-orbit">
+          <span>SD Prompting</span><span>Pose creation</span><span>JSON creation</span><span>Custom Nodes</span><span>Lists converter</span><span>Social Guide</span><span>Music Prompting</span>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="panel section" id="tools">
+    <div class="panel-head"><h2>Available tools</h2><p>Each tool is built around a specific workflow problem instead of trying to be a bloated everything-machine.</p></div>
+    <div class="toolhub-grid">
+      {tools.map((tool) => <ToolCard {...tool} />)}
+    </div>
+  </section>
+
+  <section class="card-grid section">
+    <article class="card"><h3>Focused tools</h3><p>Each page handles one job: pose control, prompt structure, JSON cleanup, metadata support, list formatting, or posting reference.</p></article>
+    <article class="card"><h3>Built for workflow</h3><p>The tools are designed around real production habits: reference images, reusable data, clean exports, and less manual cleanup after the fact.</p></article>
+    <article class="card"><h3>Support and updates</h3><p>Use the message board for release notes, tool support, bug reports, feedback, and future workflow documentation.</p></article>
+  </section>
+</BaseLayout>

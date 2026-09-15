@@ -1,0 +1,25 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  href: string;
+  action: string;
+  featured?: boolean;
+  primary?: boolean;
+}
+
+const { label, title, description, image, imageAlt, href, action, featured = false, primary = false } = Astro.props;
+---
+
+<article class:list={["card", "toolhub-card", { featured }]}>
+  <div>
+    <span class="tool-label">{label}</span>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+  <img class="tool-preview" src={image} alt={imageAlt} loading="lazy" />
+  <a class:list={["btn", { primary }]} href={href}>{action}</a>
+</article>

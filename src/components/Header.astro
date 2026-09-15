@@ -1,0 +1,28 @@
+---
+interface Props {
+  active?: "home" | "socials" | "board" | "tools";
+  tagline?: string;
+}
+
+const {
+  active,
+  tagline = "Creator tools, art, music, and workflows"
+} = Astro.props;
+---
+
+<header class="topbar">
+  <a class="brand" href="/index.html">
+    <img class="mark" src="/android-chrome-192x192.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+    <span>
+      <strong>SoftSin Studios</strong>
+      <span>{tagline}</span>
+    </span>
+  </a>
+
+  <nav class="nav" aria-label="Primary">
+    <a href="/index.html" class:list={{ active: active === "home" }} aria-current={active === "home" ? "page" : undefined}>Home</a>
+    <a href="/socials.html" class:list={{ active: active === "socials" }} aria-current={active === "socials" ? "page" : undefined}>Socials</a>
+    <a href="/board.html" class:list={{ active: active === "board" }} aria-current={active === "board" ? "page" : undefined}>Message Board</a>
+    <a href="/toolhub.html" class:list={["btn", "primary", { active: active === "tools" }]} aria-current={active === "tools" ? "page" : undefined}>Tool Hub</a>
+  </nav>
+</header>

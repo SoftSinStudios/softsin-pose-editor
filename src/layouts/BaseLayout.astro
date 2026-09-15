@@ -1,0 +1,66 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/index.css";
+
+interface Props {
+  title: string;
+  description: string;
+  active?: "home" | "socials" | "board" | "tools";
+  bodyClass?: string;
+  tagline?: string;
+  canonicalPath?: string;
+  pageStyles?: string[];
+}
+
+const {
+  title,
+  description,
+  active,
+  bodyClass,
+  tagline,
+  canonicalPath = Astro.url.pathname,
+  pageStyles = []
+} = Astro.props;
+const canonical = new URL(canonicalPath, Astro.site);
+const socialImage = new URL("/images/softsin-og.png", Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#070a10" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SoftSin Studios" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    {pageStyles.map((href) => <link rel="stylesheet" href={href} />)}
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <div class="shell">
+      <Header active={active} tagline={tagline} />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+    <slot name="scripts" />
+  </body>
+</html>

@@ -1,0 +1,55 @@
+.nav a,
+.btn {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  padding: 9px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.nav a:hover,
+.nav a.active,
+.btn:hover {
+  border-color: var(--line2);
+  color: var(--text);
+  background: rgba(103, 232, 255, 0.07);
+}
+
+.btn.primary {
+  color: #071016;
+  background: linear-gradient(135deg, var(--accent), #9ff4ff);
+  border-color: rgba(103, 232, 255, 0.4);
+}
+
+.btn.red { color: var(--accent2); background: rgba(255, 94, 120, 0.08); border-color: rgba(255, 94, 120, 0.28); box-shadow: none; }
+.btn.red:hover { color: #ff8fa3; background: rgba(255, 94, 120, 0.14); border-color: rgba(255, 94, 120, 0.42); box-shadow: none; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  border: 1px solid var(--line2);
+  background: rgba(103, 232, 255, 0.07);
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.panel { border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(18px); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.panel-head { padding: 20px 22px; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent); }
+.panel-head h2 { margin: 0; font-size: 22px; letter-spacing: -0.4px; }
+.panel-head p { margin: 4px 0 0; color: var(--soft); font-size: 13px; }
+.card { border: 1px solid var(--line); background: rgba(255, 255, 255, 0.035); border-radius: var(--radius); padding: 20px; }
+.card h3 { margin: 0 0 8px; font-size: 19px; }
+.card p { margin: 0; color: var(--muted); }
+.visual-card { border: 1px solid var(--line); background: linear-gradient(135deg, rgba(103, 232, 255, 0.12), transparent 44%), rgba(16, 22, 32, 0.76); border-radius: 30px; padding: 18px; box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+.visual { min-height: 430px; border-radius: 24px; overflow: hidden; border: 1px solid var(--line); background: radial-gradient(circle at 52% 28%, rgba(103, 232, 255, 0.34), transparent 12rem), radial-gradient(circle at 38% 58%, rgba(255, 94, 120, 0.22), transparent 14rem), linear-gradient(145deg, #111824, #070a10); display: grid; place-items: center; position: relative; }
+.visual::before { content: ""; width: 180px; height: 180px; border-radius: 42px; border: 1px solid rgba(103, 232, 255, 0.34); background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), transparent), rgba(255, 255, 255, 0.035); transform: rotate(12deg); box-shadow: 0 0 70px rgba(103, 232, 255, 0.12); }
+.visual::after { content: "SoftSin Studios"; position: absolute; bottom: 18px; left: 18px; right: 18px; border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; background: rgba(5, 7, 11, 0.72); color: var(--muted); font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; backdrop-filter: blur(16px); }
