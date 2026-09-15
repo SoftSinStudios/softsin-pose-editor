@@ -718,34 +718,25 @@
 .btn.visibility-action,
 #addCurveHandleBtn,
 #clearCurveHandlesBtn {
-  border-color: var(--line);
-  color: var(--muted);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.16)),
-    rgba(0,0,0,.18);
   box-shadow: none;
 }
 
 .btn.visibility-action.can-use,
 #addCurveHandleBtn.can-use,
 #clearCurveHandlesBtn.can-use {
-  border-color: rgba(94,255,154,.54);
-  color: var(--text);
-  background:
-    linear-gradient(180deg, rgba(94,255,154,.09), rgba(0,0,0,.13)),
-    rgba(0,0,0,.18);
+  border-color: color-mix(in srgb, currentColor 54%, transparent);
   box-shadow:
-    0 0 0 1px rgba(94,255,154,.08),
-    0 0 20px rgba(94,255,154,.18);
+    0 0 0 1px color-mix(in srgb, currentColor 8%, transparent),
+    0 0 20px color-mix(in srgb, currentColor 18%, transparent);
 }
 
 .btn.visibility-action.can-use:hover,
 #addCurveHandleBtn.can-use:hover,
 #clearCurveHandlesBtn.can-use:hover {
-  border-color: rgba(94,255,154,.78);
+  border-color: color-mix(in srgb, currentColor 78%, transparent);
   box-shadow:
-    0 0 0 1px rgba(94,255,154,.16),
-    0 0 26px rgba(94,255,154,.25);
+    0 0 0 1px color-mix(in srgb, currentColor 16%, transparent),
+    0 0 26px color-mix(in srgb, currentColor 25%, transparent);
 }
 
 .btn.visibility-action:disabled,

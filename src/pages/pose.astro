@@ -19,13 +19,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <header class="pose-app-toolbar">
         <div class="pose-toolbar-group">
           <button class="btn action" type="button" id="newPoseBtn">New Pose</button>
-          <button class="btn" type="button" id="undoPoseBtn" disabled>Undo</button>
-          <button class="btn" type="button" id="redoPoseBtn" disabled>Redo</button>
+          <button class="btn info" type="button" id="undoPoseBtn" disabled>Undo</button>
+          <button class="btn info" type="button" id="redoPoseBtn" disabled>Redo</button>
         </div>
         <div class="pose-toolbar-group pose-view-controls">
-          <button class="btn" type="button" id="zoomOutBtn" aria-label="Zoom out">−</button>
-          <button class="btn" type="button" id="fitViewBtn">Fit View</button>
-          <button class="btn" type="button" id="zoomInBtn" aria-label="Zoom in">+</button>
+          <button class="btn info" type="button" id="zoomOutBtn" aria-label="Zoom out">−</button>
+          <button class="btn info" type="button" id="fitViewBtn">Fit View</button>
+          <button class="btn info" type="button" id="zoomInBtn" aria-label="Zoom in">+</button>
           <output id="zoomLevel">100%</output>
         </div>
         <div class="pose-toolbar-state">
@@ -37,8 +37,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <aside class="pose-side-rail pose-side-rail-left" aria-label="File, canvas, export, and selected bone controls">
           <div class="pose-sidebar-group pose-sidebar-file-actions" aria-label="File actions">
             <div class="pose-sidebar-grid two-up">
-              <button class="btn pose-tool-btn" type="button" id="loadImageBtn" title="Load a reference image for tracing. SoftSin pose PNGs with embedded pose data load as editable poses instead.">Load Image</button>
-              <button class="btn pose-tool-btn" type="button" id="loadPoseBtn" title="Load a saved SoftSin pose JSON file as an editable pose.">Load JSON</button>
+              <button class="btn info pose-tool-btn" type="button" id="loadImageBtn" title="Load a reference image for tracing. SoftSin pose PNGs with embedded pose data load as editable poses instead.">Load Image</button>
+              <button class="btn info pose-tool-btn" type="button" id="loadPoseBtn" title="Load a saved SoftSin pose JSON file as an editable pose.">Load JSON</button>
             </div>
           </div>
 
@@ -68,8 +68,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           <div class="pose-sidebar-group" aria-label="Export actions">
             <div class="pose-sidebar-grid two-up">
-              <button class="btn pose-tool-btn" type="button" id="exportPngBtn" title="Export the current pose as a clean PNG using the selected width and height. SoftSin pose data is embedded for re-import.">Export PNG</button>
-              <button class="btn pose-tool-btn" type="button" id="downloadPoseJsonBtn" title="Export the current editable pose as a JSON project file.">Export JSON</button>
+              <button class="btn action pose-tool-btn" type="button" id="exportPngBtn" title="Export the current pose as a clean PNG using the selected width and height. SoftSin pose data is embedded for re-import.">Export PNG</button>
+              <button class="btn action pose-tool-btn" type="button" id="downloadPoseJsonBtn" title="Export the current editable pose as a JSON project file.">Export JSON</button>
             </div>
           </div>
 
@@ -81,11 +81,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </label>
 
           <div class="pose-side-button-stack">
-            <button class="btn visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones gray out in the bone color list.">Hide Bone</button>
-            <button class="btn visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Unhide Bone</button>
-            <button class="btn" type="button" id="addCurveHandleBtn" title="Add one curve point to the selected bone. Only supported guide bones can use this.">Add Curve Point</button>
-            <button class="btn" type="button" id="clearCurveHandlesBtn" title="Remove the curve point from the selected bone and return it to a straight bone.">Clear Curve Points</button>
-            <button class="btn pose-tool-btn reset-outline" type="button" id="resetPoseBtn" title="Reset the editor back to the default starter pose.">Reset Canvas</button>
+            <button class="btn warning visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones gray out in the bone color list.">Hide Bone</button>
+            <button class="btn success visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Unhide Bone</button>
+            <button class="btn success" type="button" id="addCurveHandleBtn" title="Add one curve point to the selected bone. Only supported guide bones can use this.">Add Curve Point</button>
+            <button class="btn warning" type="button" id="clearCurveHandlesBtn" title="Remove the curve point from the selected bone and return it to a straight bone.">Clear Curve Points</button>
+            <button class="btn danger pose-tool-btn reset-outline" type="button" id="resetPoseBtn" title="Reset the editor back to the default starter pose.">Reset Canvas</button>
           </div>
         </aside>
 
