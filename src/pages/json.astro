@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="SoftSin Studios — JSON Maker" description="Build clean category and list JSON for prompt libraries, tool data, presets, and creator workflow files." bodyClass="json-page" tagline="Clean tools for AI art and creator workflows" pageStyles={["/css/json.css"]}>
+  <section class="hero json-hero">
+    <div>
+      <span class="eyebrow">JSON Maker</span><h1>Build clean JSON files without fighting brackets and commas.</h1>
+      <p class="lead">Create organized category-based JSON for prompt libraries, tag banks, presets, tool data, and workflow files. Add categories, add list items, preview the structure, then export a clean file you can reuse.</p>
+      <div class="hero-actions"><a class="btn primary" href="#jsonMakerTool">Open JSON Maker</a><button class="btn" id="importJsonHero" type="button">Load JSON</button><button class="btn" id="exportJsonHero" type="button">Export JSON</button></div>
+    </div>
+    <aside class="visual-card json-visual-card"><div class="json-preview-visual" aria-label="JSON Maker visual preview"><div class="json-visual-stack"><span>{`{`}</span><span>"category": "prompts"</span><span>"items": [ ... ]</span><span>"version": "1.0.0"</span><span>{`}`}</span></div></div></aside>
+  </section>
+
+  <section class="panel section json-intro">
+    <div class="panel-head"><h2>Build reusable data files</h2><p>This tool turns loose lists and category notes into readable JSON files that can be loaded, edited, versioned, and reused across SoftSin tools or your own workflow experiments.</p></div>
+    <div class="json-info-grid">
+      <article class="json-info-card"><strong>Category-first structure</strong><span>Group related items under named categories so prompt banks, tags, presets, and tool data stay easy to read.</span></article>
+      <article class="json-info-card"><strong>Live read-only preview</strong><span>See the generated structure before you save it, so bad commas and broken brackets do not become tomorrow's swamp monster.</span></article>
+      <article class="json-info-card"><strong>Import and continue</strong><span>Bring an existing file back in, update the categories or items, then export a fresh version when the data changes.</span></article>
+    </div>
+  </section>
+
+  <div id="jsonMakerTool" class="json-maker-shell section">
+    <aside id="left" class="json-side panel">
+      <div class="panel-head compact-head"><h2>Structure</h2><p>Follow the workflow below to turn rough list data into a structured JSON file.</p></div>
+      <div class="json-side-body"><div class="side-title">Workflow</div><div class="workflow-list"><span>1. Name the file</span><span>2. Add categories</span><span>3. Add list items</span><span>4. Review preview</span><span>5. Export JSON</span></div></div>
+      <div class="side-section-like"><div class="side-title">Notes</div><p class="mini-note">The file name field controls the exported filename. Descriptors are optional, but they help explain what the file is for when your library starts growing teeth.</p></div>
+    </aside>
+    <section id="stageWrap" class="json-main panel">
+      <div class="json-toolbar">
+        <div><span class="side-title">Working File</span><h2>JSON Builder</h2><p>Create grouped data while the tool handles the JSON formatting in the background.</p></div>
+        <div class="json-actions" aria-label="JSON maker actions"><input id="jsonFile" type="file" accept="application/json,.json" hidden /><button class="btn" id="importJson" type="button">Load JSON</button><button class="btn" id="exportJson" type="button">Export JSON</button><button class="btn red" id="clearAll" type="button">Clear All</button></div>
+      </div>
+      <div id="stageInner" class="json-stage-inner">
+        <img id="img" alt="" /><canvas id="canvas"></canvas><div id="overlay"></div>
+        <form id="jsonForm" autocomplete="off">
+          <div class="card root-card">
+            <div class="card-head"><strong>Root</strong><span id="counts" class="muted"></span></div>
+            <div class="form-row two-col">
+              <div class="col"><label for="filename">File name</label><input id="filename" type="text" placeholder="Example: expression_tags or lighting_presets" /><div class="hint">Spaces are converted to underscores for cleaner filenames.</div></div>
+              <div class="col"><label for="version">Version</label><input id="version" type="text" placeholder="Example: 1.0.0" /><div class="hint">Use major.minor.patch when you want version tracking, for example 1.0.0.</div></div>
+            </div>
+            <div class="form-row"><label for="rootTags">Descriptors <span class="label-soft">optional</span></label><input id="rootTags" type="text" placeholder="Example: portrait lighting tags, pose keywords, environment prompts" /><div class="hint">Use commas to separate descriptors.</div></div>
+            <input id="brandMeta" type="hidden" value="Created with the SoftSin Studio JSON Creator V1.00: https://www.softsinstudios.com, © 2025" />
+          </div>
+          <div id="categories" class="card-list"></div>
+          <div class="toolbar json-form-actions"><button class="btn primary" type="button" id="btnAddCategory">+ Category</button><button class="btn" type="button" id="btnAddItem">+ List Item</button></div>
+          <div class="card preview-card"><div class="card-head"><strong>Preview <span class="label-soft">read-only</span></strong></div><textarea id="jsonPreview" readonly placeholder="JSON preview will appear here..."></textarea></div>
+        </form>
+      </div>
+    </section>
+  </div>
+  <Fragment slot="scripts">
+    <script is:inline>
+      const importHero = document.getElementById('importJsonHero');
+      const exportHero = document.getElementById('exportJsonHero');
+      const importMain = document.getElementById('importJson');
+      const exportMain = document.getElementById('exportJson');
+      document.getElementById('jsonForm')?.addEventListener('submit', event => event.preventDefault());
+      if (importHero && importMain) importHero.addEventListener('click', () => importMain.click());
+      if (exportHero && exportMain) exportHero.addEventListener('click', () => exportMain.click());
+    </script>
+    <script is:inline src="/js/jsonmaker.js"></script>
+  </Fragment>
+</BaseLayout>
