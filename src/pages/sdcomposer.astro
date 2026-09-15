@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="SoftSin Studios — SD Prompt Composer"
+  description="SoftSin Studios SD Prompt Composer builds structured positive and negative prompts for Stable Diffusion and ComfyUI workflows."
+  active="tools"
+  canonicalPath="/sdcomposer.html"
+  bodyClass="composer-page"
+  pageStyles={["/css/sdcomposer.css"]}
+>
+  <section class="composer-masthead">
+    <div>
+      <span class="eyebrow">SD Prompt Composer</span>
+      <h1>Build prompts with structure.</h1>
+      <p>Separate subject, environment, lighting, composition, and quality without turning the final prompt into an uneditable tag pile.</p>
+    </div>
+    <div class="project-actions" aria-label="Project actions">
+      <button class="btn" id="newProjectBtn" type="button">New</button>
+      <button class="btn" id="importJsonBtn" type="button">Import JSON</button>
+      <button class="btn" id="exportJsonBtn" type="button">Export JSON</button>
+      <button class="btn" id="exportTxtBtn" type="button">Export TXT</button>
+      <input id="importJsonInput" type="file" accept="application/json,.json" hidden />
+    </div>
+  </section>
+
+  <div class="composer-statusbar" role="status" aria-live="polite">
+    <span id="composerStatus">Ready. Your draft is saved locally as you work.</span>
+    <span id="draftStatus">Local draft enabled</span>
+  </div>
+
+  <section class="composer-workspace" id="composerTool">
+    <aside class="subject-panel panel" aria-label="Prompt subject types">
+      <div class="workspace-panel-head">
+        <span class="side-title">Subject Type</span>
+        <p>Choose the primary kind of image.</p>
+      </div>
+      <div id="tabList" class="tab-list" role="tablist" aria-label="Subject types"></div>
+    </aside>
+
+    <section class="prompt-builder panel">
+      <header class="builder-head">
+        <div>
+          <span class="side-title">Structured Fields</span>
+          <h2 id="subjectTitle">Person</h2>
+          <p id="subjectDescription"></p>
+        </div>
+        <div class="builder-actions">
+          <button class="btn" id="loadExampleBtn" type="button">Load Example</button>
+          <button class="btn red" id="clearBtn" type="button">Clear Subject</button>
+        </div>
+      </header>
+
+      <div id="fieldContainer" class="field-grid"></div>
+
+      <section class="prompt-helpers" aria-labelledby="helperTitle">
+        <div class="helper-heading">
+          <div>
+            <span class="side-title">Phrase Helpers</span>
+            <h2 id="helperTitle">Quick additions</h2>
+          </div>
+          <p>Select a phrase to add or remove it from the matching field.</p>
+        </div>
+        <div class="helper-grid">
+          <details class="helper-block-soft" open>
+            <summary>Lighting</summary>
+            <div class="chip-group" data-target="lighting">
+              <button class="chip" type="button">soft natural light</button>
+              <button class="chip" type="button">studio soft light</button>
+              <button class="chip" type="button">dramatic rim light</button>
+              <button class="chip" type="button">golden hour</button>
+              <button class="chip" type="button">overcast light</button>
+              <button class="chip" type="button">volumetric light</button>
+            </div>
+          </details>
+          <details class="helper-block-soft">
+            <summary>Composition</summary>
+            <div class="chip-group" data-target="composition">
+              <button class="chip" type="button">close-up</button>
+              <button class="chip" type="button">wide shot</button>
+              <button class="chip" type="button">low angle</button>
+              <button class="chip" type="button">eye level</button>
+              <button class="chip" type="button">centered composition</button>
+              <button class="chip" type="button">shallow depth of field</button>
+            </div>
+          </details>
+          <details class="helper-block-soft">
+            <summary>Style / Quality</summary>
+            <div class="chip-group" data-target="style">
+              <button class="chip" type="button">photorealistic</button>
+              <button class="chip" type="button">cinematic still</button>
+              <button class="chip" type="button">concept art</button>
+              <button class="chip" type="button">highly detailed</button>
+              <button class="chip" type="button">sharp focus</button>
+              <button class="chip" type="button">realistic texture</button>
+            </div>
+          </details>
+        </div>
+      </section>
+    </section>
+
+    <aside class="output-panel panel" aria-label="Compiled prompt output">
+      <div class="workspace-panel-head output-heading">
+        <span class="side-title">Compiled Output</span>
+        <p>Copy either prompt directly into your workflow.</p>
+      </div>
+
+      <article class="prompt-preview positive-preview">
+        <div class="preview-head">
+          <span>Positive Prompt</span>
+          <button class="btn" data-copy="positive" type="button">Copy</button>
+        </div>
+        <pre id="positivePreview"></pre>
+      </article>
+
+      <article class="prompt-preview negative-preview">
+        <div class="preview-head">
+          <span>Negative Prompt</span>
+          <button class="btn" data-copy="negative" type="button">Copy</button>
+        </div>
+        <pre id="negativePreview"></pre>
+      </article>
+    </aside>
+  </section>
+
+  <script src="../scripts/sdcomposer.js"></script>
+</BaseLayout>
