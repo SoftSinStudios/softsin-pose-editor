@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/not-found.css";
+---
+<BaseLayout title="SoftSin Studios — Page Not Found" description="The requested SoftSin Studios page could not be found.">
+  <div class="not-found-hero">
+    <section class="not-found-card" aria-labelledby="notFoundTitle">
+      <div class="not-found-main">
+        <div>
+          <span class="not-found-code">404 / Page not found</span>
+          <h1 id="notFoundTitle">This page wandered off.</h1>
+          <p>The link may be outdated, the page may have moved, or the address may have been typed wrong. Use the links below to get back to the active SoftSin Studios pages.</p>
+          <div class="not-found-actions"><a class="btn primary" href="/toolhub.html">Open Tool Hub</a><a class="btn" href="/index.html">Return Home</a><a class="btn" href="/board.html">Get Support</a></div>
+        </div>
+        <div class="not-found-visual" aria-hidden="true"><div class="lost-orb"></div></div>
+      </div>
+      <nav class="not-found-links" aria-label="Helpful links"><a href="/pose.html">Pose Editor</a><a href="/sdcomposer.html">SD Composer</a><a href="/json.html">JSON Maker</a><a href="/socialpostguide.html">Social Guide</a></nav>
+    </section>
+  </div>
+</BaseLayout>

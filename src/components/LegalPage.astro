@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/legal.css";
+interface Props { title: string; description: string; eyebrow: string; heading: string; intro: string; }
+const { title, description, eyebrow, heading, intro } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <section class="hero legal-hero">
+    <div><span class="eyebrow">{eyebrow}</span><h1>{heading}</h1><p class="lead">{intro}</p><p class="legal-date">Last updated: April 30, 2026</p></div>
+  </section>
+  <div class="panel section legal-panel"><div class="legal-content"><slot /></div></div>
+</BaseLayout>
