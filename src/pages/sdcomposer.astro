@@ -17,7 +17,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p>Separate subject, environment, lighting, composition, and quality without turning the final prompt into an uneditable tag pile.</p>
     </div>
     <div class="project-actions" aria-label="Project actions">
-      <button class="btn primary" id="newProjectBtn" type="button">New</button>
+      <button class="btn action" id="newProjectBtn" type="button">New</button>
       <button class="btn info" id="importJsonBtn" type="button">Import JSON</button>
       <button class="btn success" id="exportJsonBtn" type="button">Export JSON</button>
       <button class="btn success" id="exportTxtBtn" type="button">Export TXT</button>
@@ -109,7 +109,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <article class="prompt-preview positive-preview">
         <div class="preview-head">
           <span>Positive Prompt</span>
-          <button class="btn primary" data-copy="positive" type="button">Copy</button>
+          <button class="btn action" data-copy="positive" type="button">Copy</button>
         </div>
         <pre id="positivePreview"></pre>
       </article>
@@ -117,7 +117,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <article class="prompt-preview negative-preview">
         <div class="preview-head">
           <span>Negative Prompt</span>
-          <button class="btn primary" data-copy="negative" type="button">Copy</button>
+          <button class="btn action" data-copy="negative" type="button">Copy</button>
         </div>
         <pre id="negativePreview"></pre>
       </article>

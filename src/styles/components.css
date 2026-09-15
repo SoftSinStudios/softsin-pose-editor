@@ -23,41 +23,53 @@
   border-color: rgba(103, 232, 255, 0.4);
 }
 
+.btn.action {
+  color: var(--accent);
+  background: rgba(103, 232, 255, 0.09);
+  border-color: rgba(103, 232, 255, 0.34);
+}
+
 .btn.info {
-  color: #071016;
-  background: linear-gradient(135deg, var(--info), #93c5fd);
-  border-color: rgba(96, 165, 250, 0.58);
+  color: var(--info);
+  background: rgba(96, 165, 250, 0.09);
+  border-color: rgba(96, 165, 250, 0.34);
 }
 
 .btn.success {
-  color: #07130c;
-  background: linear-gradient(135deg, var(--good), #a7f3c4);
-  border-color: rgba(93, 255, 159, 0.52);
+  color: var(--good);
+  background: rgba(93, 255, 159, 0.08);
+  border-color: rgba(93, 255, 159, 0.32);
 }
 
 .btn.warning {
-  color: #191204;
-  background: linear-gradient(135deg, var(--warn), #ffe6a3);
-  border-color: rgba(255, 209, 102, 0.56);
+  color: var(--warn);
+  background: rgba(255, 209, 102, 0.08);
+  border-color: rgba(255, 209, 102, 0.34);
 }
 
 .btn.danger {
-  color: #fff;
-  background: linear-gradient(135deg, #d92d4a, var(--danger));
-  border-color: rgba(255, 94, 120, 0.62);
+  color: var(--danger);
+  background: rgba(255, 94, 120, 0.09);
+  border-color: rgba(255, 94, 120, 0.34);
 }
 
+.btn.action:hover,
 .btn.info:hover,
 .btn.success:hover,
 .btn.warning:hover,
 .btn.danger:hover {
-  color: #071016;
-  filter: brightness(1.08);
-  border-color: rgba(255, 255, 255, 0.42);
+  color: var(--text);
+  filter: none;
 }
 
+.btn.action:hover { background: rgba(103, 232, 255, 0.15); border-color: rgba(103, 232, 255, 0.5); }
+.btn.info:hover { background: rgba(96, 165, 250, 0.15); border-color: rgba(96, 165, 250, 0.5); }
+.btn.success:hover { background: rgba(93, 255, 159, 0.14); border-color: rgba(93, 255, 159, 0.48); }
+.btn.warning:hover { background: rgba(255, 209, 102, 0.14); border-color: rgba(255, 209, 102, 0.5); }
+.btn.danger:hover { background: rgba(255, 94, 120, 0.15); border-color: rgba(255, 94, 120, 0.5); }
+
 .btn.danger:hover {
-  color: #fff;
+  color: #ff9aaa;
 }
 
 .btn.red { color: var(--accent2); background: rgba(255, 94, 120, 0.08); border-color: rgba(255, 94, 120, 0.28); box-shadow: none; }
