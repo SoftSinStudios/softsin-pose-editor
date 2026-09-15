@@ -1,0 +1,167 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="SoftSin Studios — Pose Editor"
+  description="SoftSin Studios Pose Editor for BODY_25 pose creation, gesture-aware curve bones, reusable pose JSON, and ComfyUI-ready OpenPose exports."
+  canonicalPath="/pose.html"
+  bodyClass="pose-page"
+  pageStyles={["/css/pose.css"]}
+>
+  <div class="pose-legacy-state-fields" hidden aria-hidden="true">
+    <input id="selectedBoneName" type="text" value="" readonly />
+    <input id="selectedBoneRgb" type="text" value="" readonly />
+    <select id="boneModeSelect">
+      <option value="straight">Straight</option>
+      <option value="curve">Curved</option>
+      <option value="hidden">Hidden</option>
+    </select>
+    <input id="lineWeightInput" type="number" min="1" max="24" step="1" value="6" />
+    <button type="button" id="saveJsonBtn">Save JSON</button>
+    <button type="button" id="copyPoseJsonBtn">Copy Pose JSON</button>
+  </div>
+
+  <div class="pose-editor-shell section" id="poseEditor" data-editor="body25">
+    <section class="pose-stage-panel panel" aria-label="BODY_25 workspace">
+      <div class="pose-workbench">
+        <aside class="pose-side-rail pose-side-rail-left" aria-label="File, canvas, export, and selected bone controls">
+          <div class="pose-sidebar-group pose-sidebar-file-actions" aria-label="File actions">
+            <div class="pose-sidebar-grid two-up">
+              <button class="btn pose-tool-btn" type="button" id="loadImageBtn" title="Load a reference image for tracing. SoftSin pose PNGs with embedded pose data load as editable poses instead.">Load Image</button>
+              <button class="btn pose-tool-btn" type="button" id="loadPoseBtn" title="Load a saved SoftSin pose JSON file as an editable pose.">Load JSON</button>
+            </div>
+          </div>
+
+          <div class="pose-sidebar-group" aria-label="Canvas resolution">
+            <div class="export-size-control export-size-control-sidebar" aria-label="Export resolution">
+              <label title="Set the PNG export width. This controls the final exported image width.">
+                <span>Width</span>
+                <input id="exportWidthInput" type="number" min="1" max="8192" step="1" value="1024" inputmode="numeric" title="Set the PNG export width. Any whole-number resolution is allowed." />
+              </label>
+              <label title="Set the PNG export height. This controls the final exported image height.">
+                <span>Height</span>
+                <input id="exportHeightInput" type="number" min="1" max="8192" step="1" value="1024" inputmode="numeric" title="Set the PNG export height. Any whole-number resolution is allowed." />
+              </label>
+            </div>
+
+            <div class="export-size-control export-size-control-sidebar pose-thickness-control" aria-label="Pose line thickness">
+              <label title="Set the global bone thickness used in the editor and exported PNG.">
+                <span>Bone Thickness</span>
+                <input id="boneThicknessInput" type="number" min="1" max="48" step="1" value="6" inputmode="numeric" title="Set the global bone thickness used in the editor and exported PNG." />
+              </label>
+              <label title="Set the global joint thickness used in the editor and exported PNG.">
+                <span>Joint Thickness</span>
+                <input id="jointThicknessInput" type="number" min="1" max="48" step="1" value="7" inputmode="numeric" title="Set the global joint thickness used in the editor and exported PNG." />
+              </label>
+            </div>
+          </div>
+
+          <div class="pose-sidebar-group" aria-label="Export actions">
+            <div class="pose-sidebar-grid two-up">
+              <button class="btn pose-tool-btn" type="button" id="exportPngBtn" title="Export the current pose as a clean PNG using the selected width and height. SoftSin pose data is embedded for re-import.">Export PNG</button>
+              <button class="btn pose-tool-btn" type="button" id="downloadPoseJsonBtn" title="Export the current editable pose as a JSON project file.">Export JSON</button>
+            </div>
+          </div>
+
+          <label class="pose-depth-control" title="Place the selected bone in the foreground or background layer.">
+            <select id="zDepthSelect" title="Place the selected bone in the foreground or background layer.">
+              <option value="foreground">Foreground</option>
+              <option value="background">Background</option>
+            </select>
+          </label>
+
+          <div class="pose-side-button-stack">
+            <button class="btn visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones gray out in the bone color list.">Hide Bone</button>
+            <button class="btn visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Unhide Bone</button>
+            <button class="btn" type="button" id="addCurveHandleBtn" title="Add one curve point to the selected bone. Only supported guide bones can use this.">Add Curve Point</button>
+            <button class="btn" type="button" id="clearCurveHandlesBtn" title="Remove the curve point from the selected bone and return it to a straight bone.">Clear Curve Points</button>
+            <button class="btn pose-tool-btn reset-outline" type="button" id="resetPoseBtn" title="Reset the editor back to the default starter pose.">Reset Canvas</button>
+          </div>
+        </aside>
+
+        <div class="pose-canvas-stack">
+          <div class="canvas-frame">
+            <div class="canvas-grid" id="poseCanvasHost" aria-label="Pose editor canvas" title="Left click bones or joints to select and edit. Mouse wheel zooms. Middle mouse button pans the canvas.">
+              <div class="canvas-crosshair" aria-hidden="true"></div>
+              <canvas id="poseCanvas" class="pose-canvas" title="Left click bones or joints to select them. Drag joints or curve points to shape the pose. Mouse wheel zooms, middle mouse pans." width="1024" height="1024" aria-label="Editable BODY_25 pose canvas"></canvas>
+              <canvas id="poseExportCanvas" class="pose-export-canvas" width="1024" height="1024" hidden aria-hidden="true"></canvas>
+              <input id="poseFileInput" type="file" accept="application/json,.json" hidden />
+              <input id="poseImageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,image/svg+xml" hidden />
+            </div>
+          </div>
+          <p class="pose-editor-tip" role="note">TIP: Hover any control for help. Drag joints to pose. Hide bones to simplify editing. Add curve points for refinement. Best used with a maximized desktop browser window</p>
+        </div>
+
+        <aside class="pose-side-rail pose-side-rail-right" aria-label="Bone color controls">
+          <div class="bone-color-panel bone-color-panel-rail">
+            <div class="bone-group">
+              <div class="side-title" title="Face bones connect the nose, eyes, ears, and neck guide.">Face</div>
+              <div class="bone-color-grid" role="toolbar" aria-label="Face bone colors">
+                <button title="Select bone: Nose → Neck. Click again to deselect." class="bone-chip" type="button" data-bone="nose-neck" data-label="Nose → Neck" data-rgb="255,0,85" data-hex="#ff0055" style="--bone-color:#ff0055">N-N</button>
+                <button title="Optional guide bone: Nose → Chin. Hidden by default; select and use Unhide Bone when needed." class="bone-chip" type="button" data-bone="nose-chin" data-label="Nose → Chin" data-rgb="255,120,0" data-hex="#ff7800" style="--bone-color:#ff7800">N-CH</button>
+                <button title="Select bone: Nose → REye. Click again to deselect." class="bone-chip" type="button" data-bone="nose-reye" data-label="Nose → REye" data-rgb="255,0,85" data-hex="#ff0055" style="--bone-color:#ff0055">N-RE</button>
+                <button title="Select bone: Nose → LEye. Click again to deselect." class="bone-chip" type="button" data-bone="nose-leye" data-label="Nose → LEye" data-rgb="255,0,85" data-hex="#ff0055" style="--bone-color:#ff0055">N-LE</button>
+                <button title="Select bone: REye → REar. Click again to deselect." class="bone-chip" type="button" data-bone="reye-rear" data-label="REye → REar" data-rgb="255,0,170" data-hex="#ff00aa" style="--bone-color:#ff00aa">RE-EA</button>
+                <button title="Select bone: LEye → LEar. Click again to deselect." class="bone-chip" type="button" data-bone="leye-lear" data-label="LEye → LEar" data-rgb="170,0,255" data-hex="#aa00ff" style="--bone-color:#aa00ff">LE-EA</button>
+              </div>
+            </div>
+
+            <div class="bone-group">
+              <div class="side-title" title="Core guide bones for the neck, shoulders, hips, and torso structure.">Head / Torso</div>
+              <div class="bone-color-grid" role="toolbar" aria-label="Head and torso bone colors">
+                <button title="Select bone: Neck → MidHip. Click again to deselect." class="bone-chip" type="button" data-bone="neck-midhip" data-label="Neck → MidHip" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">N-MH</button>
+                <button title="Optional tail bone: MidHip → Tail. Hidden by default; select and use Unhide Bone when needed." class="bone-chip" type="button" data-bone="midhip-tail" data-label="MidHip → Tail" data-rgb="255,48,88" data-hex="#ff3058" style="--bone-color:#ff3058">MH-T</button>
+                <button title="Select bone: Neck → RShoulder. Click again to deselect." class="bone-chip" type="button" data-bone="neck-rshoulder" data-label="Neck → RShoulder" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">N-RS</button>
+                <button title="Select bone: Neck → LShoulder. Click again to deselect." class="bone-chip" type="button" data-bone="neck-lshoulder" data-label="Neck → LShoulder" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">N-LS</button>
+                <button title="Select bone: MidHip → RHip. Click again to deselect." class="bone-chip" type="button" data-bone="midhip-rhip" data-label="MidHip → RHip" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">MH-RH</button>
+                <button title="Select bone: MidHip → LHip. Click again to deselect." class="bone-chip" type="button" data-bone="midhip-lhip" data-label="MidHip → LHip" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">MH-LH</button>
+              </div>
+            </div>
+
+            <div class="bone-group">
+              <div class="side-title" title="Right-side arm, hip, leg, and foot guide bones.">Right Side</div>
+              <div class="bone-color-grid" role="toolbar" aria-label="Right side bone colors">
+                <button title="Select bone: RShoulder → RElbow. Click again to deselect." class="bone-chip" type="button" data-bone="rshoulder-relbow" data-label="RShoulder → RElbow" data-rgb="255,85,0" data-hex="#ff5500" style="--bone-color:#ff5500">RS-RE</button>
+                <button title="Select bone: RElbow → RWrist. Click again to deselect." class="bone-chip" type="button" data-bone="relbow-rwrist" data-label="RElbow → RWrist" data-rgb="255,170,0" data-hex="#ffaa00" style="--bone-color:#ffaa00">RE-RW</button>
+                <button title="Select bone: RHip → RKnee. Click again to deselect." class="bone-chip" type="button" data-bone="rhip-rknee" data-label="RHip → RKnee" data-rgb="0,255,85" data-hex="#00ff55" style="--bone-color:#00ff55">RH-RK</button>
+                <button title="Select bone: RKnee → RAnkle. Click again to deselect." class="bone-chip" type="button" data-bone="rknee-rankle" data-label="RKnee → RAnkle" data-rgb="0,255,170" data-hex="#00ffaa" style="--bone-color:#00ffaa">RK-RA</button>
+                <button title="Select bone: RAnkle → RHeel/Toes. Click again to deselect." class="bone-chip" type="button" data-bone="rankle-rfoot" data-label="RAnkle → RHeel/Toes" data-rgb="0,255,255" data-hex="#00ffff" style="--bone-color:#00ffff">RA-FT</button>
+              </div>
+            </div>
+
+            <div class="bone-group">
+              <div class="side-title" title="Left-side arm, hip, leg, and foot guide bones.">Left Side</div>
+              <div class="bone-color-grid" role="toolbar" aria-label="Left side bone colors">
+                <button title="Select bone: LShoulder → LElbow. Click again to deselect." class="bone-chip" type="button" data-bone="lshoulder-lelbow" data-label="LShoulder → LElbow" data-rgb="170,255,0" data-hex="#aaff00" style="--bone-color:#aaff00">LS-LE</button>
+                <button title="Select bone: LElbow → LWrist. Click again to deselect." class="bone-chip" type="button" data-bone="lelbow-lwrist" data-label="LElbow → LWrist" data-rgb="85,255,0" data-hex="#55ff00" style="--bone-color:#55ff00">LE-LW</button>
+                <button title="Select bone: LHip → LKnee. Click again to deselect." class="bone-chip" type="button" data-bone="lhip-lknee" data-label="LHip → LKnee" data-rgb="0,170,255" data-hex="#00aaff" style="--bone-color:#00aaff">LH-LK</button>
+                <button title="Select bone: LKnee → LAnkle. Click again to deselect." class="bone-chip" type="button" data-bone="lknee-lankle" data-label="LKnee → LAnkle" data-rgb="0,85,255" data-hex="#0055ff" style="--bone-color:#0055ff">LK-LA</button>
+                <button title="Select bone: LAnkle → LHeel/Toes. Click again to deselect." class="bone-chip" type="button" data-bone="lankle-lfoot" data-label="LAnkle → LHeel/Toes" data-rgb="0,0,255" data-hex="#0000ff" style="--bone-color:#0000ff">LA-FT</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <section class="card-grid section">
+    <article class="card">
+      <h3>Clean pose JSON</h3>
+      <p>Pose data stays readable and reusable so imports, exports, and pose packs do not become brittle.</p>
+    </article>
+    <article class="card">
+      <h3>Strict RGB exports</h3>
+      <p>The exported PNG keeps official BODY_25 color behavior instead of inventing new control colors.</p>
+    </article>
+    <article class="card">
+      <h3>Curve-safe exports</h3>
+      <p>Editor handles, guides, and reference images stay out of the final PNG. The output is only the finished BODY_25 control image.</p>
+    </article>
+  </section>
+
+  <Fragment slot="scripts">
+    <script is:inline type="module" src="/js/pose/pose-editor.js?v=thickness-20260501-1"></script>
+  </Fragment>
+</BaseLayout>
