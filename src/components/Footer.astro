@@ -1,4 +1,8 @@
-<footer class="footer">
+---
+interface Props { className?: string; }
+const { className } = Astro.props;
+---
+<footer class:list={["footer", className]}>
   © 2026 SoftSin Studios. Creator tools, art, and workflow utilities.
   <div class="footer-links">
     <a href="/index.html">Home</a>

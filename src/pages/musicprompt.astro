@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="SoftSin Studios — Suno Prompt Builder" description="Build Suno-ready song prompts with a visual song-structure node graph." bodyClass="musicnode-page" tagline="Clean tools for AI art and creator workflows" shellClass="node-shell" mainClass="node-workspace" headerClass="node-site-header" footerClass="node-site-footer" pageStyles={["/css/musicprompt.css"]}>
+  <Fragment slot="head"><link rel="modulepreload" href="/js/musicprompt/app.js" /></Fragment>
+  <div id="musicNodeApp">
+    <div class="node-top-strip">
+      <div class="tool-copy"><span class="eyebrow">SoftSin Music Prompt Composer</span><strong>Music Prompt Builder - add nodes, lyrics, style, and export..</strong></div>
+      <div class="canvas-hint" aria-hidden="true">Right-click the canvas to add nodes. Drag from the round sockets to connect sections and modifiers. Hold Shift + mouse wheel to zoom.</div>
+      <div class="toolbar-actions">
+        <button id="btn-settings" class="btn" type="button">Project Settings</button>
+        <button id="btn-seed-demo" class="btn" type="button">Load Example</button>
+        <button id="btn-clear-graph" class="btn red" type="button">Reset Graph</button>
+        <button id="btn-save-project" class="btn" type="button">Save Project</button>
+        <button id="btn-load-project" class="btn" type="button">Load Project</button>
+        <button id="btn-export-txt" class="btn primary" type="button">Download TXT</button>
+      </div>
+    </div>
+    <section id="node-canvas" class="node-canvas" aria-label="Song node graph canvas">
+      <div id="node-world" class="node-world"><svg id="edge-layer" class="edge-layer" aria-hidden="true"></svg><div id="connection-preview" class="connection-preview" aria-hidden="true"></div></div>
+    </section>
+  </div>
+
+  <Fragment slot="afterShell">
+    <div id="context-menu" class="context-menu" hidden></div>
+    <dialog id="project-dialog" class="node-dialog">
+      <form method="dialog">
+        <div class="dialog-head"><div><strong>Project Settings</strong><span>Set the optional title, global style, and targeted negative exclusions.</span></div><button class="btn" value="cancel" type="submit">Close</button></div>
+        <label class="node-field"><span>Title</span><input id="song-title" type="text" placeholder="Enter song title..." /></label>
+        <label class="node-field"><span>Style Preset</span><select id="style-preset"><option value="">No preset selected</option></select></label>
+        <label class="node-field"><span>Custom Style Text</span><input id="style-text" type="text" placeholder="Type a custom global style, or choose a preset above..." /></label>
+        <label class="node-field"><span>Targeted Negative</span><textarea id="negative-text" placeholder="Optional. Only add exclusions after renderer drift, e.g. no trap hi-hats"></textarea></label>
+        <div class="dialog-actions"><button id="btn-save-project-settings" class="btn primary" value="default" type="button">Apply Settings</button></div>
+      </form>
+    </dialog>
+    <dialog id="lyrics-dialog" class="node-dialog lyrics-dialog">
+      <form method="dialog">
+        <div class="dialog-head"><div><strong id="dialog-title">Edit Lyrics</strong><span id="dialog-meta">0 lines</span></div><button class="btn" value="cancel" type="submit">Close</button></div>
+        <textarea id="lyrics-editor" placeholder="Write this section's lyrics here..."></textarea>
+        <div class="dialog-actions"><button id="btn-save-lyrics" class="btn primary" value="default" type="button">Save Lyrics</button></div>
+      </form>
+    </dialog>
+    <dialog id="output-dialog" class="node-dialog output-dialog">
+      <form method="dialog">
+        <div class="dialog-head"><div><strong>Compiled Suno TXT</strong><span>Copy or download the final prompt for Suno.</span></div><button class="btn" value="cancel" type="submit">Close</button></div>
+        <textarea id="compiled-output" readonly></textarea>
+        <div class="dialog-actions"><button id="btn-copy-output" class="btn" type="button">Copy</button><button id="btn-download-output-modal" class="btn primary" type="button">Download TXT</button></div>
+      </form>
+    </dialog>
+  </Fragment>
+  <Fragment slot="scripts"><script is:inline type="module" src="/js/musicprompt/app.js"></script></Fragment>
+</BaseLayout>

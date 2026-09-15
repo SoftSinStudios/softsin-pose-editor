@@ -11,6 +11,10 @@ interface Props {
   tagline?: string;
   canonicalPath?: string;
   pageStyles?: string[];
+  shellClass?: string;
+  mainClass?: string;
+  headerClass?: string;
+  footerClass?: string;
 }
 
 const {
@@ -20,7 +24,11 @@ const {
   bodyClass,
   tagline,
   canonicalPath = Astro.url.pathname,
-  pageStyles = []
+  pageStyles = [],
+  shellClass,
+  mainClass,
+  headerClass,
+  footerClass
 } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
 const socialImage = new URL("/images/softsin-og.png", Astro.site);
@@ -54,13 +62,14 @@ const socialImage = new URL("/images/softsin-og.png", Astro.site);
     <slot name="head" />
   </head>
   <body class={bodyClass}>
-    <div class="shell">
-      <Header active={active} tagline={tagline} />
-      <main>
+    <div class:list={["shell", shellClass]}>
+      <Header active={active} tagline={tagline} className={headerClass} />
+      <main class={mainClass}>
         <slot />
       </main>
-      <Footer />
+      <Footer className={footerClass} />
     </div>
+    <slot name="afterShell" />
     <slot name="scripts" />
   </body>
 </html>
