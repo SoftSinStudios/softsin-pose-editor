@@ -35,6 +35,11 @@ import {
   readPoseStateFromPngFile
 } from "./pose-io.js?v=thickness-20260501-1";
 
+import {
+  saveSoftPoseProject,
+  openSoftPoseProject
+} from "./softpose-project.js?v=project-20260915-1";
+
 let state = createState();
 
 /* =========================
@@ -58,6 +63,7 @@ const dom = {
   exportCanvas: document.getElementById("poseExportCanvas"),
   fileInput: document.getElementById("poseFileInput"),
   imageInput: document.getElementById("poseImageInput"),
+  projectInput: document.getElementById("poseProjectInput"),
 
   boneChips: Array.from(document.querySelectorAll(".bone-chip")),
 
@@ -87,6 +93,8 @@ const dom = {
   downloadPoseJsonBtn: document.getElementById("downloadPoseJsonBtn")
   ,
   newPoseBtn: document.getElementById("newPoseBtn"),
+  openProjectBtn: document.getElementById("openProjectBtn"),
+  saveProjectBtn: document.getElementById("saveProjectBtn"),
   undoPoseBtn: document.getElementById("undoPoseBtn"),
   redoPoseBtn: document.getElementById("redoPoseBtn"),
   zoomOutBtn: document.getElementById("zoomOutBtn"),
@@ -537,6 +545,22 @@ function bindButtons() {
     markSaved("New pose created");
   });
 
+  safeAddEvent(dom.saveProjectBtn, "click", async () => {
+    try {
+      await saveSoftPoseProject(state, stateToJson(state));
+      markSaved("Project saved");
+    } catch (error) {
+      if (error?.name === "AbortError") {
+        setStatus("Project save cancelled");
+        return;
+      }
+      console.error("Failed to save SoftSin pose project:", error);
+      setStatus("Project save failed");
+    }
+  });
+
+  safeAddEvent(dom.openProjectBtn, "click", () => dom.projectInput?.click());
+
   safeAddEvent(dom.undoPoseBtn, "click", undo);
   safeAddEvent(dom.redoPoseBtn, "click", redo);
   safeAddEvent(dom.zoomOutBtn, "click", () => zoomBy(1 / 1.2));
@@ -553,6 +577,35 @@ function bindButtons() {
 
   safeAddEvent(dom.fileInput, "change", handleJsonFileChange);
   safeAddEvent(dom.imageInput, "change", handleImageFileChange);
+  safeAddEvent(dom.projectInput, "change", handleProjectFileChange);
+}
+
+async function handleProjectFileChange() {
+  if (!dom.projectInput.files.length) return;
+  if (dirty && !window.confirm("Open this project and replace the current unsaved work?")) {
+    dom.projectInput.value = "";
+    return;
+  }
+
+  try {
+    const project = await openSoftPoseProject(dom.projectInput.files[0]);
+    state = jsonToState(project.poseJson);
+    if (project.backgroundImage) setBackgroundImage(state, project.backgroundImage);
+    undoStack.length = 0;
+    redoStack.length = 0;
+    resizeCanvasToDisplay(dom.canvas, state);
+    resizeCanvasToDisplay(dom.exportCanvas, state);
+    resetViewport();
+    syncUI();
+    preloadBackgroundImage(state, redraw);
+    redraw();
+    markSaved(project.backgroundImage ? "Project and reference loaded" : "Project loaded");
+  } catch (error) {
+    console.error("Failed to load SoftSin pose project:", error);
+    setStatus("Project load failed");
+  } finally {
+    dom.projectInput.value = "";
+  }
 }
 
 async function handleJsonFileChange() {
