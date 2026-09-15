@@ -10,20 +10,29 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   pageStyles={["/css/pose.css"]}
 >
   <div class="pose-legacy-state-fields" hidden aria-hidden="true">
-    <input id="selectedBoneName" type="text" value="" readonly />
-    <input id="selectedBoneRgb" type="text" value="" readonly />
-    <select id="boneModeSelect">
-      <option value="straight">Straight</option>
-      <option value="curve">Curved</option>
-      <option value="hidden">Hidden</option>
-    </select>
-    <input id="lineWeightInput" type="number" min="1" max="24" step="1" value="6" />
     <button type="button" id="saveJsonBtn">Save JSON</button>
     <button type="button" id="copyPoseJsonBtn">Copy Pose JSON</button>
   </div>
 
   <div class="pose-editor-shell section" id="poseEditor" data-editor="body25">
     <section class="pose-stage-panel panel" aria-label="BODY_25 workspace">
+      <header class="pose-app-toolbar">
+        <div class="pose-toolbar-group">
+          <button class="btn action" type="button" id="newPoseBtn">New Pose</button>
+          <button class="btn" type="button" id="undoPoseBtn" disabled>Undo</button>
+          <button class="btn" type="button" id="redoPoseBtn" disabled>Redo</button>
+        </div>
+        <div class="pose-toolbar-group pose-view-controls">
+          <button class="btn" type="button" id="zoomOutBtn" aria-label="Zoom out">−</button>
+          <button class="btn" type="button" id="fitViewBtn">Fit View</button>
+          <button class="btn" type="button" id="zoomInBtn" aria-label="Zoom in">+</button>
+          <output id="zoomLevel">100%</output>
+        </div>
+        <div class="pose-toolbar-state">
+          <span id="poseStatus">Ready</span>
+          <span id="poseDirtyStatus">No unsaved changes</span>
+        </div>
+      </header>
       <div class="pose-workbench">
         <aside class="pose-side-rail pose-side-rail-left" aria-label="File, canvas, export, and selected bone controls">
           <div class="pose-sidebar-group pose-sidebar-file-actions" aria-label="File actions">
@@ -94,6 +103,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
 
         <aside class="pose-side-rail pose-side-rail-right" aria-label="Bone color controls">
+          <section class="bone-inspector">
+            <div class="side-title">Selected Bone</div>
+            <h2 id="boneInspectorTitle">No bone selected</h2>
+            <p id="boneInspectorHint">Select a bone on the canvas or from the anatomy list.</p>
+            <label><span>Name</span><input id="selectedBoneName" type="text" value="" readonly /></label>
+            <label><span>Control Color</span><input id="selectedBoneRgb" type="text" value="" readonly /></label>
+            <div class="bone-inspector-grid">
+              <label>
+                <span>Mode</span>
+                <select id="boneModeSelect">
+                  <option value="straight">Straight</option>
+                  <option value="curve">Curved</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+              </label>
+              <label><span>Weight</span><input id="lineWeightInput" type="number" min="1" max="24" step="1" value="6" /></label>
+            </div>
+          </section>
+          <div class="side-title anatomy-title">Anatomy Navigator</div>
           <div class="bone-color-panel bone-color-panel-rail">
             <div class="bone-group">
               <div class="side-title" title="Face bones connect the nose, eyes, ears, and neck guide.">Face</div>

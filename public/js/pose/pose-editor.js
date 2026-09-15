@@ -30,6 +30,7 @@ import {
   downloadJson,
   copyJsonToClipboard,
   readJsonFile,
+  stateToJson,
   jsonToState,
   exportPosePng,
   readPoseStateFromPngFile
@@ -86,7 +87,26 @@ const dom = {
 
   copyPoseJsonBtn: document.getElementById("copyPoseJsonBtn"),
   downloadPoseJsonBtn: document.getElementById("downloadPoseJsonBtn")
+  ,
+  newPoseBtn: document.getElementById("newPoseBtn"),
+  undoPoseBtn: document.getElementById("undoPoseBtn"),
+  redoPoseBtn: document.getElementById("redoPoseBtn"),
+  zoomOutBtn: document.getElementById("zoomOutBtn"),
+  zoomInBtn: document.getElementById("zoomInBtn"),
+  fitViewBtn: document.getElementById("fitViewBtn"),
+  zoomLevel: document.getElementById("zoomLevel"),
+  poseStatus: document.getElementById("poseStatus"),
+  poseDirtyStatus: document.getElementById("poseDirtyStatus"),
+  boneInspectorTitle: document.getElementById("boneInspectorTitle"),
+  boneInspectorHint: document.getElementById("boneInspectorHint")
 };
+
+const DRAFT_KEY = "softsin_pose_draft_v1";
+const undoStack = [];
+const redoStack = [];
+let transactionSnapshot = null;
+let draftTimer = null;
+let dirty = false;
 
 const drag = {
   active: false,
@@ -108,12 +128,107 @@ function init() {
   bindPropertyControls();
   bindButtons();
   bindCanvasInput();
+  bindKeyboardShortcuts();
+  restoreDraft();
 
   resizeCanvasToDisplay(dom.canvas, state);
   resizeCanvasToDisplay(dom.exportCanvas, state);
 
   syncUI();
   redraw();
+}
+
+function captureHistoryState() {
+  return JSON.stringify({
+    canvas: state.canvas,
+    exportSize: state.exportSize,
+    appearance: state.appearance,
+    selectedBone: state.selectedBone,
+    keypoints: state.keypoints,
+    bones: state.bones
+  });
+}
+
+function restoreHistoryState(snapshot) {
+  const backgroundImage = state.backgroundImage;
+  const restored = JSON.parse(snapshot);
+  state = { ...state, ...restored, backgroundImage };
+  syncUI();
+  redraw();
+}
+
+function beginHistoryTransaction() {
+  if (!transactionSnapshot) transactionSnapshot = captureHistoryState();
+}
+
+function commitHistoryTransaction(label = "Pose updated") {
+  if (!transactionSnapshot) return;
+  const before = transactionSnapshot;
+  transactionSnapshot = null;
+  if (before === captureHistoryState()) return;
+  undoStack.push(before);
+  if (undoStack.length > 60) undoStack.shift();
+  redoStack.length = 0;
+  markDirty(label);
+  updateHistoryControls();
+}
+
+function undo() {
+  if (!undoStack.length) return;
+  redoStack.push(captureHistoryState());
+  restoreHistoryState(undoStack.pop());
+  markDirty("Undo");
+  updateHistoryControls();
+}
+
+function redo() {
+  if (!redoStack.length) return;
+  undoStack.push(captureHistoryState());
+  restoreHistoryState(redoStack.pop());
+  markDirty("Redo");
+  updateHistoryControls();
+}
+
+function updateHistoryControls() {
+  if (dom.undoPoseBtn) dom.undoPoseBtn.disabled = !undoStack.length;
+  if (dom.redoPoseBtn) dom.redoPoseBtn.disabled = !redoStack.length;
+}
+
+function setStatus(message) {
+  if (dom.poseStatus) dom.poseStatus.textContent = message;
+}
+
+function markDirty(message = "Pose updated") {
+  dirty = true;
+  setStatus(message);
+  if (dom.poseDirtyStatus) dom.poseDirtyStatus.textContent = "Unsaved changes";
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(() => {
+    try {
+      localStorage.setItem(DRAFT_KEY, stateToJson(state));
+      if (dom.poseDirtyStatus) dom.poseDirtyStatus.textContent = "Draft saved locally";
+    } catch {
+      if (dom.poseDirtyStatus) dom.poseDirtyStatus.textContent = "Draft unavailable";
+    }
+  }, 250);
+}
+
+function markSaved(message) {
+  dirty = false;
+  setStatus(message);
+  if (dom.poseDirtyStatus) dom.poseDirtyStatus.textContent = "No unsaved changes";
+}
+
+function restoreDraft() {
+  try {
+    const draft = localStorage.getItem(DRAFT_KEY);
+    if (!draft) return;
+    state = jsonToState(draft);
+    setStatus("Recovered local draft");
+    if (dom.poseDirtyStatus) dom.poseDirtyStatus.textContent = "Draft recovered";
+  } catch {
+    localStorage.removeItem(DRAFT_KEY);
+  }
 }
 
 /* =========================
@@ -153,6 +268,7 @@ function handleCanvasWheel(event) {
   view.offsetY = anchor.y - worldAnchorBeforeZoom.y * view.scale;
 
   redraw();
+  syncViewControls();
 }
 
 function handlePointerDown(event) {
@@ -238,6 +354,7 @@ function beginPan(event) {
 }
 
 function beginDrag(event, type) {
+  if (type !== "pan") beginHistoryTransaction();
   drag.active = true;
   drag.type = type;
   drag.pointerId = event.pointerId;
@@ -258,6 +375,7 @@ function endDrag(event) {
     dom.canvas.releasePointerCapture(drag.pointerId);
   }
 
+  const completedType = drag.type;
   drag.active = false;
   drag.type = null;
   drag.pointId = null;
@@ -266,6 +384,9 @@ function endDrag(event) {
   drag.lastDisplayY = 0;
 
   dom.canvas.style.cursor = "";
+  if (completedType && completedType !== "pan") {
+    commitHistoryTransaction("Pose adjusted");
+  }
 }
 
 /* =========================
@@ -292,6 +413,13 @@ function bindBoneChips() {
 }
 
 function bindPropertyControls() {
+  [dom.boneModeSelect, dom.lineWeightInput, dom.zDepthSelect, dom.exportWidthInput, dom.exportHeightInput, dom.boneThicknessInput, dom.jointThicknessInput]
+    .filter(Boolean)
+    .forEach(control => {
+      control.addEventListener("focus", beginHistoryTransaction);
+      control.addEventListener("change", () => commitHistoryTransaction("Settings updated"));
+    });
+
   safeAddEvent(dom.boneModeSelect, "change", () => {
     setBoneMode(state, dom.boneModeSelect.value);
     syncUI();
@@ -345,6 +473,7 @@ function bindButtons() {
     const selectedBoneState = getSelectedBoneState();
     if (selectedBoneState?.handles.length) return;
 
+    beginHistoryTransaction();
     setBoneMode(state, BONE_MODES.CURVE);
 
     const mid = getSelectedMid();
@@ -353,46 +482,84 @@ function bindButtons() {
     addCurveHandle(state, mid.x, mid.y);
     syncUI();
     redraw();
+    commitHistoryTransaction("Curve point added");
   });
 
   safeAddEvent(dom.clearCurveHandlesBtn, "click", () => {
     if (!state.selectedBone || !selectedBoneAllowsCurve()) return;
 
+    beginHistoryTransaction();
     clearCurveHandles(state);
     syncUI();
     redraw();
+    commitHistoryTransaction("Curve point cleared");
   });
 
   safeAddEvent(dom.hideBoneBtn, "click", () => {
     if (!state.selectedBone) return;
 
+    beginHistoryTransaction();
     setBoneMode(state, BONE_MODES.HIDDEN);
     clearSelectedBone(state);
     syncUI();
     redraw();
+    commitHistoryTransaction("Bone hidden");
   });
 
   safeAddEvent(dom.unhideBoneBtn, "click", () => {
     if (!state.selectedBone) return;
 
+    beginHistoryTransaction();
     restoreHiddenBone(state, state.selectedBone);
     syncUI();
     redraw();
+    commitHistoryTransaction("Bone restored");
   });
 
   safeAddEvent(dom.saveJsonBtn, "click", () => downloadJson(state));
-  safeAddEvent(dom.downloadPoseJsonBtn, "click", () => downloadJson(state));
+  safeAddEvent(dom.downloadPoseJsonBtn, "click", () => {
+    downloadJson(state);
+    markSaved("Project exported");
+  });
   safeAddEvent(dom.copyPoseJsonBtn, "click", () => copyJsonToClipboard(state));
 
   safeAddEvent(dom.exportPngBtn, "click", () => {
     exportPosePng(dom.exportCanvas, state);
+    setStatus("PNG exported");
   });
 
   safeAddEvent(dom.resetPoseBtn, "click", () => {
+    if (!window.confirm("Reset the complete pose to its default state?")) return;
+    beginHistoryTransaction();
     state = createState();
     resetViewport();
     syncUI();
     redraw();
+    commitHistoryTransaction("Pose reset");
+  });
+
+  safeAddEvent(dom.newPoseBtn, "click", () => {
+    if (dirty && !window.confirm("Start a new pose and clear the current unsaved work?")) return;
+    state = createState();
+    undoStack.length = 0;
+    redoStack.length = 0;
+    localStorage.removeItem(DRAFT_KEY);
+    resetViewport();
+    syncUI();
+    redraw();
+    updateHistoryControls();
+    markSaved("New pose created");
+  });
+
+  safeAddEvent(dom.undoPoseBtn, "click", undo);
+  safeAddEvent(dom.redoPoseBtn, "click", redo);
+  safeAddEvent(dom.zoomOutBtn, "click", () => zoomBy(1 / 1.2));
+  safeAddEvent(dom.zoomInBtn, "click", () => zoomBy(1.2));
+  safeAddEvent(dom.fitViewBtn, "click", () => {
+    resetViewport();
+    redraw();
+    syncViewControls();
+    setStatus("Canvas fitted to view");
   });
 
   safeAddEvent(dom.loadPoseBtn, "click", () => dom.fileInput?.click());
@@ -416,8 +583,10 @@ async function handleJsonFileChange() {
     resetViewport();
     syncUI();
     redraw();
+    markSaved("Project loaded");
   } catch (error) {
     console.error("Failed to load pose JSON:", error);
+    setStatus("Project load failed");
   } finally {
     dom.fileInput.value = "";
   }
@@ -442,12 +611,14 @@ async function handleImageFileChange() {
       resetViewport();
       syncUI();
       redraw();
+      markSaved("Editable pose loaded from PNG");
       return;
     }
 
     console.info("No SoftSin pose metadata found. Loading image as reference background.");
     const imageData = await readImageFile(file);
     setBackgroundImage(state, imageData);
+    setStatus("Reference image loaded");
 
     preloadBackgroundImage(state, () => {
       redraw();
@@ -456,6 +627,7 @@ async function handleImageFileChange() {
     redraw();
   } catch (error) {
     console.error("Failed to load image:", error);
+    setStatus("Image load failed");
   } finally {
     dom.imageInput.value = "";
   }
@@ -568,6 +740,39 @@ function resetViewport() {
   view.scale = 1;
   view.offsetX = 0;
   view.offsetY = 0;
+  syncViewControls();
+}
+
+function zoomBy(multiplier) {
+  const anchor = getCanvasCenterPoint(dom.canvas);
+  const worldAnchor = displayToWorld(anchor, view);
+  view.scale = clamp(view.scale * multiplier, view.minScale, view.maxScale);
+  view.offsetX = anchor.x - worldAnchor.x * view.scale;
+  view.offsetY = anchor.y - worldAnchor.y * view.scale;
+  redraw();
+  syncViewControls();
+}
+
+function syncViewControls() {
+  if (dom.zoomLevel) {
+    dom.zoomLevel.textContent = `${Math.round(view.scale * 100)}%`;
+  }
+}
+
+function bindKeyboardShortcuts() {
+  document.addEventListener("keydown", event => {
+    if (!(event.ctrlKey || event.metaKey)) return;
+    if (event.target?.matches?.("input, textarea, select")) return;
+
+    const key = event.key.toLowerCase();
+    if (key === "z" && !event.shiftKey) {
+      event.preventDefault();
+      undo();
+    } else if (key === "y" || (key === "z" && event.shiftKey)) {
+      event.preventDefault();
+      redo();
+    }
+  });
 }
 
 function getCanvasCenterPoint(canvas) {
@@ -765,6 +970,18 @@ function syncUI() {
       : "";
   }
 
+  if (dom.boneInspectorTitle) {
+    dom.boneInspectorTitle.textContent = hasSelection
+      ? selectedChip.dataset.label || state.selectedBone
+      : "No bone selected";
+  }
+
+  if (dom.boneInspectorHint) {
+    dom.boneInspectorHint.textContent = hasSelection
+      ? "Adjust the selected bone properties below."
+      : "Select a bone on the canvas or from the anatomy list.";
+  }
+
   if (dom.boneModeSelect) {
     dom.boneModeSelect.disabled = !hasSelection;
     dom.boneModeSelect.value = selectedBoneState?.mode || BONE_MODES.STRAIGHT;
@@ -825,6 +1042,8 @@ function syncUI() {
     dom.unhideBoneBtn.classList.toggle("can-use", canUnhideSelectedBone);
   }
   renderDeletedBones();
+  updateHistoryControls();
+  syncViewControls();
 }
 
 
