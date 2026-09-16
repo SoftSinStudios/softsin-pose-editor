@@ -3,7 +3,33 @@ import { createClient } from "@supabase/supabase-js";
 const SUPABASE_URL = "https://pnpijueflzvlyzzmhdwa.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ts2QrwDwmmIrXbSzG14fBQ_REyHdGS5";
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  auth: {
+    flowType: "pkce",
+    detectSessionInUrl: true,
+    persistSession: true,
+    autoRefreshToken: true
+  }
+});
+
+function clearAuthCredentialsFromUrl() {
+  const url = new URL(window.location.href);
+  const authQueryKeys = ["code", "error", "error_code", "error_description", "sb_flow_id"];
+  const hasAuthQuery = authQueryKeys.some((key) => url.searchParams.has(key));
+  const hasAuthFragment = /(^|&)(access_token|refresh_token|expires_at|expires_in|provider_token|token_type)=/i.test(
+    url.hash.replace(/^#/, "")
+  );
+
+  if (!hasAuthQuery && !hasAuthFragment) return;
+
+  authQueryKeys.forEach((key) => url.searchParams.delete(key));
+
+  if (hasAuthFragment) {
+    url.hash = "";
+  }
+
+  window.history.replaceState(window.history.state, "", url);
+}
 
 const signedOutBox = document.getElementById("signedOutBox");
 const signedInBox = document.getElementById("signedInBox");
@@ -3324,6 +3350,7 @@ if (signInModal) {
 logout.addEventListener("click", signOut);
 
 supabase.auth.onAuthStateChange((_event, session) => {
+  clearAuthCredentialsFromUrl();
   applySession(session);
 });
 
