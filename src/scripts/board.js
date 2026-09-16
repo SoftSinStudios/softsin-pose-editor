@@ -53,6 +53,11 @@ const boardSubtitle = document.getElementById("boardSubtitle");
 const threadList = document.getElementById("threadList");
 const searchInput = document.querySelector(".search");
 const composer = document.getElementById("composer");
+const composerDock = document.getElementById("composerDock");
+const topicModal = document.getElementById("topicModal");
+const topicComposerMount = document.getElementById("topicComposerMount");
+const topicModalChannel = document.getElementById("topicModalChannel");
+const closeTopicModal = document.getElementById("closeTopicModal");
 const rulesLink = document.getElementById("rulesLink");
 const rulesReminder = document.getElementById("rulesReminder");
 const openRulesReminder = document.getElementById("openRulesReminder");
@@ -1509,6 +1514,47 @@ function setComposerVisibility(visible) {
   }
 }
 
+function dockComposerInline() {
+  if (!composer || !composerDock) return;
+  composerDock.insertAdjacentElement("afterend", composer);
+}
+
+function openTopicComposer() {
+  if (!currentUser || !composer || !topicModal || !topicComposerMount || !currentCategory) return;
+
+  currentThread = null;
+  composerTitle.hidden = false;
+  composerTitle.disabled = false;
+  composerText.disabled = false;
+  postMessage.textContent = "Create Thread";
+  postMessage.disabled = false;
+  setEditorDisabled(false);
+  restoreComposerDraft();
+
+  if (topicModalChannel) {
+    topicModalChannel.textContent = `Post in ${currentCategory.name}. Choose a clear title and give readers enough context to respond.`;
+  }
+
+  topicComposerMount.appendChild(composer);
+  composer.hidden = false;
+  topicModal.hidden = false;
+  composerTitle.focus();
+}
+
+function closeTopicComposer(options = {}) {
+  const { focusTrigger = true } = options;
+  if (!topicModal || topicModal.hidden) return;
+
+  flushDraftSave();
+  composer.hidden = true;
+  dockComposerInline();
+  topicModal.hidden = true;
+
+  if (focusTrigger) {
+    newTopicTop?.focus();
+  }
+}
+
 function setSearchEnabled(enabled) {
   if (!searchInput) return;
 
@@ -2776,6 +2822,7 @@ function attachAdminControlListeners(thread) {
 }
 
 function closeThreadView(options = {}) {
+  closeTopicComposer({ focusTrigger: false });
   flushDraftSave();
   currentBoardView = "threads";
   currentThread = null;
@@ -2817,6 +2864,8 @@ function closeThreadView(options = {}) {
 }
 
 async function openThread(threadId, options = {}) {
+  closeTopicComposer({ focusTrigger: false });
+  dockComposerInline();
   flushDraftSave();
   currentBoardView = "thread";
 
@@ -2925,6 +2974,8 @@ async function openThread(threadId, options = {}) {
 }
 
 async function selectCategory(slug, options = {}) {
+  closeTopicComposer({ focusTrigger: false });
+  dockComposerInline();
   flushDraftSave();
   currentBoardView = "threads";
   editingThreadId = null;
@@ -3086,6 +3137,7 @@ async function createThread() {
 
   composerStatus.textContent = "Thread created.";
   postMessage.disabled = false;
+  closeTopicComposer({ focusTrigger: false });
 
   currentSearchTerm = "";
 
@@ -3191,14 +3243,7 @@ newTopicTop.addEventListener("click", () => {
     }
   }
 
-  composer.hidden = false;
-
-  if (composerTitle && !composerTitle.hidden) {
-    composerTitle.focus();
-  } else {
-    composerText.focus();
-  }
-
+  openTopicComposer();
   updateComposerHelperText();
 });
 
@@ -3263,7 +3308,23 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && signInModal && !signInModal.hidden) {
     hideSignInModal();
   }
+
+  if (event.key === "Escape" && topicModal && !topicModal.hidden) {
+    closeTopicComposer();
+  }
 });
+
+if (closeTopicModal) {
+  closeTopicModal.addEventListener("click", () => closeTopicComposer());
+}
+
+if (topicModal) {
+  topicModal.addEventListener("click", (event) => {
+    if (event.target === topicModal) {
+      closeTopicComposer();
+    }
+  });
+}
 
 if (composerText) {
   composerText.addEventListener("input", () => {
