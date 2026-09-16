@@ -7,8 +7,11 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
 const signedOutBox = document.getElementById("signedOutBox");
 const signedInBox = document.getElementById("signedInBox");
+const openSignIn = document.getElementById("openSignIn");
 const loginDiscord = document.getElementById("loginDiscord");
 const loginGoogle = document.getElementById("loginGoogle");
+const signInModal = document.getElementById("signInModal");
+const closeSignInModal = document.getElementById("closeSignInModal");
 const logout = document.getElementById("logout");
 const userAvatar = document.getElementById("userAvatar");
 const userName = document.getElementById("userName");
@@ -1517,6 +1520,18 @@ function signInWithGoogle() {
   return signInWithProvider("google");
 }
 
+function showSignInModal() {
+  if (!signInModal) return;
+  signInModal.hidden = false;
+  loginDiscord?.focus();
+}
+
+function hideSignInModal() {
+  if (!signInModal) return;
+  signInModal.hidden = true;
+  openSignIn?.focus();
+}
+
 async function signOut() {
   const { error } = await supabase.auth.signOut();
 
@@ -2997,6 +3012,10 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && templateModal && !templateModal.hidden) {
     closeTemplatePicker();
   }
+
+  if (event.key === "Escape" && signInModal && !signInModal.hidden) {
+    hideSignInModal();
+  }
 });
 
 if (composerText) {
@@ -3045,6 +3064,22 @@ if (loginDiscord) {
 
 if (loginGoogle) {
   loginGoogle.addEventListener("click", signInWithGoogle);
+}
+
+if (openSignIn) {
+  openSignIn.addEventListener("click", showSignInModal);
+}
+
+if (closeSignInModal) {
+  closeSignInModal.addEventListener("click", hideSignInModal);
+}
+
+if (signInModal) {
+  signInModal.addEventListener("click", (event) => {
+    if (event.target === signInModal) {
+      hideSignInModal();
+    }
+  });
 }
 
 logout.addEventListener("click", signOut);
