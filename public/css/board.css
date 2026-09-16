@@ -1126,7 +1126,7 @@ button.btn {
 .board-page .board {
   grid-template-columns: 250px minmax(0, 1fr);
   gap: 16px;
-  margin-top: 0;
+  margin-top: 18px;
 }
 
 .sidebar,
