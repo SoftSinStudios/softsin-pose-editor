@@ -84,7 +84,7 @@ const breadcrumbThreadSeparator = document.getElementById("breadcrumbThreadSepar
 
 const READ_THREADS_KEY = "softsin_read_threads_v1";
 const BOARD_DRAFT_KEY = "softsin_board_draft_v1";
-const BOARD_IMAGE_BUCKET = "board-images";
+const BOARD_IMAGE_UPLOAD_URL = "https://files.softsinstudios.com/website-images/board-upload.php";
 const BOARD_IMAGE_MAX_BYTES = 5 * 1024 * 1024;
 const BOARD_IMAGE_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
 
@@ -1024,31 +1024,52 @@ async function uploadBoardImage(file, editorId = null) {
     return;
   }
 
-  const extension = file.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "") || "img";
-  const fileId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  const storagePath = `${currentUser.id}/${fileId}.${extension}`;
-
   composerStatus.textContent = "Uploading image...";
   editorButtons.forEach((button) => {
     if (button.dataset.editorAction === "image") button.disabled = true;
   });
 
-  const { error } = await supabase.storage
-    .from(BOARD_IMAGE_BUCKET)
-    .upload(storagePath, file, { cacheControl: "3600", upsert: false, contentType: file.type });
+  const { data: sessionData } = await supabase.auth.getSession();
+  const accessToken = sessionData.session?.access_token;
 
-  editorButtons.forEach((button) => {
-    if (button.dataset.editorAction === "image") button.disabled = false;
-  });
-
-  if (error) {
-    console.error("Board image upload failed:", error);
-    composerStatus.textContent = "Image upload failed. The board image bucket may not be configured yet.";
+  if (!accessToken) {
+    editorButtons.forEach((button) => {
+      if (button.dataset.editorAction === "image") button.disabled = false;
+    });
+    composerStatus.textContent = "Your session expired. Sign in again before uploading.";
     return;
   }
 
-  const { data } = supabase.storage.from(BOARD_IMAGE_BUCKET).getPublicUrl(storagePath);
-  insertUploadedImageMarkdown(data.publicUrl, file.name, editorId);
+  const formData = new FormData();
+  formData.append("image", file, file.name);
+
+  let response;
+
+  try {
+    response = await fetch(BOARD_IMAGE_UPLOAD_URL, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}` },
+      body: formData
+    });
+  } catch (error) {
+    console.error("Board image upload request failed:", error);
+    composerStatus.textContent = "Image upload could not reach the file server.";
+    return;
+  } finally {
+    editorButtons.forEach((button) => {
+      if (button.dataset.editorAction === "image") button.disabled = false;
+    });
+  }
+
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok || !result.url) {
+    console.error("Board image upload failed:", result);
+    composerStatus.textContent = result.error || "Image upload failed.";
+    return;
+  }
+
+  insertUploadedImageMarkdown(result.url, file.name, editorId);
   composerStatus.textContent = "Image uploaded and added to the post.";
 }
 
