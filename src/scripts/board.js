@@ -81,6 +81,10 @@ const postTotalCount = document.getElementById("postTotalCount");
 const breadcrumbCategory = document.getElementById("breadcrumbCategory");
 const breadcrumbThread = document.getElementById("breadcrumbThread");
 const breadcrumbThreadSeparator = document.getElementById("breadcrumbThreadSeparator");
+const boardRestrictionBanner = document.getElementById("boardRestrictionBanner");
+const boardRestrictionTitle = document.getElementById("boardRestrictionTitle");
+const boardRestrictionMessage = document.getElementById("boardRestrictionMessage");
+const acknowledgeWarning = document.getElementById("acknowledgeWarning");
 const reportModal = document.getElementById("reportModal");
 const closeReportModal = document.getElementById("closeReportModal");
 const reportForm = document.getElementById("reportForm");
@@ -121,6 +125,8 @@ let postRequestId = 0;
 let draftSaveTimer = null;
 let pendingImageEditorId = null;
 let pendingReportTarget = null;
+let currentRestriction = null;
+let currentWarning = null;
 const profileCache = new Map();
 
 const fallbackCategories = [
@@ -1563,7 +1569,7 @@ function dockComposerInline() {
 }
 
 function openTopicComposer() {
-  if (!currentUser || !composer || !topicModal || !topicComposerMount || !currentCategory) return;
+  if (!currentUser || currentRestriction || !composer || !topicModal || !topicComposerMount || !currentCategory) return;
 
   currentThread = null;
   composerTitle.hidden = false;
@@ -1706,6 +1712,7 @@ function setComposerForSignedOut() {
 function setComposerForSignedIn() {
   const inThread = Boolean(currentThread);
   const threadLocked = Boolean(currentThread?.locked);
+  const restricted = Boolean(currentRestriction);
 
   if (composerTitle) {
     composerTitle.hidden = inThread;
@@ -1717,17 +1724,88 @@ function setComposerForSignedIn() {
 
   updateComposerHelperText();
 
-  postMessage.disabled = threadLocked;
+  postMessage.disabled = threadLocked || restricted;
   postMessage.textContent = inThread ? "Post Reply" : "Create Thread";
-  newTopicTop.disabled = false;
-  composer.hidden = !inThread || threadLocked;
+  newTopicTop.disabled = restricted;
+  composer.hidden = !inThread || threadLocked || restricted;
 
-  setEditorDisabled(threadLocked);
+  setEditorDisabled(threadLocked || restricted);
   updateToolbarForRole();
 
-  if (!threadLocked) {
+  if (!threadLocked && !restricted) {
     restoreComposerDraft();
   }
+}
+
+function renderBoardRestriction() {
+  if (!boardRestrictionBanner) return;
+
+  if (!currentRestriction && !currentWarning) {
+    boardRestrictionBanner.hidden = true;
+    boardRestrictionMessage.textContent = "";
+    acknowledgeWarning.hidden = true;
+    return;
+  }
+
+  if (!currentRestriction && currentWarning) {
+    boardRestrictionTitle.textContent = "Board warning";
+    boardRestrictionMessage.textContent = currentWarning.reason_public || "Staff issued a warning for your board account.";
+    acknowledgeWarning.hidden = false;
+    boardRestrictionBanner.hidden = false;
+    return;
+  }
+
+  const type = currentRestriction.sanction_type || "restriction";
+  const expiration = currentRestriction.expires_at
+    ? ` This restriction expires ${new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(currentRestriction.expires_at))}.`
+    : " This restriction remains in effect until staff lifts it.";
+  boardRestrictionTitle.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)} active`;
+  boardRestrictionMessage.textContent = `${currentRestriction.reason_public || "Board participation has been restricted."}${expiration}`;
+  acknowledgeWarning.hidden = true;
+  boardRestrictionBanner.hidden = false;
+}
+
+async function loadCurrentRestriction() {
+  const [restrictionResult, warningResult] = await Promise.all([
+    supabase.rpc("get_my_active_board_restriction"),
+    supabase.rpc("get_my_active_board_warning")
+  ]);
+
+  if (restrictionResult.error) {
+    console.warn("Board restriction query failed:", restrictionResult.error);
+    currentRestriction = null;
+  } else {
+    currentRestriction = Array.isArray(restrictionResult.data) ? restrictionResult.data[0] || null : restrictionResult.data || null;
+  }
+
+  if (warningResult.error) {
+    console.warn("Board warning query failed:", warningResult.error);
+    currentWarning = null;
+  } else {
+    currentWarning = Array.isArray(warningResult.data) ? warningResult.data[0] || null : warningResult.data || null;
+  }
+
+  renderBoardRestriction();
+}
+
+async function acknowledgeCurrentWarning() {
+  if (!currentWarning?.id || !acknowledgeWarning) return;
+  acknowledgeWarning.disabled = true;
+
+  const { error } = await supabase.rpc("acknowledge_board_warning", {
+    target_sanction_id: currentWarning.id
+  });
+
+  if (error) {
+    console.error("Warning acknowledgement failed:", error);
+    boardRestrictionMessage.textContent = error.message || "The warning could not be acknowledged.";
+    acknowledgeWarning.disabled = false;
+    return;
+  }
+
+  currentWarning = null;
+  acknowledgeWarning.disabled = false;
+  renderBoardRestriction();
 }
 
 function setSignedOut() {
@@ -1735,6 +1813,9 @@ function setSignedOut() {
 
   currentUser = null;
   currentProfile = null;
+  currentRestriction = null;
+  currentWarning = null;
+  renderBoardRestriction();
 
   signedOutBox.hidden = false;
   signedInBox.hidden = true;
@@ -1794,7 +1875,10 @@ async function applySession(session) {
   }
 
   const user = session.user;
-  const profile = await getProfile(user.id);
+  const [profile] = await Promise.all([
+    getProfile(user.id),
+    loadCurrentRestriction()
+  ]);
 
   if (requestId !== sessionRequestId) return;
   setSignedIn(user, profile);
@@ -3033,19 +3117,23 @@ async function openThread(threadId, options = {}) {
   updateComposerHelperText();
 
   postMessage.textContent = "Post Reply";
-  postMessage.disabled = signedInBox.hidden || thread.locked;
+  postMessage.disabled = signedInBox.hidden || thread.locked || Boolean(currentRestriction);
   newTopicTop.hidden = true;
-  setEditorDisabled(signedInBox.hidden || thread.locked);
-  composer.hidden = signedInBox.hidden || thread.locked;
+  setEditorDisabled(signedInBox.hidden || thread.locked || Boolean(currentRestriction));
+  composer.hidden = signedInBox.hidden || thread.locked || Boolean(currentRestriction);
   composerText.value = "";
   updateCharCount();
 
-  if (!signedInBox.hidden && !thread.locked) {
+  if (!signedInBox.hidden && !thread.locked && !currentRestriction) {
     restoreComposerDraft();
   }
 
   if (!signedInBox.hidden && thread.locked) {
     composerStatus.textContent = "This thread is locked.";
+  }
+
+  if (!signedInBox.hidden && currentRestriction) {
+    composerStatus.textContent = "Your board account is currently read-only.";
   }
 
   threadList.innerHTML = `
@@ -3154,8 +3242,9 @@ async function selectCategory(slug, options = {}) {
   updateComposerHelperText();
 
   postMessage.textContent = "Create Thread";
-  postMessage.disabled = signedInBox.hidden;
-  setEditorDisabled(signedInBox.hidden);
+  postMessage.disabled = signedInBox.hidden || Boolean(currentRestriction);
+  newTopicTop.disabled = signedInBox.hidden || Boolean(currentRestriction);
+  setEditorDisabled(signedInBox.hidden || Boolean(currentRestriction));
   composer.hidden = true;
 
   if (composerTitle) composerTitle.value = "";
@@ -3461,6 +3550,10 @@ if (reportModal) {
   reportModal.addEventListener("click", (event) => {
     if (event.target === reportModal) hideReportDialog();
   });
+}
+
+if (acknowledgeWarning) {
+  acknowledgeWarning.addEventListener("click", acknowledgeCurrentWarning);
 }
 
 
