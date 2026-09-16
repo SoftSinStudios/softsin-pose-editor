@@ -4,7 +4,7 @@ declare(strict_types=1);
 const SUPABASE_URL = 'https://pnpijueflzvlyzzmhdwa.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_ts2QrwDwmmIrXbSzG14fBQ_REyHdGS5';
 const PUBLIC_BOARD_IMAGE_BASE = 'https://files.softsinstudios.com/website-images/board';
-const MAX_FILE_BYTES = 5242880;
+const MAX_FILE_BYTES = 10485760;
 const MAX_IMAGE_EDGE = 12000;
 const MAX_UPLOADS_PER_HOUR = 20;
 
@@ -155,7 +155,7 @@ $temporaryPath = (string) ($upload['tmp_name'] ?? '');
 $fileSize = (int) ($upload['size'] ?? 0);
 
 if (!is_uploaded_file($temporaryPath) || $fileSize < 1 || $fileSize > MAX_FILE_BYTES) {
-    respond(413, ['error' => 'Images must be between 1 byte and 5 MB.']);
+    respond(413, ['error' => 'Images must be between 1 byte and 10 MB.']);
 }
 
 $imageInfo = @getimagesize($temporaryPath);
