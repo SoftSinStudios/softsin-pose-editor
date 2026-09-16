@@ -1582,12 +1582,14 @@ function setComposerForSignedOut() {
   postMessage.disabled = true;
   postMessage.textContent = currentThread ? "Post Reply" : "Create Thread";
   newTopicTop.disabled = true;
+  composer.hidden = true;
 
   setEditorDisabled(true);
 }
 
 function setComposerForSignedIn() {
   const inThread = Boolean(currentThread);
+  const threadLocked = Boolean(currentThread?.locked);
 
   if (composerTitle) {
     composerTitle.hidden = inThread;
@@ -1599,13 +1601,17 @@ function setComposerForSignedIn() {
 
   updateComposerHelperText();
 
-  postMessage.disabled = false;
+  postMessage.disabled = threadLocked;
   postMessage.textContent = inThread ? "Post Reply" : "Create Thread";
   newTopicTop.disabled = false;
+  composer.hidden = !inThread || threadLocked;
 
-  setEditorDisabled(false);
+  setEditorDisabled(threadLocked);
   updateToolbarForRole();
-  restoreComposerDraft();
+
+  if (!threadLocked) {
+    restoreComposerDraft();
+  }
 }
 
 function setSignedOut() {
@@ -2825,7 +2831,7 @@ async function openThread(threadId, options = {}) {
   postMessage.textContent = "Post Reply";
   postMessage.disabled = signedInBox.hidden || thread.locked;
   setEditorDisabled(signedInBox.hidden || thread.locked);
-  composer.hidden = false;
+  composer.hidden = signedInBox.hidden || thread.locked;
   composerText.value = "";
   updateCharCount();
 
