@@ -212,6 +212,10 @@ textarea:disabled {
   align-items: end;
 }
 
+.danger-zone[hidden] {
+  display: none !important;
+}
+
 .danger-copy {
   display: grid;
   gap: 8px;
