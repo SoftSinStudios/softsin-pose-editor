@@ -66,6 +66,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <span id="breadcrumbThreadSeparator" aria-hidden="true" hidden>/</span>
           <span id="breadcrumbThread" hidden></span>
         </nav>
+        <div class="board-restriction-banner" id="boardRestrictionBanner" hidden role="status">
+          <div>
+            <strong id="boardRestrictionTitle">Board account restricted</strong>
+            <span id="boardRestrictionMessage"></span>
+          </div>
+          <button class="btn" id="acknowledgeWarning" type="button" hidden>Acknowledge Warning</button>
+        </div>
         <div class="panel-head">
           <div>
             <h2 id="boardTitle">General</h2>
