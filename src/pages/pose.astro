@@ -36,15 +36,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
       </header>
       <div class="pose-workbench">
-        <aside class="pose-side-rail pose-side-rail-left" aria-label="File, canvas, export, and selected bone controls">
-          <div class="pose-sidebar-group pose-sidebar-file-actions" aria-label="File actions">
+        <aside class="pose-side-rail pose-side-rail-left" aria-label="Reference, pose data, output, and canvas controls">
+          <div class="pose-sidebar-group pose-sidebar-file-actions" aria-label="Reference image">
+            <div class="side-title pose-sidebar-title">Reference</div>
+            <button class="btn info pose-tool-btn" type="button" id="loadImageBtn" title="Load a reference image for tracing. SoftSin pose PNGs with embedded pose data load as editable poses instead.">Load Reference</button>
+          </div>
+
+          <div class="pose-sidebar-group" aria-label="Pose data import and export">
+            <div class="side-title pose-sidebar-title">Pose Data</div>
             <div class="pose-sidebar-grid two-up">
-              <button class="btn info pose-tool-btn" type="button" id="loadImageBtn" title="Load a reference image for tracing. SoftSin pose PNGs with embedded pose data load as editable poses instead.">Load Image</button>
-              <button class="btn info pose-tool-btn" type="button" id="loadPoseBtn" title="Load a saved SoftSin pose JSON file as an editable pose.">Load JSON</button>
+              <button class="btn info pose-tool-btn" type="button" id="loadPoseBtn" title="Load a saved SoftSin pose JSON file as an editable pose.">Import JSON</button>
+              <button class="btn action pose-tool-btn" type="button" id="downloadPoseJsonBtn" title="Export the current editable pose as a JSON data file.">Export JSON</button>
             </div>
           </div>
 
-          <div class="pose-sidebar-group" aria-label="Canvas resolution">
+          <div class="pose-sidebar-group" aria-label="Output settings and export">
+            <div class="side-title pose-sidebar-title">Output</div>
             <div class="export-size-control export-size-control-sidebar" aria-label="Export resolution">
               <label title="Set the PNG export width. This controls the final exported image width.">
                 <span>Width</span>
@@ -66,27 +73,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <input id="jointThicknessInput" type="number" min="1" max="48" step="1" value="7" inputmode="numeric" title="Set the global joint thickness used in the editor and exported PNG." />
               </label>
             </div>
+            <button class="btn action pose-tool-btn" type="button" id="exportPngBtn" title="Export the current pose as a clean PNG using the selected width and height. SoftSin pose data is embedded for re-import.">Export PNG</button>
           </div>
 
-          <div class="pose-sidebar-group" aria-label="Export actions">
-            <div class="pose-sidebar-grid two-up">
-              <button class="btn action pose-tool-btn" type="button" id="exportPngBtn" title="Export the current pose as a clean PNG using the selected width and height. SoftSin pose data is embedded for re-import.">Export PNG</button>
-              <button class="btn action pose-tool-btn" type="button" id="downloadPoseJsonBtn" title="Export the current editable pose as a JSON project file.">Export JSON</button>
-            </div>
-          </div>
-
-          <label class="pose-depth-control" title="Place the selected bone in the foreground or background layer.">
-            <select id="zDepthSelect" title="Place the selected bone in the foreground or background layer.">
-              <option value="foreground">Foreground</option>
-              <option value="background">Background</option>
-            </select>
-          </label>
-
-          <div class="pose-side-button-stack">
-            <button class="btn warning visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones gray out in the bone color list.">Hide Bone</button>
-            <button class="btn success visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Unhide Bone</button>
-            <button class="btn success" type="button" id="addCurveHandleBtn" title="Add one curve point to the selected bone. Only supported guide bones can use this.">Add Curve Point</button>
-            <button class="btn warning" type="button" id="clearCurveHandlesBtn" title="Remove the curve point from the selected bone and return it to a straight bone.">Clear Curve Points</button>
+          <div class="pose-sidebar-group pose-reset-group" aria-label="Canvas actions">
+            <div class="side-title pose-sidebar-title">Canvas</div>
             <button class="btn danger pose-tool-btn reset-outline" type="button" id="resetPoseBtn" title="Reset the editor back to the default starter pose.">Reset Canvas</button>
           </div>
         </aside>
@@ -102,7 +93,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <input id="poseProjectInput" type="file" accept=".softpose,application/vnd.softsin.pose-project,application/zip" hidden />
             </div>
           </div>
-          <p class="pose-editor-tip" role="note">TIP: Hover any control for help. Drag joints to pose. Hide bones to simplify editing. Add curve points for refinement. Best used with a maximized desktop browser window</p>
+          <p class="pose-editor-tip" role="note">TIP: Hover an anatomy button to locate its bone. Drag joints to pose, hide bones to simplify editing, and add curves for refinement. Best used with a maximized desktop browser window.</p>
         </div>
 
         <aside class="pose-side-rail pose-side-rail-right" aria-label="Bone color controls">
@@ -116,6 +107,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <span>Mode</span>
               <input id="boneModeDisplay" type="text" value="" readonly />
             </label>
+            <label class="pose-depth-control" title="Place the selected bone in the foreground or background layer.">
+              <span>Depth</span>
+              <select id="zDepthSelect" title="Place the selected bone in the foreground or background layer.">
+                <option value="foreground">Foreground</option>
+                <option value="background">Background</option>
+              </select>
+            </label>
+            <div class="bone-inspector-actions" aria-label="Selected bone actions">
+              <button class="btn success" type="button" id="addCurveHandleBtn" title="Add one curve point to the selected bone. Only supported guide bones can use this.">Add Curve</button>
+              <button class="btn warning" type="button" id="clearCurveHandlesBtn" title="Remove the curve point from the selected bone and return it to a straight bone.">Clear Curve</button>
+              <button class="btn warning visibility-action" type="button" id="hideBoneBtn" title="Hide the selected bone. Hidden bones gray out in the anatomy navigator.">Hide Bone</button>
+              <button class="btn success visibility-action" type="button" id="unhideBoneBtn" title="Restore the selected hidden bone back into the editable pose.">Restore Bone</button>
+            </div>
           </section>
           <div class="side-title anatomy-title">Anatomy Navigator</div>
           <div class="bone-color-panel bone-color-panel-rail">
@@ -186,6 +190,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <Fragment slot="scripts">
-    <script is:inline type="module" src="/js/pose/pose-editor.js?v=thickness-20260501-1"></script>
+    <script is:inline type="module" src="/js/pose/pose-editor.js?v=workspace-20260916-1"></script>
   </Fragment>
 </BaseLayout>

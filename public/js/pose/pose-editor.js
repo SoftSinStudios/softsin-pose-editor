@@ -23,7 +23,7 @@ import {
   getCanvasPoint,
   getCanvasDisplayPoint,
   preloadBackgroundImage
-} from "./pose-renderer.js?v=thickness-20260501-1";
+} from "./pose-renderer.js?v=workspace-20260916-1";
 
 import {
   downloadJson,
@@ -113,6 +113,7 @@ const redoStack = [];
 let transactionSnapshot = null;
 let draftTimer = null;
 let dirty = false;
+let hoveredBoneId = null;
 
 const drag = {
   active: false,
@@ -402,9 +403,11 @@ function endDrag(event) {
 function bindBoneChips() {
   dom.boneChips.forEach(chip => {
     chip.classList.remove("active");
+    bindBoneChipPreview(chip);
 
     chip.addEventListener("click", () => {
       const boneId = chip.dataset.bone;
+      hoveredBoneId = null;
 
       if (state.selectedBone === boneId) {
         clearSelectedBone(state);
@@ -416,6 +419,24 @@ function bindBoneChips() {
       redraw();
     });
   });
+}
+
+function bindBoneChipPreview(chip) {
+  const showPreview = () => {
+    hoveredBoneId = chip.dataset.bone || null;
+    redraw();
+  };
+  const clearPreview = () => {
+    if (hoveredBoneId === chip.dataset.bone) {
+      hoveredBoneId = null;
+      redraw();
+    }
+  };
+
+  chip.addEventListener("pointerenter", showPreview);
+  chip.addEventListener("pointerleave", clearPreview);
+  chip.addEventListener("focus", showPreview);
+  chip.addEventListener("blur", clearPreview);
 }
 
 function bindPropertyControls() {
@@ -698,9 +719,11 @@ function renderDeletedBones() {
     button.textContent = getBoneChipLabel(boneId, sourceChip);
     button.style.setProperty("--bone-color", getBoneChipColor(sourceChip));
     button.setAttribute("aria-pressed", state.selectedBone === boneId ? "true" : "false");
-    button.title = "Hidden bone: select this chip, then use Unhide Bone to restore it.";
+    button.title = "Hidden bone: select this chip, then use Restore Bone to bring it back.";
+    bindBoneChipPreview(button);
 
     button.addEventListener("click", () => {
+      hoveredBoneId = null;
       if (state.selectedBone === boneId) {
         clearSelectedBone(state);
       } else {
@@ -771,7 +794,8 @@ function readImageFile(file) {
 function redraw() {
   renderPose(dom.canvas, state, {
     viewport: view,
-    showBackgroundImage: true
+    showBackgroundImage: true,
+    hoveredBoneId
   });
 }
 

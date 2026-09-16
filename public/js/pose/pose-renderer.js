@@ -132,6 +132,7 @@ export function renderPose(canvas, state, options = {}) {
     showJoints: true,
     showHandles: true,
     showSelected: true,
+    hoveredBoneId: null,
     showExportGuide: true,
     clear: true,
     viewport: null,
@@ -296,6 +297,9 @@ function drawBonesByDepth(ctx, state, zDepth, config) {
 
 function drawBone(ctx, state, boneId, boneDef, boneState, config) {
   if (boneState.mode === BONE_MODES.HIDDEN) {
+    if (config.hoveredBoneId === boneId) {
+      drawHiddenBonePreview(ctx, state, boneDef, boneState);
+    }
     return;
   }
 
@@ -315,6 +319,12 @@ function drawBone(ctx, state, boneId, boneDef, boneState, config) {
   const boneThickness = getBoneThickness(state);
   ctx.lineWidth = boneThickness;
 
+  if (config.hoveredBoneId === boneId) {
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 10;
+    ctx.globalAlpha = 1;
+  }
+
   if (config.showSelected && state.selectedBone === boneId) {
     drawSelectedBoneOutline(ctx, from, to, boneState, boneThickness);
   }
@@ -329,6 +339,49 @@ function drawBone(ctx, state, boneId, boneDef, boneState, config) {
     ctx.lineTo(to.x, to.y);
   }
 
+  ctx.stroke();
+  if (config.hoveredBoneId === boneId) {
+    drawHoverEndpointGlow(ctx, from, to, color, getJointThickness(state));
+  }
+  ctx.restore();
+}
+
+function drawHoverEndpointGlow(ctx, from, to, color, jointThickness) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 9;
+  ctx.globalAlpha = 0.72;
+  for (const point of [from, to]) {
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, jointThickness + 1, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawHiddenBonePreview(ctx, state, boneDef, boneState) {
+  const from = state.keypoints[boneDef.from];
+  const to = state.keypoints[boneDef.to];
+  if (!from || !to) return;
+  const color = getBoneColor(boneDef);
+
+  ctx.save();
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.setLineDash([10, 8]);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = getBoneThickness(state);
+  ctx.globalAlpha = 0.42;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 8;
+  ctx.beginPath();
+  ctx.moveTo(from.x, from.y);
+  if (boneState.handles?.length) {
+    ctx.quadraticCurveTo(boneState.handles[0].x, boneState.handles[0].y, to.x, to.y);
+  } else {
+    ctx.lineTo(to.x, to.y);
+  }
   ctx.stroke();
   ctx.restore();
 }
