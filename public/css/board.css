@@ -225,17 +225,20 @@
   gap: 7px;
   margin-bottom: 10px;
   border: 1px solid var(--line);
-  border-radius: 15px;
-  background: rgba(255,255,255,.025);
+  border-radius: 13px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.05)),
+    rgba(4,7,12,.72);
   padding: 8px;
 }
 
 .editor-tool {
   border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(0,0,0,.22);
+  border-radius: 8px;
+  background: rgba(255,255,255,.025);
   color: var(--muted);
-  padding: 6px 10px;
+  min-height: 30px;
+  padding: 5px 9px;
   font: inherit;
   font-size: 12px;
   font-weight: 850;
@@ -246,7 +249,19 @@
 .editor-tool.active {
   border-color: var(--line2);
   color: var(--text);
-  background: rgba(103, 232, 255, .08);
+  background: rgba(103, 232, 255, .10);
+  box-shadow: 0 0 18px rgba(103,232,255,.06);
+}
+
+.editor-tool[data-editor-action="link"],
+.editor-tool[data-mini-editor-action="link"] {
+  border-color: rgba(103,232,255,.22);
+}
+
+.editor-tool[data-editor-action="image"],
+.editor-tool[data-mini-editor-action="image"] {
+  border-color: rgba(93,255,159,.24);
+  color: var(--good);
 }
 
 .editor-tool:disabled {
@@ -693,6 +708,39 @@ button.btn {
   padding: 1px 5px;
   font-family: Consolas, Monaco, monospace;
   font-size: .92em;
+}
+
+.markdown-body h2,
+.markdown-body h3 {
+  margin: 18px 0 8px;
+  color: var(--text);
+  line-height: 1.25;
+  letter-spacing: -.02em;
+}
+
+.markdown-body h2 {
+  font-size: 20px;
+}
+
+.markdown-body h3 {
+  font-size: 17px;
+}
+
+.markdown-code-block {
+  margin: 12px 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #05080d;
+  padding: 13px 14px;
+}
+
+.markdown-code-block code {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: #c9d6e8;
+  white-space: pre;
 }
 
 .markdown-body a {
