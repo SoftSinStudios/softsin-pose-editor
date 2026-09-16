@@ -81,8 +81,6 @@ const postTotalCount = document.getElementById("postTotalCount");
 const breadcrumbCategory = document.getElementById("breadcrumbCategory");
 const breadcrumbThread = document.getElementById("breadcrumbThread");
 const breadcrumbThreadSeparator = document.getElementById("breadcrumbThreadSeparator");
-const moderationQueueLink = document.getElementById("moderationQueueLink");
-const openReportCount = document.getElementById("openReportCount");
 const reportModal = document.getElementById("reportModal");
 const closeReportModal = document.getElementById("closeReportModal");
 const reportForm = document.getElementById("reportForm");
@@ -123,7 +121,6 @@ let postRequestId = 0;
 let draftSaveTimer = null;
 let pendingImageEditorId = null;
 let pendingReportTarget = null;
-let moderationFilter = "active";
 const profileCache = new Map();
 
 const fallbackCategories = [
@@ -1633,7 +1630,6 @@ function renderRulesView() {
   if (rulesLink) {
     rulesLink.classList.add("active");
   }
-  moderationQueueLink?.classList.remove("active");
 
   threadList.innerHTML = `
     <div class="thread-view-actions">
@@ -1678,7 +1674,6 @@ function closeRulesView() {
   if (rulesLink) {
     rulesLink.classList.remove("active");
   }
-  moderationQueueLink?.classList.remove("active");
 
   setComposerVisibility(true);
   setSearchEnabled(true);
@@ -1743,10 +1738,6 @@ function setSignedOut() {
 
   signedOutBox.hidden = false;
   signedInBox.hidden = true;
-  if (moderationQueueLink) {
-    moderationQueueLink.hidden = true;
-    moderationQueueLink.classList.remove("active");
-  }
   hideReportDialog();
   setComposerForSignedOut();
 }
@@ -1772,7 +1763,6 @@ function setSignedIn(user, profile) {
 
   setComposerForSignedIn();
   startBoardPresence();
-  refreshOpenReportCount();
 }
 
 async function getProfile(userId) {
@@ -1905,220 +1895,7 @@ async function submitContentReport(event) {
   }
 
   reportStatus.textContent = "Report submitted. The moderation team can now review it.";
-  await refreshOpenReportCount();
   window.setTimeout(hideReportDialog, 700);
-}
-
-const reportReasonLabels = {
-  spam: "Spam or promotion",
-  harassment: "Harassment or targeted abuse",
-  illegal: "Illegal or exploitative content",
-  impersonation: "Impersonation or identity abuse",
-  misinformation: "Dangerous misinformation",
-  "off-topic": "Off-topic or disruptive",
-  other: "Other"
-};
-
-async function refreshOpenReportCount() {
-  if (!moderationQueueLink || !isModeratorOrAdmin()) {
-    if (moderationQueueLink) moderationQueueLink.hidden = true;
-    return;
-  }
-
-  moderationQueueLink.hidden = false;
-  const { count, error } = await supabase
-    .from("board_reports")
-    .select("id", { count: "exact", head: true })
-    .in("status", ["open", "reviewing"]);
-
-  if (error) {
-    console.warn("Report count failed:", error);
-    openReportCount.textContent = "?";
-    return;
-  }
-
-  openReportCount.textContent = String(count || 0);
-  openReportCount.dataset.count = String(count || 0);
-}
-
-function reportExcerpt(value, fallback) {
-  const clean = stripMarkdownForPreview(value || "").trim();
-  if (!clean) return fallback;
-  return clean.length > 260 ? `${clean.slice(0, 257)}...` : clean;
-}
-
-function renderModerationReports(reports, profileMap, threadMap, postMap) {
-  const filterBar = `
-    <div class="moderation-filter-bar" aria-label="Moderation queue filter">
-      <button class="btn moderation-filter-button${moderationFilter === "active" ? " active" : ""}" type="button" data-filter="active">Active</button>
-      <button class="btn moderation-filter-button${moderationFilter === "closed" ? " active" : ""}" type="button" data-filter="closed">Closed</button>
-      <button class="btn moderation-filter-button${moderationFilter === "all" ? " active" : ""}" type="button" data-filter="all">All</button>
-    </div>
-  `;
-
-  if (!reports.length) {
-    threadList.innerHTML = `${filterBar}
-      <article class="thread moderation-empty">
-        <div class="avatar green">✓</div>
-        <div><h3>Queue clear</h3><p>There are no reports matching this view.</p></div>
-      </article>
-    `;
-    attachModerationFilterListeners();
-    return;
-  }
-
-  threadList.innerHTML = filterBar + reports.map((report) => {
-    const reporter = profileMap.get(report.reporter_id) || {};
-    const thread = report.thread_id ? threadMap.get(report.thread_id) : null;
-    const post = report.post_id ? postMap.get(report.post_id) : null;
-    const target = thread || post;
-    const author = target?.author_id ? profileMap.get(target.author_id) || {} : {};
-    const targetLabel = thread ? `Thread: ${thread.title || "Deleted thread"}` : "Reply";
-    const targetBody = thread?.body || post?.body || "This content was deleted after the report was submitted.";
-    const parentThread = thread || (post?.thread_id ? threadMap.get(post.thread_id) : null);
-    const targetCategory = currentCategories.find((category) => category.id === parentThread?.category_id);
-    const targetUrl = parentThread?.id && targetCategory?.slug
-      ? `/board.html?category=${encodeURIComponent(targetCategory.slug)}&thread=${encodeURIComponent(parentThread.id)}`
-      : "";
-
-    return `
-      <article class="moderation-report-card" data-report-id="${escapeHtml(report.id)}">
-        <div class="moderation-report-head">
-          <div>
-            <span class="tag ${report.status === "open" ? "hot" : report.status === "reviewing" ? "warn" : "good"}">${escapeHtml(report.status)}</span>
-            <h3>${escapeHtml(reportReasonLabels[report.reason] || report.reason)}</h3>
-            <p>Reported by ${escapeHtml(getProfileName(reporter))} on ${escapeHtml(formatDateOnly(report.created_at))}</p>
-          </div>
-          <span class="moderation-report-id">${escapeHtml(report.id.slice(0, 8))}</span>
-        </div>
-        <div class="moderation-target">
-          <strong>${escapeHtml(targetLabel)}</strong>
-          <span>Author: ${escapeHtml(getProfileName(author))}</span>
-          <p>${escapeHtml(reportExcerpt(targetBody, "Content unavailable."))}</p>
-          ${targetUrl ? `<a href="${targetUrl}">Open reported content</a>` : ""}
-        </div>
-        ${report.details ? `<div class="moderation-details"><strong>Reporter details</strong><p>${escapeHtml(report.details)}</p></div>` : ""}
-        <label class="report-label" for="report-note-${escapeHtml(report.id)}">Moderator note</label>
-        <textarea class="moderation-note" id="report-note-${escapeHtml(report.id)}" maxlength="2000" placeholder="Record what was checked and why this disposition was chosen.">${escapeHtml(report.resolution_note || "")}</textarea>
-        <div class="moderation-actions">
-          <button class="btn report-status-button" type="button" data-status="reviewing">Mark Reviewing</button>
-          <button class="btn primary report-status-button" type="button" data-status="resolved">Resolve</button>
-          <button class="btn neutral report-status-button" type="button" data-status="dismissed">Dismiss</button>
-        </div>
-      </article>
-    `;
-  }).join("");
-
-  attachModerationFilterListeners();
-
-  document.querySelectorAll(".report-status-button").forEach((button) => {
-    button.addEventListener("click", async () => {
-      const card = button.closest("[data-report-id]");
-      const reportId = card?.dataset.reportId;
-      const note = card?.querySelector(".moderation-note")?.value.trim() || "";
-      if (!reportId) return;
-      await updateReportStatus(reportId, button.dataset.status, note);
-    });
-  });
-}
-
-function attachModerationFilterListeners() {
-  document.querySelectorAll(".moderation-filter-button").forEach((button) => {
-    button.addEventListener("click", async () => {
-      moderationFilter = button.dataset.filter || "active";
-      await loadModerationQueue();
-    });
-  });
-}
-
-async function updateReportStatus(reportId, status, note) {
-  if (!isModeratorOrAdmin()) return;
-
-  const buttons = document.querySelectorAll(`[data-report-id="${CSS.escape(reportId)}"] .report-status-button`);
-  buttons.forEach((button) => { button.disabled = true; });
-
-  const { error } = await supabase
-    .from("board_reports")
-    .update({ status, resolution_note: note })
-    .eq("id", reportId);
-
-  if (error) {
-    console.error("Report update failed:", error);
-    buttons.forEach((button) => { button.disabled = false; });
-    window.alert(error.message || "The report could not be updated.");
-    return;
-  }
-
-  await Promise.all([loadModerationQueue(), refreshOpenReportCount()]);
-}
-
-async function loadModerationQueue() {
-  if (!isModeratorOrAdmin()) return;
-
-  closeTopicComposer({ focusTrigger: false });
-  hideReportDialog();
-  dockComposerInline();
-  currentBoardView = "moderation";
-  currentThread = null;
-  composer.hidden = true;
-  rulesReminder.hidden = true;
-  newTopicTop.hidden = true;
-  setSearchEnabled(false);
-  boardTitle.textContent = "Moderation Queue";
-  boardSubtitle.textContent = "Review member reports and record each decision.";
-  threadList.innerHTML = `<article class="thread"><div class="avatar">…</div><div><h3>Loading reports...</h3></div></article>`;
-  document.querySelectorAll(".channel[data-slug]").forEach((link) => link.classList.remove("active"));
-  rulesLink?.classList.remove("active");
-  moderationQueueLink.classList.add("active");
-
-  let reportQuery = supabase
-    .from("board_reports")
-    .select("id, reporter_id, thread_id, post_id, reason, details, status, resolution_note, created_at, updated_at")
-    .order("created_at", { ascending: true });
-
-  if (moderationFilter === "active") {
-    reportQuery = reportQuery.in("status", ["open", "reviewing"]);
-  } else if (moderationFilter === "closed") {
-    reportQuery = reportQuery.in("status", ["resolved", "dismissed"]);
-  }
-
-  const { data, error } = await reportQuery;
-  const reports = data || [];
-
-  if (error) {
-    console.error("Moderation queue failed:", error);
-    threadList.innerHTML = `<article class="thread"><div class="avatar red">!</div><div><h3>Unable to load reports</h3><p>${escapeHtml(error.message)}</p></div></article>`;
-    return;
-  }
-
-  const postIds = reports.map((item) => item.post_id).filter(Boolean);
-  const postsResult = postIds.length
-    ? await supabase.from("posts").select("id, body, thread_id, author_id, deleted_at").in("id", postIds)
-    : { data: [] };
-  const posts = postsResult.data || [];
-  const threadIds = [...new Set([
-    ...reports.map((item) => item.thread_id),
-    ...posts.map((item) => item.thread_id)
-  ].filter(Boolean))];
-  const threadsResult = threadIds.length
-    ? await supabase.from("threads").select("id, title, body, author_id, category_id, deleted_at").in("id", threadIds)
-    : { data: [] };
-  const threads = threadsResult.data || [];
-  const profileIds = [...new Set([
-    ...reports.map((item) => item.reporter_id),
-    ...threads.map((item) => item.author_id),
-    ...posts.map((item) => item.author_id)
-  ].filter(Boolean))];
-  const profilesResult = profileIds.length
-    ? await supabase.from("profiles").select("id, username, display_name, avatar_url, role").in("id", profileIds)
-    : { data: [] };
-
-  renderModerationReports(
-    reports,
-    new Map((profilesResult.data || []).map((item) => [item.id, item])),
-    new Map(threads.map((item) => [item.id, item])),
-    new Map(posts.map((item) => [item.id, item]))
-  );
 }
 
 async function signOut() {
@@ -3340,7 +3117,6 @@ async function selectCategory(slug, options = {}) {
   if (rulesLink) {
     rulesLink.classList.remove("active");
   }
-  moderationQueueLink?.classList.remove("active");
 
   const category =
     categoriesBySlug.get(slug) ||
@@ -3687,12 +3463,6 @@ if (reportModal) {
   });
 }
 
-if (moderationQueueLink) {
-  moderationQueueLink.addEventListener("click", async (event) => {
-    event.preventDefault();
-    await loadModerationQueue();
-  });
-}
 
 if (closeTopicModal) {
   closeTopicModal.addEventListener("click", () => closeTopicComposer());
