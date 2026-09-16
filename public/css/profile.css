@@ -498,6 +498,171 @@ textarea:disabled {
   margin-top: 10px;
 }
 
+.admin-enforcement {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.member-search-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.member-search-row input,
+.sanction-form select,
+.sanction-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: rgba(0,0,0,.24);
+  color: var(--text);
+  padding: 11px 12px;
+  font: inherit;
+  outline: none;
+}
+
+.member-search-results {
+  display: grid;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.member-search-results[hidden],
+.sanction-form[hidden] {
+  display: none !important;
+}
+
+.member-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: rgba(255,255,255,.025);
+  color: var(--text);
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.member-result span {
+  color: var(--soft);
+  font-size: 12px;
+}
+
+.member-result:hover:not(:disabled) {
+  border-color: var(--line2);
+  background: rgba(103,232,255,.07);
+}
+
+.member-result:disabled {
+  opacity: .48;
+  cursor: not-allowed;
+}
+
+.sanction-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+  border: 1px solid rgba(255,209,102,.24);
+  border-radius: 17px;
+  background: rgba(255,209,102,.025);
+  padding: 14px;
+}
+
+.sanction-target {
+  color: var(--text);
+  font-weight: 900;
+}
+
+.sanction-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sanction-form label {
+  display: grid;
+  gap: 7px;
+}
+
+.sanction-form label > span {
+  color: var(--soft);
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.sanction-form textarea {
+  min-height: 86px;
+  resize: vertical;
+}
+
+.sanction-form-actions,
+.sanction-history-head,
+.sanction-history-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sanction-form-actions {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.sanction-history-head {
+  margin-top: 18px;
+}
+
+.sanction-history-head h4 {
+  margin: 0;
+}
+
+.sanction-history {
+  display: grid;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+.sanction-history-card {
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: rgba(255,255,255,.025);
+  padding: 13px;
+}
+
+.sanction-history-card h5 {
+  margin: 7px 0 4px;
+  color: var(--text);
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+.sanction-history-card p,
+.sanction-history-card small {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+}
+
+.sanction-history-card details {
+  margin-top: 8px;
+  color: var(--soft);
+}
+
+.sanction-history-card details p,
+.sanction-revoked {
+  margin-top: 6px !important;
+}
+
 @media (max-width: 700px) {
   .admin-stat-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -514,6 +679,18 @@ textarea:disabled {
   .admin-report-actions {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .member-search-row,
+  .sanction-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .sanction-form-actions,
+  .sanction-history-head,
+  .sanction-history-card {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .profile-readonly {
