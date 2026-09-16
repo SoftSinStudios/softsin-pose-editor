@@ -73,7 +73,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
           <div class="panel-head-actions">
             <input class="search" type="search" placeholder="Search threads..." />
-            <button class="btn primary" id="newTopicTop" type="button" disabled>New Topic</button>
+            <button class="btn action board-new-topic" id="newTopicTop" type="button" disabled>New Topic</button>
           </div>
         </div>
 
@@ -94,6 +94,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <button class="btn" id="openRulesReminder" type="button">Read Rules</button>
         </div>
 
+        <div id="composerDock" aria-hidden="true"></div>
         <form class="composer" id="composer" hidden>
           <input
             id="composerTitle"
@@ -131,6 +132,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <button class="btn primary" id="postMessage" type="button" disabled>Create Thread</button>
           </div>
         </form>
+
+        <div class="board-modal topic-modal" id="topicModal" hidden aria-labelledby="topicModalTitle" role="dialog" aria-modal="true">
+          <div class="board-modal-card topic-modal-card" role="document">
+            <div class="topic-modal-head">
+              <div>
+                <span class="side-title">New discussion</span>
+                <h3 id="topicModalTitle">Create a topic</h3>
+                <p id="topicModalChannel">Choose a clear title and give readers enough context to respond.</p>
+              </div>
+              <button class="btn neutral topic-modal-close" id="closeTopicModal" type="button">Close</button>
+            </div>
+            <div id="topicComposerMount"></div>
+          </div>
+        </div>
 
         <div class="board-modal template-modal" id="templateModal" hidden aria-labelledby="templateModalTitle" role="dialog" aria-modal="true">
           <div class="board-modal-card template-modal-card" role="document">
