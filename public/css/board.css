@@ -933,98 +933,6 @@ button.btn {
   border-top: 1px solid var(--line);
 }
 
-.moderation-report-card {
-  margin: 8px 4px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(255,255,255,.025);
-  padding: 16px;
-}
-
-.moderation-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 4px 4px 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
-}
-
-.moderation-filter-button.active {
-  border-color: rgba(103,232,255,.42);
-  background: rgba(103,232,255,.10);
-  color: var(--accent);
-}
-
-.moderation-report-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.moderation-report-head h3 {
-  margin: 8px 0 3px;
-}
-
-.moderation-report-head p,
-.moderation-target p,
-.moderation-details p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.moderation-report-id {
-  color: var(--soft);
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 12px;
-}
-
-.moderation-target,
-.moderation-details {
-  margin-top: 14px;
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  background: rgba(0,0,0,.18);
-  padding: 12px;
-}
-
-.moderation-target strong,
-.moderation-target span,
-.moderation-details strong {
-  display: block;
-}
-
-.moderation-target span {
-  margin: 3px 0 8px;
-  color: var(--soft);
-  font-size: 12px;
-}
-
-.moderation-target a {
-  display: inline-block;
-  margin-top: 8px;
-  color: var(--accent);
-  font-weight: 800;
-}
-
-.moderation-note {
-  width: 100%;
-  min-height: 90px;
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  background: rgba(0,0,0,.22);
-  color: var(--text);
-  padding: 11px 12px;
-  resize: vertical;
-}
-
-.moderation-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
 
 .board-modal-card textarea {
   min-height: 180px;
@@ -1216,9 +1124,6 @@ button.btn {
     align-items: stretch;
   }
 
-  .moderation-report-head {
-    flex-direction: column;
-  }
 
   .editor-preview-toggle {
     margin-left: 0;
