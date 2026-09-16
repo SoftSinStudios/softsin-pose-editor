@@ -32,7 +32,7 @@ The PHP endpoint:
 
 1. Accepts requests only from the production site and approved local development origins.
 2. Verifies the Supabase bearer session directly with Supabase Auth.
-3. Validates the actual file MIME type, image structure, dimensions, and 5 MB limit.
+3. Validates the actual file MIME type, image structure, dimensions, and 10 MB limit.
 4. Limits each member to 20 image uploads per hour.
 5. Stores images under the immutable account UUID and prefixes each randomized filename with the member's current sanitized forum name and UTC upload time.
 
