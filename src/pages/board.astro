@@ -55,6 +55,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <section class="side-section">
           <div class="side-title">Quick Links</div>
           <a class="channel" href="#" id="rulesLink"><span>Rules</span></a>
+          <a class="channel moderation-queue-link" href="#" id="moderationQueueLink" hidden>
+            <span>Moderation Queue</span><span class="pill" id="openReportCount">0</span>
+          </a>
         </section>
       </aside>
 
@@ -199,6 +202,40 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <span>Continue with Google</span>
               </button>
             </div>
+          </div>
+        </div>
+
+        <div class="board-modal report-modal" id="reportModal" hidden aria-labelledby="reportModalTitle" role="dialog" aria-modal="true">
+          <div class="board-modal-card report-modal-card" role="document">
+            <div class="topic-modal-head">
+              <div>
+                <span class="side-title">Community safety</span>
+                <h3 id="reportModalTitle">Report content</h3>
+                <p id="reportTargetSummary">Tell the moderation team what needs attention.</p>
+              </div>
+              <button class="btn neutral" id="closeReportModal" type="button">Close</button>
+            </div>
+
+            <form id="reportForm">
+              <label class="report-label" for="reportReason">Reason</label>
+              <select id="reportReason" required>
+                <option value="">Choose a reason</option>
+                <option value="spam">Spam or promotion</option>
+                <option value="harassment">Harassment or targeted abuse</option>
+                <option value="illegal">Illegal or exploitative content</option>
+                <option value="impersonation">Impersonation or identity abuse</option>
+                <option value="misinformation">Dangerous misinformation</option>
+                <option value="off-topic">Off-topic or disruptive</option>
+                <option value="other">Other</option>
+              </select>
+
+              <label class="report-label" for="reportDetails">Details <span>optional</span></label>
+              <textarea id="reportDetails" maxlength="2000" placeholder="Give moderators the context they need. Do not include passwords or private credentials."></textarea>
+              <div class="report-form-footer">
+                <span class="tiny" id="reportStatus">Reports are private and visible only to you and the moderation team.</span>
+                <button class="btn primary" id="submitReport" type="submit">Submit Report</button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
