@@ -295,7 +295,223 @@ textarea:disabled {
   transform: translateY(-1px);
 }
 
+.admin-dashboard {
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+.admin-dashboard-head,
+.admin-queue-head,
+.admin-report-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.admin-dashboard-head h2,
+.admin-queue-head h3,
+.admin-report-head h4 {
+  margin: 4px 0;
+}
+
+.admin-dashboard-head p,
+.admin-report-head p,
+.admin-report-target p,
+.admin-reporter-details p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.admin-eyebrow {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.admin-stat {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255,255,255,.03);
+  padding: 13px;
+}
+
+.admin-stat span {
+  display: block;
+  color: var(--soft);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.admin-stat strong {
+  display: block;
+  margin-top: 7px;
+  color: var(--text);
+  font-size: 25px;
+}
+
+.admin-health-note {
+  margin-top: 10px;
+  border: 1px solid rgba(103,232,255,.18);
+  border-radius: 13px;
+  background: rgba(103,232,255,.045);
+  color: var(--muted);
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.admin-queue-head {
+  align-items: center;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.admin-filter-group,
+.admin-report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-report-filter.active {
+  border-color: rgba(103,232,255,.42);
+  background: rgba(103,232,255,.10);
+  color: var(--accent);
+}
+
+.admin-report-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.admin-empty {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: rgba(255,255,255,.025);
+  color: var(--muted);
+  padding: 16px;
+}
+
+.admin-empty.error {
+  border-color: rgba(255,86,120,.3);
+  color: #ff9cb0;
+}
+
+.admin-report-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.025);
+  padding: 16px;
+}
+
+.admin-report-head code {
+  color: var(--soft);
+  font-size: 12px;
+}
+
+.admin-status {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 8px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.admin-status.open { color: #ff8aa2; border-color: rgba(255,86,120,.3); }
+.admin-status.reviewing { color: var(--warn); border-color: rgba(255,209,102,.3); }
+.admin-status.resolved,
+.admin-status.dismissed { color: var(--good); border-color: rgba(93,255,159,.25); }
+
+.admin-report-target,
+.admin-reporter-details {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: rgba(0,0,0,.18);
+  padding: 12px;
+}
+
+.admin-report-target strong,
+.admin-report-target span,
+.admin-reporter-details strong {
+  display: block;
+}
+
+.admin-report-target span {
+  margin: 3px 0 8px;
+  color: var(--soft);
+  font-size: 12px;
+}
+
+.admin-report-target a {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.admin-report-card > label {
+  display: block;
+  margin: 13px 0 7px;
+  color: var(--soft);
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.admin-report-note {
+  width: 100%;
+  min-height: 90px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: rgba(0,0,0,.22);
+  color: var(--text);
+  padding: 11px 12px;
+  resize: vertical;
+  font: inherit;
+}
+
+.admin-report-actions {
+  margin-top: 10px;
+}
+
 @media (max-width: 700px) {
+  .admin-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-dashboard-head,
+  .admin-queue-head,
+  .admin-report-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-filter-group,
+  .admin-report-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
   .profile-readonly {
     grid-template-columns: 1fr;
   }
