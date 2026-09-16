@@ -49,7 +49,7 @@ Run `supabase/migrations/20260917_board_reporting.sql` before publishing the rep
 
 1. Private reports for threads and replies with controlled reason codes and optional context.
 2. Duplicate active-report and self-report prevention at the database boundary.
-3. A staff-only moderation queue with Active, Closed, and All views.
+3. A staff-only moderation and board-health dashboard on the profile page with Active, Closed, and All report views. The queue is never rendered on the public board page.
 4. Reviewing, resolved, and dismissed dispositions with moderator notes.
 5. An immutable report-event history recording submission and every disposition change.
 6. Row-level security that exposes a report only to its reporter and verified moderators or administrators.
