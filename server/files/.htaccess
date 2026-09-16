@@ -1,0 +1,13 @@
+Options -Indexes
+
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+<FilesMatch "^\." >
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(json|log|ini|env)$">
+  Require all denied
+</FilesMatch>
