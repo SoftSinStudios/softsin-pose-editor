@@ -1188,14 +1188,23 @@ button.btn {
 }
 
 .main-panel > .panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
   padding: 18px;
   border-bottom: 1px solid var(--line);
+}
+
+.main-panel > .panel-head > div:first-child {
+  min-width: 0;
 }
 
 .panel-head-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  flex: 0 1 auto;
   gap: 9px;
 }
 
