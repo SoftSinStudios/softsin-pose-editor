@@ -56,6 +56,20 @@ Run `supabase/migrations/20260917_board_reporting.sql` before publishing the rep
 
 The browser only renders controls. Supabase remains responsible for identity, permissions, target validation, and moderation history.
 
+## User enforcement
+
+Run `supabase/migrations/20260917_board_sanctions.sql` after the reporting migration. It adds:
+
+1. Documented warnings that members must acknowledge.
+2. Timed mutes and suspensions that make the board read-only for the affected account.
+3. Timed or permanent bans.
+4. Protected administrator accounts, staff hierarchy checks, and self-sanction prevention.
+5. Public member-facing reasons separated from private staff notes.
+6. Automatic expiration, explicit revocation, superseding of older restrictions, and immutable event history.
+7. Database triggers that block restricted accounts from inserting or editing threads and replies even if browser controls are bypassed.
+
+The staff profile dashboard owns member search, enforcement controls, and sanction history. The public board only displays the signed-in member's warning or active restriction.
+
 The migration is additive to the existing board schema. Test it against the current Supabase project before deploying the updated frontend to production.
 
 ## Rendering safety
