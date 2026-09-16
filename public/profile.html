@@ -175,6 +175,69 @@
 
             <div class="admin-health-note" id="adminHealthNote">Loading board health...</div>
 
+            <section class="admin-enforcement" aria-labelledby="adminEnforcementTitle">
+              <div class="admin-queue-head">
+                <div>
+                  <span class="admin-eyebrow">User enforcement</span>
+                  <h3 id="adminEnforcementTitle">Warnings and restrictions</h3>
+                  <p>Find a member, document the reason, and apply the minimum action needed.</p>
+                </div>
+              </div>
+
+              <div class="member-search-row">
+                <input id="memberSearchInput" type="search" maxlength="80" placeholder="Search display name or username" />
+                <button class="btn" id="memberSearchButton" type="button">Find Member</button>
+              </div>
+              <div class="member-search-results" id="memberSearchResults" hidden></div>
+
+              <form class="sanction-form" id="sanctionForm" hidden>
+                <div class="sanction-target" id="sanctionTarget">No member selected.</div>
+                <div class="sanction-fields">
+                  <label>
+                    <span>Action</span>
+                    <select id="sanctionType" required>
+                      <option value="warning">Warning</option>
+                      <option value="mute">Mute</option>
+                      <option value="suspension">Suspension</option>
+                      <option value="ban">Ban</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Duration</span>
+                    <select id="sanctionDuration">
+                      <option value="60">1 hour</option>
+                      <option value="1440">24 hours</option>
+                      <option value="4320">3 days</option>
+                      <option value="10080" selected>7 days</option>
+                      <option value="43200">30 days</option>
+                      <option value="525600">1 year</option>
+                      <option value="permanent">Permanent</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  <span>Reason shown to member</span>
+                  <textarea id="sanctionPublicReason" maxlength="500" required placeholder="State the violated rule and what must change."></textarea>
+                </label>
+                <label>
+                  <span>Private staff note</span>
+                  <textarea id="sanctionPrivateNote" maxlength="2000" placeholder="Evidence, context, or prior history. Never shown to the member."></textarea>
+                </label>
+                <div class="sanction-form-actions">
+                  <span class="tiny" id="sanctionStatus">Select a member before applying an action.</span>
+                  <button class="btn primary" id="applySanction" type="submit">Apply Action</button>
+                </div>
+              </form>
+
+              <div class="sanction-history-head">
+                <h4>Recent enforcement history</h4>
+                <button class="btn" id="refreshSanctions" type="button">Refresh History</button>
+              </div>
+              <div class="sanction-history" id="sanctionHistory">
+                <p class="admin-empty">Loading enforcement history...</p>
+              </div>
+            </section>
+
             <div class="admin-queue-head">
               <div>
                 <span class="admin-eyebrow">Moderation</span>
