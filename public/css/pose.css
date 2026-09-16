@@ -1,5 +1,9 @@
 /* SoftSin Studios — Pose Editor page */
 
+.pose-page {
+  --content-width: 2200px;
+}
+
 /* ========================================================================== */
 /* Hero / product preview                                                      */
 /* ========================================================================== */
@@ -252,7 +256,10 @@
 .pose-workbench {
   padding: 18px;
   display: grid;
-  grid-template-columns: 220px minmax(520px, calc(100vh - 250px)) 300px;
+  grid-template-columns:
+    clamp(220px, 14vw, 280px)
+    minmax(520px, 1fr)
+    clamp(300px, 18vw, 360px);
   justify-content: center;
   align-items: stretch;
   gap: 18px;
@@ -344,7 +351,8 @@
   min-height: 0;
   align-self: stretch;
   height: 100%;
-  max-height: calc(100vh - 190px);
+  max-height: min(82vh, 1088px);
+  max-height: min(82dvh, 1088px);
   margin-top: 0;
 }
 
@@ -414,7 +422,8 @@
 .canvas-frame {
   align-self: start;
   justify-self: center;
-  width: min(100%, calc(100vh - 190px));
+  width: min(100%, 82vh, 1088px);
+  width: min(100%, 82dvh, 1088px);
   min-width: 0;
   height: auto;
   aspect-ratio: 1 / 1;
@@ -425,10 +434,6 @@
     rgba(0,0,0,.25);
   padding: 14px;
   overflow: hidden;
-}
-
-.pose-canvas-stack .canvas-frame {
-  width: min(100%, calc(100vh - 190px));
 }
 
 .canvas-grid {
@@ -1004,7 +1009,7 @@
 
 @media (max-width: 1250px) and (min-width: 861px) {
   .pose-workbench {
-    grid-template-columns: 240px minmax(520px, calc(100vh - 220px));
+    grid-template-columns: clamp(220px, 24vw, 260px) minmax(520px, 1fr);
     gap: 18px;
     align-items: start;
   }
@@ -1016,7 +1021,8 @@
   }
 
   .pose-canvas-stack .canvas-frame {
-    width: min(100%, calc(100vh - 220px));
+    width: min(100%, 82vh, 1088px);
+    width: min(100%, 82dvh, 1088px);
   }
 
   .pose-side-rail-left {
