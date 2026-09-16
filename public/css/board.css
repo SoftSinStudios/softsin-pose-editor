@@ -1576,6 +1576,12 @@ button.btn {
 }
 
 /* SoftSin board actions and topic dialog */
+.board-page .main-panel .btn,
+.board-page .sidebar .btn,
+.board-page .board-modal .btn {
+  border-radius: 11px;
+}
+
 .board-new-topic,
 .board-page .composer-actions .btn,
 .board-page .edit-actions .btn,
@@ -1584,6 +1590,22 @@ button.btn {
   min-height: 40px;
   border-radius: 11px;
   box-shadow: none;
+}
+
+.board-page .rules-reminder .btn {
+  min-width: 104px;
+  min-height: 38px;
+  padding: 8px 14px;
+  border-color: rgba(103,232,255,.22);
+  border-radius: 10px;
+  background: rgba(103,232,255,.055);
+  color: var(--muted);
+}
+
+.board-page .rules-reminder .btn:hover {
+  border-color: rgba(103,232,255,.42);
+  background: rgba(103,232,255,.10);
+  color: var(--text);
 }
 
 .board-page .panel-head-actions .btn.board-new-topic {
