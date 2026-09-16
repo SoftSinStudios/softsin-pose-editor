@@ -182,6 +182,36 @@
   cursor: not-allowed;
 }
 
+.board-restriction-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 12px 14px 0;
+  border: 1px solid rgba(255,209,102,.34);
+  border-radius: 14px;
+  background: rgba(255,209,102,.07);
+  padding: 11px 13px;
+}
+
+.board-restriction-banner > div {
+  display: grid;
+  gap: 4px;
+}
+
+.board-restriction-banner[hidden] {
+  display: none !important;
+}
+
+.board-restriction-banner strong {
+  color: var(--warn);
+}
+
+.board-restriction-banner span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .composer {
   margin: 10px;
   border: 1px solid var(--line);
