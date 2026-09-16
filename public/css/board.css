@@ -1574,3 +1574,78 @@ button.btn {
     width: 100%;
   }
 }
+
+/* SoftSin board actions and topic dialog */
+.board-new-topic,
+.board-page .composer-actions .btn,
+.board-page .edit-actions .btn,
+.board-page .board-modal-actions .btn,
+.topic-modal-close {
+  min-height: 40px;
+  border-radius: 11px;
+  box-shadow: none;
+}
+
+.board-new-topic {
+  border-color: rgba(103,232,255,.34);
+  background: rgba(103,232,255,.09);
+  color: var(--accent);
+}
+
+.board-new-topic:hover:not(:disabled) {
+  border-color: rgba(103,232,255,.58);
+  background: rgba(103,232,255,.14);
+  color: var(--text);
+}
+
+.topic-modal-card {
+  width: min(920px, 100%);
+  max-height: calc(100vh - 36px);
+  overflow-y: auto;
+}
+
+.topic-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.topic-modal-head .side-title {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.topic-modal-head h3,
+.topic-modal-head p {
+  margin: 0;
+}
+
+.topic-modal-head p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.topic-modal .composer {
+  margin: 0;
+  border-radius: 16px;
+}
+
+.topic-modal-close {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .topic-modal-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .topic-modal-close {
+    width: 100%;
+  }
+}
