@@ -311,17 +311,19 @@ function drawBone(ctx, state, boneId, boneDef, boneState, config) {
   }
 
   const color = getBoneColor(boneDef);
+  const isHovered = config.hoveredBoneId === boneId;
+  const hoverColor = isHovered ? brightenHexColor(color, 0.24) : color;
 
   ctx.save();
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  ctx.strokeStyle = color;
+  ctx.strokeStyle = hoverColor;
   const boneThickness = getBoneThickness(state);
   ctx.lineWidth = boneThickness;
 
-  if (config.hoveredBoneId === boneId) {
-    ctx.shadowColor = color;
-    ctx.shadowBlur = 10;
+  if (isHovered) {
+    ctx.shadowColor = hoverColor;
+    ctx.shadowBlur = 15;
     ctx.globalAlpha = 1;
   }
 
@@ -340,8 +342,8 @@ function drawBone(ctx, state, boneId, boneDef, boneState, config) {
   }
 
   ctx.stroke();
-  if (config.hoveredBoneId === boneId) {
-    drawHoverEndpointGlow(ctx, from, to, color, getJointThickness(state));
+  if (isHovered) {
+    drawHoverEndpointGlow(ctx, from, to, hoverColor, getJointThickness(state));
   }
   ctx.restore();
 }
@@ -350,8 +352,8 @@ function drawHoverEndpointGlow(ctx, from, to, color, jointThickness) {
   ctx.save();
   ctx.fillStyle = color;
   ctx.shadowColor = color;
-  ctx.shadowBlur = 9;
-  ctx.globalAlpha = 0.72;
+  ctx.shadowBlur = 13;
+  ctx.globalAlpha = 0.84;
   for (const point of [from, to]) {
     ctx.beginPath();
     ctx.arc(point.x, point.y, jointThickness + 1, 0, Math.PI * 2);
@@ -364,7 +366,7 @@ function drawHiddenBonePreview(ctx, state, boneDef, boneState) {
   const from = state.keypoints[boneDef.from];
   const to = state.keypoints[boneDef.to];
   if (!from || !to) return;
-  const color = getBoneColor(boneDef);
+  const color = brightenHexColor(getBoneColor(boneDef), 0.18);
 
   ctx.save();
   ctx.lineCap = "round";
@@ -372,9 +374,9 @@ function drawHiddenBonePreview(ctx, state, boneDef, boneState) {
   ctx.setLineDash([10, 8]);
   ctx.strokeStyle = color;
   ctx.lineWidth = getBoneThickness(state);
-  ctx.globalAlpha = 0.42;
+  ctx.globalAlpha = 0.52;
   ctx.shadowColor = color;
-  ctx.shadowBlur = 8;
+  ctx.shadowBlur = 11;
   ctx.beginPath();
   ctx.moveTo(from.x, from.y);
   if (boneState.handles?.length) {
@@ -384,6 +386,17 @@ function drawHiddenBonePreview(ctx, state, boneDef, boneState) {
   }
   ctx.stroke();
   ctx.restore();
+}
+
+function brightenHexColor(color, amount) {
+  const match = /^#([0-9a-f]{6})$/i.exec(color);
+  if (!match) return color;
+  const value = Number.parseInt(match[1], 16);
+  const brighten = channel => Math.round(channel + (255 - channel) * amount);
+  const red = brighten((value >>> 16) & 255);
+  const green = brighten((value >>> 8) & 255);
+  const blue = brighten(value & 255);
+  return `rgb(${red}, ${green}, ${blue})`;
 }
 
 function drawSelectedBoneOutline(ctx, from, to, boneState, boneThickness = DEFAULT_LINE_WEIGHT) {
