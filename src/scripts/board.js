@@ -1474,8 +1474,8 @@ function getFilteredThreads() {
 }
 
 function setComposerVisibility(visible) {
-  if (composer) {
-    composer.hidden = !visible;
+  if (!visible && composer) {
+    composer.hidden = true;
   }
 
   if (rulesReminder) {
