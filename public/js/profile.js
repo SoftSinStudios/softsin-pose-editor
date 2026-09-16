@@ -59,10 +59,24 @@ const statMembersWeek = document.getElementById("statMembersWeek");
 const statLockedThreads = document.getElementById("statLockedThreads");
 const statReportsClosedWeek = document.getElementById("statReportsClosedWeek");
 const statRemovedWeek = document.getElementById("statRemovedWeek");
+const memberSearchInput = document.getElementById("memberSearchInput");
+const memberSearchButton = document.getElementById("memberSearchButton");
+const memberSearchResults = document.getElementById("memberSearchResults");
+const sanctionForm = document.getElementById("sanctionForm");
+const sanctionTarget = document.getElementById("sanctionTarget");
+const sanctionType = document.getElementById("sanctionType");
+const sanctionDuration = document.getElementById("sanctionDuration");
+const sanctionPublicReason = document.getElementById("sanctionPublicReason");
+const sanctionPrivateNote = document.getElementById("sanctionPrivateNote");
+const sanctionStatus = document.getElementById("sanctionStatus");
+const applySanction = document.getElementById("applySanction");
+const refreshSanctions = document.getElementById("refreshSanctions");
+const sanctionHistory = document.getElementById("sanctionHistory");
 
 let currentUser = null;
 let currentProfile = null;
 let adminReportFilter = "active";
+let selectedSanctionTarget = null;
 
 const reportReasonLabels = {
   spam: "Spam or promotion",
@@ -411,6 +425,18 @@ function attachAdminReportActions() {
       await updateAdminReport(reportId, button.dataset.status, note);
     });
   });
+
+  document.querySelectorAll(".manage-reported-user").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectMemberForSanction({
+        id: button.dataset.userId,
+        display_name: button.dataset.displayName,
+        username: button.dataset.username,
+        role: button.dataset.role
+      });
+      sanctionForm.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
 }
 
 function renderAdminReports(reports, profiles, threads, posts, categories) {
@@ -438,6 +464,7 @@ function renderAdminReports(reports, profiles, threads, posts, categories) {
     const statusLabel = reportStatusLabel(report, target);
     const targetTitle = thread ? `Thread: ${thread.title || "Deleted thread"}` : "Reply";
     const targetBody = target?.body || "The reported content is unavailable.";
+    const canManageAuthor = author.id && author.id !== currentUser?.id && author.role !== "admin" && !(currentProfile?.role === "moderator" && author.role === "moderator");
 
     return `
       <article class="admin-report-card" data-report-id="${escapeHtml(report.id)}">
@@ -459,6 +486,7 @@ function renderAdminReports(reports, profiles, threads, posts, categories) {
         <label for="admin-report-note-${escapeHtml(report.id)}">Moderator note</label>
         <textarea class="admin-report-note" id="admin-report-note-${escapeHtml(report.id)}" maxlength="2000" placeholder="Record what was reviewed and why this action was taken.">${escapeHtml(report.resolution_note || "")}</textarea>
         <div class="admin-report-actions">
+          ${canManageAuthor ? `<button class="btn manage-reported-user" type="button" data-user-id="${escapeHtml(author.id)}" data-display-name="${escapeHtml(author.display_name || "")}" data-username="${escapeHtml(author.username || "")}" data-role="${escapeHtml(author.role || "member")}">Manage User</button>` : ""}
           <button class="btn admin-report-action" type="button" data-status="reviewing">Mark Reviewing</button>
           <button class="btn primary admin-report-action" type="button" data-status="resolved">Resolve</button>
           <button class="btn admin-report-action" type="button" data-status="dismissed">Dismiss</button>
@@ -542,10 +570,202 @@ async function updateAdminReport(reportId, status, note) {
   await Promise.all([loadBoardHealth(), loadAdminReports()]);
 }
 
+function updateSanctionDurationState() {
+  if (!sanctionType || !sanctionDuration) return;
+  const warning = sanctionType.value === "warning";
+  sanctionDuration.disabled = warning;
+}
+
+function selectMemberForSanction(profile) {
+  selectedSanctionTarget = profile;
+  sanctionForm.hidden = false;
+  sanctionTarget.textContent = `${getProfileName(profile)}${profile.username ? ` (@${profile.username})` : ""} · ${profile.role || "member"}`;
+  sanctionPublicReason.value = "";
+  sanctionPrivateNote.value = "";
+  sanctionStatus.textContent = "Ready to document an enforcement action.";
+  memberSearchResults.hidden = true;
+  sanctionType.focus();
+}
+
+async function searchMembers() {
+  if (!isStaffProfile()) return;
+  const term = memberSearchInput.value.trim();
+
+  if (term.length < 2) {
+    memberSearchResults.hidden = false;
+    memberSearchResults.innerHTML = `<p class="admin-empty">Enter at least two characters.</p>`;
+    return;
+  }
+
+  memberSearchButton.disabled = true;
+  memberSearchResults.hidden = false;
+  memberSearchResults.innerHTML = `<p class="admin-empty">Searching members...</p>`;
+
+  const [displayResult, usernameResult] = await Promise.all([
+    supabase.from("profiles").select("id, username, display_name, role").ilike("display_name", `%${term}%`).limit(12),
+    supabase.from("profiles").select("id, username, display_name, role").ilike("username", `%${term}%`).limit(12)
+  ]);
+  memberSearchButton.disabled = false;
+
+  if (displayResult.error && usernameResult.error) {
+    memberSearchResults.innerHTML = `<p class="admin-empty error">Member search failed.</p>`;
+    return;
+  }
+
+  const members = [...new Map([
+    ...(displayResult.data || []),
+    ...(usernameResult.data || [])
+  ].map((item) => [item.id, item])).values()].slice(0, 12);
+
+  if (!members.length) {
+    memberSearchResults.innerHTML = `<p class="admin-empty">No matching members.</p>`;
+    return;
+  }
+
+  memberSearchResults.innerHTML = members.map((profile) => {
+    const protectedAccount = profile.id === currentUser?.id || profile.role === "admin" || (currentProfile?.role === "moderator" && profile.role === "moderator");
+    return `
+      <button class="member-result" type="button" data-user-id="${escapeHtml(profile.id)}" ${protectedAccount ? "disabled" : ""}>
+        <strong>${escapeHtml(getProfileName(profile))}</strong>
+        <span>${profile.username ? `@${escapeHtml(profile.username)} · ` : ""}${escapeHtml(profile.role || "member")}${protectedAccount ? " · Protected" : ""}</span>
+      </button>
+    `;
+  }).join("");
+
+  memberSearchResults.querySelectorAll(".member-result:not(:disabled)").forEach((button) => {
+    button.addEventListener("click", () => {
+      const profile = members.find((item) => item.id === button.dataset.userId);
+      if (profile) selectMemberForSanction(profile);
+    });
+  });
+}
+
+async function submitSanction(event) {
+  event.preventDefault();
+  if (!isStaffProfile() || !selectedSanctionTarget) return;
+
+  const type = sanctionType.value;
+  const durationValue = sanctionDuration.value;
+  const publicReason = sanctionPublicReason.value.trim();
+  const privateNote = sanctionPrivateNote.value.trim();
+
+  if (publicReason.length < 3) {
+    sanctionStatus.textContent = "Enter a clear public reason of at least three characters.";
+    return;
+  }
+
+  if (["mute", "suspension"].includes(type) && durationValue === "permanent") {
+    sanctionStatus.textContent = "Mutes and suspensions require an expiration. Use Ban for a permanent restriction.";
+    return;
+  }
+
+  const durationMinutes = type === "warning" || durationValue === "permanent"
+    ? null
+    : Number.parseInt(durationValue, 10);
+
+  applySanction.disabled = true;
+  sanctionStatus.textContent = "Applying action...";
+
+  const { error } = await supabase.rpc("issue_board_sanction", {
+    target_user_id: selectedSanctionTarget.id,
+    requested_type: type,
+    public_reason: publicReason,
+    private_note: privateNote,
+    duration_minutes: durationMinutes
+  });
+
+  if (error) {
+    console.error("Sanction failed:", error);
+    sanctionStatus.textContent = error.message || "The action could not be applied.";
+    applySanction.disabled = false;
+    return;
+  }
+
+  sanctionStatus.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)} applied to ${getProfileName(selectedSanctionTarget)}.`;
+  applySanction.disabled = false;
+  sanctionPublicReason.value = "";
+  sanctionPrivateNote.value = "";
+  await loadSanctionHistory();
+}
+
+async function revokeSanction(sanctionId) {
+  if (!isStaffProfile()) return;
+  const reason = window.prompt("Reason for lifting this action:", "Restriction lifted by staff.");
+  if (reason === null) return;
+
+  const { error } = await supabase.rpc("revoke_board_sanction", {
+    target_sanction_id: sanctionId,
+    revocation_reason: reason.trim() || "Restriction lifted by staff."
+  });
+
+  if (error) {
+    console.error("Sanction revocation failed:", error);
+    adminHealthNote.textContent = error.message || "The restriction could not be lifted.";
+    return;
+  }
+
+  await loadSanctionHistory();
+}
+
+async function loadSanctionHistory() {
+  if (!isStaffProfile()) return;
+  sanctionHistory.innerHTML = `<p class="admin-empty">Loading enforcement history...</p>`;
+
+  const { data, error } = await supabase
+    .from("board_sanctions")
+    .select("id, user_id, sanction_type, reason_public, note_private, issued_by, starts_at, expires_at, active, acknowledged_at, revoked_at, revoked_by, revoke_reason, created_at")
+    .order("created_at", { ascending: false })
+    .limit(50);
+
+  if (error) {
+    console.error("Sanction history failed:", error);
+    sanctionHistory.innerHTML = `<p class="admin-empty error">${escapeHtml(error.message || "Unable to load enforcement history.")}</p>`;
+    return;
+  }
+
+  const sanctions = data || [];
+  if (!sanctions.length) {
+    sanctionHistory.innerHTML = `<p class="admin-empty">No enforcement actions have been recorded.</p>`;
+    return;
+  }
+
+  const profileIds = [...new Set(sanctions.flatMap((item) => [item.user_id, item.issued_by, item.revoked_by]).filter(Boolean))];
+  const profilesResult = await supabase.from("profiles").select("id, username, display_name, role").in("id", profileIds);
+  const profileMap = new Map((profilesResult.data || []).map((item) => [item.id, item]));
+  const now = Date.now();
+
+  sanctionHistory.innerHTML = sanctions.map((sanction) => {
+    const target = profileMap.get(sanction.user_id) || {};
+    const issuer = profileMap.get(sanction.issued_by) || {};
+    const isExpired = sanction.expires_at && new Date(sanction.expires_at).getTime() <= now;
+    const currentlyActive = sanction.active && !isExpired;
+    const state = currentlyActive ? "Active" : sanction.acknowledged_at ? "Acknowledged" : isExpired ? "Expired" : "Revoked";
+    const expiry = sanction.expires_at ? formatDate(sanction.expires_at) : sanction.sanction_type === "ban" ? "Permanent" : "No expiration";
+
+    return `
+      <article class="sanction-history-card">
+        <div>
+          <span class="admin-status ${currentlyActive ? "open" : "resolved"}">${escapeHtml(state)}</span>
+          <h5>${escapeHtml(sanction.sanction_type)} · ${escapeHtml(getProfileName(target))}</h5>
+          <p>${escapeHtml(sanction.reason_public)}</p>
+          <small>Issued by ${escapeHtml(getProfileName(issuer))} · ${escapeHtml(formatDate(sanction.created_at))} · ${escapeHtml(expiry)}</small>
+          ${sanction.note_private ? `<details><summary>Private staff note</summary><p>${escapeHtml(sanction.note_private)}</p></details>` : ""}
+          ${sanction.revoke_reason ? `<p class="sanction-revoked">${escapeHtml(sanction.revoke_reason)}</p>` : ""}
+        </div>
+        ${currentlyActive ? `<button class="btn revoke-sanction" type="button" data-sanction-id="${escapeHtml(sanction.id)}">Lift Action</button>` : ""}
+      </article>
+    `;
+  }).join("");
+
+  sanctionHistory.querySelectorAll(".revoke-sanction").forEach((button) => {
+    button.addEventListener("click", () => revokeSanction(button.dataset.sanctionId));
+  });
+}
+
 async function loadAdminDashboard() {
   if (!isStaffProfile()) return;
   if (refreshAdminDashboard) refreshAdminDashboard.disabled = true;
-  await Promise.all([loadBoardHealth(), loadAdminReports()]);
+  await Promise.all([loadBoardHealth(), loadAdminReports(), loadSanctionHistory()]);
   if (refreshAdminDashboard) refreshAdminDashboard.disabled = false;
 }
 
@@ -641,6 +861,32 @@ adminReportFilters.forEach((button) => {
     await loadAdminReports();
   });
 });
+
+if (memberSearchButton) {
+  memberSearchButton.addEventListener("click", searchMembers);
+}
+
+if (memberSearchInput) {
+  memberSearchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      searchMembers();
+    }
+  });
+}
+
+if (sanctionType) {
+  sanctionType.addEventListener("change", updateSanctionDurationState);
+  updateSanctionDurationState();
+}
+
+if (sanctionForm) {
+  sanctionForm.addEventListener("submit", submitSanction);
+}
+
+if (refreshSanctions) {
+  refreshSanctions.addEventListener("click", loadSanctionHistory);
+}
 
 supabase.auth.onAuthStateChange(() => {
   clearAuthCredentialsFromUrl();
