@@ -11,3 +11,5 @@ After deployment:
 5. Confirm the inserted image loads in the post and unsupported or oversized files are rejected.
 
 The UUID directory is the authoritative account identifier. The sanitized forum name in the filename is a human-readable moderation aid and may change when a member updates their display name.
+
+Regular members are limited to 20 uploads per hour. Accounts whose server-read profile role is exactly `admin` are exempt from the hourly count; MIME, image integrity, dimension, and 10 MB per-file validation still apply.
