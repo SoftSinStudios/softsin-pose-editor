@@ -45,6 +45,7 @@ const profileStatus = document.getElementById("profileStatus");
 const saveProfile = document.getElementById("saveProfile");
 const deleteConfirmInput = document.getElementById("deleteConfirmInput");
 const deleteProfile = document.getElementById("deleteProfile");
+const dangerZone = document.getElementById("dangerZone");
 const adminDashboard = document.getElementById("adminDashboard");
 const refreshAdminDashboard = document.getElementById("refreshAdminDashboard");
 const adminHealthNote = document.getElementById("adminHealthNote");
@@ -195,6 +196,7 @@ function renderProfile(user, profile) {
 
   roleValue.textContent = role;
   emailValue.textContent = email;
+  if (dangerZone) dangerZone.hidden = role === "admin";
 
   if (avatar) {
     profileAvatar.src = avatar;
@@ -556,6 +558,11 @@ function updateDeleteButtonState() {
 async function deleteBoardProfile() {
   if (!currentUser) {
     profileStatus.textContent = "Sign in before deleting your account.";
+    return;
+  }
+
+  if (currentProfile?.role === "admin") {
+    profileStatus.textContent = "Administrator accounts cannot be deleted from the profile page.";
     return;
   }
 
