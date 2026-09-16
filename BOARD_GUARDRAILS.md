@@ -43,6 +43,19 @@ The Supabase migration:
 1. Adds server-side identity, content, link, image, and posting-cadence validation.
 2. Also creates the earlier Supabase `board-images` fallback bucket. It can be removed after the InterServer endpoint has passed production testing.
 
+## Reporting and moderation
+
+Run `supabase/migrations/20260917_board_reporting.sql` before publishing the reporting interface. It adds:
+
+1. Private reports for threads and replies with controlled reason codes and optional context.
+2. Duplicate active-report and self-report prevention at the database boundary.
+3. A staff-only moderation queue with Active, Closed, and All views.
+4. Reviewing, resolved, and dismissed dispositions with moderator notes.
+5. An immutable report-event history recording submission and every disposition change.
+6. Row-level security that exposes a report only to its reporter and verified moderators or administrators.
+
+The browser only renders controls. Supabase remains responsible for identity, permissions, target validation, and moderation history.
+
 The migration is additive to the existing board schema. Test it against the current Supabase project before deploying the updated frontend to production.
 
 ## Rendering safety
