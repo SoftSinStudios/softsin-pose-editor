@@ -85,7 +85,7 @@ const breadcrumbThreadSeparator = document.getElementById("breadcrumbThreadSepar
 const READ_THREADS_KEY = "softsin_read_threads_v1";
 const BOARD_DRAFT_KEY = "softsin_board_draft_v1";
 const BOARD_IMAGE_UPLOAD_URL = "https://files.softsinstudios.com/website-images/board-upload.php";
-const BOARD_IMAGE_MAX_BYTES = 5 * 1024 * 1024;
+const BOARD_IMAGE_MAX_BYTES = 10 * 1024 * 1024;
 const BOARD_IMAGE_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
 
 let currentUser = null;
@@ -1020,7 +1020,7 @@ async function uploadBoardImage(file, editorId = null) {
   }
 
   if (file.size > BOARD_IMAGE_MAX_BYTES) {
-    composerStatus.textContent = "Images must be 5 MB or smaller.";
+    composerStatus.textContent = "Images must be 10 MB or smaller.";
     return;
   }
 
