@@ -190,6 +190,10 @@
   padding: 14px;
 }
 
+.composer[hidden] {
+  display: none !important;
+}
+
 .composer-title {
   width: 100%;
   margin-bottom: 10px;
