@@ -1578,6 +1578,7 @@ function renderRulesView() {
   setComposerVisibility(false);
   setSearchEnabled(false);
   newTopicTop.disabled = true;
+  newTopicTop.hidden = true;
 
   document.querySelectorAll(".channel[data-slug]").forEach((link) => {
     link.classList.remove("active");
@@ -2848,6 +2849,7 @@ function closeThreadView(options = {}) {
 
   postMessage.textContent = "Create Thread";
   postMessage.disabled = signedInBox.hidden;
+  newTopicTop.hidden = false;
   composer.hidden = true;
 
   if (composerTitle) composerTitle.value = "";
@@ -2905,6 +2907,7 @@ async function openThread(threadId, options = {}) {
 
   postMessage.textContent = "Post Reply";
   postMessage.disabled = signedInBox.hidden || thread.locked;
+  newTopicTop.hidden = true;
   setEditorDisabled(signedInBox.hidden || thread.locked);
   composer.hidden = signedInBox.hidden || thread.locked;
   composerText.value = "";
@@ -3008,6 +3011,7 @@ async function selectCategory(slug, options = {}) {
 
   boardTitle.textContent = category.name;
   boardSubtitle.textContent = category.description || "SoftSin Studios discussion.";
+  newTopicTop.hidden = false;
   syncBreadcrumbs();
   writeBoardLocation(category.slug, null, options.history || "push");
 
