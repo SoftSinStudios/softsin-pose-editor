@@ -351,8 +351,8 @@
   min-height: 0;
   align-self: stretch;
   height: 100%;
-  max-height: min(82vh, 1088px);
-  max-height: min(82dvh, 1088px);
+  max-height: min(88vh, 1280px);
+  max-height: min(88dvh, 1280px);
   margin-top: 0;
 }
 
@@ -422,8 +422,8 @@
 .canvas-frame {
   align-self: start;
   justify-self: center;
-  width: min(100%, 82vh, 1088px);
-  width: min(100%, 82dvh, 1088px);
+  width: min(100%, 88vh, 1280px);
+  width: min(100%, 88dvh, 1280px);
   min-width: 0;
   height: auto;
   aspect-ratio: 1 / 1;
@@ -1021,8 +1021,8 @@
   }
 
   .pose-canvas-stack .canvas-frame {
-    width: min(100%, 82vh, 1088px);
-    width: min(100%, 82dvh, 1088px);
+    width: min(100%, 88vh, 1280px);
+    width: min(100%, 88dvh, 1280px);
   }
 
   .pose-side-rail-left {
