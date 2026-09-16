@@ -1192,6 +1192,13 @@ button.btn {
   border-bottom: 1px solid var(--line);
 }
 
+.panel-head-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
 .main-panel > .panel-head h2 {
   margin-bottom: 3px;
 }
@@ -1274,5 +1281,235 @@ button.btn {
 
   .forum-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ========================================================================== */
+/* Compact forum identity and account controls                                 */
+/* ========================================================================== */
+
+.board-masthead {
+  align-items: center;
+  margin: 22px 0 12px;
+  padding: 18px 4px 20px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.board-masthead .eyebrow {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+}
+
+.board-masthead h1 {
+  margin: 5px 0 4px;
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: -1.2px;
+}
+
+.board-masthead .lead {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.board-masthead-actions {
+  gap: 10px;
+}
+
+.board-access-note {
+  max-width: 180px;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.forum-stats {
+  display: flex;
+  gap: 0;
+  margin: 0 0 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255,255,255,.025);
+}
+
+.forum-stat-card {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: auto;
+  padding: 10px 14px;
+  overflow: hidden;
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.forum-stat-card:last-child {
+  border-right: 0;
+}
+
+.forum-stat-card::before {
+  display: none;
+}
+
+.forum-stat-card span {
+  margin-bottom: 3px;
+  font-size: 9px;
+  letter-spacing: .1em;
+}
+
+.forum-stat-card strong {
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.account-card {
+  background: rgba(255,255,255,.012);
+}
+
+.account-card .account-note {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.account-card .auth-options {
+  gap: 7px;
+}
+
+.account-card .auth-provider-btn,
+.account-card .auth-provider-btn.btn.primary {
+  justify-content: flex-start;
+  min-height: 40px;
+  padding: 8px 10px;
+  border-color: var(--line);
+  border-radius: 11px;
+  background: rgba(255,255,255,.035);
+  color: var(--muted);
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.account-card .auth-provider-btn.btn.primary {
+  border-color: rgba(88,101,242,.32);
+  background: rgba(88,101,242,.09);
+  color: var(--text);
+}
+
+.account-card .auth-provider-btn:not(:disabled):hover {
+  border-color: var(--line2);
+  background: rgba(103,232,255,.065);
+  color: var(--text);
+  filter: none;
+  transform: none;
+}
+
+.account-card .auth-provider-icon {
+  width: 21px;
+  height: 21px;
+  font-size: 11px;
+}
+
+.account-card .discord-mark,
+.account-card .google-mark {
+  box-shadow: none;
+}
+
+.board-signin-button {
+  min-height: 40px;
+  border-radius: 11px;
+  font-size: 13px;
+}
+
+.signin-modal-card {
+  width: min(390px, calc(100vw - 32px));
+  padding: 20px;
+}
+
+.signin-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.signin-modal-head .side-title {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.signin-modal-head h3,
+.signin-modal-head p {
+  margin: 0;
+}
+
+.signin-modal-head p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.signin-modal .auth-provider-btn {
+  justify-content: flex-start;
+  min-height: 44px;
+  border-radius: 11px;
+  background: rgba(255,255,255,.035);
+  color: var(--text);
+}
+
+.signin-modal .discord-login {
+  border-color: rgba(88,101,242,.35);
+  background: rgba(88,101,242,.10);
+}
+
+.signin-modal .auth-provider-btn:hover:not(:disabled) {
+  border-color: var(--line2);
+  background: rgba(103,232,255,.065);
+  filter: none;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .board-access-note {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .board-masthead {
+    margin-top: 12px;
+    padding: 14px 0 16px;
+  }
+
+  .forum-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .forum-stat-card:nth-child(2) {
+    border-right: 0;
+  }
+
+  .forum-stat-card:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .panel-head-actions {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .panel-head-actions .search,
+  .panel-head-actions .btn {
+    width: 100%;
   }
 }
