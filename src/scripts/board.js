@@ -34,6 +34,7 @@ const editorButtons = Array.from(document.querySelectorAll("[data-editor-action]
 const editorPreviewToggle = document.getElementById("editorPreviewToggle");
 const editorPreview = document.getElementById("editorPreview");
 const editorCharCount = document.getElementById("editorCharCount");
+const boardImageInput = document.getElementById("boardImageInput");
 const editorTemplatePicker = document.getElementById("editorTemplatePicker");
 const templateModal = document.getElementById("templateModal");
 const closeTemplateModal = document.getElementById("closeTemplateModal");
@@ -51,6 +52,10 @@ const breadcrumbThread = document.getElementById("breadcrumbThread");
 const breadcrumbThreadSeparator = document.getElementById("breadcrumbThreadSeparator");
 
 const READ_THREADS_KEY = "softsin_read_threads_v1";
+const BOARD_DRAFT_KEY = "softsin_board_draft_v1";
+const BOARD_IMAGE_BUCKET = "board-images";
+const BOARD_IMAGE_MAX_BYTES = 5 * 1024 * 1024;
+const BOARD_IMAGE_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
 
 let currentUser = null;
 let currentProfile = null;
@@ -74,6 +79,8 @@ let postTemplatesLoaded = false;
 let sessionRequestId = 0;
 let threadRequestId = 0;
 let postRequestId = 0;
+let draftSaveTimer = null;
+let pendingImageEditorId = null;
 const profileCache = new Map();
 
 const fallbackCategories = [
@@ -280,13 +287,13 @@ function formatInlineMarkdown(text) {
     /!\[([^\]]*)\]\((https?:\/\/[^)\s]+)\)/g,
     (match, alt, url) => {
       const safeAlt = alt || "Posted image";
-      return `<a class="markdown-image-link" href="${url}" target="_blank" rel="noopener noreferrer"><img class="markdown-image" src="${url}" alt="${safeAlt}" loading="lazy" referrerpolicy="no-referrer" /></a>`;
+      return `<a class="markdown-image-link" href="${url}" target="_blank" rel="ugc nofollow noopener noreferrer"><img class="markdown-image" src="${url}" alt="${safeAlt}" loading="lazy" referrerpolicy="no-referrer" /></a>`;
     }
   );
 
   safe = safe.replace(
     /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+    '<a href="$2" target="_blank" rel="ugc nofollow noopener noreferrer">$1</a>'
   );
 
   safe = safe.replace(/`([^`]+)`/g, "<code>$1</code>");
@@ -302,6 +309,7 @@ function renderMarkdownLite(raw) {
 
   let listType = null;
   let galleryImages = [];
+  let codeBlockLines = null;
 
   function closeList() {
     if (listType) {
@@ -329,6 +337,25 @@ function renderMarkdownLite(raw) {
   lines.forEach((line) => {
     const trimmed = line.trim();
 
+    if (trimmed.startsWith("```")) {
+      closeList();
+      closeGallery();
+
+      if (codeBlockLines) {
+        html.push(`<pre class="markdown-code-block"><code>${escapeHtml(codeBlockLines.join("\n"))}</code></pre>`);
+        codeBlockLines = null;
+      } else {
+        codeBlockLines = [];
+      }
+
+      return;
+    }
+
+    if (codeBlockLines) {
+      codeBlockLines.push(line);
+      return;
+    }
+
     if (!trimmed) {
       closeList();
       closeGallery();
@@ -351,7 +378,7 @@ function renderMarkdownLite(raw) {
           class="markdown-image-link"
           href="${url}"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="ugc nofollow noopener noreferrer"
         >
           <img
             class="markdown-image"
@@ -382,6 +409,15 @@ function renderMarkdownLite(raw) {
           trimmed.slice(2)
         )}</div>`
       );
+      return;
+    }
+
+    const headingMatch = trimmed.match(/^(#{2,3})\s+(.+)$/);
+
+    if (headingMatch) {
+      closeList();
+      const level = headingMatch[1].length;
+      html.push(`<h${level}>${formatInlineMarkdown(headingMatch[2])}</h${level}>`);
       return;
     }
 
@@ -416,6 +452,10 @@ function renderMarkdownLite(raw) {
   closeList();
   closeGallery();
 
+  if (codeBlockLines) {
+    html.push(`<pre class="markdown-code-block"><code>${escapeHtml(codeBlockLines.join("\n"))}</code></pre>`);
+  }
+
   return html.join("");
 }
 
@@ -440,27 +480,26 @@ function userIsAdmin() {
 }
 
 function userCanUseMediaTools() {
-  return userIsAdmin();
-}
-
-function textContainsBlockedLinks(value) {
-  const text = String(value || "");
-
-  return /https?:\/\//i.test(text)
-    || /\bwww\./i.test(text)
-    || /!\[[^\]]*\]\([^)]+\)/i.test(text)
-    || /\.(com|net|org|io|dev|app|ai|co|us|uk|ca|de|jp|fr|au|gg|tv|me|ru|cn|in|cc|to|su|tk|ml|ga|cf|gq|work|quest|rest|one|info|biz|xyz|site|online|store|cloud|tech|studio|art|zip|mov|link|click|live|space|top|shop|blog|news|media|email|es|id|br|pl|ro|ir|vn|pk|ng|tr|ua|kz|by|lt|pw|ws|icu|cyou|sbs|bond|cam|monster|lol|mom|beauty|hair|skin|autos|boats|homes|loan|loans|men|date|faith|review|reviews|stream|download|win|bid|party|trade|racing|science|accountants|cricket|xin|cfd|buzz|world|mobi|qpon|pics|help|support|finance|vip|pro|today|li|poker|fit|lat|ink|best)(\/|\b)/i.test(text);
+  return Boolean(currentUser);
 }
 
 function validateUserTextPermissions(...values) {
-  if (userCanUseMediaTools()) {
-    return true;
+  const text = values.map((value) => String(value || "")).join("\n");
+  const links = text.match(/https?:\/\/[^\s)]+/gi) || [];
+  const images = text.match(/!\[[^\]]*\]\(https?:\/\/[^)\s]+\)/gi) || [];
+
+  if (/\]\(\s*(javascript|data|vbscript):/i.test(text)) {
+    composerStatus.textContent = "Only HTTP and HTTPS links are allowed.";
+    return false;
   }
 
-  const hasBlockedLinks = values.some((value) => textContainsBlockedLinks(value));
+  if (links.length > 10) {
+    composerStatus.textContent = "A post can contain no more than 10 links.";
+    return false;
+  }
 
-  if (hasBlockedLinks) {
-    composerStatus.textContent = "Links and images are admin-only. Remove URLs before posting.";
+  if (images.length > 4) {
+    composerStatus.textContent = "A post can contain no more than 4 images.";
     return false;
   }
 
@@ -479,14 +518,14 @@ function updateComposerHelperText() {
 
   if (userCanUseMediaTools()) {
     composerStatus.textContent = currentThread
-      ? "Admin editor: Markdown, links, and image URLs are enabled."
-      : "Admin editor: Markdown, links, and image URLs are enabled.";
+      ? "Formatting, safe links, image uploads, and local draft recovery are enabled."
+      : "Formatting, safe links, image uploads, and local draft recovery are enabled.";
     return;
   }
 
   composerStatus.textContent = currentThread
-    ? "Basic formatting is enabled. Links and images are admin-only."
-    : "Basic formatting is enabled. Links and images are admin-only.";
+    ? "Sign in to use the editor."
+    : "Sign in to use the editor.";
 }
 
 function updateToolbarForRole() {
@@ -508,6 +547,84 @@ function updateToolbarForRole() {
 function updateCharCount() {
   if (!editorCharCount || !composerText) return;
   editorCharCount.textContent = `${composerText.value.length} / 20000`;
+}
+
+function getDraftContextKey() {
+  if (!currentUser?.id || !currentCategory?.slug) return null;
+  return `${currentUser.id}:${currentCategory.slug}:${currentThread?.id || "new"}`;
+}
+
+function readDraftStore() {
+  try {
+    return JSON.parse(localStorage.getItem(BOARD_DRAFT_KEY) || "{}") || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveComposerDraft() {
+  const key = getDraftContextKey();
+  if (!key || !composerText) return;
+
+  const title = composerTitle && !composerTitle.hidden ? composerTitle.value : "";
+  const body = composerText.value;
+  const drafts = readDraftStore();
+
+  if (!title.trim() && !body.trim()) {
+    delete drafts[key];
+  } else {
+    drafts[key] = { title, body, savedAt: new Date().toISOString() };
+  }
+
+  try {
+    localStorage.setItem(BOARD_DRAFT_KEY, JSON.stringify(drafts));
+    if ((title.trim() || body.trim()) && composerStatus) {
+      composerStatus.textContent = "Draft saved locally.";
+    }
+  } catch {
+    // Private browsing and storage limits can disable local drafts.
+  }
+}
+
+function scheduleDraftSave() {
+  window.clearTimeout(draftSaveTimer);
+  draftSaveTimer = window.setTimeout(saveComposerDraft, 450);
+}
+
+function flushDraftSave() {
+  window.clearTimeout(draftSaveTimer);
+  draftSaveTimer = null;
+  saveComposerDraft();
+}
+
+function restoreComposerDraft() {
+  const key = getDraftContextKey();
+  if (!key || !composerText) return;
+
+  const draft = readDraftStore()[key];
+  if (!draft) return;
+
+  if (composerTitle && !composerTitle.hidden) {
+    composerTitle.value = String(draft.title || "");
+  }
+
+  composerText.value = String(draft.body || "");
+  updateCharCount();
+  composerStatus.textContent = "Recovered local draft.";
+}
+
+function clearComposerDraft() {
+  const key = getDraftContextKey();
+  if (!key) return;
+
+  const drafts = readDraftStore();
+  delete drafts[key];
+
+  try {
+    localStorage.setItem(BOARD_DRAFT_KEY, JSON.stringify(drafts));
+  } catch {
+    // Ignore unavailable local storage.
+  }
 }
 
 
@@ -824,19 +941,84 @@ function insertLink() {
 function insertImage() {
   if (!composerText || composerText.disabled || !userCanUseMediaTools()) return;
 
-  setEditorPreviewMode(false);
+  pendingImageEditorId = null;
+  boardImageInput?.click();
+}
 
-  const start = composerText.selectionStart;
-  const end = composerText.selectionEnd;
-  const value = composerText.value;
-  const selected = value.slice(start, end) || "image description";
-  const nextSelected = `![${selected}](https://example.com/image.jpg)`;
+function insertCodeBlock() {
+  replaceSelection("```\n", "\n```", "code");
+}
+
+function insertUploadedImageMarkdown(url, fileName, editorId = null) {
+  const textarea = editorId ? document.getElementById(editorId) : composerText;
+
+  if (!textarea || textarea.disabled) return;
+
+  if (editorId) {
+    setMiniEditorPreviewMode(editorId, false);
+  } else {
+    setEditorPreviewMode(false);
+  }
+
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const value = textarea.value;
+  const selected = value.slice(start, end) || fileName.replace(/\.[^.]+$/, "") || "Uploaded image";
+  const nextSelected = `![${selected}](${url})`;
   const next = `${value.slice(0, start)}${nextSelected}${value.slice(end)}`;
 
-  composerText.value = next;
-  composerText.focus();
-  composerText.setSelectionRange(start + 2, start + 2 + selected.length);
-  updateCharCount();
+  textarea.value = next;
+  textarea.focus();
+  textarea.setSelectionRange(start + nextSelected.length, start + nextSelected.length);
+
+  if (editorId) {
+    updateMiniEditorCount(editorId);
+    resizeMiniEditorTextarea(editorId);
+  } else {
+    updateCharCount();
+    scheduleDraftSave();
+  }
+}
+
+async function uploadBoardImage(file, editorId = null) {
+  if (!currentUser?.id || !file) return;
+
+  if (!BOARD_IMAGE_TYPES.has(file.type)) {
+    composerStatus.textContent = "Upload a PNG, JPEG, WebP, or GIF image.";
+    return;
+  }
+
+  if (file.size > BOARD_IMAGE_MAX_BYTES) {
+    composerStatus.textContent = "Images must be 5 MB or smaller.";
+    return;
+  }
+
+  const extension = file.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "") || "img";
+  const fileId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  const storagePath = `${currentUser.id}/${fileId}.${extension}`;
+
+  composerStatus.textContent = "Uploading image...";
+  editorButtons.forEach((button) => {
+    if (button.dataset.editorAction === "image") button.disabled = true;
+  });
+
+  const { error } = await supabase.storage
+    .from(BOARD_IMAGE_BUCKET)
+    .upload(storagePath, file, { cacheControl: "3600", upsert: false, contentType: file.type });
+
+  editorButtons.forEach((button) => {
+    if (button.dataset.editorAction === "image") button.disabled = false;
+  });
+
+  if (error) {
+    console.error("Board image upload failed:", error);
+    composerStatus.textContent = "Image upload failed. The board image bucket may not be configured yet.";
+    return;
+  }
+
+  const { data } = supabase.storage.from(BOARD_IMAGE_BUCKET).getPublicUrl(storagePath);
+  insertUploadedImageMarkdown(data.publicUrl, file.name, editorId);
+  composerStatus.textContent = "Image uploaded and added to the post.";
 }
 
 function applyEditorAction(action) {
@@ -847,8 +1029,17 @@ function applyEditorAction(action) {
     case "italic":
       replaceSelection("*", "*", "italic text");
       break;
+    case "h2":
+      prefixSelectedLines("## ");
+      break;
+    case "h3":
+      prefixSelectedLines("### ");
+      break;
     case "code":
       replaceSelection("`", "`", "code");
+      break;
+    case "codeblock":
+      insertCodeBlock();
       break;
     case "quote":
       prefixSelectedLines("> ");
@@ -874,23 +1065,20 @@ function applyEditorAction(action) {
 }
 
 function renderMiniEditor(editorId, value = "") {
-  const mediaTools = userCanUseMediaTools()
-    ? `
-      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="link">Link</button>
-      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="image">Image</button>
-    `
-    : "";
-
   return `
     <div class="editor-toolbar mini-editor-toolbar" data-mini-editor-toolbar="${escapeHtml(editorId)}" aria-label="Text editor toolbar">
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="bold"><strong>B</strong></button>
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="italic"><em>I</em></button>
-      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="code">Code</button>
+      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="h2">H2</button>
+      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="h3">H3</button>
+      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="code">Inline Code</button>
+      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="codeblock">Code Block</button>
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="quote">Quote</button>
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="ul">• List</button>
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="ol">1. List</button>
       <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="divider">Divider</button>
-      ${mediaTools}
+      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="link">Link</button>
+      <button class="editor-tool" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="image">Upload Image</button>
       <button class="editor-tool mini-preview-toggle" type="button" data-mini-editor-id="${escapeHtml(editorId)}" data-mini-editor-action="preview">Preview</button>
       <span class="editor-count mini-editor-count" id="${escapeHtml(editorId)}Count">${String(value || "").length} / 20000</span>
     </div>
@@ -1066,19 +1254,8 @@ function miniInsertImage(editorId) {
 
   if (!textarea || textarea.disabled) return;
 
-  setMiniEditorPreviewMode(editorId, false);
-
-  const start = textarea.selectionStart;
-  const end = textarea.selectionEnd;
-  const value = textarea.value;
-  const selected = value.slice(start, end) || "image description";
-  const nextSelected = `![${selected}](https://example.com/image.jpg)`;
-  const next = `${value.slice(0, start)}${nextSelected}${value.slice(end)}`;
-
-  textarea.value = next;
-  textarea.focus();
-  textarea.setSelectionRange(start + 2, start + 2 + selected.length);
-  updateMiniEditorCount(editorId);
+  pendingImageEditorId = editorId;
+  boardImageInput?.click();
 }
 
 function applyMiniEditorAction(editorId, action) {
@@ -1089,8 +1266,17 @@ function applyMiniEditorAction(editorId, action) {
     case "italic":
       miniReplaceSelection(editorId, "*", "*", "italic text");
       break;
+    case "h2":
+      miniPrefixSelectedLines(editorId, "## ");
+      break;
+    case "h3":
+      miniPrefixSelectedLines(editorId, "### ");
+      break;
     case "code":
       miniReplaceSelection(editorId, "`", "`", "code");
+      break;
+    case "codeblock":
+      miniReplaceSelection(editorId, "```\n", "\n```", "code");
       break;
     case "quote":
       miniPrefixSelectedLines(editorId, "> ");
@@ -1419,6 +1605,7 @@ function setComposerForSignedIn() {
 
   setEditorDisabled(false);
   updateToolbarForRole();
+  restoreComposerDraft();
 }
 
 function setSignedOut() {
@@ -2557,6 +2744,7 @@ function attachAdminControlListeners(thread) {
 }
 
 function closeThreadView(options = {}) {
+  flushDraftSave();
   currentBoardView = "threads";
   currentThread = null;
   editingThreadId = null;
@@ -2583,12 +2771,21 @@ function closeThreadView(options = {}) {
   postMessage.disabled = signedInBox.hidden;
   composer.hidden = true;
 
+  if (composerTitle) composerTitle.value = "";
+  composerText.value = "";
+  updateCharCount();
+
+  if (!signedInBox.hidden) {
+    restoreComposerDraft();
+  }
+
   syncBreadcrumbs();
   writeBoardLocation(currentCategory.slug, null, options.history || "push");
   applyThreadSearch();
 }
 
 async function openThread(threadId, options = {}) {
+  flushDraftSave();
   currentBoardView = "thread";
 
   const thread = threadsById.get(threadId);
@@ -2629,6 +2826,12 @@ async function openThread(threadId, options = {}) {
   postMessage.disabled = signedInBox.hidden || thread.locked;
   setEditorDisabled(signedInBox.hidden || thread.locked);
   composer.hidden = false;
+  composerText.value = "";
+  updateCharCount();
+
+  if (!signedInBox.hidden && !thread.locked) {
+    restoreComposerDraft();
+  }
 
   if (!signedInBox.hidden && thread.locked) {
     composerStatus.textContent = "This thread is locked.";
@@ -2690,6 +2893,7 @@ async function openThread(threadId, options = {}) {
 }
 
 async function selectCategory(slug, options = {}) {
+  flushDraftSave();
   currentBoardView = "threads";
   editingThreadId = null;
   editingReplyId = null;
@@ -2739,6 +2943,14 @@ async function selectCategory(slug, options = {}) {
   postMessage.disabled = signedInBox.hidden;
   setEditorDisabled(signedInBox.hidden);
   composer.hidden = true;
+
+  if (composerTitle) composerTitle.value = "";
+  composerText.value = "";
+  updateCharCount();
+
+  if (!signedInBox.hidden) {
+    restoreComposerDraft();
+  }
 
   await loadThreadsForCategory(category, options);
 }
@@ -2830,6 +3042,8 @@ async function createThread() {
     return;
   }
 
+  clearComposerDraft();
+
   if (composerTitle) {
     composerTitle.value = "";
   }
@@ -2908,6 +3122,7 @@ async function createReply() {
 
   const threadId = currentThread.id;
 
+  clearComposerDraft();
   composerText.value = "";
   updateCharCount();
   setEditorPreviewMode(false);
@@ -3021,9 +3236,27 @@ document.addEventListener("keydown", (event) => {
 if (composerText) {
   composerText.addEventListener("input", () => {
     updateCharCount();
+    scheduleDraftSave();
 
     if (editorPreviewMode) {
       syncEditorPreview();
+    }
+  });
+}
+
+if (composerTitle) {
+  composerTitle.addEventListener("input", scheduleDraftSave);
+}
+
+if (boardImageInput) {
+  boardImageInput.addEventListener("change", async () => {
+    const file = boardImageInput.files?.[0];
+    const editorId = pendingImageEditorId;
+    pendingImageEditorId = null;
+    boardImageInput.value = "";
+
+    if (file) {
+      await uploadBoardImage(file, editorId);
     }
   });
 }
