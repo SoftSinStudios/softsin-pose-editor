@@ -420,8 +420,8 @@
 }
 
 .canvas-frame {
-  align-self: start;
-  justify-self: center;
+  align-self: center;
+  margin-inline: auto;
   width: min(100%, 88vh, 1280px);
   width: min(100%, 88dvh, 1280px);
   min-width: 0;
