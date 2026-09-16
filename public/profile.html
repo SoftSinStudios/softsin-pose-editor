@@ -151,6 +151,46 @@
               </div>
             </section>
           </form>
+
+          <section class="admin-dashboard" id="adminDashboard" hidden aria-labelledby="adminDashboardTitle">
+            <div class="admin-dashboard-head">
+              <div>
+                <span class="admin-eyebrow">Board operations</span>
+                <h2 id="adminDashboardTitle">Community health</h2>
+                <p>Current workload, board activity, and moderation decisions in one place.</p>
+              </div>
+              <button class="btn" id="refreshAdminDashboard" type="button">Refresh</button>
+            </div>
+
+            <div class="admin-stat-grid" id="adminStatGrid" aria-label="Board health statistics">
+              <article class="admin-stat"><span>Active reports</span><strong id="statActiveReports">—</strong></article>
+              <article class="admin-stat"><span>Under review</span><strong id="statReviewingReports">—</strong></article>
+              <article class="admin-stat"><span>Threads · 24h</span><strong id="statThreadsDay">—</strong></article>
+              <article class="admin-stat"><span>Replies · 24h</span><strong id="statRepliesDay">—</strong></article>
+              <article class="admin-stat"><span>New members · 7d</span><strong id="statMembersWeek">—</strong></article>
+              <article class="admin-stat"><span>Locked threads</span><strong id="statLockedThreads">—</strong></article>
+              <article class="admin-stat"><span>Reports closed · 7d</span><strong id="statReportsClosedWeek">—</strong></article>
+              <article class="admin-stat"><span>Content removed · 7d</span><strong id="statRemovedWeek">—</strong></article>
+            </div>
+
+            <div class="admin-health-note" id="adminHealthNote">Loading board health...</div>
+
+            <div class="admin-queue-head">
+              <div>
+                <span class="admin-eyebrow">Moderation</span>
+                <h3>Report queue</h3>
+              </div>
+              <div class="admin-filter-group" aria-label="Report filters">
+                <button class="btn admin-report-filter active" type="button" data-filter="active">Active</button>
+                <button class="btn admin-report-filter" type="button" data-filter="closed">Closed</button>
+                <button class="btn admin-report-filter" type="button" data-filter="all">All</button>
+              </div>
+            </div>
+
+            <div class="admin-report-list" id="adminReportList">
+              <p class="admin-empty">Loading reports...</p>
+            </div>
+          </section>
         </div>
       </section>
     </main>
