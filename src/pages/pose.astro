@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout
   title="SoftSin Studios — Pose Editor"
-  description="SoftSin Studios Pose Editor for BODY_25 pose creation, gesture-aware curve bones, reusable pose JSON, and ComfyUI-ready OpenPose exports."
+  description="Create and refine BODY_25-compatible poses with SoftSin curve controls, optional guide bones, editable PNG and JSON exports, and complete .softpose projects."
   canonicalPath="/pose.html"
   bodyClass="pose-page"
   pageStyles={["/css/pose.css"]}
@@ -96,7 +96,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <p class="pose-editor-tip" role="note">TIP: Hover an anatomy button to locate its bone. Drag joints to pose, hide bones to simplify editing, and add curves for refinement. Best used with a maximized desktop browser window.</p>
         </div>
 
-        <aside class="pose-side-rail pose-side-rail-right" aria-label="Bone color controls">
+        <aside class="pose-side-rail pose-side-rail-right" aria-label="Selected bone controls and anatomy navigator">
           <section class="bone-inspector">
             <div class="side-title">Selected Bone</div>
             <h2 id="boneInspectorTitle">No bone selected</h2>
@@ -127,7 +127,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <div class="side-title" title="Face bones connect the nose, eyes, ears, and neck guide.">Face</div>
               <div class="bone-color-grid" role="toolbar" aria-label="Face bone colors">
                 <button title="Select bone: Nose → Neck. Click again to deselect." class="bone-chip" type="button" data-bone="nose-neck" data-label="Nose → Neck" data-rgb="255,0,85" data-hex="#ff0055" style="--bone-color:#ff0055">N-N</button>
-                <button title="Optional guide bone: Nose → Chin. Hidden by default; select and use Unhide Bone when needed." class="bone-chip" type="button" data-bone="nose-chin" data-label="Nose → Chin" data-rgb="255,120,0" data-hex="#ff7800" style="--bone-color:#ff7800">N-CH</button>
+                <button title="Optional guide bone: Nose → Chin. Hidden by default; select and use Restore Bone when needed." class="bone-chip" type="button" data-bone="nose-chin" data-label="Nose → Chin" data-rgb="255,120,0" data-hex="#ff7800" style="--bone-color:#ff7800">N-CH</button>
                 <button title="Select bone: Nose → REye. Click again to deselect." class="bone-chip" type="button" data-bone="nose-reye" data-label="Nose → REye" data-rgb="255,0,85" data-hex="#ff0055" style="--bone-color:#ff0055">N-RE</button>
                 <button title="Select bone: Nose → LEye. Click again to deselect." class="bone-chip" type="button" data-bone="nose-leye" data-label="Nose → LEye" data-rgb="255,0,85" data-hex="#ff0055" style="--bone-color:#ff0055">N-LE</button>
                 <button title="Select bone: REye → REar. Click again to deselect." class="bone-chip" type="button" data-bone="reye-rear" data-label="REye → REar" data-rgb="255,0,170" data-hex="#ff00aa" style="--bone-color:#ff00aa">RE-EA</button>
@@ -139,7 +139,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <div class="side-title" title="Core guide bones for the neck, shoulders, hips, and torso structure.">Head / Torso</div>
               <div class="bone-color-grid" role="toolbar" aria-label="Head and torso bone colors">
                 <button title="Select bone: Neck → MidHip. Click again to deselect." class="bone-chip" type="button" data-bone="neck-midhip" data-label="Neck → MidHip" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">N-MH</button>
-                <button title="Optional tail bone: MidHip → Tail. Hidden by default; select and use Unhide Bone when needed." class="bone-chip" type="button" data-bone="midhip-tail" data-label="MidHip → Tail" data-rgb="255,48,88" data-hex="#ff3058" style="--bone-color:#ff3058">MH-T</button>
+                <button title="Optional tail bone: MidHip → Tail. Hidden by default; select and use Restore Bone when needed." class="bone-chip" type="button" data-bone="midhip-tail" data-label="MidHip → Tail" data-rgb="255,48,88" data-hex="#ff3058" style="--bone-color:#ff3058">MH-T</button>
                 <button title="Select bone: Neck → RShoulder. Click again to deselect." class="bone-chip" type="button" data-bone="neck-rshoulder" data-label="Neck → RShoulder" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">N-RS</button>
                 <button title="Select bone: Neck → LShoulder. Click again to deselect." class="bone-chip" type="button" data-bone="neck-lshoulder" data-label="Neck → LShoulder" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">N-LS</button>
                 <button title="Select bone: MidHip → RHip. Click again to deselect." class="bone-chip" type="button" data-bone="midhip-rhip" data-label="MidHip → RHip" data-rgb="255,0,0" data-hex="#ff0000" style="--bone-color:#ff0000">MH-RH</button>
@@ -174,19 +174,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </section>
   </div>
 
-  <section class="card-grid section">
+  <section class="pose-workflow section" aria-labelledby="poseWorkflowTitle">
+    <header class="pose-workflow-head">
+      <div class="eyebrow">Project &amp; Export Workflow</div>
+      <h2 id="poseWorkflowTitle">Use the right file for the next step.</h2>
+      <p>Save a complete project when you plan to keep editing. Export only when you need a portable pose or a clean control image.</p>
+    </header>
+    <div class="card-grid pose-workflow-grid">
     <article class="card">
-      <h3>Clean pose JSON</h3>
-      <p>Pose data stays readable and reusable so imports, exports, and pose packs do not become brittle.</p>
+      <div class="pose-format-label">Complete workspace</div>
+      <h3>Save Project (.softpose)</h3>
+      <p>Preserves the editable pose and its original reference image together. Use this when you expect to reopen and refine the work.</p>
     </article>
     <article class="card">
-      <h3>Strict RGB exports</h3>
-      <p>The exported PNG keeps official BODY_25 color behavior instead of inventing new control colors.</p>
+      <div class="pose-format-label">Portable pose data</div>
+      <h3>Export JSON</h3>
+      <p>Saves lightweight, readable pose data without the reference image. Use it for pose libraries, transfers, and data workflows.</p>
     </article>
     <article class="card">
-      <h3>Curve-safe exports</h3>
-      <p>Editor handles, guides, and reference images stay out of the final PNG. The output is only the finished BODY_25 control image.</p>
+      <div class="pose-format-label">Control image</div>
+      <h3>Export PNG</h3>
+      <p>Creates a clean BODY_25-compatible control image with embedded SoftSin pose data. References, handles, and hover effects are excluded.</p>
     </article>
+    </div>
+    <p class="pose-compatibility-note"><strong>Compatibility:</strong> the editor retains the established BODY_25 topology and color convention while adding SoftSin curves, optional guide bones, depth and visibility controls, project recovery, and editable project files.</p>
   </section>
 
   <Fragment slot="scripts">
