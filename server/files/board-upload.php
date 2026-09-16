@@ -100,7 +100,7 @@ if (!is_string($userId) || !preg_match('/^[0-9a-f-]{36}$/i', $userId)) {
 }
 
 $profileCurl = curl_init(
-    SUPABASE_URL . '/rest/v1/profiles?id=eq.' . rawurlencode($userId) . '&select=display_name,username&limit=1'
+    SUPABASE_URL . '/rest/v1/profiles?id=eq.' . rawurlencode($userId) . '&select=display_name,username,role&limit=1'
 );
 
 curl_setopt_array($profileCurl, [
@@ -140,6 +140,7 @@ $asciiName = function_exists('iconv')
 $nameSlug = strtolower((string) preg_replace('/[^a-z0-9]+/i', '-', $asciiName));
 $nameSlug = trim($nameSlug, '-');
 $nameSlug = substr($nameSlug !== '' ? $nameSlug : 'member', 0, 40);
+$isAdmin = ($profile['role'] ?? 'member') === 'admin';
 
 if (!isset($_FILES['image']) || !is_array($_FILES['image'])) {
     respond(400, ['error' => 'No image was uploaded.']);
@@ -176,38 +177,45 @@ if (!is_string($mimeType) || !isset($extensions[$mimeType])) {
     respond(415, ['error' => 'Only PNG, JPEG, WebP, and GIF images are allowed.']);
 }
 
-$stateDirectory = __DIR__ . '/.board-upload-state';
-
-if (!is_dir($stateDirectory) && !mkdir($stateDirectory, 0700, true) && !is_dir($stateDirectory)) {
-    respond(500, ['error' => 'The upload limiter could not be initialized.']);
-}
-
-$rateFile = $stateDirectory . '/' . $userId . '.json';
-$rateHandle = fopen($rateFile, 'c+');
-
-if ($rateHandle === false || !flock($rateHandle, LOCK_EX)) {
-    respond(500, ['error' => 'The upload limiter is unavailable.']);
-}
-
-$rawRateData = stream_get_contents($rateHandle);
-$rateData = json_decode($rawRateData ?: '[]', true);
 $now = time();
-$recentUploads = array_values(array_filter(
-    is_array($rateData) ? $rateData : [],
-    static fn ($timestamp): bool => is_int($timestamp) && $timestamp > $now - 3600
-));
+$recentUploads = [];
+$rateHandle = null;
 
-if (count($recentUploads) >= MAX_UPLOADS_PER_HOUR) {
-    flock($rateHandle, LOCK_UN);
-    fclose($rateHandle);
-    respond(429, ['error' => 'Image upload limit reached. Try again later.']);
+if (!$isAdmin) {
+    $stateDirectory = __DIR__ . '/.board-upload-state';
+
+    if (!is_dir($stateDirectory) && !mkdir($stateDirectory, 0700, true) && !is_dir($stateDirectory)) {
+        respond(500, ['error' => 'The upload limiter could not be initialized.']);
+    }
+
+    $rateFile = $stateDirectory . '/' . $userId . '.json';
+    $rateHandle = fopen($rateFile, 'c+');
+
+    if ($rateHandle === false || !flock($rateHandle, LOCK_EX)) {
+        respond(500, ['error' => 'The upload limiter is unavailable.']);
+    }
+
+    $rawRateData = stream_get_contents($rateHandle);
+    $rateData = json_decode($rawRateData ?: '[]', true);
+    $recentUploads = array_values(array_filter(
+        is_array($rateData) ? $rateData : [],
+        static fn ($timestamp): bool => is_int($timestamp) && $timestamp > $now - 3600
+    ));
+
+    if (count($recentUploads) >= MAX_UPLOADS_PER_HOUR) {
+        flock($rateHandle, LOCK_UN);
+        fclose($rateHandle);
+        respond(429, ['error' => 'Image upload limit reached. Try again later.']);
+    }
 }
 
 $userDirectory = __DIR__ . '/board/' . $userId;
 
 if (!is_dir($userDirectory) && !mkdir($userDirectory, 0755, true) && !is_dir($userDirectory)) {
-    flock($rateHandle, LOCK_UN);
-    fclose($rateHandle);
+    if (is_resource($rateHandle)) {
+        flock($rateHandle, LOCK_UN);
+        fclose($rateHandle);
+    }
     respond(500, ['error' => 'The image directory could not be created.']);
 }
 
@@ -221,24 +229,30 @@ $fileName = sprintf(
 $destination = $userDirectory . '/' . $fileName;
 
 if (!move_uploaded_file($temporaryPath, $destination)) {
-    flock($rateHandle, LOCK_UN);
-    fclose($rateHandle);
+    if (is_resource($rateHandle)) {
+        flock($rateHandle, LOCK_UN);
+        fclose($rateHandle);
+    }
     respond(500, ['error' => 'The image could not be stored.']);
 }
 
 chmod($destination, 0644);
-$recentUploads[] = $now;
-rewind($rateHandle);
-ftruncate($rateHandle, 0);
-fwrite($rateHandle, json_encode($recentUploads));
-fflush($rateHandle);
-flock($rateHandle, LOCK_UN);
-fclose($rateHandle);
+
+if (is_resource($rateHandle)) {
+    $recentUploads[] = $now;
+    rewind($rateHandle);
+    ftruncate($rateHandle, 0);
+    fwrite($rateHandle, json_encode($recentUploads));
+    fflush($rateHandle);
+    flock($rateHandle, LOCK_UN);
+    fclose($rateHandle);
+}
 
 respond(201, [
     'url' => PUBLIC_BOARD_IMAGE_BASE . '/' . rawurlencode($userId) . '/' . rawurlencode($fileName),
     'uploadedBy' => $displayName,
     'userId' => $userId,
+    'rateLimitExempt' => $isAdmin,
     'mimeType' => $mimeType,
     'size' => $fileSize,
 ]);
