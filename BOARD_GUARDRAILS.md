@@ -82,3 +82,7 @@ Posts are stored as Markdown text. Rendering escapes HTML before applying the su
 ## Pagination and query limits
 
 Run `supabase/migrations/20260917_board_pagination_indexes.sql` before production traffic grows. Channel views request 25 threads per page and thread views request 30 replies per page. Page state is preserved in the URL, channel search runs against Supabase instead of only filtering the current browser page, and direct thread links resolve independently of the current channel page. The original post remains visible above every reply page.
+
+## Thread subscriptions and notifications
+
+Run `supabase/migrations/20260917_board_notifications.sql` to enable private in-app reply notifications. Thread authors follow their own threads automatically, members can explicitly follow or unfollow any accessible thread, and reply authors do not receive notifications for their own replies. Notification rows are visible and writable only by their recipient under row-level security. The board displays the 20 most recent notifications and links each item to the reply's calculated page.

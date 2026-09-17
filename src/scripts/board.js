@@ -93,6 +93,11 @@ const reportDetails = document.getElementById("reportDetails");
 const reportStatus = document.getElementById("reportStatus");
 const reportTargetSummary = document.getElementById("reportTargetSummary");
 const submitReport = document.getElementById("submitReport");
+const notificationToggle = document.getElementById("notificationToggle");
+const notificationBadge = document.getElementById("notificationBadge");
+const notificationPanel = document.getElementById("notificationPanel");
+const notificationList = document.getElementById("notificationList");
+const markNotificationsRead = document.getElementById("markNotificationsRead");
 
 const READ_THREADS_KEY = "softsin_read_threads_v1";
 const BOARD_DRAFT_KEY = "softsin_board_draft_v1";
@@ -134,6 +139,7 @@ let currentReplyPage = 1;
 let threadPageCount = 1;
 let replyPageCount = 1;
 let searchDebounceTimer = null;
+let currentThreadFollowed = false;
 const profileCache = new Map();
 
 const fallbackCategories = [
@@ -1506,6 +1512,10 @@ function canReportContent(content) {
 function renderThreadControls(thread) {
   const controls = [];
 
+  if (currentUser) {
+    controls.push(`<button class="btn follow-thread-button${currentThreadFollowed ? " active" : ""}" id="followThread" type="button">${currentThreadFollowed ? "Following" : "Follow"}</button>`);
+  }
+
   if (canEditThread(thread)) {
     controls.push(`<button class="btn admin-button edit-thread-button" id="editThread" type="button">Edit Thread</button>`);
   }
@@ -1845,6 +1855,144 @@ async function acknowledgeCurrentWarning() {
   renderBoardRestriction();
 }
 
+function updateNotificationBadge(count) {
+  if (!notificationBadge) return;
+  notificationBadge.textContent = count > 99 ? "99+" : String(count);
+  notificationBadge.hidden = count < 1;
+}
+
+async function openNotificationTarget(button) {
+  const notificationId = button.dataset.notificationId;
+  const threadId = button.dataset.threadId;
+  const categorySlug = button.dataset.categorySlug;
+  const postCreatedAt = button.dataset.postCreatedAt;
+  if (!threadId || !categorySlug) return;
+
+  await supabase
+    .from("board_notifications")
+    .update({ read_at: new Date().toISOString() })
+    .eq("id", notificationId);
+
+  let replyPage = 1;
+  if (postCreatedAt) {
+    const { count } = await supabase
+      .from("posts")
+      .select("id", { count: "exact", head: true })
+      .eq("thread_id", threadId)
+      .is("deleted_at", null)
+      .lte("created_at", postCreatedAt);
+    replyPage = Math.max(1, Math.ceil((count || 0) / REPLIES_PER_PAGE));
+  }
+
+  if (notificationPanel) notificationPanel.hidden = true;
+  if (notificationToggle) notificationToggle.setAttribute("aria-expanded", "false");
+  await selectCategory(categorySlug, { threadId, replyPage, history: "push" });
+  await loadNotifications();
+}
+
+function renderNotifications(notifications) {
+  if (!notificationList) return;
+  if (!notifications.length) {
+    notificationList.innerHTML = `<p class="notification-empty">No notifications yet.</p>`;
+    return;
+  }
+
+  notificationList.innerHTML = notifications.map((notification) => {
+    const actor = getProfileName(notification.actor || {});
+    const thread = notification.thread || {};
+    const categorySlug = thread.category?.slug || "general";
+    const postCreatedAt = notification.post?.created_at || notification.created_at;
+    return `
+      <button class="notification-item${notification.read_at ? "" : " unread"}" type="button"
+        data-notification-id="${escapeHtml(notification.id)}"
+        data-thread-id="${escapeHtml(notification.thread_id)}"
+        data-category-slug="${escapeHtml(categorySlug)}"
+        data-post-created-at="${escapeHtml(postCreatedAt)}">
+        <strong>${escapeHtml(actor)} replied</strong>
+        <span>${escapeHtml(thread.title || "Thread")}</span>
+        <small>${escapeHtml(formatDate(notification.created_at))}</small>
+      </button>
+    `;
+  }).join("");
+
+  notificationList.querySelectorAll(".notification-item").forEach((button) => {
+    button.addEventListener("click", () => openNotificationTarget(button));
+  });
+}
+
+async function loadNotifications() {
+  if (!currentUser?.id) return;
+  const [itemsResult, countResult] = await Promise.all([
+    supabase
+      .from("board_notifications")
+      .select(`id, thread_id, post_id, created_at, read_at, actor:actor_id (display_name, username), thread:thread_id (title, category:category_id (slug)), post:post_id (created_at)`)
+      .order("created_at", { ascending: false })
+      .limit(20),
+    supabase
+      .from("board_notifications")
+      .select("id", { count: "exact", head: true })
+      .is("read_at", null)
+  ]);
+
+  if (itemsResult.error || countResult.error) {
+    console.warn("Notification load failed:", itemsResult.error || countResult.error);
+    if (notificationList) notificationList.innerHTML = `<p class="notification-empty">Notifications are unavailable.</p>`;
+    return;
+  }
+
+  updateNotificationBadge(countResult.count || 0);
+  renderNotifications(itemsResult.data || []);
+}
+
+async function markAllNotificationsRead() {
+  if (!currentUser?.id) return;
+  markNotificationsRead.disabled = true;
+  const { error } = await supabase
+    .from("board_notifications")
+    .update({ read_at: new Date().toISOString() })
+    .eq("user_id", currentUser.id)
+    .is("read_at", null);
+  if (error) console.warn("Mark notifications read failed:", error);
+  markNotificationsRead.disabled = false;
+  await loadNotifications();
+}
+
+async function loadCurrentThreadSubscription(threadId) {
+  currentThreadFollowed = false;
+  if (!currentUser?.id || !threadId) return;
+  const { data } = await supabase
+    .from("board_thread_subscriptions")
+    .select("thread_id")
+    .eq("thread_id", threadId)
+    .eq("user_id", currentUser.id)
+    .maybeSingle();
+  currentThreadFollowed = Boolean(data);
+}
+
+async function toggleCurrentThreadSubscription(threadId) {
+  if (!currentUser?.id || !threadId) return;
+  const button = document.getElementById("followThread");
+  if (button) button.disabled = true;
+
+  const result = currentThreadFollowed
+    ? await supabase.from("board_thread_subscriptions").delete().eq("thread_id", threadId).eq("user_id", currentUser.id)
+    : await supabase.from("board_thread_subscriptions").insert({ thread_id: threadId, user_id: currentUser.id });
+
+  if (result.error) {
+    console.error("Thread subscription update failed:", result.error);
+    composerStatus.textContent = result.error.message || "Thread subscription could not be updated.";
+  } else {
+    currentThreadFollowed = !currentThreadFollowed;
+    composerStatus.textContent = currentThreadFollowed ? "Following this thread." : "Thread notifications turned off.";
+  }
+
+  if (button) {
+    button.disabled = false;
+    button.textContent = currentThreadFollowed ? "Following" : "Follow";
+    button.classList.toggle("active", currentThreadFollowed);
+  }
+}
+
 function setSignedOut() {
   stopBoardPresence();
 
@@ -1856,6 +2004,8 @@ function setSignedOut() {
 
   signedOutBox.hidden = false;
   signedInBox.hidden = true;
+  if (notificationPanel) notificationPanel.hidden = true;
+  updateNotificationBadge(0);
   hideReportDialog();
   setComposerForSignedOut();
 }
@@ -1881,6 +2031,7 @@ function setSignedIn(user, profile) {
 
   setComposerForSignedIn();
   startBoardPresence();
+  loadNotifications();
 }
 
 async function getProfile(userId) {
@@ -3092,6 +3243,14 @@ function attachAdminControlListeners(thread) {
   const editButton = document.getElementById("editThread");
   const saveEditButton = document.getElementById("saveThreadEdit");
   const cancelEditButton = document.getElementById("cancelThreadEdit");
+  const followButton = document.getElementById("followThread");
+
+  if (followButton) {
+    followButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      toggleCurrentThreadSubscription(thread.id);
+    });
+  }
 
   if (editButton) {
     editButton.addEventListener("click", (event) => {
@@ -3225,6 +3384,7 @@ async function openThread(threadId, options = {}) {
 
   const wasNew = isThreadNew(thread.id);
   currentThread = thread;
+  await loadCurrentThreadSubscription(thread.id);
 
   const profile = thread.profiles || {};
   const author = getProfileName(profile);
@@ -3752,6 +3912,23 @@ if (boardImageInput) {
     }
   });
 }
+
+if (notificationToggle) {
+  notificationToggle.addEventListener("click", async () => {
+    const willOpen = notificationPanel.hidden;
+    notificationPanel.hidden = !willOpen;
+    notificationToggle.setAttribute("aria-expanded", String(willOpen));
+    if (willOpen) await loadNotifications();
+  });
+}
+
+if (markNotificationsRead) {
+  markNotificationsRead.addEventListener("click", markAllNotificationsRead);
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && currentUser?.id) loadNotifications();
+});
 
 if (rulesLink) {
   rulesLink.addEventListener("click", (event) => {

@@ -30,9 +30,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </div>
 
             <div class="account-actions">
+              <button class="btn full notification-toggle" id="notificationToggle" type="button" aria-expanded="false">
+                Notifications <span class="notification-badge" id="notificationBadge" hidden>0</span>
+              </button>
               <a class="btn full" href="profile.html">Profile</a>
               <button class="btn full" id="logout" type="button">Sign out</button>
             </div>
+
+            <section class="notification-panel" id="notificationPanel" hidden aria-label="Notifications">
+              <div class="notification-panel-head">
+                <strong>Recent notifications</strong>
+                <button type="button" id="markNotificationsRead">Mark all read</button>
+              </div>
+              <div id="notificationList"><p>No notifications.</p></div>
+            </section>
           </div>
         </section>
 
