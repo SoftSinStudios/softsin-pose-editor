@@ -4,9 +4,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout title="SoftSin Studios — Music Composer" description="Plan song structure and compile clear, original Suno V6 creative briefs." bodyClass="music-composer-page" tagline="Clean tools for AI art and creator workflows" shellClass="composer-shell" mainClass="composer-workspace" mainId="musicComposerApp" headerClass="composer-site-header" footerClass="composer-site-footer" pageStyles={["/css/musicprompt.css"]}>
   <Fragment slot="head"><link rel="modulepreload" href="/js/musicprompt/app.js" /></Fragment>
   <header class="composer-toolbar">
-    <div class="composer-title-block"><span class="eyebrow">SoftSin Music Composer</span><strong>Build the song. We compile the brief.</strong></div>
-    <div class="mode-switch" aria-label="Editor detail level"><button class="mode-button active" id="basicMode" type="button" aria-pressed="true">Basic</button><button class="mode-button" id="advancedMode" type="button" aria-pressed="false">Advanced</button></div>
-    <div class="toolbar-actions"><button class="btn" id="newProject" type="button">New</button><button class="btn" id="saveProject" type="button">Save Project</button><button class="btn" id="loadProject" type="button">Load Project</button><button class="btn primary" id="toggleOutput" type="button">Review Export</button></div>
+    <div class="composer-brand-row"><span class="eyebrow">SoftSin Music Composer</span></div>
+    <div class="composer-control-row">
+      <strong class="composer-tagline">Build the song. We compile the prompt.</strong>
+      <div class="mode-switch" aria-label="Editor detail level"><button class="mode-button active" id="basicMode" type="button" aria-pressed="true">Basic</button><button class="mode-button" id="advancedMode" type="button" aria-pressed="false">Advanced</button></div>
+      <div class="toolbar-actions"><button class="btn" id="newProject" type="button">New</button><button class="btn" id="saveProject" type="button">Save Project</button><button class="btn" id="loadProject" type="button">Load Project</button><button class="btn primary" id="toggleOutput" type="button">Review Export</button></div>
+    </div>
   </header>
   <div class="composer-layout">
     <aside class="composer-panel direction-panel" aria-labelledby="directionTitle">
