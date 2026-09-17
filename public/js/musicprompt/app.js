@@ -304,7 +304,27 @@ async function copyText(value, button) {
 }
 
 function togglePanel(name) {
+  if (window.matchMedia("(max-width: 1180px)").matches) {
+    if (name === "direction") {
+      document.body.classList.remove("direction-collapsed");
+      document.body.classList.add("inspector-collapsed");
+    } else {
+      document.body.classList.add("direction-collapsed");
+      document.body.classList.remove("inspector-collapsed");
+    }
+    return;
+  }
   document.body.classList.toggle(`${name}-collapsed`);
+}
+
+function syncResponsivePanels(event) {
+  const narrow = typeof event?.matches === "boolean" ? event.matches : window.matchMedia("(max-width: 1180px)").matches;
+  if (narrow) {
+    document.body.classList.add("direction-collapsed");
+    document.body.classList.remove("inspector-collapsed");
+  } else {
+    document.body.classList.remove("direction-collapsed", "inspector-collapsed");
+  }
 }
 
 function bindEvents() {
@@ -331,6 +351,9 @@ function bindEvents() {
 }
 
 async function init() {
+  const panelBreakpoint = window.matchMedia("(max-width: 1180px)");
+  syncResponsivePanels(panelBreakpoint);
+  panelBreakpoint.addEventListener("change", syncResponsivePanels);
   els.sectionType.innerHTML = SECTION_TYPES.map(type => `<option value="${escapeHtml(type)}">${escapeHtml(type)}</option>`).join("");
   await loadTemplates();
   bindEvents();

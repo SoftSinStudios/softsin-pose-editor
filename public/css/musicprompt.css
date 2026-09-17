@@ -1,9 +1,9 @@
 html, body.music-composer-page { width: 100%; height: 100%; margin: 0; overflow: hidden; }
 .music-composer-page { background: #030509; }
-.composer-shell { width: 100%; height: 100vh; max-width: none; display: flex; flex-direction: column; gap: 10px; padding: 12px; box-sizing: border-box; }
+.shell.composer-shell { width: min(1600px, calc(100% - 32px)); height: auto; min-height: 100vh; max-width: none; display: flex; flex-direction: column; gap: 10px; margin: 0 auto; padding: 16px 0 32px; box-sizing: border-box; }
 .composer-site-header, .composer-site-footer { flex: 0 0 auto; position: relative; z-index: 30; }
 .composer-site-footer { display: none; }
-.composer-workspace { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: #080b12; color: var(--text); }
+.composer-workspace { position: relative; flex: 0 0 auto; width: 100%; height: clamp(680px, calc(100vh - 132px), 820px); min-height: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: #080b12; color: var(--text); }
 .composer-toolbar { height: 104px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: rgba(14,18,28,.96); box-sizing: border-box; }
 .composer-brand-row { display: flex; align-items: center; min-width: 0; }
 .composer-brand-row .eyebrow { display: inline-flex; align-items: center; min-height: 27px; padding: 0 12px; border: 1px solid rgba(103,232,255,.22); border-radius: 999px; background: rgba(103,232,255,.045); }
@@ -126,14 +126,19 @@ html, body.music-composer-page { width: 100%; height: 100%; margin: 0; overflow:
   .composer-control-row { grid-template-columns: auto 1fr; }
   .composer-tagline { display: none; }
   .composer-layout { grid-template-columns: 48px minmax(0,1fr) 320px; }
-  .direction-panel .panel-heading > div, .direction-panel .panel-scroll { display: none; }
-  .direction-panel .panel-heading { padding: 9px; justify-content: center; }
+  .inspector-collapsed .composer-layout { grid-template-columns: 250px minmax(0,1fr) 48px; }
+  .music-composer-page:not(.inspector-collapsed) .direction-panel .panel-heading > div,
+  .music-composer-page:not(.inspector-collapsed) .direction-panel .panel-scroll { display: none; }
+  .music-composer-page:not(.inspector-collapsed) .direction-panel .panel-heading { padding: 9px; justify-content: center; }
+  .inspector-collapsed:not(.direction-collapsed) .direction-panel .panel-heading > div { display: block; }
+  .inspector-collapsed:not(.direction-collapsed) .direction-panel .panel-scroll { display: block; }
+  .inspector-collapsed:not(.direction-collapsed) .direction-panel .panel-heading { padding: 14px; justify-content: space-between; }
   .output-grid { grid-template-columns: 1fr 1fr; overflow-y: auto; }
   .diagnostics { grid-column: 1 / -1; min-height: 220px; }
 }
 @media (max-width: 900px) {
   html, body.music-composer-page { overflow: auto; }
-  .composer-shell { min-height: 100vh; height: auto; }
+  .shell.composer-shell { width: min(100% - 20px, 1600px); min-height: 100vh; height: auto; padding-top: 10px; }
   .composer-workspace { min-height: 850px; }
   .composer-toolbar { height: auto; align-items: stretch; }
   .composer-control-row { grid-template-columns: 1fr; }
