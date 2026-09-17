@@ -7,6 +7,54 @@
   align-items: start;
 }
 
+.board[hidden],
+.board-ban-gate[hidden] {
+  display: none !important;
+}
+
+.board-ban-gate {
+  width: min(760px, 100%);
+  margin: 70px auto;
+  padding: 34px;
+  border: 1px solid rgba(255, 94, 120, .38);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 94, 120, .11), transparent 55%),
+    var(--panel);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.board-ban-eyebrow {
+  color: var(--accent2);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.board-ban-gate h1 {
+  margin: 10px 0 12px;
+  color: var(--text);
+}
+
+.board-ban-gate p {
+  margin: 0 auto;
+  max-width: 620px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.board-ban-gate .board-ban-permanent {
+  margin-top: 10px;
+  color: var(--soft);
+  font-size: 13px;
+}
+
+.board-ban-gate .btn {
+  margin-top: 22px;
+}
+
 .sidebar,
 .main-panel {
   border: 1px solid var(--line);

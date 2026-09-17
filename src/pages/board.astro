@@ -10,7 +10,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   bodyClass="board-page"
   pageStyles={["/css/board.css"]}
 >
-    <div class="board">
+    <section class="board-ban-gate" id="boardBanGate" hidden role="alert" aria-labelledby="boardBanTitle">
+      <span class="board-ban-eyebrow">Forum access revoked</span>
+      <h1 id="boardBanTitle">This account has been banned</h1>
+      <p id="boardBanReason">No public reason was provided.</p>
+      <p class="board-ban-permanent">This ban is permanent. It does not expire automatically.</p>
+      <button class="btn" id="boardBanSignOut" type="button">Sign Out</button>
+    </section>
+
+    <div class="board" id="boardApp">
       <aside class="sidebar">
         <section class="side-section account-card">
           <div class="side-title">Account</div>

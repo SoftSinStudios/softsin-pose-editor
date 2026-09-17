@@ -65,7 +65,7 @@ Run `supabase/migrations/20260917_board_sanctions.sql` after the reporting migra
 
 1. Documented warnings that members must acknowledge.
 2. Timed mutes and suspensions that make the board read-only for the affected account.
-3. Timed or permanent bans.
+3. Permanent bans that replace the forum with a denial screen showing the public reason until staff explicitly revokes the ban.
 4. Protected administrator accounts, staff hierarchy checks, and self-sanction prevention.
 5. Public member-facing reasons separated from private staff notes.
 6. Automatic expiration, explicit revocation, superseding of older restrictions, and immutable event history.

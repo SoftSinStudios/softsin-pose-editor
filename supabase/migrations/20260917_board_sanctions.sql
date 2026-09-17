@@ -107,11 +107,6 @@ begin
       raise exception 'Timed restrictions require a duration from 5 minutes to 1 year.';
     end if;
     calculated_expiry := now() + make_interval(mins => duration_minutes);
-  elsif requested_type = 'ban' and duration_minutes is not null then
-    if duration_minutes < 5 or duration_minutes > 525600 then
-      raise exception 'Timed bans require a duration from 5 minutes to 1 year.';
-    end if;
-    calculated_expiry := now() + make_interval(mins => duration_minutes);
   else
     calculated_expiry := null;
   end if;

@@ -101,6 +101,10 @@ const markNotificationsRead = document.getElementById("markNotificationsRead");
 const recentNotificationTotal = document.getElementById("recentNotificationTotal");
 const adminNewThreads = document.getElementById("adminNewThreads");
 const adminNewPosts = document.getElementById("adminNewPosts");
+const boardApp = document.getElementById("boardApp");
+const boardBanGate = document.getElementById("boardBanGate");
+const boardBanReason = document.getElementById("boardBanReason");
+const boardBanSignOut = document.getElementById("boardBanSignOut");
 
 const READ_THREADS_KEY = "softsin_read_threads_v1";
 const BOARD_DRAFT_KEY = "softsin_board_draft_v1";
@@ -1794,6 +1798,18 @@ function setComposerForSignedIn() {
 function renderBoardRestriction() {
   if (!boardRestrictionBanner) return;
 
+  const banned = currentRestriction?.sanction_type === "ban";
+  if (boardApp) boardApp.hidden = banned;
+  if (boardBanGate) boardBanGate.hidden = !banned;
+  if (banned) {
+    if (boardBanReason) {
+      boardBanReason.textContent = currentRestriction.reason_public || "This account is no longer permitted to access the SoftSin Studios forum.";
+    }
+    closeTopicComposer({ focusTrigger: false });
+    if (notificationPanel) notificationPanel.hidden = true;
+    return;
+  }
+
   if (!currentRestriction && !currentWarning) {
     boardRestrictionBanner.hidden = true;
     boardRestrictionMessage.textContent = "";
@@ -2141,6 +2157,13 @@ function setSignedIn(user, profile) {
     userAvatar.hidden = false;
   } else {
     userAvatar.hidden = true;
+  }
+
+  if (currentRestriction?.sanction_type === "ban") {
+    stopBoardPresence();
+    setAdminBoardSummary(false);
+    renderBoardRestriction();
+    return;
   }
 
   setComposerForSignedIn();
@@ -4137,6 +4160,7 @@ if (signInModal) {
 }
 
 logout.addEventListener("click", signOut);
+boardBanSignOut?.addEventListener("click", signOut);
 
 supabase.auth.onAuthStateChange((_event, session) => {
   clearAuthCredentialsFromUrl();

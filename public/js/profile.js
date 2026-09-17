@@ -638,7 +638,9 @@ async function updateAdminReport(reportId, status, note) {
 function updateSanctionDurationState() {
   if (!sanctionType || !sanctionDuration) return;
   const warning = sanctionType.value === "warning";
-  sanctionDuration.disabled = warning;
+  const ban = sanctionType.value === "ban";
+  if (ban) sanctionDuration.value = "permanent";
+  sanctionDuration.disabled = warning || ban;
 }
 
 function selectMemberForSanction(profile) {
@@ -724,7 +726,7 @@ async function submitSanction(event) {
     return;
   }
 
-  const durationMinutes = type === "warning" || durationValue === "permanent"
+  const durationMinutes = type === "warning" || type === "ban" || durationValue === "permanent"
     ? null
     : Number.parseInt(durationValue, 10);
 
