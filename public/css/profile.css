@@ -687,16 +687,17 @@ textarea:disabled {
 
 .sanction-history {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 9px;
   margin-top: 10px;
 }
 
 .sanction-member-card {
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: center;
-  gap: 18px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 11px;
   border: 1px solid var(--line);
   border-radius: 15px;
   background: rgba(255,255,255,.025);
@@ -721,6 +722,10 @@ textarea:disabled {
   gap: 3px;
 }
 
+.sanction-member-main {
+  min-width: 0;
+}
+
 .sanction-member-main strong {
   font-size: 15px;
 }
@@ -730,14 +735,17 @@ textarea:disabled {
 }
 
 .sanction-member-count {
-  min-width: 76px;
-  text-align: center;
+  text-align: left;
 }
 
 .sanction-member-count strong {
   color: var(--accent);
   font-size: 21px;
   line-height: 1;
+}
+
+.sanction-member-card .admin-status {
+  margin-top: auto;
 }
 
 .profile-modal[hidden] {
@@ -756,7 +764,7 @@ textarea:disabled {
 }
 
 .profile-modal-card {
-  width: min(820px, 100%);
+  width: min(1420px, 100%);
   max-height: min(820px, calc(100vh - 48px));
   overflow: hidden;
   border: 1px solid var(--line);
@@ -785,6 +793,8 @@ textarea:disabled {
 
 .sanction-history-modal-list {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
   gap: 10px;
   max-height: calc(100vh - 190px);
   overflow-y: auto;
@@ -793,6 +803,13 @@ textarea:disabled {
 
 body.modal-open {
   overflow: hidden;
+}
+
+@media (max-width: 1100px) {
+  .sanction-history,
+  .sanction-history-modal-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .sanction-history-card {
@@ -862,13 +879,9 @@ body.modal-open {
     flex-direction: column;
   }
 
-  .sanction-member-card {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
-  .sanction-member-card .admin-status {
-    grid-column: 1 / -1;
-    justify-self: start;
+  .sanction-history,
+  .sanction-history-modal-list {
+    grid-template-columns: 1fr;
   }
 
   .profile-modal {
