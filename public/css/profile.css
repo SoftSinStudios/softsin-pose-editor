@@ -344,10 +344,49 @@ textarea:disabled {
 }
 
 .admin-stat {
+  --metric-color: 103, 232, 255;
   border: 1px solid var(--line);
   border-radius: 16px;
   background: rgba(255,255,255,.03);
   padding: 13px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.admin-stat::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: rgba(var(--metric-color), .28);
+}
+
+.admin-stat[data-tone="danger"] { --metric-color: 255, 86, 120; }
+.admin-stat[data-tone="warning"] { --metric-color: 255, 209, 102; }
+.admin-stat[data-tone="info"] { --metric-color: 103, 232, 255; }
+.admin-stat[data-tone="success"] { --metric-color: 93, 255, 159; }
+
+.admin-stat.active-metric {
+  border-color: rgba(var(--metric-color), .38);
+  background:
+    radial-gradient(circle at 0 0, rgba(var(--metric-color), .13), transparent 58%),
+    rgba(255,255,255,.035);
+  box-shadow: inset 0 0 24px rgba(var(--metric-color), .025);
+}
+
+.admin-stat.active-metric::before {
+  background: rgb(var(--metric-color));
+  box-shadow: 0 0 14px rgba(var(--metric-color), .65);
+}
+
+.admin-stat.active-metric strong {
+  color: rgb(var(--metric-color));
+}
+
+.admin-stat.metric-error {
+  --metric-color: 255, 86, 120;
+  border-color: rgba(255,86,120,.5);
 }
 
 .admin-stat span {

@@ -361,7 +361,10 @@ async function saveProfileChanges() {
 
 function setStat(element, result) {
   if (!element) return;
-  element.textContent = result?.error ? "!" : new Intl.NumberFormat().format(result?.count || 0);
+  const count = result?.count || 0;
+  element.textContent = result?.error ? "!" : new Intl.NumberFormat().format(count);
+  element.closest(".admin-stat")?.classList.toggle("active-metric", !result?.error && count > 0);
+  element.closest(".admin-stat")?.classList.toggle("metric-error", Boolean(result?.error));
 }
 
 function formatBytes(value) {
@@ -408,15 +411,23 @@ async function loadBoardHealth() {
   setStat(statReportsClosedWeek, results[6]);
 
   const removedHasError = results[7].error || results[8].error;
-  statRemovedWeek.textContent = removedHasError
-    ? "!"
-    : new Intl.NumberFormat().format((results[7].count || 0) + (results[8].count || 0));
+  const removedCount = (results[7].count || 0) + (results[8].count || 0);
+  const removedCard = statRemovedWeek.closest(".admin-stat");
+  statRemovedWeek.textContent = removedHasError ? "!" : new Intl.NumberFormat().format(removedCount);
+  removedCard?.classList.toggle("active-metric", !removedHasError && removedCount > 0);
+  removedCard?.classList.toggle("metric-error", removedHasError);
 
   const orphanResult = results[9];
   statOrphanImages.textContent = orphanResult.error ? "!" : new Intl.NumberFormat().format(orphanResult.data?.length || 0);
   statOrphanBytes.textContent = orphanResult.error
     ? "!"
     : formatBytes((orphanResult.data || []).reduce((sum, item) => sum + Number(item.byte_size || 0), 0));
+  const orphanCount = orphanResult.data?.length || 0;
+  [statOrphanImages, statOrphanBytes].forEach((element) => {
+    const card = element.closest(".admin-stat");
+    card?.classList.toggle("active-metric", !orphanResult.error && orphanCount > 0);
+    card?.classList.toggle("metric-error", Boolean(orphanResult.error));
+  });
 
   const errors = results.filter((result) => result.error);
   const activeReports = results[0].count || 0;
