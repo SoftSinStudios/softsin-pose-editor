@@ -29,8 +29,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </aside>
     <section class="structure-panel" aria-labelledby="structureTitle">
       <div class="structure-heading"><div><span class="eyebrow">User-controlled structure</span><h1 id="structureTitle">Song Structure</h1><p id="structureSummary">Start blank or choose a template. Drag sections or use the arrow controls to reorder them.</p></div><button class="btn primary" id="addSection" type="button">+ Add Section</button></div>
+      <div class="empty-structure" id="emptyStructure"><strong>This song has no sections yet.</strong><span>Add a section or start from an optional template.</span></div>
       <div class="structure-board" id="structureBoard" role="list" aria-label="Song sections"></div>
-      <div class="empty-structure" id="emptyStructure"><strong>This song has no sections yet.</strong><span>Add your first section or start from an optional template.</span><button class="btn primary" id="addFirstSection" type="button">Add First Section</button></div>
     </section>
     <aside class="composer-panel inspector-panel" aria-labelledby="inspectorTitle">
       <div class="panel-heading"><div><span class="eyebrow">Selected section</span><h2 id="inspectorTitle">Inspector</h2></div><button class="panel-toggle" id="collapseInspector" type="button" aria-label="Collapse section inspector">›</button></div>

@@ -16,7 +16,7 @@ const byId = id => document.getElementById(id);
 const els = Object.fromEntries([
   "basicMode", "advancedMode", "newProject", "saveProject", "loadProject", "toggleOutput", "collapseDirection", "collapseInspector",
   "songTitle", "modelTarget", "structureTemplate", "applyTemplate", "identity", "pulse", "players", "performance", "arc", "mix", "constraints",
-  "addSection", "addFirstSection", "structureBoard", "emptyStructure", "sectionInspector", "inspectorEmpty", "sectionType", "sectionName",
+  "addSection", "structureBoard", "emptyStructure", "sectionInspector", "inspectorEmpty", "sectionType", "sectionName",
   "sectionLyrics", "sectionDirection", "sectionEnergy", "sectionVocal", "sectionInstruments", "sectionArrangement", "sectionMix", "sectionExclude",
   "outputDrawer", "closeOutput", "styleOutput", "lyricsOutput", "diagnosticCount", "diagnosticList", "copyPackage", "downloadTxt",
   "sectionDialog", "sectionTypeGrid", "customSectionName", "confirmAddSection"
@@ -318,7 +318,6 @@ function bindEvents() {
   els.collapseDirection.addEventListener("click", () => togglePanel("direction"));
   els.collapseInspector.addEventListener("click", () => togglePanel("inspector"));
   els.addSection.addEventListener("click", showAddSectionDialog);
-  els.addFirstSection.addEventListener("click", showAddSectionDialog);
   els.confirmAddSection.addEventListener("click", addPendingSection);
   els.applyTemplate.addEventListener("click", applySelectedTemplate);
 
