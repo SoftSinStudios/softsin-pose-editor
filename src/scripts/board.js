@@ -149,9 +149,9 @@ let unreadNotificationPostIds = new Set();
 const profileCache = new Map();
 
 const fallbackCategories = [
+  { id: null, name: "Announcements", slug: "release-notes", description: "Official announcements, releases, and important updates." },
   { id: null, name: "General", slug: "general", description: "Public discussion for the SoftSin Studios ecosystem." },
   { id: null, name: "Pose Editor", slug: "pose-editor", description: "Discussion, support, and feedback for the SoftSin Pose Editor." },
-  { id: null, name: "Release Notes", slug: "release-notes", description: "Official updates, releases, and version notes." },
   { id: null, name: "JSON Maker", slug: "json-maker", description: "Discussion and support for the SoftSin JSON Maker." },
   { id: null, name: "ComfyUI Nodes", slug: "comfyui-nodes", description: "SoftSin ComfyUI node support, workflows, and updates." },
   { id: null, name: "SD Prompt Composer", slug: "sd-prompt-composer", description: "Discussion, support, and feedback for the SoftSin SD Prompt Composer." },
@@ -265,7 +265,7 @@ function formatDate(value) {
 function readBoardLocation() {
   const params = new URLSearchParams(window.location.search);
   return {
-    category: params.get("category") || "general",
+    category: params.get("category") || "release-notes",
     thread: params.get("thread"),
     page: Math.max(1, Number.parseInt(params.get("page") || "1", 10) || 1),
     replyPage: Math.max(1, Number.parseInt(params.get("replyPage") || "1", 10) || 1),
@@ -2188,7 +2188,7 @@ async function applySession(session) {
 }
 
 async function signInWithProvider(provider) {
-  const redirectTo = window.location.href.split("#")[0];
+  const redirectTo = new URL("/board.html", window.location.origin).href;
   const providerName = provider.charAt(0).toUpperCase() + provider.slice(1);
   loginDiscord.disabled = true;
   loginGoogle.disabled = true;
@@ -2476,7 +2476,14 @@ async function loadCategoryCounts(categories = currentCategories) {
 }
 
 function renderCategories(categories) {
-  currentCategories = categories || [];
+  currentCategories = (categories || []).map((category) => category.slug === "release-notes"
+    ? {
+        ...category,
+        name: "Announcements",
+        description: "Official announcements, releases, and important updates."
+      }
+    : category);
+  categories = currentCategories;
   categoryList.innerHTML = "";
   categoriesBySlug = new Map();
 
