@@ -8,7 +8,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="composer-control-row">
       <strong class="composer-tagline">Build the song. We compile the prompt.</strong>
       <div class="mode-switch" aria-label="Editor detail level"><button class="mode-button active" id="basicMode" type="button" aria-pressed="true">Basic</button><button class="mode-button" id="advancedMode" type="button" aria-pressed="false">Advanced</button></div>
-      <div class="toolbar-actions"><button class="btn" id="newProject" type="button">New</button><button class="btn" id="saveProject" type="button">Save Project</button><button class="btn" id="loadProject" type="button">Load Project</button><button class="btn primary" id="toggleOutput" type="button">Review Export</button></div>
+      <div class="toolbar-actions"><button class="btn" id="newProject" type="button">New</button><button class="btn" id="loadProject" type="button">Load Project</button><button class="btn primary" id="saveProject" type="button">Save Project</button></div>
     </div>
   </header>
   <div class="composer-layout">
@@ -49,7 +49,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </aside>
   </div>
   <section class="output-drawer" id="outputDrawer" hidden aria-labelledby="outputTitle">
-    <header class="output-heading"><div><span class="eyebrow">Compiled V6 package</span><h2 id="outputTitle">Review Export</h2></div><button class="btn" id="closeOutput" type="button">Close</button></header>
+    <header class="output-heading"><div><span class="eyebrow">Review and export</span><h2 id="outputTitle">Save Project</h2></div><button class="btn" id="closeOutput" type="button">Close</button></header>
     <div class="output-grid"><div class="output-field"><div><strong>Style prompt</strong><button class="text-button" data-copy="style" type="button">Copy</button></div><textarea id="styleOutput" readonly></textarea></div><div class="output-field lyrics-output"><div><strong>Lyrics and structure</strong><button class="text-button" data-copy="lyrics" type="button">Copy</button></div><textarea id="lyricsOutput" readonly></textarea></div><aside class="diagnostics"><div class="diagnostic-head"><strong>Prompt diagnostics</strong><span id="diagnosticCount">0 issues</span></div><div id="diagnosticList"></div><div class="export-actions"><button class="btn" id="copyPackage" type="button">Copy Package</button><button class="btn" id="downloadJson" type="button">Download JSON</button><button class="btn primary" id="downloadTxt" type="button">Download TXT</button></div></aside></div>
   </section>
   <Fragment slot="afterShell">

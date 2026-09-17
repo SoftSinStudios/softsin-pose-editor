@@ -15,7 +15,7 @@ const FALLBACK_TEMPLATES = [
 
 const byId = id => document.getElementById(id);
 const els = Object.fromEntries([
-  "basicMode", "advancedMode", "newProject", "saveProject", "loadProject", "toggleOutput", "collapseDirection", "collapseInspector",
+  "basicMode", "advancedMode", "newProject", "saveProject", "loadProject", "collapseDirection", "collapseInspector",
   "songTitle", "modelTarget", "structureTemplate", "applyTemplate", "identity", "pulse", "players", "performance", "arc", "mix", "constraints",
   "addSection", "structureBoard", "emptyStructure", "sectionInspector", "inspectorEmpty", "sectionType", "sectionName",
   "sectionLyrics", "sectionDirection", "sectionEnergy", "sectionVocal", "sectionInstruments", "sectionArrangement", "sectionMix", "sectionExclude",
@@ -265,11 +265,6 @@ function download(filename, content, type) {
   URL.revokeObjectURL(url);
 }
 
-function saveProject() {
-  updateProjectFromGlobals();
-  download(`${slug(project.title)}.softsin-music.json`, JSON.stringify(project, null, 2), "application/json");
-}
-
 function exportJson() {
   updateProjectFromGlobals();
   const compiled = compileProject(project);
@@ -301,7 +296,8 @@ function loadProject() {
   input.accept = ".json,.softsin-music.json";
   input.addEventListener("change", async () => {
     try {
-      const data = JSON.parse(await input.files[0].text());
+      const imported = JSON.parse(await input.files[0].text());
+      const data = imported?.schema === "softsin.music-prompt.export" ? imported.project : imported;
       if (!data || !Array.isArray(data.sections) || typeof data.global !== "object") throw new Error("Invalid project file");
       project = { ...blankProject(), ...data, global: { ...blankProject().global, ...data.global }, version: PROJECT_VERSION };
       selectedSectionId = project.sections[0]?.id || null;
@@ -357,9 +353,8 @@ function bindEvents() {
   els.basicMode.addEventListener("click", () => setMode("basic"));
   els.advancedMode.addEventListener("click", () => setMode("advanced"));
   els.newProject.addEventListener("click", newProject);
-  els.saveProject.addEventListener("click", saveProject);
   els.loadProject.addEventListener("click", loadProject);
-  els.toggleOutput.addEventListener("click", () => { updateOutput(); els.outputDrawer.hidden = false; document.body.classList.add("output-open"); });
+  els.saveProject.addEventListener("click", () => { updateProjectFromGlobals(); updateOutput(); els.outputDrawer.hidden = false; document.body.classList.add("output-open"); });
   els.closeOutput.addEventListener("click", () => { els.outputDrawer.hidden = true; document.body.classList.remove("output-open"); });
   els.collapseDirection.addEventListener("click", () => togglePanel("direction"));
   els.collapseInspector.addEventListener("click", () => togglePanel("inspector"));
