@@ -235,6 +235,7 @@
   background: rgba(255,255,255,.035);
   font-size: 12px;
   font-weight: 850;
+  line-height: 1.2;
 }
 
 .tag.good { color: var(--good); border-color: rgba(93, 255, 159, .25); }
@@ -1056,14 +1057,15 @@ button.btn {
   line-height: 1.1;
 }
 
-.thread-list-delete {
+.board-page .thread-list-actions button.thread-list-delete {
   min-height: 0;
   margin-top: 8px;
   padding: 3px 8px;
   border-radius: 999px;
+  font-family: inherit;
   font-size: 12px;
   font-weight: 850;
-  line-height: normal;
+  line-height: 1.2;
 }
 
 .thread-list-actions {
