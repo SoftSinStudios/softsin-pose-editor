@@ -144,6 +144,7 @@ let replyPageCount = 1;
 let searchDebounceTimer = null;
 let currentThreadFollowed = false;
 let unreadNotificationsByChannel = new Map();
+let unreadNotificationThreadIds = new Set();
 const profileCache = new Map();
 
 const fallbackCategories = [
@@ -218,7 +219,8 @@ function saveReadThreadIds(ids) {
 
 function isThreadNew(threadId) {
   if (!threadId) return false;
-  return !getReadThreadIds().has(String(threadId));
+  const normalizedId = String(threadId);
+  return unreadNotificationThreadIds.has(normalizedId) || !getReadThreadIds().has(normalizedId);
 }
 
 function markThreadRead(threadId) {
@@ -1953,7 +1955,7 @@ async function loadNotifications() {
       .limit(20),
     supabase
       .from("board_notifications")
-      .select("id, thread:thread_id (category:category_id (slug))", { count: "exact" })
+      .select("id, thread_id, thread:thread_id (category:category_id (slug))", { count: "exact" })
       .is("read_at", null)
   ]);
 
@@ -1964,13 +1966,18 @@ async function loadNotifications() {
   }
 
   unreadNotificationsByChannel = new Map();
+  unreadNotificationThreadIds = new Set();
   (unreadResult.data || []).forEach((notification) => {
     const slug = notification.thread?.category?.slug;
     if (slug) unreadNotificationsByChannel.set(slug, (unreadNotificationsByChannel.get(slug) || 0) + 1);
+    if (notification.thread_id) unreadNotificationThreadIds.add(String(notification.thread_id));
   });
   updateNotificationBadge(unreadResult.count || 0);
   updateChannelNotificationIndicators();
   renderNotifications(itemsResult.data || []);
+  if (currentBoardView === "threads" && currentCategory && loadedThreads.length) {
+    renderThreads(loadedThreads, currentCategory, { preserveLoaded: true });
+  }
 }
 
 async function markAllNotificationsRead() {
@@ -2035,6 +2042,7 @@ function setSignedOut() {
   signedInBox.hidden = true;
   if (notificationPanel) notificationPanel.hidden = true;
   unreadNotificationsByChannel = new Map();
+  unreadNotificationThreadIds = new Set();
   updateNotificationBadge(0);
   updateChannelNotificationIndicators();
   setAdminBoardSummary(false);
