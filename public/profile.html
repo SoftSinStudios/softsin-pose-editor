@@ -171,9 +171,20 @@
               <article class="admin-stat"><span>Locked threads</span><strong id="statLockedThreads">—</strong></article>
               <article class="admin-stat"><span>Reports closed · 7d</span><strong id="statReportsClosedWeek">—</strong></article>
               <article class="admin-stat"><span>Content removed · 7d</span><strong id="statRemovedWeek">—</strong></article>
+              <article class="admin-stat"><span>Orphan images · 24h+</span><strong id="statOrphanImages">—</strong></article>
+              <article class="admin-stat"><span>Orphan storage</span><strong id="statOrphanBytes">—</strong></article>
             </div>
 
             <div class="admin-health-note" id="adminHealthNote">Loading board health...</div>
+
+            <section class="admin-upload-health" id="adminUploadHealth" aria-labelledby="adminUploadHealthTitle">
+              <div>
+                <span class="admin-eyebrow">Image lifecycle</span>
+                <h3 id="adminUploadHealthTitle">Orphan cleanup</h3>
+                <p>Remove uploads older than 24 hours that were never attached to a thread or reply. Moderated and deleted content is preserved.</p>
+              </div>
+              <button class="btn danger" id="cleanOrphanImages" type="button">Clean Orphan Images</button>
+            </section>
 
             <section class="admin-enforcement" aria-labelledby="adminEnforcementTitle">
               <div class="admin-queue-head">

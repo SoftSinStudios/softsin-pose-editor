@@ -227,6 +227,8 @@ $fileName = sprintf(
     $extensions[$mimeType]
 );
 $destination = $userDirectory . '/' . $fileName;
+$storagePath = 'board/' . $userId . '/' . $fileName;
+$publicUrl = PUBLIC_BOARD_IMAGE_BASE . '/' . rawurlencode($userId) . '/' . rawurlencode($fileName);
 
 if (!move_uploaded_file($temporaryPath, $destination)) {
     if (is_resource($rateHandle)) {
@@ -237,6 +239,44 @@ if (!move_uploaded_file($temporaryPath, $destination)) {
 }
 
 chmod($destination, 0644);
+
+$originalName = basename((string) ($upload['name'] ?? ''));
+$originalName = (string) preg_replace('/[^\x20-\x7E]/', '_', $originalName);
+$registryPayload = json_encode([[
+    'uploader_id' => $userId,
+    'public_url' => $publicUrl,
+    'storage_path' => $storagePath,
+    'original_name' => substr($originalName, 0, 255),
+    'mime_type' => $mimeType,
+    'byte_size' => $fileSize,
+]], JSON_UNESCAPED_SLASHES);
+$registryCurl = curl_init(SUPABASE_URL . '/rest/v1/board_image_uploads?select=id');
+curl_setopt_array($registryCurl, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 10,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => $registryPayload,
+    CURLOPT_HTTPHEADER => [
+        'Authorization: Bearer ' . $accessToken,
+        'apikey: ' . SUPABASE_PUBLISHABLE_KEY,
+        'Content-Type: application/json',
+        'Prefer: return=representation',
+    ],
+]);
+$registryBody = curl_exec($registryCurl);
+$registryStatus = (int) curl_getinfo($registryCurl, CURLINFO_RESPONSE_CODE);
+curl_close($registryCurl);
+$registryRows = is_string($registryBody) ? json_decode($registryBody, true) : [];
+$uploadId = is_array($registryRows) && isset($registryRows[0]['id']) ? $registryRows[0]['id'] : '';
+
+if ($registryStatus !== 201 || !is_string($uploadId) || $uploadId === '') {
+    @unlink($destination);
+    if (is_resource($rateHandle)) {
+        flock($rateHandle, LOCK_UN);
+        fclose($rateHandle);
+    }
+    respond(500, ['error' => 'The image could not be registered. No file was retained.']);
+}
 
 if (is_resource($rateHandle)) {
     $recentUploads[] = $now;
@@ -249,7 +289,8 @@ if (is_resource($rateHandle)) {
 }
 
 respond(201, [
-    'url' => PUBLIC_BOARD_IMAGE_BASE . '/' . rawurlencode($userId) . '/' . rawurlencode($fileName),
+    'id' => $uploadId,
+    'url' => $publicUrl,
     'uploadedBy' => $displayName,
     'userId' => $userId,
     'rateLimitExempt' => $isAdmin,

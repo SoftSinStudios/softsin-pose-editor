@@ -1088,6 +1088,27 @@ async function uploadBoardImage(file, editorId = null) {
   composerStatus.textContent = "Image uploaded and added to the post.";
 }
 
+function getRegisteredImageUrls(content) {
+  const imageUrlPattern = /https:\/\/files\.softsinstudios\.com\/website-images\/board\/[0-9a-f-]{36}\/[a-z0-9._%-]+/gi;
+  return [...new Set(String(content || "").match(imageUrlPattern) || [])];
+}
+
+async function attachImagesInContent(content, { threadId = null, postId = null } = {}) {
+  const imageUrls = getRegisteredImageUrls(content);
+  if (!imageUrls.length) return;
+
+  const { error } = await supabase.rpc("attach_board_images", {
+    image_urls: imageUrls,
+    target_thread_id: threadId,
+    target_post_id: postId
+  });
+
+  if (error) {
+    console.error("Board image attachment registration failed:", error);
+    composerStatus.textContent = "Content saved, but image ownership could not be finalized. Staff can recover it from the upload registry.";
+  }
+}
+
 function applyEditorAction(action) {
   switch (action) {
     case "bold":
@@ -2800,6 +2821,8 @@ async function saveThreadEdit(threadId) {
     return;
   }
 
+  await attachImagesInContent(body, { threadId });
+
   editingThreadId = null;
   composerStatus.textContent = "Thread updated.";
 
@@ -2878,6 +2901,8 @@ async function saveReplyEdit(postId) {
     composerStatus.textContent = error.message || "Reply edit failed.";
     return;
   }
+
+  await attachImagesInContent(body, { postId });
 
   const threadId = currentThread?.id;
   editingReplyId = null;
@@ -3329,14 +3354,16 @@ async function createThread() {
   postMessage.disabled = true;
   composerStatus.textContent = "Creating thread...";
 
-  const { error } = await supabase
+  const { data: createdThread, error } = await supabase
     .from("threads")
     .insert({
       category_id: currentCategory.id,
       author_id: currentUser.id,
       title,
       body
-    });
+    })
+    .select("id")
+    .single();
 
   if (error) {
     console.error("Thread creation failed:", error);
@@ -3344,6 +3371,8 @@ async function createThread() {
     postMessage.disabled = false;
     return;
   }
+
+  await attachImagesInContent(body, { threadId: createdThread.id });
 
   clearComposerDraft();
 
@@ -3409,13 +3438,15 @@ async function createReply() {
   postMessage.disabled = true;
   composerStatus.textContent = "Posting reply...";
 
-  const { error } = await supabase
+  const { data: createdPost, error } = await supabase
     .from("posts")
     .insert({
       thread_id: currentThread.id,
       author_id: currentUser.id,
       body
-    });
+    })
+    .select("id")
+    .single();
 
   if (error) {
     console.error("Reply creation failed:", error);
@@ -3423,6 +3454,8 @@ async function createReply() {
     postMessage.disabled = false;
     return;
   }
+
+  await attachImagesInContent(body, { postId: createdPost.id });
 
   const threadId = currentThread.id;
 

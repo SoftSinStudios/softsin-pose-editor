@@ -2,6 +2,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL = "https://pnpijueflzvlyzzmhdwa.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ts2QrwDwmmIrXbSzG14fBQ_REyHdGS5";
+const BOARD_IMAGE_CLEANUP_URL = "https://files.softsinstudios.com/website-images/board-cleanup.php";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: {
@@ -59,6 +60,10 @@ const statMembersWeek = document.getElementById("statMembersWeek");
 const statLockedThreads = document.getElementById("statLockedThreads");
 const statReportsClosedWeek = document.getElementById("statReportsClosedWeek");
 const statRemovedWeek = document.getElementById("statRemovedWeek");
+const statOrphanImages = document.getElementById("statOrphanImages");
+const statOrphanBytes = document.getElementById("statOrphanBytes");
+const cleanOrphanImages = document.getElementById("cleanOrphanImages");
+const adminUploadHealth = document.getElementById("adminUploadHealth");
 const memberSearchInput = document.getElementById("memberSearchInput");
 const memberSearchButton = document.getElementById("memberSearchButton");
 const memberSearchResults = document.getElementById("memberSearchResults");
@@ -211,6 +216,7 @@ function renderProfile(user, profile) {
   roleValue.textContent = role;
   emailValue.textContent = email;
   if (dangerZone) dangerZone.hidden = role === "admin";
+  if (adminUploadHealth) adminUploadHealth.hidden = role !== "admin";
 
   if (avatar) {
     profileAvatar.src = avatar;
@@ -358,12 +364,26 @@ function setStat(element, result) {
   element.textContent = result?.error ? "!" : new Intl.NumberFormat().format(result?.count || 0);
 }
 
+function formatBytes(value) {
+  const bytes = Number(value) || 0;
+  if (bytes < 1024) return `${bytes} B`;
+  const units = ["KB", "MB", "GB", "TB"];
+  let amount = bytes;
+  let unit = -1;
+  do {
+    amount /= 1024;
+    unit++;
+  } while (amount >= 1024 && unit < units.length - 1);
+  return `${amount.toFixed(amount >= 10 ? 1 : 2)} ${units[unit]}`;
+}
+
 async function loadBoardHealth() {
   if (!isStaffProfile()) return;
 
   const now = Date.now();
   const dayAgo = new Date(now - 24 * 60 * 60 * 1000).toISOString();
   const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const orphanCutoff = new Date(now - 24 * 60 * 60 * 1000).toISOString();
   adminHealthNote.textContent = "Refreshing board health...";
 
   const results = await Promise.all([
@@ -375,7 +395,8 @@ async function loadBoardHealth() {
     supabase.from("threads").select("id", { count: "exact", head: true }).eq("locked", true).is("deleted_at", null),
     supabase.from("board_reports").select("id", { count: "exact", head: true }).in("status", ["resolved", "dismissed"]).gte("updated_at", weekAgo),
     supabase.from("threads").select("id", { count: "exact", head: true }).gte("deleted_at", weekAgo),
-    supabase.from("posts").select("id", { count: "exact", head: true }).gte("deleted_at", weekAgo)
+    supabase.from("posts").select("id", { count: "exact", head: true }).gte("deleted_at", weekAgo),
+    supabase.from("board_image_uploads").select("id, byte_size").eq("status", "pending").lt("created_at", orphanCutoff)
   ]);
 
   setStat(statActiveReports, results[0]);
@@ -391,6 +412,12 @@ async function loadBoardHealth() {
     ? "!"
     : new Intl.NumberFormat().format((results[7].count || 0) + (results[8].count || 0));
 
+  const orphanResult = results[9];
+  statOrphanImages.textContent = orphanResult.error ? "!" : new Intl.NumberFormat().format(orphanResult.data?.length || 0);
+  statOrphanBytes.textContent = orphanResult.error
+    ? "!"
+    : formatBytes((orphanResult.data || []).reduce((sum, item) => sum + Number(item.byte_size || 0), 0));
+
   const errors = results.filter((result) => result.error);
   const activeReports = results[0].count || 0;
   const reviewingReports = results[1].count || 0;
@@ -402,6 +429,33 @@ async function loadBoardHealth() {
     adminHealthNote.textContent = "No active reports. The moderation queue is clear.";
   } else {
     adminHealthNote.textContent = `${activeReports} active report${activeReports === 1 ? "" : "s"}; ${reviewingReports} currently under review.`;
+  }
+}
+
+async function cleanupOrphanImages() {
+  if (currentProfile?.role !== "admin") return;
+  const confirmed = window.confirm("Delete every unbound board image older than 24 hours? Attached images and moderation evidence will not be touched.");
+  if (!confirmed) return;
+
+  cleanOrphanImages.disabled = true;
+  adminHealthNote.textContent = "Cleaning orphaned board images...";
+  const { data } = await supabase.auth.getSession();
+  const token = data.session?.access_token;
+
+  try {
+    const response = await fetch(BOARD_IMAGE_CLEANUP_URL, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "Image cleanup failed.");
+    adminHealthNote.textContent = `Removed ${result.deleted} orphan image${result.deleted === 1 ? "" : "s"} and freed ${formatBytes(result.bytesFreed)}.${result.failed ? ` ${result.failed} item(s) require review.` : ""}`;
+    await loadBoardHealth();
+  } catch (error) {
+    console.error("Board image cleanup failed:", error);
+    adminHealthNote.textContent = error.message || "Image cleanup failed.";
+  } finally {
+    cleanOrphanImages.disabled = false;
   }
 }
 
@@ -852,6 +906,10 @@ if (profileForm) {
 
 if (refreshAdminDashboard) {
   refreshAdminDashboard.addEventListener("click", loadAdminDashboard);
+}
+
+if (cleanOrphanImages) {
+  cleanOrphanImages.addEventListener("click", cleanupOrphanImages);
 }
 
 adminReportFilters.forEach((button) => {

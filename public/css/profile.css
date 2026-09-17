@@ -376,6 +376,23 @@ textarea:disabled {
   font-size: 13px;
 }
 
+.admin-upload-health {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255,255,255,.025);
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.admin-upload-health h3 { margin: 4px 0; }
+.admin-upload-health p { margin: 0; max-width: 760px; color: var(--muted); }
+.admin-upload-health .btn { flex: 0 0 auto; }
+.admin-upload-health[hidden] { display: none !important; }
+
 .admin-queue-head {
   align-items: center;
   margin-top: 26px;
@@ -664,6 +681,11 @@ textarea:disabled {
 }
 
 @media (max-width: 700px) {
+  .admin-upload-health {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
   .admin-stat-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

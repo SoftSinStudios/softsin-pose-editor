@@ -18,7 +18,7 @@ The board uses a capable Markdown editor for signed-in members and enforces abus
 
 - Thread titles: 3–140 characters
 - Post bodies: 1–20,000 characters
-- Images: 5 MB each, 4 per post
+- Images: 10 MB each, 4 per post
 - Links: 10 per post; new accounts are limited to 2 during their first 24 hours
 - Members: 60 seconds between new threads, maximum 5 threads per hour
 - Members: 15 seconds between replies, maximum 30 replies per hour
@@ -26,7 +26,7 @@ The board uses a capable Markdown editor for signed-in members and enforces abus
 
 ## Deployment
 
-Run `supabase/migrations/20260916_board_guardrails.sql` in the Supabase SQL Editor for database posting limits. Then deploy `server/files/board-upload.php` and `server/files/.htaccess` into `/website-images/` on the file server.
+Run `supabase/migrations/20260916_board_guardrails.sql` in the Supabase SQL Editor for database posting limits. For tracked uploads, also run `supabase/migrations/20260917_board_upload_registry.sql`. Then deploy `server/files/board-upload.php`, `server/files/board-cleanup.php`, and `server/files/.htaccess` into `/website-images/` on the file server.
 
 The PHP endpoint:
 
@@ -35,6 +35,7 @@ The PHP endpoint:
 3. Validates the actual file MIME type, image structure, dimensions, and 10 MB limit.
 4. Limits each member to 20 image uploads per hour while exempting server-verified administrators.
 5. Stores images under the immutable account UUID and prefixes each randomized filename with the member's current sanitized forum name and UTC upload time.
+6. Registers every accepted file before returning success; registration failure removes the file immediately.
 
 Example: `/website-images/board/{user-id}/david-polensky_20260916-223945_a81f03c2.webp`. The UUID directory is the authoritative identity because display names can change.
 
@@ -42,6 +43,8 @@ The Supabase migration:
 
 1. Adds server-side identity, content, link, image, and posting-cadence validation.
 2. Also creates the earlier Supabase `board-images` fallback bucket. It can be removed after the InterServer endpoint has passed production testing.
+
+The upload-registry migration records ownership, size, path, and lifecycle state. Image URLs still present when a thread or reply is saved are attached to that content. Unattached uploads receive a 24-hour grace period, then appear in the administrator Community Health panel. Cleanup only accepts a verified administrator session and only removes registry-confirmed pending files beneath the board upload directory. Attachments belonging to live or moderated content are preserved.
 
 ## Reporting and moderation
 
