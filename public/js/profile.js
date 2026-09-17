@@ -77,11 +77,19 @@ const sanctionStatus = document.getElementById("sanctionStatus");
 const applySanction = document.getElementById("applySanction");
 const refreshSanctions = document.getElementById("refreshSanctions");
 const sanctionHistory = document.getElementById("sanctionHistory");
+const sanctionHistoryModal = document.getElementById("sanctionHistoryModal");
+const sanctionHistoryModalTitle = document.getElementById("sanctionHistoryModalTitle");
+const sanctionHistoryModalSummary = document.getElementById("sanctionHistoryModalSummary");
+const sanctionHistoryModalList = document.getElementById("sanctionHistoryModalList");
+const closeSanctionHistoryModal = document.getElementById("closeSanctionHistoryModal");
 
 let currentUser = null;
 let currentProfile = null;
 let adminReportFilter = "active";
 let selectedSanctionTarget = null;
+let sanctionRecords = [];
+let sanctionProfiles = new Map();
+let openSanctionMemberId = null;
 
 const reportReasonLabels = {
   spam: "Spam or promotion",
@@ -774,6 +782,98 @@ async function revokeSanction(sanctionId) {
   await loadSanctionHistory();
 }
 
+function getSanctionState(sanction) {
+  const isExpired = sanction.expires_at && new Date(sanction.expires_at).getTime() <= Date.now();
+  const currentlyActive = Boolean(sanction.active && !isExpired);
+  const state = currentlyActive ? "Active" : sanction.acknowledged_at ? "Acknowledged" : isExpired ? "Expired" : "Revoked";
+  return { currentlyActive, state };
+}
+
+function renderSanctionDetailCard(sanction) {
+  const target = sanctionProfiles.get(sanction.user_id) || {};
+  const issuer = sanctionProfiles.get(sanction.issued_by) || {};
+  const { currentlyActive, state } = getSanctionState(sanction);
+  const expiry = sanction.expires_at
+    ? formatDate(sanction.expires_at)
+    : sanction.sanction_type === "ban"
+      ? "Permanent"
+      : "No expiration";
+
+  return `
+    <article class="sanction-history-card">
+      <div>
+        <span class="admin-status ${currentlyActive ? "open" : "resolved"}">${escapeHtml(state)}</span>
+        <h5>${escapeHtml(sanction.sanction_type)} · ${escapeHtml(getProfileName(target))}</h5>
+        <p>${escapeHtml(sanction.reason_public)}</p>
+        <small>Issued by ${escapeHtml(getProfileName(issuer))} · ${escapeHtml(formatDate(sanction.created_at))} · ${escapeHtml(expiry)}</small>
+        ${sanction.note_private ? `<details><summary>Private staff note</summary><p>${escapeHtml(sanction.note_private)}</p></details>` : ""}
+        ${sanction.revoke_reason ? `<p class="sanction-revoked">${escapeHtml(sanction.revoke_reason)}</p>` : ""}
+      </div>
+      ${currentlyActive ? `<button class="btn danger revoke-sanction" type="button" data-sanction-id="${escapeHtml(sanction.id)}">Lift Action</button>` : ""}
+    </article>
+  `;
+}
+
+function closeSanctionModal() {
+  if (!sanctionHistoryModal) return;
+  sanctionHistoryModal.hidden = true;
+  document.body.classList.remove("modal-open");
+  openSanctionMemberId = null;
+}
+
+function openSanctionModal(userId) {
+  if (!sanctionHistoryModal || !sanctionHistoryModalList) return;
+  const actions = sanctionRecords.filter((item) => item.user_id === userId);
+  if (!actions.length) return;
+
+  openSanctionMemberId = userId;
+  const profile = sanctionProfiles.get(userId) || {};
+  const activeCount = actions.filter((item) => getSanctionState(item).currentlyActive).length;
+  sanctionHistoryModalTitle.textContent = getProfileName(profile);
+  sanctionHistoryModalSummary.textContent = `${actions.length} admin ${actions.length === 1 ? "action" : "actions"} · ${activeCount} currently active`;
+  sanctionHistoryModalList.innerHTML = actions.map(renderSanctionDetailCard).join("");
+  sanctionHistoryModalList.querySelectorAll(".revoke-sanction").forEach((button) => {
+    button.addEventListener("click", () => revokeSanction(button.dataset.sanctionId));
+  });
+  sanctionHistoryModal.hidden = false;
+  document.body.classList.add("modal-open");
+  closeSanctionHistoryModal?.focus();
+}
+
+function renderSanctionMemberCards() {
+  const grouped = new Map();
+  sanctionRecords.forEach((sanction) => {
+    if (!grouped.has(sanction.user_id)) grouped.set(sanction.user_id, []);
+    grouped.get(sanction.user_id).push(sanction);
+  });
+
+  sanctionHistory.innerHTML = [...grouped.entries()].map(([userId, actions]) => {
+    const profile = sanctionProfiles.get(userId) || {};
+    const active = actions.filter((item) => getSanctionState(item).currentlyActive);
+    const latest = actions[0];
+    const restriction = active[0]?.sanction_type;
+    const username = profile.username ? `@${profile.username}` : "No username set";
+
+    return `
+      <button class="sanction-member-card" type="button" data-user-id="${escapeHtml(userId)}">
+        <span class="sanction-member-main">
+          <strong>${escapeHtml(getProfileName(profile))}</strong>
+          <small>${escapeHtml(username)} · Last action ${escapeHtml(formatDate(latest.created_at))}</small>
+        </span>
+        <span class="sanction-member-count">
+          <strong>${actions.length}</strong>
+          <small>admin ${actions.length === 1 ? "action" : "actions"}</small>
+        </span>
+        <span class="admin-status ${active.length ? "open" : "resolved"}">${active.length ? `${escapeHtml(restriction)} active` : "No active restrictions"}</span>
+      </button>
+    `;
+  }).join("");
+
+  sanctionHistory.querySelectorAll(".sanction-member-card").forEach((card) => {
+    card.addEventListener("click", () => openSanctionModal(card.dataset.userId));
+  });
+}
+
 async function loadSanctionHistory() {
   if (!isStaffProfile()) return;
   sanctionHistory.innerHTML = `<p class="admin-empty">Loading enforcement history...</p>`;
@@ -782,7 +882,7 @@ async function loadSanctionHistory() {
     .from("board_sanctions")
     .select("id, user_id, sanction_type, reason_public, note_private, issued_by, starts_at, expires_at, active, acknowledged_at, revoked_at, revoked_by, revoke_reason, created_at")
     .order("created_at", { ascending: false })
-    .limit(50);
+    .limit(500);
 
   if (error) {
     console.error("Sanction history failed:", error);
@@ -790,43 +890,18 @@ async function loadSanctionHistory() {
     return;
   }
 
-  const sanctions = data || [];
-  if (!sanctions.length) {
+  sanctionRecords = data || [];
+  if (!sanctionRecords.length) {
     sanctionHistory.innerHTML = `<p class="admin-empty">No enforcement actions have been recorded.</p>`;
+    closeSanctionModal();
     return;
   }
 
-  const profileIds = [...new Set(sanctions.flatMap((item) => [item.user_id, item.issued_by, item.revoked_by]).filter(Boolean))];
+  const profileIds = [...new Set(sanctionRecords.flatMap((item) => [item.user_id, item.issued_by, item.revoked_by]).filter(Boolean))];
   const profilesResult = await supabase.from("profiles").select("id, username, display_name, role").in("id", profileIds);
-  const profileMap = new Map((profilesResult.data || []).map((item) => [item.id, item]));
-  const now = Date.now();
-
-  sanctionHistory.innerHTML = sanctions.map((sanction) => {
-    const target = profileMap.get(sanction.user_id) || {};
-    const issuer = profileMap.get(sanction.issued_by) || {};
-    const isExpired = sanction.expires_at && new Date(sanction.expires_at).getTime() <= now;
-    const currentlyActive = sanction.active && !isExpired;
-    const state = currentlyActive ? "Active" : sanction.acknowledged_at ? "Acknowledged" : isExpired ? "Expired" : "Revoked";
-    const expiry = sanction.expires_at ? formatDate(sanction.expires_at) : sanction.sanction_type === "ban" ? "Permanent" : "No expiration";
-
-    return `
-      <article class="sanction-history-card">
-        <div>
-          <span class="admin-status ${currentlyActive ? "open" : "resolved"}">${escapeHtml(state)}</span>
-          <h5>${escapeHtml(sanction.sanction_type)} · ${escapeHtml(getProfileName(target))}</h5>
-          <p>${escapeHtml(sanction.reason_public)}</p>
-          <small>Issued by ${escapeHtml(getProfileName(issuer))} · ${escapeHtml(formatDate(sanction.created_at))} · ${escapeHtml(expiry)}</small>
-          ${sanction.note_private ? `<details><summary>Private staff note</summary><p>${escapeHtml(sanction.note_private)}</p></details>` : ""}
-          ${sanction.revoke_reason ? `<p class="sanction-revoked">${escapeHtml(sanction.revoke_reason)}</p>` : ""}
-        </div>
-        ${currentlyActive ? `<button class="btn revoke-sanction" type="button" data-sanction-id="${escapeHtml(sanction.id)}">Lift Action</button>` : ""}
-      </article>
-    `;
-  }).join("");
-
-  sanctionHistory.querySelectorAll(".revoke-sanction").forEach((button) => {
-    button.addEventListener("click", () => revokeSanction(button.dataset.sanctionId));
-  });
+  sanctionProfiles = new Map((profilesResult.data || []).map((item) => [item.id, item]));
+  renderSanctionMemberCards();
+  if (openSanctionMemberId) openSanctionModal(openSanctionMemberId);
 }
 
 async function loadAdminDashboard() {
@@ -958,6 +1033,22 @@ if (sanctionForm) {
 if (refreshSanctions) {
   refreshSanctions.addEventListener("click", loadSanctionHistory);
 }
+
+if (closeSanctionHistoryModal) {
+  closeSanctionHistoryModal.addEventListener("click", closeSanctionModal);
+}
+
+if (sanctionHistoryModal) {
+  sanctionHistoryModal.addEventListener("click", (event) => {
+    if (event.target === sanctionHistoryModal) closeSanctionModal();
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && sanctionHistoryModal && !sanctionHistoryModal.hidden) {
+    closeSanctionModal();
+  }
+});
 
 supabase.auth.onAuthStateChange(() => {
   clearAuthCredentialsFromUrl();
