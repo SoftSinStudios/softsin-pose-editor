@@ -27,12 +27,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <strong id="userName">Signed in</strong>
                 <span id="userRole">member</span>
               </div>
+              <button class="notification-bell" id="notificationToggle" type="button" aria-expanded="false" aria-label="Open notifications">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
+                <span class="notification-badge" id="notificationBadge" hidden>0</span>
+              </button>
             </div>
 
             <div class="account-actions">
-              <button class="btn full notification-toggle" id="notificationToggle" type="button" aria-expanded="false">
-                Notifications <span class="notification-badge" id="notificationBadge" hidden>0</span>
-              </button>
               <a class="btn full" href="profile.html">Profile</a>
               <button class="btn full" id="logout" type="button">Sign out</button>
             </div>
@@ -48,7 +49,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </section>
 
         <section class="side-section">
-          <div class="side-title">Channels</div>
+          <div class="side-title channel-section-title">
+            <span>Channels</span>
+            <span class="recent-notification-total" id="recentNotificationTotal" hidden>Recent Notifications: <strong>0</strong></span>
+          </div>
           <div id="categoryList">
             <a class="channel active" href="#" data-slug="general"><span>General</span><span class="pill">0</span></a>
             <a class="channel" href="#" data-slug="pose-editor"><span>Pose Editor</span><span class="pill">0</span></a>

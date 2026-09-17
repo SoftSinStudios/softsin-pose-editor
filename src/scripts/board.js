@@ -98,6 +98,7 @@ const notificationBadge = document.getElementById("notificationBadge");
 const notificationPanel = document.getElementById("notificationPanel");
 const notificationList = document.getElementById("notificationList");
 const markNotificationsRead = document.getElementById("markNotificationsRead");
+const recentNotificationTotal = document.getElementById("recentNotificationTotal");
 
 const READ_THREADS_KEY = "softsin_read_threads_v1";
 const BOARD_DRAFT_KEY = "softsin_board_draft_v1";
@@ -140,6 +141,7 @@ let threadPageCount = 1;
 let replyPageCount = 1;
 let searchDebounceTimer = null;
 let currentThreadFollowed = false;
+let unreadNotificationsByChannel = new Map();
 const profileCache = new Map();
 
 const fallbackCategories = [
@@ -1859,6 +1861,25 @@ function updateNotificationBadge(count) {
   if (!notificationBadge) return;
   notificationBadge.textContent = count > 99 ? "99+" : String(count);
   notificationBadge.hidden = count < 1;
+  notificationToggle?.classList.toggle("has-notifications", count > 0);
+  notificationToggle?.setAttribute("aria-label", count > 0 ? `Open notifications, ${count} unread` : "Open notifications");
+  if (recentNotificationTotal) {
+    recentNotificationTotal.hidden = count < 1;
+    const value = recentNotificationTotal.querySelector("strong");
+    if (value) value.textContent = String(count);
+  }
+}
+
+function updateChannelNotificationIndicators() {
+  document.querySelectorAll(".channel[data-slug]").forEach((channel) => {
+    const count = unreadNotificationsByChannel.get(channel.dataset.slug) || 0;
+    const badge = channel.querySelector(".channel-notification-count");
+    channel.classList.toggle("has-notifications", count > 0);
+    if (badge) {
+      badge.textContent = String(count);
+      badge.hidden = count < 1;
+    }
+  });
 }
 
 async function openNotificationTarget(button) {
@@ -1922,7 +1943,7 @@ function renderNotifications(notifications) {
 
 async function loadNotifications() {
   if (!currentUser?.id) return;
-  const [itemsResult, countResult] = await Promise.all([
+  const [itemsResult, unreadResult] = await Promise.all([
     supabase
       .from("board_notifications")
       .select(`id, thread_id, post_id, created_at, read_at, actor:actor_id (display_name, username), thread:thread_id (title, category:category_id (slug)), post:post_id (created_at)`)
@@ -1930,17 +1951,23 @@ async function loadNotifications() {
       .limit(20),
     supabase
       .from("board_notifications")
-      .select("id", { count: "exact", head: true })
+      .select("id, thread:thread_id (category:category_id (slug))", { count: "exact" })
       .is("read_at", null)
   ]);
 
-  if (itemsResult.error || countResult.error) {
-    console.warn("Notification load failed:", itemsResult.error || countResult.error);
+  if (itemsResult.error || unreadResult.error) {
+    console.warn("Notification load failed:", itemsResult.error || unreadResult.error);
     if (notificationList) notificationList.innerHTML = `<p class="notification-empty">Notifications are unavailable.</p>`;
     return;
   }
 
-  updateNotificationBadge(countResult.count || 0);
+  unreadNotificationsByChannel = new Map();
+  (unreadResult.data || []).forEach((notification) => {
+    const slug = notification.thread?.category?.slug;
+    if (slug) unreadNotificationsByChannel.set(slug, (unreadNotificationsByChannel.get(slug) || 0) + 1);
+  });
+  updateNotificationBadge(unreadResult.count || 0);
+  updateChannelNotificationIndicators();
   renderNotifications(itemsResult.data || []);
 }
 
@@ -2005,7 +2032,9 @@ function setSignedOut() {
   signedOutBox.hidden = false;
   signedInBox.hidden = true;
   if (notificationPanel) notificationPanel.hidden = true;
+  unreadNotificationsByChannel = new Map();
   updateNotificationBadge(0);
+  updateChannelNotificationIndicators();
   hideReportDialog();
   setComposerForSignedOut();
 }
@@ -2373,8 +2402,8 @@ function renderCategories(categories) {
     item.className = "channel";
     item.dataset.slug = category.slug;
     item.innerHTML = `
-      <span>${escapeHtml(category.name)}</span>
-      <span class="pill">0</span>
+      <span class="channel-name">${escapeHtml(category.name)}</span>
+      <span class="channel-counts"><span class="channel-notification-count" hidden>0</span><span class="pill">0</span></span>
     `;
 
     item.addEventListener("click", (event) => {
@@ -2385,6 +2414,7 @@ function renderCategories(categories) {
     categoryList.appendChild(item);
   });
 
+  updateChannelNotificationIndicators();
   const location = readBoardLocation();
   const selected =
     categoriesBySlug.get(location.category) ||

@@ -52,6 +52,35 @@
   color: var(--text);
 }
 
+.channel-counts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.channel.has-notifications .channel-name,
+.channel-notification-count {
+  color: var(--good);
+}
+
+.channel-notification-count {
+  min-width: 20px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.channel-section-title {
+  display: grid;
+  gap: 5px;
+}
+
+.recent-notification-total {
+  color: var(--good);
+  font-size: 10px;
+  letter-spacing: .06em;
+}
+
 .pill {
   min-width: 24px;
   text-align: center;
@@ -399,7 +428,7 @@
 
 .user-row {
   display: grid;
-  grid-template-columns: 42px 1fr;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
   gap: 12px;
   align-items: center;
   margin-bottom: 12px;
@@ -433,11 +462,44 @@
   gap: 8px;
 }
 
-.notification-toggle {
+.notification-bell {
   position: relative;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,.035);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.notification-bell svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.notification-bell:hover,
+.notification-bell.has-notifications {
+  border-color: rgba(93,255,159,.4);
+  color: var(--good);
+  background: rgba(93,255,159,.07);
+}
+
+.notification-bell.has-notifications svg {
+  animation: notification-bell-ring 2.8s ease-in-out infinite;
 }
 
 .notification-badge {
+  position: absolute;
+  top: -7px;
+  right: -7px;
   min-width: 20px;
   border-radius: 999px;
   background: #ff5678;
@@ -445,6 +507,18 @@
   padding: 1px 6px;
   font-size: 11px;
   font-weight: 950;
+}
+
+@keyframes notification-bell-ring {
+  0%, 78%, 100% { transform: rotate(0); }
+  82% { transform: rotate(13deg); }
+  86% { transform: rotate(-11deg); }
+  90% { transform: rotate(8deg); }
+  94% { transform: rotate(-5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notification-bell.has-notifications svg { animation: none; }
 }
 
 .notification-panel {
