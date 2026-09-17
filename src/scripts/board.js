@@ -99,6 +99,8 @@ const BOARD_DRAFT_KEY = "softsin_board_draft_v1";
 const BOARD_IMAGE_UPLOAD_URL = "https://files.softsinstudios.com/website-images/board-upload.php";
 const BOARD_IMAGE_MAX_BYTES = 10 * 1024 * 1024;
 const BOARD_IMAGE_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
+const THREADS_PER_PAGE = 25;
+const REPLIES_PER_PAGE = 30;
 
 let currentUser = null;
 let currentProfile = null;
@@ -127,6 +129,11 @@ let pendingImageEditorId = null;
 let pendingReportTarget = null;
 let currentRestriction = null;
 let currentWarning = null;
+let currentThreadPage = 1;
+let currentReplyPage = 1;
+let threadPageCount = 1;
+let replyPageCount = 1;
+let searchDebounceTimer = null;
 const profileCache = new Map();
 
 const fallbackCategories = [
@@ -246,11 +253,14 @@ function readBoardLocation() {
   const params = new URLSearchParams(window.location.search);
   return {
     category: params.get("category") || "general",
-    thread: params.get("thread")
+    thread: params.get("thread"),
+    page: Math.max(1, Number.parseInt(params.get("page") || "1", 10) || 1),
+    replyPage: Math.max(1, Number.parseInt(params.get("replyPage") || "1", 10) || 1),
+    search: params.get("q") || ""
   };
 }
 
-function writeBoardLocation(categorySlug, threadId = null, mode = "push") {
+function writeBoardLocation(categorySlug, threadId = null, mode = "push", page = currentThreadPage, replyPage = currentReplyPage) {
   if (mode === "none") return;
 
   const url = new URL(window.location.href);
@@ -266,7 +276,11 @@ function writeBoardLocation(categorySlug, threadId = null, mode = "push") {
     url.searchParams.set("thread", threadId);
   }
 
-  const state = { category: categorySlug, thread: threadId };
+  if (page > 1) url.searchParams.set("page", String(page));
+  if (threadId && replyPage > 1) url.searchParams.set("replyPage", String(replyPage));
+  if (!threadId && currentSearchTerm.trim()) url.searchParams.set("q", currentSearchTerm.trim());
+
+  const state = { category: categorySlug, thread: threadId, page, replyPage };
   window.history[mode === "replace" ? "replaceState" : "pushState"](state, "", url);
 }
 
@@ -2175,28 +2189,20 @@ async function loadForumStats() {
 async function loadCategoryCounts(categories = currentCategories) {
   if (!categories.length) return;
 
-  const { data, error } = await supabase
-    .from("threads")
-    .select("category_id")
-    .is("deleted_at", null);
+  const results = await Promise.all(categories.map((category) =>
+    supabase
+      .from("threads")
+      .select("id", { count: "exact", head: true })
+      .eq("category_id", category.id)
+      .is("deleted_at", null)
+  ));
 
-  if (error) {
-    console.warn("Category count load failed:", error);
-    return;
-  }
-
-  const countsById = new Map();
-
-  (data || []).forEach((row) => {
-    if (!row.category_id) return;
-    countsById.set(row.category_id, (countsById.get(row.category_id) || 0) + 1);
-  });
-
-  categories.forEach((category) => {
+  categories.forEach((category, index) => {
     const pill = categoryList.querySelector(`.channel[data-slug="${category.slug}"] .pill`);
 
     if (pill) {
-      const count = countsById.get(category.id) || 0;
+      const result = results[index];
+      const count = result.error ? 0 : result.count || 0;
       pill.textContent = String(count);
       pill.dataset.count = String(count);
     }
@@ -2236,7 +2242,10 @@ function renderCategories(categories) {
   if (selected) {
     selectCategory(selected.slug, {
       history: "replace",
-      threadId: location.thread
+      threadId: location.thread,
+      page: location.page,
+      replyPage: location.replyPage,
+      search: location.search
     });
   }
 }
@@ -2300,6 +2309,47 @@ function renderNoSearchResults() {
   `;
 }
 
+function getPaginationPages(currentPage, totalPages) {
+  if (totalPages <= 7) return Array.from({ length: totalPages }, (_, index) => index + 1);
+  const pages = new Set([1, totalPages, currentPage - 1, currentPage, currentPage + 1]);
+  return [...pages].filter((page) => page >= 1 && page <= totalPages).sort((a, b) => a - b);
+}
+
+function renderPagination(currentPage, totalPages, label, onPageChange) {
+  if (totalPages <= 1) return;
+
+  const nav = document.createElement("nav");
+  nav.className = "board-pagination";
+  nav.setAttribute("aria-label", label);
+  const pages = getPaginationPages(currentPage, totalPages);
+  let previousPage = 0;
+
+  const addButton = (text, page, disabled = false, active = false) => {
+    const button = document.createElement("button");
+    button.className = `btn pagination-button${active ? " active" : ""}`;
+    button.type = "button";
+    button.textContent = text;
+    button.disabled = disabled;
+    if (active) button.setAttribute("aria-current", "page");
+    button.addEventListener("click", () => onPageChange(page));
+    nav.appendChild(button);
+  };
+
+  addButton("Previous", currentPage - 1, currentPage === 1);
+  pages.forEach((page) => {
+    if (previousPage && page - previousPage > 1) {
+      const gap = document.createElement("span");
+      gap.className = "pagination-gap";
+      gap.textContent = "…";
+      nav.appendChild(gap);
+    }
+    addButton(String(page), page, false, page === currentPage);
+    previousPage = page;
+  });
+  addButton("Next", currentPage + 1, currentPage === totalPages);
+  threadList.appendChild(nav);
+}
+
 function renderThreads(threads, category, options = {}) {
   const { preserveLoaded = false } = options;
 
@@ -2330,7 +2380,7 @@ function renderThreads(threads, category, options = {}) {
     .map((thread) => {
       const profile = thread.profiles || {};
       const author = getProfileName(profile);
-      const replyCount = Array.isArray(thread.posts) ? thread.posts.length : 0;
+      const replyCount = Number(thread.posts?.[0]?.count ?? (Array.isArray(thread.posts) ? thread.posts.length : 0));
       const activityLabel = formatActivityLabel(thread.created_at, thread.updated_at);
       const createdDate = formatDateOnly(thread.created_at);
       const newTag = renderInlineNew(thread.id);
@@ -2365,17 +2415,21 @@ function renderThreads(threads, category, options = {}) {
     });
   });
 
+  renderPagination(currentThreadPage, threadPageCount, "Channel pages", (page) => {
+    loadThreadsForCategory(category, { page, history: "push" });
+  });
+
 }
 
 function applyThreadSearch() {
   if (currentThread || currentBoardView !== "threads") return;
-
-  const filtered = getFilteredThreads();
-  renderThreads(filtered, currentCategory, { preserveLoaded: true });
+  currentThreadPage = 1;
+  loadThreadsForCategory(currentCategory, { page: 1, history: "replace" });
 }
 
 async function loadThreadsForCategory(category, options = {}) {
   const requestId = ++threadRequestId;
+  const requestedPage = Math.max(1, Number(options.page) || 1);
   currentBoardView = "threads";
   setComposerVisibility(true);
   setSearchEnabled(true);
@@ -2388,7 +2442,10 @@ async function loadThreadsForCategory(category, options = {}) {
 
   renderThreadLoading();
 
-  const { data, error } = await supabase
+  const from = (requestedPage - 1) * THREADS_PER_PAGE;
+  const to = from + THREADS_PER_PAGE - 1;
+  const safeSearch = currentSearchTerm.trim().replace(/[%,()]/g, " ").replace(/\s+/g, " ").trim();
+  let query = supabase
     .from("threads")
     .select(`
       id,
@@ -2406,13 +2463,20 @@ async function loadThreadsForCategory(category, options = {}) {
         role
       ),
       posts (
-        id
+        count
       )
-    `)
+    `, { count: "exact" })
     .eq("category_id", category.id)
     .is("deleted_at", null)
     .order("pinned", { ascending: false })
-    .order("updated_at", { ascending: false });
+    .order("updated_at", { ascending: false })
+    .range(from, to);
+
+  if (safeSearch) {
+    query = query.or(`title.ilike.%${safeSearch}%,body.ilike.%${safeSearch}%`);
+  }
+
+  const { data, error, count } = await query;
 
   if (requestId !== threadRequestId || currentCategory?.id !== category.id) return;
 
@@ -2422,11 +2486,33 @@ async function loadThreadsForCategory(category, options = {}) {
     return;
   }
 
+  const total = count || 0;
+  threadPageCount = Math.max(1, Math.ceil(total / THREADS_PER_PAGE));
+
+  if (requestedPage > threadPageCount && total > 0) {
+    await loadThreadsForCategory(category, { ...options, page: threadPageCount, history: "replace" });
+    return;
+  }
+
+  currentThreadPage = requestedPage;
   loadedThreads = data || [];
   renderThreads(loadedThreads, category, { preserveLoaded: true });
+  writeBoardLocation(category.slug, null, options.history || "replace", currentThreadPage, 1);
 
-  if (options.threadId && threadsById.has(options.threadId)) {
-    await openThread(options.threadId, { history: options.history || "none" });
+  if (options.threadId) {
+    if (!threadsById.has(options.threadId)) {
+      const { data: linkedThread } = await supabase
+        .from("threads")
+        .select(`id, title, body, pinned, locked, created_at, updated_at, profiles:author_id (id, username, display_name, avatar_url, role), posts (count)`)
+        .eq("id", options.threadId)
+        .eq("category_id", category.id)
+        .is("deleted_at", null)
+        .maybeSingle();
+      if (linkedThread) threadsById.set(linkedThread.id, linkedThread);
+    }
+    if (threadsById.has(options.threadId)) {
+      await openThread(options.threadId, { history: options.history || "none", replyPage: options.replyPage || 1 });
+    }
   }
 }
 
@@ -2434,7 +2520,7 @@ function renderPostLoading() {
   threadList.insertAdjacentHTML(
     "beforeend",
     `
-      <article class="thread" id="replyLoadingRow">
+      <article class="thread reply-row-placeholder" id="replyLoadingRow">
         <div class="avatar">...</div>
         <div>
           <h3>Loading replies...</h3>
@@ -2450,7 +2536,7 @@ function renderPostError(message) {
   threadList.insertAdjacentHTML(
     "beforeend",
     `
-      <article class="thread">
+      <article class="thread reply-row-placeholder">
         <div class="avatar red">!</div>
         <div>
           <h3>Unable to load replies</h3>
@@ -2485,7 +2571,7 @@ function renderPosts(posts) {
     threadList.insertAdjacentHTML(
       "beforeend",
       `
-        <article class="thread">
+        <article class="thread reply-row-placeholder">
           <div class="avatar green">+</div>
           <div>
             <h3>No replies yet</h3>
@@ -2543,13 +2629,22 @@ function renderPosts(posts) {
   if (editingReplyId) {
     attachMiniEditor(`editReplyBody-${editingReplyId}`);
   }
+
+  renderPagination(currentReplyPage, replyPageCount, "Reply pages", (page) => {
+    loadPostsForThread(currentThread.id, { page, history: "push" });
+  });
 }
 
-async function loadPostsForThread(threadId) {
+async function loadPostsForThread(threadId, options = {}) {
   const requestId = ++postRequestId;
+  const requestedPage = Math.max(1, Number(options.page) || 1);
+  threadList.querySelectorAll(".post-row, .reply-row-placeholder, .board-pagination").forEach((element) => element.remove());
   renderPostLoading();
 
-  const { data, error } = await supabase
+  const from = (requestedPage - 1) * REPLIES_PER_PAGE;
+  const to = from + REPLIES_PER_PAGE - 1;
+
+  const { data, error, count } = await supabase
     .from("posts")
     .select(`
       id,
@@ -2563,10 +2658,11 @@ async function loadPostsForThread(threadId) {
         avatar_url,
         role
       )
-    `)
+    `, { count: "exact" })
     .eq("thread_id", threadId)
     .is("deleted_at", null)
-    .order("created_at", { ascending: true });
+    .order("created_at", { ascending: true })
+    .range(from, to);
 
   if (requestId !== postRequestId || currentThread?.id !== threadId) return;
 
@@ -2582,8 +2678,18 @@ async function loadPostsForThread(threadId) {
     return;
   }
 
+  const total = count || 0;
+  replyPageCount = Math.max(1, Math.ceil(total / REPLIES_PER_PAGE));
+
+  if (requestedPage > replyPageCount && total > 0) {
+    await loadPostsForThread(threadId, { ...options, page: replyPageCount, history: "replace" });
+    return;
+  }
+
+  currentReplyPage = requestedPage;
   loadedPosts = data || [];
   renderPosts(loadedPosts);
+  writeBoardLocation(currentCategory?.slug, threadId, options.history || "replace", currentThreadPage, currentReplyPage);
 }
 
 function renderAdminControls(thread) {
@@ -2659,7 +2765,7 @@ async function updateThreadModeration(threadId, patch, successMessage) {
     );
   }
 
-  await openThread(threadId);
+  await openThread(threadId, { replyPage: currentReplyPage });
 }
 
 async function softDeleteThreadAndReplies(threadId) {
@@ -2742,7 +2848,7 @@ async function softDeleteReply(postId) {
 
   composerStatus.textContent = "Reply deleted.";
 
-  await loadPostsForThread(threadId);
+  await loadPostsForThread(threadId, { page: currentReplyPage, history: "replace" });
   await loadCategoryCounts();
 }
 
@@ -2754,7 +2860,7 @@ function startThreadEdit(threadId) {
 
   editingThreadId = threadId;
   editingReplyId = null;
-  openThread(threadId);
+  openThread(threadId, { replyPage: currentReplyPage });
 }
 
 function cancelThreadEdit() {
@@ -2762,7 +2868,7 @@ function cancelThreadEdit() {
   editingThreadId = null;
 
   if (threadId) {
-    openThread(threadId);
+    openThread(threadId, { replyPage: currentReplyPage });
   }
 }
 
@@ -2828,11 +2934,13 @@ async function saveThreadEdit(threadId) {
   editingThreadId = null;
   composerStatus.textContent = "Thread updated.";
 
+  const activeReplyPage = currentReplyPage;
+
   if (currentCategory) {
     await loadThreadsForCategory(currentCategory);
   }
 
-  await openThread(threadId);
+  await openThread(threadId, { replyPage: activeReplyPage });
 }
 
 function startReplyEdit(postId) {
@@ -2847,7 +2955,7 @@ function startReplyEdit(postId) {
   const threadId = currentThread?.id;
 
   if (threadId) {
-    openThread(threadId);
+    openThread(threadId, { replyPage: currentReplyPage });
   }
 }
 
@@ -2856,7 +2964,7 @@ function cancelReplyEdit() {
   editingReplyId = null;
 
   if (threadId) {
-    openThread(threadId);
+    openThread(threadId, { replyPage: currentReplyPage });
   }
 }
 
@@ -2910,12 +3018,14 @@ async function saveReplyEdit(postId) {
   editingReplyId = null;
   composerStatus.textContent = "Reply updated.";
 
+  const activeReplyPage = currentReplyPage;
+
   if (currentCategory) {
     await loadThreadsForCategory(currentCategory);
   }
 
   if (threadId) {
-    await openThread(threadId);
+    await openThread(threadId, { replyPage: activeReplyPage });
   }
 }
 
@@ -3128,7 +3238,8 @@ async function openThread(threadId, options = {}) {
     ? `${currentCategory.name} thread`
     : "Thread";
   syncBreadcrumbs(thread);
-  writeBoardLocation(currentCategory?.slug, thread.id, options.history || "push");
+  currentReplyPage = Math.max(1, Number(options.replyPage) || 1);
+  writeBoardLocation(currentCategory?.slug, thread.id, options.history || "push", currentThreadPage, currentReplyPage);
 
   if (composerTitle) {
     composerTitle.hidden = true;
@@ -3215,7 +3326,7 @@ async function openThread(threadId, options = {}) {
 
   updateToolbarForRole();
 
-  await loadPostsForThread(thread.id);
+  await loadPostsForThread(thread.id, { page: currentReplyPage, history: "replace" });
 }
 
 async function selectCategory(slug, options = {}) {
@@ -3241,10 +3352,12 @@ async function selectCategory(slug, options = {}) {
 
   currentCategory = category;
   currentThread = null;
-  currentSearchTerm = "";
+  currentThreadPage = Math.max(1, Number(options.page) || 1);
+  currentReplyPage = Math.max(1, Number(options.replyPage) || 1);
+  currentSearchTerm = options.search ?? (options.preserveSearch ? currentSearchTerm : "");
 
   if (searchInput) {
-    searchInput.value = "";
+    searchInput.value = currentSearchTerm;
   }
 
   document.querySelectorAll(".channel[data-slug]").forEach((link) => {
@@ -3282,7 +3395,7 @@ async function selectCategory(slug, options = {}) {
     restoreComposerDraft();
   }
 
-  await loadThreadsForCategory(category, options);
+  await loadThreadsForCategory(category, { ...options, page: currentThreadPage });
 }
 
 async function loadCategories() {
@@ -3473,7 +3586,13 @@ async function createReply() {
     await loadThreadsForCategory(currentCategory);
   }
 
-  await openThread(threadId);
+  const { count: replyCount } = await supabase
+    .from("posts")
+    .select("id", { count: "exact", head: true })
+    .eq("thread_id", threadId)
+    .is("deleted_at", null);
+  const lastReplyPage = Math.max(1, Math.ceil((replyCount || 0) / REPLIES_PER_PAGE));
+  await openThread(threadId, { replyPage: lastReplyPage });
 }
 
 postMessage.addEventListener("click", () => {
@@ -3505,13 +3624,15 @@ newTopicTop.addEventListener("click", () => {
 if (searchInput) {
   searchInput.addEventListener("input", () => {
     currentSearchTerm = searchInput.value;
-    applyThreadSearch();
+    window.clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = window.setTimeout(applyThreadSearch, 300);
   });
 
   searchInput.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       searchInput.value = "";
       currentSearchTerm = "";
+      window.clearTimeout(searchDebounceTimer);
       applyThreadSearch();
       searchInput.blur();
     }
@@ -3658,7 +3779,10 @@ window.addEventListener("popstate", () => {
   const location = readBoardLocation();
   selectCategory(location.category, {
     history: "none",
-    threadId: location.thread
+    threadId: location.thread,
+    page: location.page,
+    replyPage: location.replyPage,
+    search: location.search
   });
 });
 

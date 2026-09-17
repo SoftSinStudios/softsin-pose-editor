@@ -71,6 +71,35 @@
   padding: 10px;
 }
 
+.board-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  padding: 18px 12px 10px;
+  border-top: 1px solid var(--line);
+  margin-top: 10px;
+}
+
+.pagination-button {
+  min-width: 40px;
+  justify-content: center;
+  padding: 8px 12px;
+}
+
+.pagination-button.active {
+  border-color: rgba(103,232,255,.48);
+  background: rgba(103,232,255,.12);
+  color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(103,232,255,.06);
+}
+
+.pagination-gap {
+  color: var(--soft);
+  padding: 0 3px;
+}
+
 .thread {
   display: grid;
   grid-template-columns: 44px 1fr auto;

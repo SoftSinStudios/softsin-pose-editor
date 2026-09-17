@@ -78,3 +78,7 @@ The migration is additive to the existing board schema. Test it against the curr
 ## Rendering safety
 
 Posts are stored as Markdown text. Rendering escapes HTML before applying the supported Markdown subset. Links accept HTTP/HTTPS syntax and render with `ugc`, `nofollow`, `noopener`, and `noreferrer` relationship protections.
+
+## Pagination and query limits
+
+Run `supabase/migrations/20260917_board_pagination_indexes.sql` before production traffic grows. Channel views request 25 threads per page and thread views request 30 replies per page. Page state is preserved in the URL, channel search runs against Supabase instead of only filtering the current browser page, and direct thread links resolve independently of the current channel page. The original post remains visible above every reply page.
