@@ -2,6 +2,7 @@ import { compileProject, diagnoseProject } from "./compiler.js";
 import { initSuggestions } from "./suggestions.js";
 
 const PROJECT_VERSION = "1.0.0";
+const EXPORT_VERSION = "1.0.0";
 const SECTION_TYPES = ["Intro", "Verse", "Pre-Chorus", "Chorus", "Post-Chorus", "Hook", "Break", "Buildup", "Drop", "Bridge", "Breakdown", "Interlude", "Instrumental", "Solo", "Spoken", "Outro", "Custom"];
 const FALLBACK_TEMPLATES = [
   { id: "blank", name: "Blank Project", sections: [] },
@@ -18,7 +19,7 @@ const els = Object.fromEntries([
   "songTitle", "modelTarget", "structureTemplate", "applyTemplate", "identity", "pulse", "players", "performance", "arc", "mix", "constraints",
   "addSection", "structureBoard", "emptyStructure", "sectionInspector", "inspectorEmpty", "sectionType", "sectionName",
   "sectionLyrics", "sectionDirection", "sectionEnergy", "sectionVocal", "sectionInstruments", "sectionArrangement", "sectionMix", "sectionExclude",
-  "outputDrawer", "closeOutput", "styleOutput", "lyricsOutput", "diagnosticCount", "diagnosticList", "copyPackage", "downloadTxt",
+  "outputDrawer", "closeOutput", "styleOutput", "lyricsOutput", "diagnosticCount", "diagnosticList", "copyPackage", "downloadJson", "downloadTxt",
   "sectionDialog", "sectionTypeGrid", "customSectionName", "confirmAddSection"
 ].map(id => [id, byId(id)]));
 
@@ -269,6 +270,31 @@ function saveProject() {
   download(`${slug(project.title)}.softsin-music.json`, JSON.stringify(project, null, 2), "application/json");
 }
 
+function exportJson() {
+  updateProjectFromGlobals();
+  const compiled = compileProject(project);
+  const payload = {
+    schema: "softsin.music-prompt.export",
+    version: EXPORT_VERSION,
+    exportedAt: new Date().toISOString(),
+    target: {
+      provider: "Suno",
+      modelProfile: project.model || "v6",
+      delivery: "export-only"
+    },
+    prompt: {
+      title: compiled.title,
+      style: compiled.style,
+      exclude: compiled.exclude,
+      lyricsAndStructure: compiled.lyrics,
+      plainTextPackage: compiled.packageText
+    },
+    diagnostics: diagnoseProject(project),
+    project
+  };
+  download(`${slug(project.title)}-v6-prompt.json`, JSON.stringify(payload, null, 2), "application/json");
+}
+
 function loadProject() {
   const input = document.createElement("input");
   input.type = "file";
@@ -347,6 +373,7 @@ function bindEvents() {
 
   document.querySelectorAll("[data-copy]").forEach(button => button.addEventListener("click", () => copyText(button.dataset.copy === "style" ? els.styleOutput.value : els.lyricsOutput.value, button)));
   els.copyPackage.addEventListener("click", () => copyText(compileProject(project).packageText, els.copyPackage));
+  els.downloadJson.addEventListener("click", exportJson);
   els.downloadTxt.addEventListener("click", () => download(`${slug(project.title)}-v6-prompt.txt`, compileProject(project).packageText, "text/plain"));
 }
 
