@@ -1,4 +1,5 @@
 import { compileProject, diagnoseProject } from "./compiler.js";
+import { initSuggestions } from "./suggestions.js";
 
 const PROJECT_VERSION = "1.0.0";
 const SECTION_TYPES = ["Intro", "Verse", "Pre-Chorus", "Chorus", "Post-Chorus", "Hook", "Break", "Buildup", "Drop", "Bridge", "Breakdown", "Interlude", "Instrumental", "Solo", "Spoken", "Outro", "Custom"];
@@ -336,6 +337,11 @@ async function init() {
   bindEvents();
   syncGlobalInputs();
   renderBoard();
+  try {
+    await initSuggestions({ isAdvanced: () => project.mode === "advanced" });
+  } catch (error) {
+    console.warn("Music vocabulary suggestions could not be loaded.", error);
+  }
 }
 
 init();

@@ -15,13 +15,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <label class="field"><span>Song title</span><input id="songTitle" maxlength="120" placeholder="Untitled song" /></label>
         <div class="field-grid two"><label class="field"><span>Export profile</span><select id="modelTarget"><option value="v6">Suno V6</option><option value="v6-wild">Suno V6 Wild</option><option value="v6-mini">Suno V6 Mini</option></select></label><label class="field"><span>Template</span><select id="structureTemplate"></select></label></div>
         <button class="btn full" id="applyTemplate" type="button">Start From Template</button>
-        <label class="field"><span>Primary identity</span><input id="identity" maxlength="220" placeholder="Genre, subgenre, era, musical world" /></label>
-        <label class="field"><span>Pulse</span><textarea id="pulse" maxlength="320" placeholder="Tempo feel, groove, swing, halftime, rhythmic motion"></textarea></label>
-        <label class="field"><span>Players and roles</span><textarea id="players" maxlength="500" placeholder="Which instruments matter and what each one does"></textarea></label>
-        <label class="field"><span>Vocal performance</span><textarea id="performance" maxlength="500" placeholder="Register, timbre, delivery, articulation and backing policy"></textarea></label>
-        <label class="field advanced-only"><span>Arrangement arc</span><textarea id="arc" maxlength="500" placeholder="How the arrangement develops across the song"></textarea></label>
-        <label class="field advanced-only"><span>Mix target</span><textarea id="mix" maxlength="400" placeholder="Vocal placement, width, depth, dynamics and tonal balance"></textarea></label>
-        <label class="field"><span>Exclude</span><textarea id="constraints" maxlength="400" placeholder="Unwanted elements only; keep this short"></textarea></label>
+        <label class="field"><span>Primary identity</span><input id="identity" data-suggest-scope="global.identity" maxlength="220" placeholder="Genre, subgenre, era, musical world" autocomplete="off" /></label>
+        <label class="field"><span>Pulse</span><textarea id="pulse" data-suggest-scope="global.pulse" maxlength="320" placeholder="Tempo feel, groove, swing, halftime, rhythmic motion"></textarea></label>
+        <label class="field"><span>Players and roles</span><textarea id="players" data-suggest-scope="global.players" maxlength="500" placeholder="Which instruments matter and what each one does"></textarea></label>
+        <label class="field"><span>Vocal performance</span><textarea id="performance" data-suggest-scope="global.performance" maxlength="500" placeholder="Register, timbre, delivery, articulation and backing policy"></textarea></label>
+        <label class="field advanced-only"><span>Arrangement arc</span><textarea id="arc" data-suggest-scope="global.arc" maxlength="500" placeholder="How the arrangement develops across the song"></textarea></label>
+        <label class="field advanced-only"><span>Mix target</span><textarea id="mix" data-suggest-scope="global.mix" maxlength="400" placeholder="Vocal placement, width, depth, dynamics and tonal balance"></textarea></label>
+        <label class="field"><span>Exclude</span><textarea id="constraints" data-suggest-scope="global.constraints" maxlength="400" placeholder="Unwanted elements only; keep this short"></textarea></label>
       </div>
     </aside>
     <section class="structure-panel" aria-labelledby="structureTitle">
@@ -35,13 +35,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <form class="panel-scroll inspector-form" id="sectionInspector" hidden>
         <div class="field-grid two"><label class="field"><span>Section type</span><select id="sectionType"></select></label><label class="field"><span>Section name</span><input id="sectionName" maxlength="60" /></label></div>
         <label class="field"><span>Lyrics</span><textarea class="lyrics-input" id="sectionLyrics" maxlength="12000" placeholder="Write this section's lyrics..."></textarea></label>
-        <label class="field"><span>Main direction</span><textarea id="sectionDirection" maxlength="360" placeholder="What should change or happen in this section?"></textarea></label>
+        <label class="field"><span>Main direction</span><textarea id="sectionDirection" data-suggest-scope="section.direction" maxlength="360" placeholder="What should change or happen in this section?"></textarea></label>
         <label class="field"><span>Energy</span><select id="sectionEnergy"><option value="">Not specified</option><option>Very Low</option><option>Low</option><option>Restrained</option><option>Rising</option><option>High</option><option>Peak</option><option>Falling</option></select></label>
-        <label class="field advanced-only"><span>Vocal behavior</span><textarea id="sectionVocal" maxlength="320" placeholder="Section-specific delivery or harmony"></textarea></label>
-        <label class="field advanced-only"><span>Instrument behavior</span><textarea id="sectionInstruments" maxlength="400" placeholder="What the important players do here"></textarea></label>
-        <label class="field advanced-only"><span>Arrangement change</span><textarea id="sectionArrangement" maxlength="400" placeholder="Build, strip down, widen, drop out, return"></textarea></label>
-        <label class="field advanced-only"><span>Mix placement</span><textarea id="sectionMix" maxlength="300" placeholder="Section-specific width, depth or focus"></textarea></label>
-        <label class="field advanced-only"><span>Section constraints</span><input id="sectionExclude" maxlength="240" placeholder="Unwanted elements in this section" /></label>
+        <label class="field advanced-only"><span>Vocal behavior</span><textarea id="sectionVocal" data-suggest-scope="section.vocal" maxlength="320" placeholder="Section-specific delivery or harmony"></textarea></label>
+        <label class="field advanced-only"><span>Instrument behavior</span><textarea id="sectionInstruments" data-suggest-scope="section.instruments" maxlength="400" placeholder="What the important players do here"></textarea></label>
+        <label class="field advanced-only"><span>Arrangement change</span><textarea id="sectionArrangement" data-suggest-scope="section.arrangement" maxlength="400" placeholder="Build, strip down, widen, drop out, return"></textarea></label>
+        <label class="field advanced-only"><span>Mix placement</span><textarea id="sectionMix" data-suggest-scope="section.mix" maxlength="300" placeholder="Section-specific width, depth or focus"></textarea></label>
+        <label class="field advanced-only"><span>Section constraints</span><input id="sectionExclude" data-suggest-scope="section.constraints" maxlength="240" placeholder="Unwanted elements in this section" autocomplete="off" /></label>
       </form>
     </aside>
   </div>

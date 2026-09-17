@@ -97,6 +97,19 @@ html, body.music-composer-page { width: 100%; height: 100%; margin: 0; overflow:
 .custom-section-field { display: none; margin-top: 13px; }
 .custom-section-field.visible { display: grid; }
 .dialog-actions { display: flex; justify-content: flex-end; margin-top: 14px; }
+.suggestion-popover[hidden] { display: none; }
+.suggestion-popover { position: fixed; z-index: 1200; max-height: 360px; overflow-y: auto; border: 1px solid rgba(103,232,255,.32); border-radius: 13px; background: rgba(8,12,19,.985); box-shadow: 0 22px 60px rgba(0,0,0,.58); backdrop-filter: blur(16px); padding: 6px; }
+.suggestion-heading { display: flex; justify-content: space-between; gap: 12px; padding: 7px 9px 9px; color: var(--soft); font-size: 10px; }
+.suggestion-heading strong { color: var(--text); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.suggestion-option { width: 100%; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; align-items: start; border: 1px solid transparent; border-radius: 10px; background: transparent; color: var(--text); padding: 9px; text-align: left; cursor: pointer; }
+.suggestion-option:hover, .suggestion-option.active { border-color: rgba(103,232,255,.28); background: rgba(103,232,255,.075); }
+.suggestion-copy { min-width: 0; display: grid; gap: 3px; }
+.suggestion-copy strong { font-size: 12px; }
+.suggestion-copy small { color: var(--muted); font-size: 10px; line-height: 1.35; }
+.suggestion-copy code { margin-top: 2px; color: var(--soft); font-size: 10px; white-space: normal; }
+.suggestion-confidence { border: 1px solid var(--line); border-radius: 999px; padding: 3px 6px; color: var(--soft); font-size: 8px; font-weight: 950; letter-spacing: .07em; text-transform: uppercase; }
+.suggestion-confidence.official, .suggestion-confidence.reliable { border-color: rgba(54,227,143,.28); color: #58efaa; }
+.suggestion-confidence.experimental { border-color: rgba(255,190,88,.3); color: #ffca69; }
 @media (max-width: 1500px) {
   .composer-layout { grid-template-columns: 250px minmax(0,1fr) 310px; }
   .direction-collapsed .composer-layout { grid-template-columns: 48px minmax(0,1fr) 310px; }
