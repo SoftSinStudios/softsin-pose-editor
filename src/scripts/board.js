@@ -2665,19 +2665,22 @@ function renderThreads(threads, category, options = {}) {
           : cleanBody;
 
       return `
-        <a class="thread clickable-thread" data-thread-id="${escapeHtml(thread.id)}" href="/board.html?category=${encodeURIComponent(category.slug)}&thread=${encodeURIComponent(thread.id)}">
+        <article class="thread clickable-thread" data-thread-id="${escapeHtml(thread.id)}" role="link" tabindex="0" aria-label="Open ${escapeHtml(thread.title)}">
           ${renderAvatar(profile)}
           <div>
             <h3>${escapeHtml(thread.title)}</h3>
             <div class="thread-author">by ${escapeHtml(author)} - ${escapeHtml(createdDate)}${newTag}</div>
             <p>${escapeHtml(preview)}</p>
-            ${renderThreadTags(thread, true, true)}
+            <div class="thread-list-actions">
+              ${renderThreadTags(thread, true, true)}
+              ${userIsAdmin() ? `<button class="btn red thread-list-delete" type="button" data-thread-id="${escapeHtml(thread.id)}">Delete</button>` : ""}
+            </div>
           </div>
           <div class="meta">
             ${replyCount} ${replyCount === 1 ? "reply" : "replies"}<br>
             ${escapeHtml(activityLabel)}
           </div>
-        </a>
+        </article>
       `;
     })
     .join("");
@@ -2686,6 +2689,25 @@ function renderThreads(threads, category, options = {}) {
     row.addEventListener("click", (event) => {
       event.preventDefault();
       openThread(row.dataset.threadId);
+    });
+    row.addEventListener("keydown", (event) => {
+      if (event.target.closest("button")) return;
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openThread(row.dataset.threadId);
+    });
+  });
+
+  document.querySelectorAll(".thread-list-delete").forEach((button) => {
+    button.addEventListener("click", async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const confirmed = window.confirm("Soft delete this thread and all replies? It will be hidden from the board.");
+      if (!confirmed) return;
+
+      button.disabled = true;
+      await softDeleteThreadAndReplies(button.dataset.threadId);
     });
   });
 
