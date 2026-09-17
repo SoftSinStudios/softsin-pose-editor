@@ -55,7 +55,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <span class="admin-board-total" id="adminNewThreads" hidden>New Threads: <strong>0</strong></span>
             <span class="admin-board-total" id="adminNewPosts" hidden>New Posts: <strong>0</strong></span>
           </div>
-          <a class="channel rules-channel" href="#" id="rulesLink"><span>Rules</span></a>
+          <a class="channel rules-channel" href="#" id="rulesLink">
+            <span>Rules</span>
+            <span class="rules-priority">Required</span>
+          </a>
           <div id="categoryList">
             <a class="channel active" href="#" data-slug="general"><span>General</span><span class="pill">0</span></a>
             <a class="channel" href="#" data-slug="pose-editor"><span>Pose Editor</span><span class="pill">0</span></a>

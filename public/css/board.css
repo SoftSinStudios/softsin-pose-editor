@@ -95,6 +95,14 @@
   margin-bottom: 5px;
 }
 
+.rules-priority {
+  color: var(--warn);
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
 .pill {
   min-width: 24px;
   text-align: center;

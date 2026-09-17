@@ -145,6 +145,7 @@ let searchDebounceTimer = null;
 let currentThreadFollowed = false;
 let unreadNotificationsByChannel = new Map();
 let unreadNotificationThreadIds = new Set();
+let unreadNotificationPostIds = new Set();
 const profileCache = new Map();
 
 const fallbackCategories = [
@@ -1945,6 +1946,14 @@ function renderNotifications(notifications) {
   });
 }
 
+function showUnreadReplyMarkers() {
+  unreadNotificationPostIds.forEach((postId) => {
+    const meta = threadList.querySelector(`.post-row[data-post-id="${CSS.escape(postId)}"] .thread-author`);
+    if (!meta || meta.querySelector(".inline-new")) return;
+    meta.insertAdjacentHTML("beforeend", ` - <span class="inline-new">NEW</span>`);
+  });
+}
+
 async function loadNotifications() {
   if (!currentUser?.id) return;
   const [itemsResult, unreadResult] = await Promise.all([
@@ -1955,7 +1964,7 @@ async function loadNotifications() {
       .limit(20),
     supabase
       .from("board_notifications")
-      .select("id, thread_id, thread:thread_id (category:category_id (slug))", { count: "exact" })
+      .select("id, thread_id, post_id, thread:thread_id (category:category_id (slug))", { count: "exact" })
       .is("read_at", null)
   ]);
 
@@ -1967,16 +1976,21 @@ async function loadNotifications() {
 
   unreadNotificationsByChannel = new Map();
   unreadNotificationThreadIds = new Set();
+  unreadNotificationPostIds = new Set();
   (unreadResult.data || []).forEach((notification) => {
     const slug = notification.thread?.category?.slug;
     if (slug) unreadNotificationsByChannel.set(slug, (unreadNotificationsByChannel.get(slug) || 0) + 1);
     if (notification.thread_id) unreadNotificationThreadIds.add(String(notification.thread_id));
+    if (notification.post_id) unreadNotificationPostIds.add(String(notification.post_id));
   });
   updateNotificationBadge(unreadResult.count || 0);
   updateChannelNotificationIndicators();
   renderNotifications(itemsResult.data || []);
   if (currentBoardView === "threads" && currentCategory && loadedThreads.length) {
     renderThreads(loadedThreads, currentCategory, { preserveLoaded: true });
+  } else if (currentBoardView === "thread" && currentThread) {
+    showUnreadReplyMarkers();
+    await markThreadNotificationsRead(currentThread.id);
   }
 }
 
@@ -1990,6 +2004,24 @@ async function markAllNotificationsRead() {
     .is("read_at", null);
   if (error) console.warn("Mark notifications read failed:", error);
   markNotificationsRead.disabled = false;
+  await loadNotifications();
+}
+
+async function markThreadNotificationsRead(threadId) {
+  if (!currentUser?.id || !threadId || !unreadNotificationThreadIds.has(String(threadId))) return;
+
+  const { error } = await supabase
+    .from("board_notifications")
+    .update({ read_at: new Date().toISOString() })
+    .eq("user_id", currentUser.id)
+    .eq("thread_id", threadId)
+    .is("read_at", null);
+
+  if (error) {
+    console.warn("Mark thread notifications read failed:", error);
+    return;
+  }
+
   await loadNotifications();
 }
 
@@ -2043,6 +2075,7 @@ function setSignedOut() {
   if (notificationPanel) notificationPanel.hidden = true;
   unreadNotificationsByChannel = new Map();
   unreadNotificationThreadIds = new Set();
+  unreadNotificationPostIds = new Set();
   updateNotificationBadge(0);
   updateChannelNotificationIndicators();
   setAdminBoardSummary(false);
@@ -2826,6 +2859,9 @@ function renderPosts(posts) {
         const profile = post.profiles || {};
         const author = getProfileName(profile);
         const activityLabel = formatActivityLabel(post.created_at, post.updated_at);
+        const newTag = unreadNotificationPostIds.has(String(post.id))
+          ? ` - <span class="inline-new">NEW</span>`
+          : "";
         const isEditing = editingReplyId === post.id;
 
         if (isEditing) {
@@ -2846,7 +2882,7 @@ function renderPosts(posts) {
             ${renderAvatar(profile)}
             <div>
               <h3>${escapeHtml(author)}</h3>
-              <div class="thread-author">${escapeHtml(activityLabel)}</div>
+              <div class="thread-author">${escapeHtml(activityLabel)}${newTag}</div>
               <div class="post-body-box markdown-body">${renderMarkdownLite(post.body)}</div>
               <span class="tag">Reply</span>
               ${renderEditedTag(post.created_at, post.updated_at)}
@@ -3465,14 +3501,12 @@ async function openThread(threadId, options = {}) {
 
   if (!thread) return;
 
-  const wasNew = isThreadNew(thread.id);
   currentThread = thread;
   await loadCurrentThreadSubscription(thread.id);
 
   const profile = thread.profiles || {};
   const author = getProfileName(profile);
   const createdDate = formatDateOnly(thread.created_at);
-  const newTag = wasNew ? ` - <span class="inline-new">NEW</span>` : "";
   const editedInline = renderInlineEdited(thread.created_at, thread.updated_at);
   const isThreadEditing = editingThreadId === thread.id;
 
@@ -3540,7 +3574,7 @@ async function openThread(threadId, options = {}) {
           </div>
         ` : `
           <h3>${escapeHtml(thread.title)}</h3>
-          <div class="thread-author">by ${escapeHtml(author)} - ${escapeHtml(createdDate)}${editedInline}${newTag}</div>
+          <div class="thread-author">by ${escapeHtml(author)} - ${escapeHtml(createdDate)}${editedInline}</div>
           <div class="post-body-box markdown-body">${renderMarkdownLite(thread.body)}</div>
           <span class="tag good">Original Post</span>
           ${renderThreadTags(thread, false, false)}
@@ -3570,6 +3604,7 @@ async function openThread(threadId, options = {}) {
   updateToolbarForRole();
 
   await loadPostsForThread(thread.id, { page: currentReplyPage, history: "replace" });
+  await markThreadNotificationsRead(thread.id);
 }
 
 async function selectCategory(slug, options = {}) {
