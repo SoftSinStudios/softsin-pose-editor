@@ -1049,23 +1049,19 @@ button.btn {
 }
 
 .board-page .content-controls .btn,
-.board-page .reply-admin-controls .btn {
+.board-page .reply-admin-controls .btn,
+.board-page .thread-list-actions button.thread-list-delete {
   min-height: 32px;
   padding: 5px 10px;
   border-radius: 9px;
+  font-family: inherit;
   font-size: 12px;
   line-height: 1.1;
 }
 
 .board-page .thread-list-actions button.thread-list-delete {
-  min-height: 0;
   margin-top: 8px;
-  padding: 3px 8px;
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 12px;
   font-weight: 850;
-  line-height: 1.2;
 }
 
 .thread-list-actions {
