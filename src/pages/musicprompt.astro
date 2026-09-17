@@ -1,50 +1,56 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<BaseLayout title="SoftSin Studios — Suno Prompt Builder" description="Build Suno-ready song prompts with a visual song-structure node graph." bodyClass="musicnode-page" tagline="Clean tools for AI art and creator workflows" shellClass="node-shell" mainClass="node-workspace" mainId="musicNodeApp" headerClass="node-site-header" footerClass="node-site-footer" pageStyles={["/css/musicprompt.css"]}>
+<BaseLayout title="SoftSin Studios — Music Composer" description="Plan song structure and compile clear, original Suno V6 creative briefs." bodyClass="music-composer-page" tagline="Clean tools for AI art and creator workflows" shellClass="composer-shell" mainClass="composer-workspace" mainId="musicComposerApp" headerClass="composer-site-header" footerClass="composer-site-footer" pageStyles={["/css/musicprompt.css"]}>
   <Fragment slot="head"><link rel="modulepreload" href="/js/musicprompt/app.js" /></Fragment>
-  <div class="node-top-strip">
-      <div class="tool-copy"><span class="eyebrow">SoftSin Music Prompt Composer</span><strong>Music Prompt Builder - add nodes, lyrics, style, and export..</strong></div>
-      <div class="canvas-hint" aria-hidden="true">Right-click the canvas to add nodes. Drag from the round sockets to connect sections and modifiers. Hold Shift + mouse wheel to zoom.</div>
-      <div class="toolbar-actions">
-        <button id="btn-settings" class="btn" type="button">Project Settings</button>
-        <button id="btn-seed-demo" class="btn" type="button">Load Example</button>
-        <button id="btn-clear-graph" class="btn red" type="button">Reset Graph</button>
-        <button id="btn-save-project" class="btn" type="button">Save Project</button>
-        <button id="btn-load-project" class="btn" type="button">Load Project</button>
-        <button id="btn-export-txt" class="btn primary" type="button">Download TXT</button>
+  <header class="composer-toolbar">
+    <div class="composer-title-block"><span class="eyebrow">SoftSin Music Composer</span><strong>Build the song. We compile the brief.</strong></div>
+    <div class="mode-switch" aria-label="Editor detail level"><button class="mode-button active" id="basicMode" type="button" aria-pressed="true">Basic</button><button class="mode-button" id="advancedMode" type="button" aria-pressed="false">Advanced</button></div>
+    <div class="toolbar-actions"><button class="btn" id="newProject" type="button">New</button><button class="btn" id="saveProject" type="button">Save Project</button><button class="btn" id="loadProject" type="button">Load Project</button><button class="btn primary" id="toggleOutput" type="button">Review Export</button></div>
+  </header>
+  <div class="composer-layout">
+    <aside class="composer-panel direction-panel" aria-labelledby="directionTitle">
+      <div class="panel-heading"><div><span class="eyebrow">Global direction</span><h2 id="directionTitle">Creative brief</h2></div><button class="panel-toggle" id="collapseDirection" type="button" aria-label="Collapse creative direction">‹</button></div>
+      <div class="panel-scroll">
+        <label class="field"><span>Song title</span><input id="songTitle" maxlength="120" placeholder="Untitled song" /></label>
+        <div class="field-grid two"><label class="field"><span>Export profile</span><select id="modelTarget"><option value="v6">Suno V6</option><option value="v6-wild">Suno V6 Wild</option><option value="v6-mini">Suno V6 Mini</option></select></label><label class="field"><span>Template</span><select id="structureTemplate"></select></label></div>
+        <button class="btn full" id="applyTemplate" type="button">Start From Template</button>
+        <label class="field"><span>Primary identity</span><input id="identity" maxlength="220" placeholder="Genre, subgenre, era, musical world" /></label>
+        <label class="field"><span>Pulse</span><textarea id="pulse" maxlength="320" placeholder="Tempo feel, groove, swing, halftime, rhythmic motion"></textarea></label>
+        <label class="field"><span>Players and roles</span><textarea id="players" maxlength="500" placeholder="Which instruments matter and what each one does"></textarea></label>
+        <label class="field"><span>Vocal performance</span><textarea id="performance" maxlength="500" placeholder="Register, timbre, delivery, articulation and backing policy"></textarea></label>
+        <label class="field advanced-only"><span>Arrangement arc</span><textarea id="arc" maxlength="500" placeholder="How the arrangement develops across the song"></textarea></label>
+        <label class="field advanced-only"><span>Mix target</span><textarea id="mix" maxlength="400" placeholder="Vocal placement, width, depth, dynamics and tonal balance"></textarea></label>
+        <label class="field"><span>Exclude</span><textarea id="constraints" maxlength="400" placeholder="Unwanted elements only; keep this short"></textarea></label>
       </div>
+    </aside>
+    <section class="structure-panel" aria-labelledby="structureTitle">
+      <div class="structure-heading"><div><span class="eyebrow">User-controlled structure</span><h1 id="structureTitle">Song Structure</h1><p id="structureSummary">Start blank or choose a template. Drag sections or use the arrow controls to reorder them.</p></div><button class="btn primary" id="addSection" type="button">+ Add Section</button></div>
+      <div class="structure-board" id="structureBoard" role="list" aria-label="Song sections"></div>
+      <div class="empty-structure" id="emptyStructure"><strong>This song has no sections yet.</strong><span>Add your first section or start from an optional template.</span><button class="btn primary" id="addFirstSection" type="button">Add First Section</button></div>
+    </section>
+    <aside class="composer-panel inspector-panel" aria-labelledby="inspectorTitle">
+      <div class="panel-heading"><div><span class="eyebrow">Selected section</span><h2 id="inspectorTitle">Inspector</h2></div><button class="panel-toggle" id="collapseInspector" type="button" aria-label="Collapse section inspector">›</button></div>
+      <div class="inspector-empty" id="inspectorEmpty">Select a section to edit its lyrics and musical behavior.</div>
+      <form class="panel-scroll inspector-form" id="sectionInspector" hidden>
+        <div class="field-grid two"><label class="field"><span>Section type</span><select id="sectionType"></select></label><label class="field"><span>Section name</span><input id="sectionName" maxlength="60" /></label></div>
+        <label class="field"><span>Lyrics</span><textarea class="lyrics-input" id="sectionLyrics" maxlength="12000" placeholder="Write this section's lyrics..."></textarea></label>
+        <label class="field"><span>Main direction</span><textarea id="sectionDirection" maxlength="360" placeholder="What should change or happen in this section?"></textarea></label>
+        <label class="field"><span>Energy</span><select id="sectionEnergy"><option value="">Not specified</option><option>Very Low</option><option>Low</option><option>Restrained</option><option>Rising</option><option>High</option><option>Peak</option><option>Falling</option></select></label>
+        <label class="field advanced-only"><span>Vocal behavior</span><textarea id="sectionVocal" maxlength="320" placeholder="Section-specific delivery or harmony"></textarea></label>
+        <label class="field advanced-only"><span>Instrument behavior</span><textarea id="sectionInstruments" maxlength="400" placeholder="What the important players do here"></textarea></label>
+        <label class="field advanced-only"><span>Arrangement change</span><textarea id="sectionArrangement" maxlength="400" placeholder="Build, strip down, widen, drop out, return"></textarea></label>
+        <label class="field advanced-only"><span>Mix placement</span><textarea id="sectionMix" maxlength="300" placeholder="Section-specific width, depth or focus"></textarea></label>
+        <label class="field advanced-only"><span>Section constraints</span><input id="sectionExclude" maxlength="240" placeholder="Unwanted elements in this section" /></label>
+      </form>
+    </aside>
   </div>
-  <section id="node-canvas" class="node-canvas" aria-label="Song node graph canvas">
-    <div id="node-world" class="node-world"><svg id="edge-layer" class="edge-layer" aria-hidden="true"></svg><div id="connection-preview" class="connection-preview" aria-hidden="true"></div></div>
+  <section class="output-drawer" id="outputDrawer" hidden aria-labelledby="outputTitle">
+    <header class="output-heading"><div><span class="eyebrow">Compiled V6 package</span><h2 id="outputTitle">Review Export</h2></div><button class="btn" id="closeOutput" type="button">Close</button></header>
+    <div class="output-grid"><div class="output-field"><div><strong>Style prompt</strong><button class="text-button" data-copy="style" type="button">Copy</button></div><textarea id="styleOutput" readonly></textarea></div><div class="output-field lyrics-output"><div><strong>Lyrics and structure</strong><button class="text-button" data-copy="lyrics" type="button">Copy</button></div><textarea id="lyricsOutput" readonly></textarea></div><aside class="diagnostics"><div class="diagnostic-head"><strong>Prompt diagnostics</strong><span id="diagnosticCount">0 issues</span></div><div id="diagnosticList"></div><div class="export-actions"><button class="btn" id="copyPackage" type="button">Copy Package</button><button class="btn primary" id="downloadTxt" type="button">Download TXT</button></div></aside></div>
   </section>
-
   <Fragment slot="afterShell">
-    <div id="context-menu" class="context-menu" hidden></div>
-    <dialog id="project-dialog" class="node-dialog">
-      <form method="dialog">
-        <div class="dialog-head"><div><strong>Project Settings</strong><span>Set the optional title, global style, and targeted negative exclusions.</span></div><button class="btn" value="cancel" type="submit">Close</button></div>
-        <label class="node-field"><span>Title</span><input id="song-title" type="text" placeholder="Enter song title..." /></label>
-        <label class="node-field"><span>Style Preset</span><select id="style-preset"><option value="">No preset selected</option></select></label>
-        <label class="node-field"><span>Custom Style Text</span><input id="style-text" type="text" placeholder="Type a custom global style, or choose a preset above..." /></label>
-        <label class="node-field"><span>Targeted Negative</span><textarea id="negative-text" placeholder="Optional. Only add exclusions after renderer drift, e.g. no trap hi-hats"></textarea></label>
-        <div class="dialog-actions"><button id="btn-save-project-settings" class="btn primary" value="default" type="button">Apply Settings</button></div>
-      </form>
-    </dialog>
-    <dialog id="lyrics-dialog" class="node-dialog lyrics-dialog">
-      <form method="dialog">
-        <div class="dialog-head"><div><strong id="dialog-title">Edit Lyrics</strong><span id="dialog-meta">0 lines</span></div><button class="btn" value="cancel" type="submit">Close</button></div>
-        <textarea id="lyrics-editor" placeholder="Write this section's lyrics here..."></textarea>
-        <div class="dialog-actions"><button id="btn-save-lyrics" class="btn primary" value="default" type="button">Save Lyrics</button></div>
-      </form>
-    </dialog>
-    <dialog id="output-dialog" class="node-dialog output-dialog">
-      <form method="dialog">
-        <div class="dialog-head"><div><strong>Compiled Suno TXT</strong><span>Copy or download the final prompt for Suno.</span></div><button class="btn" value="cancel" type="submit">Close</button></div>
-        <textarea id="compiled-output" readonly></textarea>
-        <div class="dialog-actions"><button id="btn-copy-output" class="btn" type="button">Copy</button><button id="btn-download-output-modal" class="btn primary" type="button">Download TXT</button></div>
-      </form>
-    </dialog>
+    <dialog class="composer-dialog" id="sectionDialog"><form method="dialog"><div class="dialog-heading"><div><span class="eyebrow">Song structure</span><h2>Add Section</h2></div><button class="btn" value="cancel">Close</button></div><div class="section-type-grid" id="sectionTypeGrid"></div><label class="field custom-section-field"><span>Custom section name</span><input id="customSectionName" maxlength="60" placeholder="Movement, Refrain, Coda..." /></label><div class="dialog-actions"><button class="btn primary" id="confirmAddSection" value="default" type="button">Add Section</button></div></form></dialog>
   </Fragment>
   <Fragment slot="scripts"><script is:inline type="module" src="/js/musicprompt/app.js"></script></Fragment>
 </BaseLayout>

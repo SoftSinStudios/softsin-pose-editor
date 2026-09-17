@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "templates": [
+    { "id": "blank", "name": "Blank Project", "sections": [] },
+    { "id": "verse-chorus", "name": "Verse / Chorus", "sections": ["Verse 1", "Chorus", "Verse 2", "Chorus 2", "Bridge", "Final Chorus"] },
+    { "id": "story-ballad", "name": "Story Ballad", "sections": ["Intro", "Verse 1", "Verse 2", "Chorus", "Verse 3", "Bridge", "Final Chorus", "Outro"] },
+    { "id": "progressive-build", "name": "Progressive Build", "sections": ["Intro", "Movement I", "Interlude", "Movement II", "Breakdown", "Finale", "Outro"] },
+    { "id": "electronic-drop", "name": "Electronic Drop", "sections": ["Intro", "Buildup", "Drop", "Break", "Buildup 2", "Final Drop", "Outro"] },
+    { "id": "instrumental-arc", "name": "Instrumental Arc", "sections": ["Intro", "Theme", "Development", "Interlude", "Climax", "Outro"] }
+  ]
+}
