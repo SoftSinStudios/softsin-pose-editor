@@ -1020,9 +1020,11 @@ function insertUploadedImageMarkdown(url, fileName, editorId = null) {
   if (editorId) {
     updateMiniEditorCount(editorId);
     resizeMiniEditorTextarea(editorId);
+    setMiniEditorPreviewMode(editorId, true);
   } else {
     updateCharCount();
     scheduleDraftSave();
+    setEditorPreviewMode(true);
   }
 }
 
