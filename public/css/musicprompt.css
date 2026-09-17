@@ -13,7 +13,8 @@ html, body.music-composer-page { width: 100%; height: 100%; margin: 0; overflow:
 .mode-switch { padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: rgba(0,0,0,.2); }
 .mode-button { border: 0; border-radius: 8px; padding: 7px 13px; background: transparent; color: var(--muted); font-weight: 850; cursor: pointer; }
 .mode-button.active { background: rgba(103,232,255,.12); color: var(--accent); box-shadow: inset 0 0 0 1px rgba(103,232,255,.28); }
-.composer-layout { position: absolute; inset: 62px 0 0; display: grid; grid-template-columns: 280px minmax(620px, 1fr) 350px; min-height: 0; transition: grid-template-columns .18s ease; }
+.composer-layout { position: absolute; inset: 62px 0 0; width: 100%; max-width: 100%; display: grid; grid-template-columns: 280px minmax(0, 1fr) 350px; min-height: 0; overflow: hidden; transition: grid-template-columns .18s ease; }
+.composer-layout > * { min-width: 0; }
 .composer-panel, .structure-panel { min-width: 0; min-height: 0; background: #0c1018; }
 .direction-panel { border-right: 1px solid var(--line); }
 .inspector-panel { border-left: 1px solid var(--line); }
@@ -60,9 +61,9 @@ html, body.music-composer-page { width: 100%; height: 100%; margin: 0; overflow:
 .empty-structure strong { color: var(--text); font-size: 18px; }
 .inspector-empty { padding: 20px; color: var(--muted); line-height: 1.5; }
 .inspector-form .lyrics-input { min-height: 210px; }
-.direction-collapsed .composer-layout { grid-template-columns: 48px minmax(620px, 1fr) 350px; }
-.inspector-collapsed .composer-layout { grid-template-columns: 280px minmax(620px, 1fr) 48px; }
-.direction-collapsed.inspector-collapsed .composer-layout { grid-template-columns: 48px minmax(620px, 1fr) 48px; }
+.direction-collapsed .composer-layout { grid-template-columns: 48px minmax(0, 1fr) 350px; }
+.inspector-collapsed .composer-layout { grid-template-columns: 280px minmax(0, 1fr) 48px; }
+.direction-collapsed.inspector-collapsed .composer-layout { grid-template-columns: 48px minmax(0, 1fr) 48px; }
 .direction-collapsed .direction-panel .panel-heading > div, .direction-collapsed .direction-panel .panel-scroll, .inspector-collapsed .inspector-panel .panel-heading > div, .inspector-collapsed .inspector-panel .panel-scroll, .inspector-collapsed .inspector-empty { display: none; }
 .direction-collapsed .direction-panel .panel-heading, .inspector-collapsed .inspector-panel .panel-heading { padding: 9px; justify-content: center; }
 .direction-collapsed #collapseDirection { transform: rotate(180deg); }
@@ -97,16 +98,16 @@ html, body.music-composer-page { width: 100%; height: 100%; margin: 0; overflow:
 .custom-section-field.visible { display: grid; }
 .dialog-actions { display: flex; justify-content: flex-end; margin-top: 14px; }
 @media (max-width: 1500px) {
-  .composer-layout { grid-template-columns: 250px minmax(560px,1fr) 310px; }
-  .direction-collapsed .composer-layout { grid-template-columns: 48px minmax(560px,1fr) 310px; }
-  .inspector-collapsed .composer-layout { grid-template-columns: 250px minmax(560px,1fr) 48px; }
+  .composer-layout { grid-template-columns: 250px minmax(0,1fr) 310px; }
+  .direction-collapsed .composer-layout { grid-template-columns: 48px minmax(0,1fr) 310px; }
+  .inspector-collapsed .composer-layout { grid-template-columns: 250px minmax(0,1fr) 48px; }
   .field-grid.two { grid-template-columns: 1fr; }
   .output-grid { grid-template-columns: 1fr 1.15fr 285px; }
 }
 @media (max-width: 1180px) {
   .composer-toolbar { grid-template-columns: 1fr auto; }
   .composer-title-block { display: none; }
-  .composer-layout { grid-template-columns: 48px minmax(540px,1fr) 320px; }
+  .composer-layout { grid-template-columns: 48px minmax(0,1fr) 320px; }
   .direction-panel .panel-heading > div, .direction-panel .panel-scroll { display: none; }
   .direction-panel .panel-heading { padding: 9px; justify-content: center; }
   .output-grid { grid-template-columns: 1fr 1fr; overflow-y: auto; }
