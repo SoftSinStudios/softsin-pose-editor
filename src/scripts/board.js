@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 30246)
-Total output lines: 4077
-
 import { createClient } from "@supabase/supabase-js";
 
 const SUPABASE_URL = "https://pnpijueflzvlyzzmhdwa.supabase.co";
@@ -1877,7 +1874,37 @@ function updateNotificationBadge(count) {
 
 function updateChannelNotificationIndicators() {
   document.querySelectorAll(".channel[data-slug]").forEach((channel) => {
-    const count = unreadNotificationsByChannel.get(channel.dataset.s…246 tokens truncated…t || 0) / REPLIES_PER_PAGE));
+    const count = unreadNotificationsByChannel.get(channel.dataset.slug) || 0;
+    const badge = channel.querySelector(".channel-notification-count");
+    channel.classList.toggle("has-notifications", count > 0);
+    if (badge) {
+      badge.textContent = String(count);
+      badge.hidden = count < 1;
+    }
+  });
+}
+
+async function openNotificationTarget(button) {
+  const notificationId = button.dataset.notificationId;
+  const threadId = button.dataset.threadId;
+  const categorySlug = button.dataset.categorySlug;
+  const postCreatedAt = button.dataset.postCreatedAt;
+  if (!threadId || !categorySlug) return;
+
+  await supabase
+    .from("board_notifications")
+    .update({ read_at: new Date().toISOString() })
+    .eq("id", notificationId);
+
+  let replyPage = 1;
+  if (postCreatedAt) {
+    const { count } = await supabase
+      .from("posts")
+      .select("id", { count: "exact", head: true })
+      .eq("thread_id", threadId)
+      .is("deleted_at", null)
+      .lte("created_at", postCreatedAt);
+    replyPage = Math.max(1, Math.ceil((count || 0) / REPLIES_PER_PAGE));
   }
 
   if (notificationPanel) notificationPanel.hidden = true;
