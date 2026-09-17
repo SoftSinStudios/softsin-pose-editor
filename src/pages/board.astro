@@ -52,7 +52,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="side-title channel-section-title">
             <span>Channels</span>
             <span class="recent-notification-total" id="recentNotificationTotal" hidden>Recent Notifications: <strong>0</strong></span>
+            <span class="admin-board-total" id="adminNewThreads" hidden>New Threads: <strong>0</strong></span>
+            <span class="admin-board-total" id="adminNewPosts" hidden>New Posts: <strong>0</strong></span>
           </div>
+          <a class="channel rules-channel" href="#" id="rulesLink"><span>Rules</span></a>
           <div id="categoryList">
             <a class="channel active" href="#" data-slug="general"><span>General</span><span class="pill">0</span></a>
             <a class="channel" href="#" data-slug="pose-editor"><span>Pose Editor</span><span class="pill">0</span></a>
@@ -67,10 +70,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
         </section>
 
-        <section class="side-section">
-          <div class="side-title">Quick Links</div>
-          <a class="channel" href="#" id="rulesLink"><span>Rules</span></a>
-        </section>
       </aside>
 
       <section class="main-panel">

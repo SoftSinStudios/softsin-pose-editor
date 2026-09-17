@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 30246)
+Total output lines: 4077
+
 import { createClient } from "@supabase/supabase-js";
 
 const SUPABASE_URL = "https://pnpijueflzvlyzzmhdwa.supabase.co";
@@ -99,6 +102,8 @@ const notificationPanel = document.getElementById("notificationPanel");
 const notificationList = document.getElementById("notificationList");
 const markNotificationsRead = document.getElementById("markNotificationsRead");
 const recentNotificationTotal = document.getElementById("recentNotificationTotal");
+const adminNewThreads = document.getElementById("adminNewThreads");
+const adminNewPosts = document.getElementById("adminNewPosts");
 
 const READ_THREADS_KEY = "softsin_read_threads_v1";
 const BOARD_DRAFT_KEY = "softsin_board_draft_v1";
@@ -1872,37 +1877,7 @@ function updateNotificationBadge(count) {
 
 function updateChannelNotificationIndicators() {
   document.querySelectorAll(".channel[data-slug]").forEach((channel) => {
-    const count = unreadNotificationsByChannel.get(channel.dataset.slug) || 0;
-    const badge = channel.querySelector(".channel-notification-count");
-    channel.classList.toggle("has-notifications", count > 0);
-    if (badge) {
-      badge.textContent = String(count);
-      badge.hidden = count < 1;
-    }
-  });
-}
-
-async function openNotificationTarget(button) {
-  const notificationId = button.dataset.notificationId;
-  const threadId = button.dataset.threadId;
-  const categorySlug = button.dataset.categorySlug;
-  const postCreatedAt = button.dataset.postCreatedAt;
-  if (!threadId || !categorySlug) return;
-
-  await supabase
-    .from("board_notifications")
-    .update({ read_at: new Date().toISOString() })
-    .eq("id", notificationId);
-
-  let replyPage = 1;
-  if (postCreatedAt) {
-    const { count } = await supabase
-      .from("posts")
-      .select("id", { count: "exact", head: true })
-      .eq("thread_id", threadId)
-      .is("deleted_at", null)
-      .lte("created_at", postCreatedAt);
-    replyPage = Math.max(1, Math.ceil((count || 0) / REPLIES_PER_PAGE));
+    const count = unreadNotificationsByChannel.get(channel.dataset.s…246 tokens truncated…t || 0) / REPLIES_PER_PAGE));
   }
 
   if (notificationPanel) notificationPanel.hidden = true;
@@ -2035,8 +2010,50 @@ function setSignedOut() {
   unreadNotificationsByChannel = new Map();
   updateNotificationBadge(0);
   updateChannelNotificationIndicators();
+  setAdminBoardSummary(false);
   hideReportDialog();
   setComposerForSignedOut();
+}
+
+function setAdminBoardSummary(visible, threadCount = 0, postCount = 0) {
+  [adminNewThreads, adminNewPosts].forEach((element) => {
+    if (element) element.hidden = !visible;
+  });
+
+  const threadValue = adminNewThreads?.querySelector("strong");
+  const postValue = adminNewPosts?.querySelector("strong");
+  if (threadValue) threadValue.textContent = String(threadCount);
+  if (postValue) postValue.textContent = String(postCount);
+}
+
+async function loadAdminBoardSummary() {
+  if (!userIsAdmin()) {
+    setAdminBoardSummary(false);
+    return;
+  }
+
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  setAdminBoardSummary(true);
+
+  const [threadsResult, postsResult] = await Promise.all([
+    supabase
+      .from("threads")
+      .select("id", { count: "exact", head: true })
+      .gte("created_at", since)
+      .is("deleted_at", null),
+    supabase
+      .from("posts")
+      .select("id", { count: "exact", head: true })
+      .gte("created_at", since)
+      .is("deleted_at", null)
+  ]);
+
+  const threadCount = threadsResult.error ? "!" : threadsResult.count || 0;
+  const postCount = postsResult.error ? "!" : postsResult.count || 0;
+  if (threadsResult.error || postsResult.error) {
+    console.warn("Admin board summary failed:", threadsResult.error || postsResult.error);
+  }
+  setAdminBoardSummary(true, threadCount, postCount);
 }
 
 function setSignedIn(user, profile) {
@@ -2061,6 +2078,7 @@ function setSignedIn(user, profile) {
   setComposerForSignedIn();
   startBoardPresence();
   loadNotifications();
+  loadAdminBoardSummary();
 }
 
 async function getProfile(userId) {
@@ -3701,6 +3719,7 @@ async function createThread() {
 
   await loadThreadsForCategory(currentCategory);
   await loadCategoryCounts();
+  await loadAdminBoardSummary();
 }
 
 async function createReply() {
@@ -3783,6 +3802,7 @@ async function createReply() {
     .is("deleted_at", null);
   const lastReplyPage = Math.max(1, Math.ceil((replyCount || 0) / REPLIES_PER_PAGE));
   await openThread(threadId, { replyPage: lastReplyPage });
+  await loadAdminBoardSummary();
 }
 
 postMessage.addEventListener("click", () => {
