@@ -1,85 +1,161 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "SoftSin Studios — Creator Tools for AI Art Workflows";
-const description = "SoftSin Studios builds practical creator tools for AI art workflows, BODY_25 pose editing, prompt composition, JSON utilities, ComfyUI metadata, and community updates.";
+const title = "SoftSin Studios — Creator Tools for AI Art and Music Workflows";
+const description = "Free creator tools for pose control, Stable Diffusion prompting, Suno V6 song planning, JSON workflows, ComfyUI metadata, and the SoftSin community.";
 ---
 
 <BaseLayout title={title} description={description} active="home" canonicalPath="/" pageStyles={["/css/home.css"]}>
-  <style slot="head">
-    .tool-card .tool-orb.tool-card-graphic {
-      width: 100%;
-      min-height: 190px;
-      border-radius: 22px;
-      border: 1px solid rgba(103, 232, 255, 0.18);
-      background: rgba(0, 0, 0, 0.24);
-      box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28), 0 0 42px rgba(103, 232, 255, 0.08);
-      overflow: hidden;
-      transform: none;
-    }
-    .tool-card .tool-orb.tool-card-graphic::before,
-    .tool-card .tool-orb.tool-card-graphic::after { display: none; }
-    .tool-card-graphic img { display: block; width: 100%; height: 100%; min-height: 190px; object-fit: cover; object-position: center; }
-  </style>
-
-  <section class="hero">
-    <div>
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero-copy">
       <span class="eyebrow">SoftSin Studios</span>
-      <h1>Clean tools for AI art and creator workflows.</h1>
-      <p class="lead"><strong>SoftSin Studios</strong> is a home base for browser-based creator tools, <strong>ComfyUI helpers</strong>, <strong>Stable Diffusion workflow experiments</strong>, artwork, updates, and documentation.</p>
-      <div class="hero-points" aria-label="SoftSin Studios focus areas">
-        <span><strong>Browser tools</strong> - 100% free for everyone!</span><br />
-        <span><strong>Pose control</strong> - Full custom pose creation with bezier curves!</span><br />
-        <span><strong>Image Prompt structure</strong> - Take the guess work out of SD1.5 prompt structure!</span><br />
-        <span><strong>Music Prompt structure</strong> - Take the guess work out of AI music prompt structure!</span><br />
-        <span><strong>Custom ComfyUI Nodes</strong> - Take control of your metadata and saved images!</span><br />
-        <span><strong>Reusable workflow files</strong> - One stop shop for your workflows!</span>
-      </div>
-      <p class="lead">The SoftSin Studios ethos is simple: <em>build useful tools that reduce friction</em> instead of adding another layer of chaos to the creative stack.</p>
+      <h1 id="home-title">Practical tools for creative workflows.</h1>
+      <p class="home-hero-lead">Free browser-based tools for AI art, music prompting, pose creation, ComfyUI workflows, and reusable project files.</p>
+      <p>Build the idea, keep control of the project, and export something you can actually use. No subscriptions, no artificial workflow, and no black box between you and your work.</p>
       <div class="hero-actions">
-        <a class="btn primary" href="/toolhub.html">Open Tool Hub</a>
-        <a class="btn" href="/socials.html">View socials</a>
-        <a class="btn" href="/board.html">Read Updates</a>
+        <a class="btn primary" href="#flagship-tools">Explore the tools</a>
+        <a class="btn action" href="/board.html">Join the community</a>
       </div>
     </div>
 
-    <div class="tool-showcase">
-      <article class="card tool-card">
-        <div><h3>Pose Editor</h3><p>Create BODY_25 control images from reference art, adjust bones directly on canvas, and export clean OpenPose-ready PNG files.</p></div>
-        <div class="tool-orb tool-card-graphic"><img src="/images/home-pose-editor.png" alt="Pose Editor screenshot showing BODY_25 pose controls over a reference image" loading="lazy" /></div>
+    <aside class="home-hero-summary" aria-label="What SoftSin Studios provides">
+      <span class="section-kicker">Built for the work</span>
+      <div class="hero-summary-grid">
+        <div><strong>3</strong><span>Flagship browser tools</span></div>
+        <div><strong>Free</strong><span>No subscription required</span></div>
+        <div><strong>Local</strong><span>Reusable project files</span></div>
+        <div><strong>Open</strong><span>Community support and updates</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="home-section" id="flagship-tools" aria-labelledby="flagship-title">
+    <div class="home-section-heading">
+      <div>
+        <span class="section-kicker">Flagship browser tools</span>
+        <h2 id="flagship-title">Start with the creative workbench.</h2>
+      </div>
+      <p>Three purpose-built applications for pose control, image prompting, and structured song creation.</p>
+    </div>
+
+    <div class="flagship-grid">
+      <article class="flagship-card pose-card">
+        <div class="tool-card-copy">
+          <span class="tool-label">Pose control</span>
+          <h3>Pose Creator/Editor V2</h3>
+          <p>Create BODY_25 control images from reference art, edit straight or curved bones on canvas, and preserve complete workspaces in portable SoftPose projects.</p>
+          <div class="tool-tags" aria-label="Pose Editor features"><span>Bezier curves</span><span>SoftPose projects</span><span>PNG + JSON</span></div>
+        </div>
+        <img src="/images/home-pose-editor.png" alt="Pose Creator and Editor showing a BODY_25 pose over a reference image" loading="eager" />
         <a class="btn primary" href="/pose.html">Launch Pose Editor</a>
       </article>
-      <article class="card tool-card">
-        <div><h3>JSON Maker</h3><p>Build, clean, and reuse structured JSON for prompt vocabularies, tool data, presets, and workflow systems.</p></div>
-        <div class="tool-orb tool-card-graphic"><img src="/images/home-json-maker.png" alt="JSON Maker preview showing category controls and JSON output" loading="lazy" /></div>
+
+      <article class="flagship-card sd-card">
+        <div class="tool-card-copy">
+          <span class="tool-label">Image prompting</span>
+          <h3>SD Prompt Composer</h3>
+          <p>Build structured positive and negative prompts for people, creatures, vehicles, environments, objects, abstract concepts, and complete scenes.</p>
+          <div class="tool-tags" aria-label="SD Prompt Composer features"><span>Structured fields</span><span>Live output</span><span>JSON + TXT</span></div>
+        </div>
+        <img src="/images/home-sd-prompt-composer.png" alt="SD Prompt Composer with structured fields and compiled prompt output" loading="lazy" />
+        <a class="btn action" href="/sdcomposer.html">Open SD Composer</a>
+      </article>
+
+      <article class="flagship-card music-card">
+        <div class="tool-card-copy">
+          <span class="tool-label">Music prompting</span>
+          <h3>Music Composer</h3>
+          <p>Plan a complete song with user-controlled sections, lyrics, energy, instrumentation, vocal direction, and context-aware Suno V6 suggestions.</p>
+          <div class="tool-tags" aria-label="Music Composer features"><span>Custom structure</span><span>V6 suggestions</span><span>JSON + TXT</span></div>
+        </div>
+        <img src="/images/home-music-prompt-builder.svg" alt="SoftSin Music Composer visual preview" loading="lazy" />
+        <a class="btn success" href="/musicprompt.html">Open Music Composer</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="clips-spotlight home-section" aria-labelledby="clips-title">
+    <div class="clips-copy">
+      <span class="windows-label"><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Windows application</span>
+      <span class="section-kicker">Available from the Microsoft Store</span>
+      <h2 id="clips-title">SoftSinClips</h2>
+      <p class="clips-lead">Lightweight screen recording and instant replay capture for Windows 11.</p>
+      <p>Capture your display with application and microphone audio, balance sources in the built-in mixer, save replay clips after the moment happens, and manage recordings without unnecessary clutter.</p>
+      <ul class="clips-features">
+        <li>Independent application, microphone, and master audio controls</li>
+        <li>Configurable replay duration, monitor selection, hotkeys, and exports</li>
+        <li>Windows Media Foundation H.264 encoding</li>
+      </ul>
+      <a class="store-badge" href="https://apps.microsoft.com/detail/9N2BVSQHS2CK" target="_blank" rel="noopener noreferrer" aria-label="Get SoftSinClips from Microsoft">
+        <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Get it from Microsoft" />
+      </a>
+    </div>
+
+    <div class="clips-gallery" aria-label="SoftSinClips application screenshots">
+      <img class="clips-main-image" src="/images/softsinclips-mixer.png" alt="SoftSinClips recording controls and audio mixer" loading="lazy" />
+      <div class="clips-secondary-images">
+        <img src="/images/softsinclips-replays.png" alt="SoftSinClips saved replay browser" loading="lazy" />
+        <img src="/images/softsinclips-logs.png" alt="SoftSinClips diagnostic log browser" loading="lazy" />
+        <img src="/images/softsinclips-settings.png" alt="SoftSinClips monitor, encoder, replay, export, and hotkey settings" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="workflow-title">
+    <div class="home-section-heading compact-heading">
+      <div>
+        <span class="section-kicker">Supporting utilities</span>
+        <h2 id="workflow-title">Keep the workflow moving.</h2>
+      </div>
+      <a class="text-link" href="/toolhub.html">View the complete Tool Hub <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="utility-grid">
+      <article class="utility-card">
+        <img src="/images/home-json-maker.png" alt="JSON Maker interface" loading="lazy" />
+        <div><span class="tool-label">Structured data</span><h3>JSON Maker</h3><p>Build, clean, import, and export reusable JSON for prompt vocabularies, presets, and workflow systems.</p></div>
         <a class="btn" href="/json.html">Open JSON Maker</a>
       </article>
-      <article class="card tool-card">
-        <div><h3>ComfyUI Nodes</h3><p>Documentation for the SoftSin Metadata and Save Image nodes, built around readable PNGInfo and cleaner image output.</p></div>
-        <div class="tool-orb tool-card-graphic"><img src="/images/home-comfyui-nodes.png" alt="SoftSin ComfyUI node screenshots for metadata and image saving" loading="lazy" /></div>
-        <a class="btn" href="/node.html">View Nodes</a>
+      <article class="utility-card">
+        <img src="/images/home-list-formatter.png" alt="List Formatter interface" loading="lazy" />
+        <div><span class="tool-label">Quick cleanup</span><h3>List Formatter</h3><p>Convert one-item-per-line lists into clean formatted output for prompt banks, scripts, and JSON preparation.</p></div>
+        <a class="btn" href="/listconverter.html">Open Formatter</a>
       </article>
-      <article class="card tool-card">
-        <div><h3>SD Prompt Composer</h3><p>Compose structured prompts with clear sections for identity, outfit, pose, environment, lighting, quality, and negatives.</p></div>
-        <div class="tool-orb tool-card-graphic"><img src="/images/home-sd-prompt-composer.png" alt="SD Prompt Composer interface showing structured prompt fields" loading="lazy" /></div>
-        <a class="btn" href="/sdcomposer.html">Open Composer</a>
+      <article class="utility-card">
+        <img src="/images/home-comfyui-nodes.png" alt="SoftSin Metadata and Save Image ComfyUI nodes" loading="lazy" />
+        <div><span class="tool-label">ComfyUI workflow</span><h3>ComfyUI Nodes</h3><p>Use readable generation metadata and clean image saving without stuffing an entire workflow into every PNG.</p></div>
+        <a class="btn" href="/node.html">View Node Documentation</a>
       </article>
     </div>
   </section>
 
-  <section class="panel section">
-    <div class="panel-head"><h2>Tools, updates, and support</h2><p>Find SoftSin tools, release notes, support posts, workflow notes, and project updates from one place.</p></div>
-    <div class="quick-grid">
-      <a class="quick" href="/toolhub.html"><strong>Tools</strong><span>Pose editing, prompt composition, JSON utilities, and ComfyUI workflow support.</span></a>
-      <a class="quick" href="/socials.html"><strong>Socials</strong><span>Social channels, and places to follow current work.</span></a>
-      <a class="quick" href="/board.html"><strong>Updates</strong><span>Release notes, support posts, bug reports, roadmap notes, and community discussion.</span></a>
-      <a class="quick" href="/board.html"><strong>Support</strong><span>Use the message board for tool help, bug reports, feature requests, release notes, and direct SoftSin project support.</span></a>
+  <section class="home-section updates-section" aria-labelledby="updates-title">
+    <div class="home-section-heading compact-heading">
+      <div><span class="section-kicker">What’s new</span><h2 id="updates-title">The rebuilt SoftSin Studios is live.</h2></div>
+      <a class="text-link" href="/board.html">Read Announcements <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="update-grid">
+      <article><span>Website V2</span><h3>A faster, responsive foundation</h3><p>A shared site system, clearer navigation, independent tools, and layouts tested at 1920×1080 and ultrawide resolutions.</p></article>
+      <article><span>Music Composer</span><h3>Rebuilt for structured V6 prompting</h3><p>User-controlled song structure, contextual vocabulary, complete project saving, and JSON or text exports.</p></article>
+      <article><span>Community</span><h3>The message board is open</h3><p>Follow tools, receive thread notifications, report issues, share results, and take part in future development.</p></article>
     </div>
   </section>
 
-  <section class="card-grid section">
-    <article class="card"><h3>Built for working artists</h3><p>The tools are designed around real image-generation habits: reference images, pose control, prompt structure, reusable data, and clean exports that plug into an existing workflow.</p></article>
-    <article class="card"><h3>Browser-first utilities</h3><p>Most SoftSin tools run directly in the browser. Open the page, use the tool, save or export the result, and get back to making the thing.</p></article>
-    <article class="card"><h3>Readable workflow systems</h3><p>SoftSin favors simple files, clear labels, visible metadata, and formats that can be inspected later instead of buried in a black box.</p></article>
+  <section class="community-callout home-section" aria-labelledby="community-title">
+    <div>
+      <span class="section-kicker">Built in the open</span>
+      <h2 id="community-title">Use the tools. Help shape what comes next.</h2>
+      <p>Get support, report problems, share your work, follow development, and talk directly about the workflows these tools are built to serve.</p>
+    </div>
+    <div class="community-actions">
+      <a class="btn primary" href="/board.html">Visit Message Board</a>
+      <a class="btn" href="/socials.html">Follow SoftSin</a>
+    </div>
+  </section>
+
+  <section class="why-grid home-section" aria-label="Why SoftSin Studios">
+    <article><strong>Free and browser-first</strong><span>Open the tool, do the work, and export the result without adding another subscription.</span></article>
+    <article><strong>Structured and reusable</strong><span>Projects use readable files, clear labels, and formats that can be reopened instead of discarded.</span></article>
+    <article><strong>Built for real workflows</strong><span>Every tool is designed to reduce friction and connect cleanly with the creative software you already use.</span></article>
   </section>
 </BaseLayout>
