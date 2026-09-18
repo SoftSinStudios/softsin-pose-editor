@@ -70,6 +70,7 @@
 .flagship-card p,
 .utility-card p { margin: 0; }
 .flagship-card > img { width: 100%; min-height: 235px; max-height: 260px; margin-top: auto; object-fit: cover; object-position: center; border: 1px solid var(--line2); border-radius: 18px; background: #080b11; }
+.pose-card > img,
 .music-card > img { object-fit: contain; padding: 12px; }
 .flagship-card > .btn,
 .utility-card > .btn { text-align: center; border-radius: 13px; }
